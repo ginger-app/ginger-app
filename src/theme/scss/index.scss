@@ -1,0 +1,114 @@
+@import 'resources.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    scroll-behavior: smooth;
+}
+
+html {
+    font-size: 16px;
+    color: #ddd;
+}
+
+body {
+    font-family: 'SF Pro Display', 'Roboto', sans-serif;
+
+    min-height: 100vh;
+    min-width: 100vw;
+
+    // ::-webkit-scrollbar {
+    //     width: 4px;
+    //     height: 4px;
+    // }
+
+    // ::-webkit-scrollbar-thumb {
+    //     background: $paletteBlue1;
+    //     border-radius: 4px;
+    // }
+    // ::-webkit-scrollbar-track {
+    //     background-color: transparent;
+    // }
+}
+
+#app {
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+a {
+    text-decoration: none;
+}
+
+//  /* notifications */
+//  .toast-container {
+//      z-index: 100;
+//  }
+//  .toast-progress-line {
+//      background: $lightGrey;
+//      height: 1px;
+//  }
+
+//  .toast-error {
+//      background: $paletteErrorRed;
+
+//      & .error-body {
+//          display: flex;
+//          align-items: center;
+//          color: white;
+//          &::before {
+//              content: url('../theme/assets/icons/error.svg');
+//              margin-right: 1rem;
+//              filter: invert(1);
+//          }
+//      }
+//  }
+
+//  .toast-success {
+//      background: $secondaryGreen;
+
+//      & .success-body {
+//          display: flex;
+//          align-items: center;
+//          color: white;
+//          &::before {
+//              content: url('../theme/assets/icons/success.svg');
+//              margin-right: 1rem;
+//              filter: invert(1);
+//          }
+//      }
+//  }
+
+//  .toast-bonus {
+//      background: #000;
+//      border: 1px solid $secondaryGreen;
+
+//      & .bonus-body {
+//          display: flex;
+//          align-items: center;
+//          color: white;
+//          &::before {
+//              content: url('../theme/assets/icons/warn.svg');
+//              margin-right: 1rem;
+//              filter: invert(1);
+//          }
+//      }
+//  }
+
+//  .toast-info {
+//      background: #000;
+//      border: 1px solid $secondaryGreen;
+
+//      & .info-body {
+//          display: flex;
+//          align-items: center;
+//          color: white;
+//          &::before {
+//              content: url('../theme/assets/icons/info.svg');
+//              margin-right: 1rem;
+//              filter: invert(1);
+//          }
+//      }
+//  }

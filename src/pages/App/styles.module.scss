@@ -1,0 +1,13 @@
+@import 'src/theme/scss/index.scss';
+
+.container {
+    display: grid;
+    place-items: center;
+
+    min-width: 100vw;
+    min-height: 100vh;
+
+    background: #001540;
+
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}

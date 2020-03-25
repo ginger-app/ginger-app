@@ -1,0 +1,14 @@
+@import 'fonts.scss';
+@import 'palette.scss';
+@import 'animations.scss';
+@import 'mediaQueryManager.scss';
+
+// Texts styling
+@mixin boldTitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+@mixin disableSelect {
+    user-select: none;
+}
