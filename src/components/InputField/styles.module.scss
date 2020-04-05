@@ -20,6 +20,8 @@
         grid-column: 1;
         padding: 0 3rem 0 2rem;
 
+        width: 100%;
+
         border-radius: 10rem;
         border: none;
 
@@ -47,6 +49,14 @@
 
         &:hover {
             transform: scale(1.05);
+        }
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .container {
+        & .input {
+            font-size: 1.25rem;
         }
     }
 }

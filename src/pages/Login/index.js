@@ -1,5 +1,6 @@
 // Core
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -10,7 +11,14 @@ import { InputField } from '../../components';
 // Instruments
 import { AsYouType } from 'libphonenumber-js';
 
-export const Login = () => {
+// Actions
+import { authActions } from '../../bus/auth/actions';
+
+const mapDispatchToProps = {
+    getAuthConfirmationCodeAsync: authActions.getAuthConfirmationCodeAsync,
+};
+
+const LoginPage = ({ getAuthConfirmationCodeAsync }) => {
     const [phoneNumber, setPhoneNumber] = useState('+380');
 
     const handlePhoneNumberChange = ({ target: { value } }) => {
@@ -20,7 +28,7 @@ export const Login = () => {
         return setPhoneNumber(new AsYouType('UA').input(value));
     };
 
-    const buttonAction = () => console.log('Click!');
+    const buttonAction = () => getAuthConfirmationCodeAsync(phoneNumber);
 
     return (
         <section className={Styles.container}>
@@ -34,3 +42,5 @@ export const Login = () => {
         </section>
     );
 };
+
+export const Login = connect(null, mapDispatchToProps)(LoginPage);

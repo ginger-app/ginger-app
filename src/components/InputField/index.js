@@ -1,6 +1,5 @@
 // Core
 import React from 'react';
-import { connect } from 'react-redux';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -15,7 +14,7 @@ export const InputField = ({ className, title, value, onChange, buttonAction }) 
             <input className={Styles.input} onChange={onChange} value={value} />
             {buttonAction && (
                 <div className={Styles.button} onClick={buttonAction}>
-                    <img src={arrow} />
+                    <img src={arrow} alt='Phone number input' />
                 </div>
             )}
         </section>

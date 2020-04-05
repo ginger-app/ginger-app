@@ -1,7 +1,11 @@
 export const book = Object.freeze({
     // public routes
-    login: '/login',
+    signin: '/signin',
+    signinConfirmation: '/signin/confirmation',
+    signup: '/signup',
+    market: '/market',
+    home: '/home',
 
     // private routes
-    home: '/home',
+    profile: '/profile',
 });
