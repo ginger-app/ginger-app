@@ -10,14 +10,16 @@
 
 html {
     font-size: 16px;
-    color: #ddd;
+    color: $paletteBlack;
 }
 
 body {
-    font-family: 'SF Pro Display', 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 
     min-height: 100vh;
     min-width: 100vw;
+
+    background: $paletteBg;
 
     // ::-webkit-scrollbar {
     //     width: 4px;
