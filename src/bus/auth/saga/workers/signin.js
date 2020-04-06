@@ -3,7 +3,7 @@ import { put, apply } from 'redux-saga/effects';
 
 // Instruments
 import { Api } from '../../../../api';
-import { history } from '../../../init/middleware/core';
+// import { history } from '../../../init/middleware/core';
 
 // Actions
 // import { authActions } from '../../actions';

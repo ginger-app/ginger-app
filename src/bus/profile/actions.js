@@ -7,5 +7,9 @@ export const profileActions = {
         type: types.FILL_PROFILE,
         payload: userData,
     }),
+
+    clearProfile: () => ({
+        type: types.CLEAR_PROFILE,
+    }),
     //Async
 };

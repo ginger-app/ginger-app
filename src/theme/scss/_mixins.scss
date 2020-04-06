@@ -9,6 +9,39 @@
     font-weight: bold;
 }
 
+// Buttons
+@mixin darkButton {
+    width: 100%;
+    padding: 1rem;
+
+    background: $paletteGrey_1;
+    border-radius: 2rem;
+
+    color: $paletteWhite;
+    font-weight: bold;
+    text-align: center;
+
+    &:hover {
+    }
+}
+
+@mixin lightButton {
+    width: 100%;
+    padding: 1rem;
+
+    background: $paletteWhite;
+    border-radius: 2rem;
+
+    color: $paletteBlack;
+    font-weight: bold;
+    text-align: center;
+
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+    }
+}
+
 @mixin disableSelect {
     user-select: none;
 }

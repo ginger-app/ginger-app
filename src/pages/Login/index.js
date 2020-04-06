@@ -23,7 +23,7 @@ const mapDispatchToProps = {
     sendConfirmationCodeAsync: authActions.sendConfirmationCodeAsync,
 };
 
-const LoginPage = ({
+const LoginComponent = ({
     getAuthConfirmationCodeAsync,
     sendConfirmationCodeAsync,
     codeConfirmationPage,
@@ -60,4 +60,4 @@ const LoginPage = ({
     );
 };
 
-export const Login = connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export const LoginPage = connect(mapStateToProps, mapDispatchToProps)(LoginComponent);
