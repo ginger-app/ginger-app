@@ -14,12 +14,22 @@ import { AsYouType } from 'libphonenumber-js';
 // Actions
 import { authActions } from '../../bus/auth/actions';
 
+const mapStateToProps = ({ auth }) => ({
+    codeConfirmationPage: auth.get('codeConfirmation'),
+});
+
 const mapDispatchToProps = {
     getAuthConfirmationCodeAsync: authActions.getAuthConfirmationCodeAsync,
+    sendConfirmationCodeAsync: authActions.sendConfirmationCodeAsync,
 };
 
-const LoginPage = ({ getAuthConfirmationCodeAsync }) => {
+const LoginPage = ({
+    getAuthConfirmationCodeAsync,
+    sendConfirmationCodeAsync,
+    codeConfirmationPage,
+}) => {
     const [phoneNumber, setPhoneNumber] = useState('+380');
+    const [smsCode, setSmsCode] = useState('');
 
     const handlePhoneNumberChange = ({ target: { value } }) => {
         if (!/^[0-9+ ]*$/.test(value)) return null;
@@ -28,19 +38,26 @@ const LoginPage = ({ getAuthConfirmationCodeAsync }) => {
         return setPhoneNumber(new AsYouType('UA').input(value));
     };
 
-    const buttonAction = () => getAuthConfirmationCodeAsync(phoneNumber);
-
     return (
         <section className={Styles.container}>
-            Login route
-            <InputField
-                title={'Номер телефону'}
-                value={phoneNumber}
-                onChange={handlePhoneNumberChange}
-                buttonAction={buttonAction}
-            />
+            {codeConfirmationPage ? 'Code confirmation route' : 'Login route'}
+            {codeConfirmationPage ? (
+                <InputField
+                    title={'Код з СМС'}
+                    value={smsCode}
+                    onChange={({ target: { value } }) => setSmsCode(value)}
+                    buttonAction={() => sendConfirmationCodeAsync({ phoneNumber, code: smsCode })}
+                />
+            ) : (
+                <InputField
+                    title={'Номер телефону'}
+                    value={phoneNumber}
+                    onChange={handlePhoneNumberChange}
+                    buttonAction={() => getAuthConfirmationCodeAsync(phoneNumber)}
+                />
+            )}
         </section>
     );
 };
 
-export const Login = connect(null, mapDispatchToProps)(LoginPage);
+export const Login = connect(mapStateToProps, mapDispatchToProps)(LoginPage);

@@ -10,12 +10,12 @@ import './theme/scss/index.scss';
 // App
 import { store } from './bus/init/store';
 import { history } from './bus/init/middleware/core';
-import { Public } from './core';
+import { App } from './core';
 
 render(
     <Provider store={store}>
         <Router history={history}>
-            <Public />
+            <App />
         </Router>
     </Provider>,
     document.getElementById('app'),

@@ -5,11 +5,12 @@ import { connectRouter } from 'connected-react-router';
 // Reducers
 import { uiReducer as ui } from '../ui/reducer';
 import { authReducer as auth } from '../auth/reducer';
+import { profileReducer as profile } from '../profile/reducer';
 
 export const rootReducer = (history) =>
     combineReducers({
         router: connectRouter(history),
-        // profile,
+        profile,
         auth,
         ui,
     });

@@ -27,5 +27,8 @@ export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.FILL_PROFILE:
             return state.mergeDeep(action.payload);
+
+        default:
+            return state;
     }
 };

@@ -8,6 +8,7 @@ import { history } from '../../../init/middleware/core';
 // Actions
 // import { authActions } from '../../actions';
 import { uiActions } from '../../../ui/actions';
+import { authActions } from '../../actions';
 
 export function* signinWorker({ payload: phoneNumber }) {
     try {
@@ -21,7 +22,8 @@ export function* signinWorker({ payload: phoneNumber }) {
 
         if (response.status >= 400) throw new Error(result.message);
 
-        yield apply(history, history.push, ['/signin/confirmation']);
+        // yield apply(history, history.push, ['/signin/confirmation']);
+        yield put(authActions.openLoginCodeConfirmation());
     } catch (err) {
         yield put(uiActions.emitError(err, '-> signinWorker'));
     } finally {
