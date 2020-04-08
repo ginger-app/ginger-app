@@ -14,10 +14,10 @@ export const authReducer = (state = initialState, action) => {
         case types.AUTHENTICATE_USER:
             return state.set('isAuthenticated', true);
 
-        case types.OPEN_LOGIN_CODE_CONFIRMATION:
+        case types.OPEN_CODE_CONFIRMATION:
             return state.set('codeConfirmation', true);
 
-        case types.CLOSE_LOGIN_CODE_CONFIRMATION:
+        case types.CLOSE_CODE_CONFIRMATION:
             return state.set('codeConfirmation', false);
 
         case types.SIGN_OUT:

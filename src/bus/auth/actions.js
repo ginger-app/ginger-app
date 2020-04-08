@@ -4,8 +4,8 @@ import { authTypes as types } from './types';
 export const authActions = {
     // Sync
     authenticate: () => ({ type: types.AUTHENTICATE_USER }),
-    openLoginCodeConfirmation: () => ({ type: types.OPEN_LOGIN_CODE_CONFIRMATION }),
-    closeLoginCodeConfirmation: () => ({ type: types.CLOSE_LOGIN_CODE_CONFIRMATION }),
+    openCodeConfirmation: () => ({ type: types.OPEN_CODE_CONFIRMATION }),
+    closeCodeConfirmation: () => ({ type: types.CLOSE_CODE_CONFIRMATION }),
     logout: () => ({ type: types.SIGN_OUT }),
 
     // Async
@@ -17,5 +17,15 @@ export const authActions = {
     sendConfirmationCodeAsync: ({ phoneNumber, code }) => ({
         type: types.SEND_CONFIRMATION_CODE_ASYNC,
         payload: { phoneNumber, code },
+    }),
+
+    getSignupConfirmationCodeAsync: (phoneNumber) => ({
+        type: types.GET_SIGNUP_CONFIRMATION_CODE_ASYNC,
+        payload: phoneNumber,
+    }),
+
+    sendSignupDataAsync: ({ phoneNumber, code, userData }) => ({
+        type: types.SEND_SIGNUP_DATA_ASYNC,
+        payload: { phoneNumber, code, userData },
     }),
 };

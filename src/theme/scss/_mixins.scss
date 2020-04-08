@@ -11,6 +11,8 @@
 
 // Buttons
 @mixin darkButton {
+    cursor: pointer;
+
     width: 100%;
     padding: 1rem;
 
@@ -26,6 +28,8 @@
 }
 
 @mixin lightButton {
+    cursor: pointer;
+
     width: 100%;
     padding: 1rem;
 

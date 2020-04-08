@@ -10,11 +10,11 @@ import { history } from '../../../init/middleware/core';
 import { uiActions } from '../../../ui/actions';
 import { authActions } from '../../actions';
 
-export function* signinWorker({ payload: phoneNumber }) {
+export function* signupCodeWorker({ payload: phoneNumber }) {
     try {
         yield put(uiActions.startFetching());
 
-        const response = yield apply(Api, Api.auth.getAuthenticationCode, [
+        const response = yield apply(Api, Api.auth.getSignupCode, [
             // removing all spaces from phone number
             phoneNumber.split(' ').join(''),
         ]);
@@ -24,11 +24,11 @@ export function* signinWorker({ payload: phoneNumber }) {
 
         yield put(authActions.openCodeConfirmation());
     } catch (err) {
-        if (err.message === 'No such user found') {
-            yield apply(history, history.push, ['/signup']);
+        if (err.message === 'User already exists') {
+            yield apply(history, history.push, ['/signin']);
             // here we should probably show some toaster
         }
-        yield put(uiActions.emitError(err, '-> signinWorker'));
+        yield put(uiActions.emitError(err, '-> signupWorker'));
     } finally {
         yield put(uiActions.stopFetching());
     }

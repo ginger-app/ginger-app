@@ -3,7 +3,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 //  Pages
-import { LoginPage } from '../pages';
+import { LoginPage, SignupPage } from '../pages';
 
 // Instruments
 import { book } from './book';
@@ -11,6 +11,7 @@ import { book } from './book';
 export const Public = () => (
     <Switch>
         <Route path={book.signin} component={LoginPage} />
-        <Redirect to={book.signin} />
+        <Route path={book.signup} component={SignupPage} />
+        <Redirect to={book.signup} />
     </Switch>
 );

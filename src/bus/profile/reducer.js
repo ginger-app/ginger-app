@@ -3,7 +3,6 @@ import { Map } from 'immutable';
 
 // Types
 import { profileTypes as types } from './types';
-import { retry } from 'redux-saga/effects';
 
 // Temp
 import userpic from '../../theme/assets/images/ginger.jpg';

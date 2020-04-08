@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Styles from './styles.module.scss';
 
 // Instruments
+import userpic from '../../theme/assets/images/ginger.jpg';
 import arrow from '../../theme/assets/svg/left-arrow-dark.svg';
 import edit from '../../theme/assets/svg/edit-dark.svg';
 
@@ -21,7 +22,13 @@ const mapDispatchToProps = {
 };
 
 const ProfileComponent = ({ className, profile, logout }) => {
-    const { firstName, lists, orders, bonuses, userpic } = profile;
+    const {
+        firstName,
+        lists,
+        orders,
+        bonuses,
+        // userpic
+    } = profile;
 
     return (
         <section className={Styles.container}>

@@ -10,13 +10,14 @@ import { uiActions } from '../../../ui/actions';
 import { profileActions } from '../../../profile/actions';
 import { authActions } from '../../actions';
 
-export function* codeConfirmationWorker({ payload: { phoneNumber, code } }) {
+export function* signupWorker({ payload: { phoneNumber, code, userData } }) {
     try {
         yield put(uiActions.startFetching());
 
-        const response = yield apply(Api, Api.auth.confirmAuthenticationCode, [
+        const response = yield apply(Api, Api.auth.confirmSignupCode, [
             {
                 // removing all spaces from phone number
+                ...userData,
                 phoneNumber: phoneNumber.split(' ').join(''),
                 code,
             },
@@ -29,7 +30,7 @@ export function* codeConfirmationWorker({ payload: { phoneNumber, code } }) {
         yield put(authActions.authenticate());
         yield put(authActions.closeCodeConfirmation());
     } catch (err) {
-        yield put(uiActions.emitError(err, '-> codeConfirmationWorker'));
+        yield put(uiActions.emitError(err, '-> signupWorker'));
     } finally {
         yield put(uiActions.stopFetching());
     }
