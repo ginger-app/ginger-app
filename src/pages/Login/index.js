@@ -1,6 +1,7 @@
 // Core
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -10,6 +11,8 @@ import { InputField } from '../../components';
 
 // Instruments
 import { AsYouType } from 'libphonenumber-js';
+import { book } from '../../core/book';
+import arrow from '../../theme/assets/svg/left-arrow-dark.svg';
 
 // Actions
 import { authActions } from '../../bus/auth/actions';
@@ -21,12 +24,14 @@ const mapStateToProps = ({ auth }) => ({
 const mapDispatchToProps = {
     getAuthConfirmationCodeAsync: authActions.getAuthConfirmationCodeAsync,
     sendConfirmationCodeAsync: authActions.sendConfirmationCodeAsync,
+    closeCodeConfirmation: authActions.closeCodeConfirmation,
 };
 
 const LoginComponent = ({
     getAuthConfirmationCodeAsync,
     sendConfirmationCodeAsync,
     codeConfirmationPage,
+    closeCodeConfirmation,
 }) => {
     const [phoneNumber, setPhoneNumber] = useState('+380');
     const [smsCode, setSmsCode] = useState('');
@@ -40,6 +45,13 @@ const LoginComponent = ({
 
     return (
         <section className={Styles.container}>
+            <NavLink
+                className={Styles.backButton}
+                to={codeConfirmationPage ? book.signin : book.market}
+                onClick={codeConfirmationPage ? closeCodeConfirmation : null}
+            >
+                <img src={arrow} alt='back button' />
+            </NavLink>
             {codeConfirmationPage ? 'Code confirmation route' : 'Login route'}
             {codeConfirmationPage ? (
                 <InputField

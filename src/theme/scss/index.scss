@@ -6,33 +6,35 @@
     box-sizing: border-box;
     outline: none;
     scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+        height: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $paletteGrey_1;
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
 }
 
 html {
     font-size: 16px;
     color: $paletteBlack;
+
+    overflow-x: hidden;
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
 
-    min-height: 100vh;
-    min-width: 100vw;
+    height: 100vh;
+    width: 100vw;
 
     background: $paletteBg;
-
-    // ::-webkit-scrollbar {
-    //     width: 4px;
-    //     height: 4px;
-    // }
-
-    // ::-webkit-scrollbar-thumb {
-    //     background: $paletteBlue1;
-    //     border-radius: 4px;
-    // }
-    // ::-webkit-scrollbar-track {
-    //     background-color: transparent;
-    // }
 }
 
 #app {

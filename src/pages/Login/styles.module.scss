@@ -2,6 +2,7 @@
 
 .container {
     display: grid;
+    grid-template-rows: 3rem 1fr 2fr;
     place-items: center;
 
     width: 100vw;
@@ -9,4 +10,19 @@
     padding: 1rem;
 
     background: $paletteBg;
+
+    & .backButton {
+        cursor: pointer;
+        place-self: start;
+
+        display: grid;
+        place-items: center;
+
+        height: 3rem;
+        width: 3rem;
+
+        border-radius: 100%;
+        background: $paletteWhite;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    }
 }

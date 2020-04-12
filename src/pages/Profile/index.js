@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Styles from './styles.module.scss';
 
 // Instruments
+import { history } from '../../bus/init/middleware/core';
 import userpic from '../../theme/assets/images/ginger.jpg';
 import arrow from '../../theme/assets/svg/left-arrow-dark.svg';
 import edit from '../../theme/assets/svg/edit-dark.svg';
@@ -32,7 +33,7 @@ const ProfileComponent = ({ className, profile, logout }) => {
 
     return (
         <section className={Styles.container}>
-            <div className={Styles.backButton}>
+            <div className={Styles.backButton} onClick={history.goBack}>
                 <img src={arrow} alt='back button' />
             </div>
             <div className={Styles.editButton}>
