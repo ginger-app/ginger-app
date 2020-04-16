@@ -2,9 +2,9 @@
 import { all, call } from 'redux-saga/effects';
 
 // Watchers
-import { watchAuth } from '../auth/saga/watchers';
-import { watchProfile } from '../profile/saga/watchers';
-import { watchMarket } from '../market/saga/watchers';
+import { watchAuth } from 'bus/auth/saga/watchers';
+import { watchProfile } from 'bus/profile/saga/watchers';
+import { watchMarket } from 'bus/market/saga/watchers';
 
 export function* rootSaga() {
     yield all([call(watchAuth), call(watchProfile), call(watchMarket)]);

@@ -2,11 +2,11 @@
 import { put, apply } from 'redux-saga/effects';
 
 // Actions
-import { marketActions } from '../../actions';
-import { uiActions } from '../../../ui/actions';
+import { marketActions } from 'bus/market/actions';
+import { uiActions } from 'bus/ui/actions';
 
 // Api
-import { Api } from '../../../../api';
+import { Api } from 'api';
 
 export function* getCategoriesWorker() {
     try {

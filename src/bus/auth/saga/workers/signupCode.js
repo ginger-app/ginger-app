@@ -2,13 +2,12 @@
 import { put, apply } from 'redux-saga/effects';
 
 // Instruments
-import { Api } from '../../../../api';
-import { history } from '../../../init/middleware/core';
+import { Api } from 'api';
+import { history } from 'bus/init/middleware/core';
 
 // Actions
-// import { authActions } from '../../actions';
-import { uiActions } from '../../../ui/actions';
-import { authActions } from '../../actions';
+import { uiActions } from 'bus/ui/actions';
+import { authActions } from 'bus/auth/actions';
 
 export function* signupCodeWorker({ payload: phoneNumber }) {
     try {
