@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Styles from './styles.module.scss';
 
 // Components
-import { CategoryItem } from '../';
+import { CategoryItem } from 'components';
 
 // Instruments
 import Carousel from 'react-elastic-carousel';

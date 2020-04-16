@@ -6,13 +6,13 @@ import { connect } from 'react-redux';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { history } from '../../bus/init/middleware/core';
-import userpic from '../../theme/assets/images/ginger.jpg';
-import arrow from '../../theme/assets/svg/left-arrow-dark.svg';
-import edit from '../../theme/assets/svg/edit-dark.svg';
+import { history } from 'bus/init/middleware/core';
+import userpic from 'theme/assets/images/ginger.jpg';
+import arrow from 'theme/assets/svg/left-arrow-dark.svg';
+import edit from 'theme/assets/svg/edit-dark.svg';
 
 // Actions
-import { authActions } from '../../bus/auth/actions';
+import { authActions } from 'bus/auth/actions';
 
 const mapStateToProps = (state) => ({
     profile: state.profile.toJS(),

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Styles from './styles.module.scss';
 
 // Components
-import { MarketItem } from '../';
+import { MarketItem } from 'components';
 
 const mapStateToProps = (state) => ({
     ...state,

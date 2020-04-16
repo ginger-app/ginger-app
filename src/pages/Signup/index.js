@@ -6,14 +6,14 @@ import { connect } from 'react-redux';
 import Styles from './styles.module.scss';
 
 // Components
-import { InputField } from '../../components';
+import { InputField } from 'components';
 
 // Instruments
 import { AsYouType } from 'libphonenumber-js';
 import { validate as validateEmail } from 'email-validator';
 
 // Actions
-import { authActions } from '../../bus/auth/actions';
+import { authActions } from 'bus/auth/actions';
 
 const mapStateToProps = ({ auth }) => ({
     codeConfirmationPage: auth.get('codeConfirmation'),

@@ -5,7 +5,7 @@ import React from 'react';
 import Styles from './styles.module.scss';
 
 // Instruments
-import arrow from '../../theme/assets/svg/right-arrow.svg';
+import arrow from 'theme/assets/svg/right-arrow.svg';
 
 export const InputField = ({ className, title, value, onChange, buttonAction }) => {
     return (

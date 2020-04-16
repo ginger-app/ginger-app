@@ -7,15 +7,15 @@ import { NavLink } from 'react-router-dom';
 import Styles from './styles.module.scss';
 
 // Components
-import { InputField } from '../../components';
+import { InputField } from 'components';
 
 // Instruments
 import { AsYouType } from 'libphonenumber-js';
-import { book } from '../../core/book';
-import arrow from '../../theme/assets/svg/left-arrow-dark.svg';
+import { book } from 'core/book';
+import arrow from 'theme/assets/svg/left-arrow-dark.svg';
 
 // Actions
-import { authActions } from '../../bus/auth/actions';
+import { authActions } from 'bus/auth/actions';
 
 const mapStateToProps = ({ auth }) => ({
     codeConfirmationPage: auth.get('codeConfirmation'),

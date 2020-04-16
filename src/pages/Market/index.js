@@ -8,15 +8,15 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { debounce } from 'lodash';
-import { book } from '../../core/book';
-import profile from '../../theme/assets/svg/profile.svg';
-import heart from '../../theme/assets/svg/heart.svg';
+import { book } from 'core/book';
+import profile from 'theme/assets/svg/profile.svg';
+import heart from 'theme/assets/svg/heart.svg';
 
 // Components
-import { PromotionsGrid, Catalogue } from '../../components';
+import { PromotionsGrid, Catalogue } from 'components';
 
 // Actions
-import { marketActions } from '../../bus/market/actions';
+import { marketActions } from 'bus/market/actions';
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.get('isAuthenticated'),
