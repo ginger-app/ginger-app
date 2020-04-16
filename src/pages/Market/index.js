@@ -15,14 +15,23 @@ import heart from '../../theme/assets/svg/heart.svg';
 // Components
 import { PromotionsGrid, Catalogue } from '../../components';
 
+// Actions
+import { marketActions } from '../../bus/market/actions';
+
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.get('isAuthenticated'),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    getMarketCategoriesAsync: marketActions.getMarketCategoriesAsync,
+};
 
-const MarketComponent = ({ className, isAuthenticated }) => {
+const MarketComponent = ({ className, isAuthenticated, getMarketCategoriesAsync }) => {
     const [searchValue, setSearchValue] = useState('');
+
+    useEffect(() => {
+        getMarketCategoriesAsync();
+    }, []);
 
     const handleSearch = ({ target: { value } }) => {
         debounce(() => {

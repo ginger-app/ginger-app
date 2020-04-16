@@ -46,4 +46,10 @@ export const Api = {
             });
         },
     },
+
+    market: {
+        getAllCategories: () => {
+            return fetch(`${MAIN_URL}/market/categories`);
+        },
+    },
 };

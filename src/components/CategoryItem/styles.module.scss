@@ -1,0 +1,23 @@
+@import '../../theme/scss/resources';
+
+.container {
+    @include shadow;
+    cursor: pointer;
+
+    display: grid;
+    place-items: center;
+
+    width: 100%;
+    height: 6rem;
+    margin-bottom: 0.5rem; // needed for last raw
+
+    border-radius: 1rem;
+
+    background: $paletteWhite;
+
+    transition: all 0.2s;
+
+    &:hover {
+        transform: scale(1.01);
+    }
+}

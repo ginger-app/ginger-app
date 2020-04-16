@@ -1,0 +1,7 @@
+export const marketTypes = {
+    // Sync
+    FILL_MARKET_CATEGORIES: 'FILL_MARKET_CATEGORIES',
+
+    // Async
+    GET_MARKET_CATEGORIES_ASYNC: 'GET_MARKET_CATEGORIES_ASYNC',
+};

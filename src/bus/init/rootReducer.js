@@ -6,11 +6,13 @@ import { connectRouter } from 'connected-react-router';
 import { uiReducer as ui } from '../ui/reducer';
 import { authReducer as auth } from '../auth/reducer';
 import { profileReducer as profile } from '../profile/reducer';
+import { marketReducer as market } from '../market/reducer';
 
 export const rootReducer = (history) =>
     combineReducers({
         router: connectRouter(history),
         profile,
+        market,
         auth,
         ui,
     });
