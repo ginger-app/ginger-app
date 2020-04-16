@@ -38,6 +38,7 @@ const CatalogueComponent = ({ className, categories }) => {
                     itemsToShow={3}
                     itemsToScroll={2}
                     showArrows={false}
+                    pagination={false}
                     itemPadding={[0, 10, 0, 10]}
                     enableTilt
                     enableMouseSwipe

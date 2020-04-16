@@ -20,7 +20,9 @@ const CategoryItemComponent = (props) => {
             className={`${Styles.container} ${className}`}
             to={isAuthenticated ? '/signin' : `/market/${sku}`}
         >
-            {(name, selected)}
+            {name}
+            <br />
+            {sku}
         </NavLink>
     );
 };

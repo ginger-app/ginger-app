@@ -8,7 +8,7 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { debounce } from 'lodash';
-import { book } from 'core/book';
+import { book } from 'core';
 import profile from 'theme/assets/svg/profile.svg';
 import heart from 'theme/assets/svg/heart.svg';
 
@@ -43,20 +43,18 @@ const MarketComponent = ({ className, isAuthenticated, getMarketCategoriesAsync 
 
     return (
         <section className={`${Styles.container} className`}>
-            {isAuthenticated ? (
-                <NavLink className={Styles.profileButton} to={book.profile}>
-                    <img src={profile} />
-                </NavLink>
-            ) : (
-                <NavLink className={Styles.signinButton} to={book.signin}>
-                    Sign in
-                </NavLink>
-            )}
-            {isAuthenticated && (
-                <NavLink className={Styles.favoritesButton} to={book.profile}>
-                    <img src={heart} />
-                </NavLink>
-            )}
+            <NavLink
+                className={Styles.profileButton}
+                to={isAuthenticated ? book.profile : book.signin}
+            >
+                <img src={profile} />
+            </NavLink>
+            <NavLink
+                className={Styles.favoritesButton}
+                to={isAuthenticated ? book.profile : book.signin}
+            >
+                <img src={heart} />
+            </NavLink>
             <input
                 value={searchValue}
                 onChange={handleSearch}
