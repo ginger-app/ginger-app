@@ -5,7 +5,7 @@ import { Map } from 'immutable';
 import { profileTypes as types } from './types';
 
 // Temp
-import userpic from '../../theme/assets/images/ginger.jpg';
+import userpic from 'theme/assets/images/ginger.jpg';
 
 const initialState = Map({
     firstName: '',
