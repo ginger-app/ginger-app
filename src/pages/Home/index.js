@@ -13,7 +13,7 @@ import profile from 'theme/assets/svg/profile.svg';
 import heart from 'theme/assets/svg/heart.svg';
 
 // Components
-import { PromotionsGrid, Catalogue } from 'components';
+import { DailyBonus, Catalogue } from 'components';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
@@ -55,13 +55,13 @@ const HomeComponent = ({ className, isAuthenticated, getMarketCategoriesAsync })
             >
                 <img src={heart} />
             </NavLink>
+            <DailyBonus className={Styles.dailyBonus} />
             <input
                 value={searchValue}
                 onChange={handleSearch}
                 className={Styles.search}
                 placeholder={'Search'}
             />
-            <PromotionsGrid className={Styles.promotions} />
             <Catalogue className={Styles.catalogue} />
         </section>
     );

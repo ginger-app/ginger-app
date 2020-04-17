@@ -1,6 +1,7 @@
 // Core
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { Transition } from 'react-transition-group';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -9,6 +10,7 @@ import Styles from './styles.module.scss';
 import { InputField } from 'components';
 
 // Instruments
+import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { AsYouType } from 'libphonenumber-js';
 import { validate as validateEmail } from 'email-validator';
 
@@ -46,58 +48,78 @@ const SignupComponent = ({
         /^[A-Za-z -]*$/.test(value) ? validationFunc(value) : null;
 
     return (
-        <section className={Styles.container}>
-            <p>{codeConfirmationPage ? 'Code confirmation route' : 'Signup route'}</p>
-            {codeConfirmationPage ? (
-                <InputField
-                    title={'Код з СМС'}
-                    value={smsCode}
-                    onChange={({ target: { value } }) => setSmsCode(value)}
-                    buttonAction={() =>
-                        sendSignupDataAsync({
-                            phoneNumber,
-                            code: smsCode,
-                            userData: {
-                                phoneNumber,
-                                firstName,
-                                lastName,
-                                email,
-                            },
-                        })
-                    }
-                />
-            ) : (
-                <>
-                    <InputField
-                        title={'Номер телефону'}
-                        value={phoneNumber}
-                        onChange={handlePhoneNumberChange}
-                        className={phoneNumber.length === 4 && Styles.unfinishedPhoneNumber}
-                    />
-                    <InputField
-                        title={'Електронна пошта'}
-                        value={email}
-                        onChange={({ target: { value } }) => setEmail(value)}
-                    />
-                    <InputField
-                        title={"Ім'я"}
-                        value={firstName}
-                        onChange={({ target: { value } }) => nameValidator(setFirstName, value)}
-                    />
-                    <InputField
-                        title={'Прізвище'}
-                        value={lastName}
-                        onChange={({ target: { value } }) => nameValidator(setLastName, value)}
-                    />
-                    <div
-                        className={Styles.sendButton}
-                        onClick={() => getSignupConfirmationCodeAsync(phoneNumber)}
-                    >
-                        Send
-                    </div>
-                </>
+        <Transition
+            in
+            appear
+            mountOnEnter
+            unmountOnExit
+            timeout={opacityTransitionConfig().timeout}
+        >
+            {(state) => (
+                <section
+                    className={Styles.container}
+                    style={{
+                        ...opacityTransitionConfig().defaultStyles,
+                        ...opacityTransitionConfig().transitionStyles[state],
+                    }}
+                >
+                    <p>{codeConfirmationPage ? 'Code confirmation route' : 'Signup route'}</p>
+                    {codeConfirmationPage ? (
+                        <InputField
+                            title={'Код з СМС'}
+                            value={smsCode}
+                            onChange={({ target: { value } }) => setSmsCode(value)}
+                            buttonAction={() =>
+                                sendSignupDataAsync({
+                                    phoneNumber,
+                                    code: smsCode,
+                                    userData: {
+                                        phoneNumber,
+                                        firstName,
+                                        lastName,
+                                        email,
+                                    },
+                                })
+                            }
+                        />
+                    ) : (
+                        <>
+                            <InputField
+                                title={'Номер телефону'}
+                                value={phoneNumber}
+                                onChange={handlePhoneNumberChange}
+                                className={phoneNumber.length === 4 && Styles.unfinishedPhoneNumber}
+                            />
+                            <InputField
+                                title={'Електронна пошта'}
+                                value={email}
+                                onChange={({ target: { value } }) => setEmail(value)}
+                            />
+                            <InputField
+                                title={"Ім'я"}
+                                value={firstName}
+                                onChange={({ target: { value } }) =>
+                                    nameValidator(setFirstName, value)
+                                }
+                            />
+                            <InputField
+                                title={'Прізвище'}
+                                value={lastName}
+                                onChange={({ target: { value } }) =>
+                                    nameValidator(setLastName, value)
+                                }
+                            />
+                            <div
+                                className={Styles.sendButton}
+                                onClick={() => getSignupConfirmationCodeAsync(phoneNumber)}
+                            >
+                                Send
+                            </div>
+                        </>
+                    )}
+                </section>
             )}
-        </section>
+        </Transition>
     );
 };
 

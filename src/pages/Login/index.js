@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { Transition } from 'react-transition-group';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -12,6 +13,7 @@ import { InputField } from 'components';
 // Instruments
 import { AsYouType } from 'libphonenumber-js';
 import { book } from 'core';
+import { opacityTransitionConfig } from 'utils/transitionConfig';
 import arrow from 'theme/assets/svg/left-arrow-dark.svg';
 
 // Actions
@@ -44,31 +46,49 @@ const LoginComponent = ({
     };
 
     return (
-        <section className={Styles.container}>
-            <NavLink
-                className={Styles.backButton}
-                to={codeConfirmationPage ? book.signin : book.market}
-                onClick={codeConfirmationPage ? closeCodeConfirmation : null}
-            >
-                <img src={arrow} alt='back button' />
-            </NavLink>
-            {codeConfirmationPage ? 'Code confirmation route' : 'Login route'}
-            {codeConfirmationPage ? (
-                <InputField
-                    title={'Код з СМС'}
-                    value={smsCode}
-                    onChange={({ target: { value } }) => setSmsCode(value)}
-                    buttonAction={() => sendConfirmationCodeAsync({ phoneNumber, code: smsCode })}
-                />
-            ) : (
-                <InputField
-                    title={'Номер телефону'}
-                    value={phoneNumber}
-                    onChange={handlePhoneNumberChange}
-                    buttonAction={() => getAuthConfirmationCodeAsync(phoneNumber)}
-                />
+        <Transition
+            in
+            appear
+            mountOnEnter
+            unmountOnExit
+            timeout={opacityTransitionConfig().timeout}
+        >
+            {(state) => (
+                <section
+                    className={Styles.container}
+                    style={{
+                        ...opacityTransitionConfig().defaultStyles,
+                        ...opacityTransitionConfig().transitionStyles[state],
+                    }}
+                >
+                    <NavLink
+                        className={Styles.backButton}
+                        to={codeConfirmationPage ? book.signin : book.market}
+                        onClick={codeConfirmationPage ? closeCodeConfirmation : null}
+                    >
+                        <img src={arrow} alt='back button' />
+                    </NavLink>
+                    {codeConfirmationPage ? 'Code confirmation route' : 'Login route'}
+                    {codeConfirmationPage ? (
+                        <InputField
+                            title={'Код з СМС'}
+                            value={smsCode}
+                            onChange={({ target: { value } }) => setSmsCode(value)}
+                            buttonAction={() =>
+                                sendConfirmationCodeAsync({ phoneNumber, code: smsCode })
+                            }
+                        />
+                    ) : (
+                        <InputField
+                            title={'Номер телефону'}
+                            value={phoneNumber}
+                            onChange={handlePhoneNumberChange}
+                            buttonAction={() => getAuthConfirmationCodeAsync(phoneNumber)}
+                        />
+                    )}
+                </section>
             )}
-        </section>
+        </Transition>
     );
 };
 

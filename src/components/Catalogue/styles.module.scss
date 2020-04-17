@@ -25,4 +25,10 @@
             }
         }
     }
+
+    & .actionButton {
+        @include darkButton;
+        place-self: center;
+        margin: 0 1rem;
+    }
 }

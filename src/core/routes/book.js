@@ -4,6 +4,7 @@ export const book = Object.freeze({
     signin: '/signin',
     signup: '/signup',
     market: '/market',
+    categories: '/categories',
 
     // private routes
     profile: '/profile',

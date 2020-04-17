@@ -50,6 +50,23 @@
     }
 }
 
+@mixin greenButton {
+    cursor: pointer;
+
+    width: 100%;
+    padding: 1rem;
+
+    background: $paletteGreen_1;
+    border-radius: 2rem;
+
+    color: $paletteWhite;
+    font-weight: bold;
+    text-align: center;
+
+    &:hover {
+    }
+}
+
 @mixin disableSelect {
     user-select: none;
 }

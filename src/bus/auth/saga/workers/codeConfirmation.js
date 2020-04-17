@@ -3,6 +3,7 @@ import { put, apply } from 'redux-saga/effects';
 
 // Instruments
 import { Api } from 'api';
+import { history } from 'bus/init/middleware/core';
 
 // Actions
 import { authActions } from 'bus/auth/actions';
@@ -27,6 +28,7 @@ export function* codeConfirmationWorker({ payload: { phoneNumber, code } }) {
         yield put(profileActions.fillProfile(result.userData));
         yield put(authActions.authenticate());
         yield put(authActions.closeCodeConfirmation());
+        yield apply(history, history.push, ['/']);
     } catch (err) {
         yield put(uiActions.emitError(err, '-> codeConfirmationWorker'));
     } finally {

@@ -1,6 +1,7 @@
 // Core
 import React, { Component, useState } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -10,6 +11,7 @@ import { CategoryItem } from 'components';
 
 // Instruments
 import Carousel from 'react-elastic-carousel';
+import { book } from 'core';
 
 const mapStateToProps = (state) => ({
     categories: state.market.get('categories').toJS(),
@@ -61,6 +63,9 @@ const CatalogueComponent = ({ className, categories }) => {
                     ))}
                 </Carousel>
             </div>
+            <NavLink className={Styles.actionButton} to={book.market}>
+                Show more
+            </NavLink>
         </section>
     );
 };
