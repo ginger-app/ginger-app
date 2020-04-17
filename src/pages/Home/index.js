@@ -26,7 +26,7 @@ const mapDispatchToProps = {
     getMarketCategoriesAsync: marketActions.getMarketCategoriesAsync,
 };
 
-const MarketComponent = ({ className, isAuthenticated, getMarketCategoriesAsync }) => {
+const HomeComponent = ({ className, isAuthenticated, getMarketCategoriesAsync }) => {
     const [searchValue, setSearchValue] = useState('');
 
     useEffect(() => {
@@ -67,4 +67,4 @@ const MarketComponent = ({ className, isAuthenticated, getMarketCategoriesAsync 
     );
 };
 
-export const MarketPage = connect(mapStateToProps, mapDispatchToProps)(MarketComponent);
+export const HomePage = connect(mapStateToProps, mapDispatchToProps)(HomeComponent);

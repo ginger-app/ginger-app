@@ -3,15 +3,15 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 //  Pages
-import { ProfilePage, MarketPage } from '../pages';
+import { ProfilePage, HomePage } from 'pages';
 
 // Instruments
-import { book } from './book';
+import { book } from 'core';
 
 export const Private = () => (
     <Switch>
         <Route path={book.profile} component={ProfilePage} />
-        <Route path={book.market} component={MarketPage} />
-        <Redirect to={book.market} />
+        <Route path={book.home} component={HomePage} />
+        <Redirect to={book.home} />
     </Switch>
 );

@@ -52,7 +52,7 @@ const CatalogueComponent = ({ className, categories }) => {
                                 sku={sku}
                             />
                             <CategoryItem
-                                key={index}
+                                key={index + '123123'}
                                 className={Styles.item}
                                 name={name}
                                 sku={sku}

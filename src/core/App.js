@@ -3,8 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Components
-import { Private } from './Private';
-import { Public } from './Public';
+import { Private, Public } from './routes';
 
 const mapStateToProps = ({ auth }) => ({
     isAuthenticated: auth.get('isAuthenticated'),

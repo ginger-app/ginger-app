@@ -14,10 +14,4 @@
     border-radius: 1rem;
 
     background: $paletteWhite;
-
-    transition: all 0.2s;
-
-    &:hover {
-        transform: scale(1.01);
-    }
 }

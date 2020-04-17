@@ -11,7 +11,7 @@ import { InputField } from 'components';
 
 // Instruments
 import { AsYouType } from 'libphonenumber-js';
-import { book } from 'core/book';
+import { book } from 'core';
 import arrow from 'theme/assets/svg/left-arrow-dark.svg';
 
 // Actions

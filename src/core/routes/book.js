@@ -1,9 +1,9 @@
 export const book = Object.freeze({
     // public routes
+    home: '/',
     signin: '/signin',
     signup: '/signup',
     market: '/market',
-    home: '/home',
 
     // private routes
     profile: '/profile',
