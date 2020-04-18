@@ -7,6 +7,7 @@ import { marketTypes as types } from './types';
 const initialState = Map({
     categories: List([]),
     categoryData: Map({}),
+    subcategoryData: Map({}),
 });
 
 export const marketReducer = (state = initialState, action) => {
@@ -16,6 +17,9 @@ export const marketReducer = (state = initialState, action) => {
 
         case types.FILL_MARKET_CATEGORY_DATA:
             return state.set('categoryData', fromJS(action.payload.data));
+
+        case types.FILL_MARKET_SUBCATEGORY_DATA:
+            return state.set('subcategoryData', fromJS(action.payload.data));
 
         default:
             return initialState;

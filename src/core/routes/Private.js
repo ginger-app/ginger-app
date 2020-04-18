@@ -3,7 +3,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 //  Pages
-import { ProfilePage, HomePage, CategoryPage } from 'pages';
+import { ProfilePage, HomePage, CategoryPage, SubcategoryPage } from 'pages';
 
 // Instruments
 import { book } from 'core';
@@ -16,6 +16,11 @@ export const Private = () => (
             exact
             path={`${book.categories}/:sku`}
             render={({ match }) => <CategoryPage sku={match.params.sku} />}
+        />
+        <Route
+            exact
+            path={`${book.categories}/:categorySku/:sku`}
+            render={({ match }) => <SubcategoryPage sku={match.params.sku} />}
         />
         <Redirect to={book.home} />
     </Switch>

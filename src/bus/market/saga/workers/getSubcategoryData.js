@@ -8,15 +8,15 @@ import { uiActions } from 'bus/ui/actions';
 // Api
 import { Api } from 'api';
 
-export function* getCategoryDataWorker({ payload: { sku } }) {
+export function* getSubcategoryDataWorker({ payload: { sku } }) {
     try {
-        const response = yield apply(Api, Api.market.getCategoryData, [sku]);
+        const response = yield apply(Api, Api.market.getSubcategoryData, [sku]);
         const { data, message } = yield apply(response, response.json);
 
         if (response.status >= 400) throw new Error(message);
 
-        yield put(marketActions.fillMarketCategoryData(data));
+        yield put(marketActions.fillMarketSubcategoryData(data));
     } catch (err) {
-        yield put(uiActions.emitError(err, '-> getCategoryDataWorker'));
+        yield put(uiActions.emitError(err, '-> getSubcategoryDataWorker'));
     }
 }

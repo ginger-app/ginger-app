@@ -18,21 +18,26 @@ import { isEmpty } from 'lodash';
 import { marketActions } from 'bus/market/actions';
 
 const mapStateToProps = (state) => ({
-    categoryData: state.market.get('categoryData').toJS(),
+    subcategoryData: state.market.get('subcategoryData').toJS(),
 });
 
 const mapDispatchToProps = {
-    getMarketCategoryDataAsync: marketActions.getMarketCategoryDataAsync,
+    getMarketSubcategoryDataAsync: marketActions.getMarketSubcategoryDataAsync,
 };
 
-const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categoryData }) => {
+const SubcategoryComponent = ({
+    className,
+    sku,
+    getMarketSubcategoryDataAsync,
+    subcategoryData,
+}) => {
     useEffect(() => {
-        getMarketCategoryDataAsync(sku);
+        getMarketSubcategoryDataAsync(sku);
     }, []);
 
-    const { name, subcategories } = categoryData;
+    console.log(subcategoryData);
 
-    return isEmpty(categoryData) ? (
+    return isEmpty(subcategoryData) ? (
         <Transition
             in
             appear
@@ -50,7 +55,7 @@ const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categor
                             ...opacityTransitionConfig().transitionStyles[state],
                         }}
                     >
-                        Loading...
+                        Loading subcategory...
                     </section>
                 );
             }}
@@ -58,7 +63,7 @@ const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categor
     ) : (
         <Transition
             in
-            appear={!isEmpty(categoryData)}
+            appear={!isEmpty(subcategoryData)}
             mountOnEnter
             unmountOnExit
             timeout={opacityTransitionConfig().timeout}
@@ -73,7 +78,7 @@ const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categor
                             ...opacityTransitionConfig().transitionStyles[state],
                         }}
                     >
-                        <PageTitle className={Styles.title} title={name} />
+                        <PageTitle className={Styles.title} title={'Subcategory'} />
                         <Carousel
                             className={Styles.tags}
                             itemsToShow={3}
@@ -96,4 +101,4 @@ const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categor
     );
 };
 
-export const CategoryPage = connect(mapStateToProps, mapDispatchToProps)(CategoryComponent);
+export const SubcategoryPage = connect(mapStateToProps, mapDispatchToProps)(SubcategoryComponent);
