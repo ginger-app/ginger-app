@@ -1,20 +1,4 @@
 @import 'resources';
 
 .container {
-    @include shadow;
-    cursor: pointer;
-
-    width: 100%;
-    height: 17rem;
-    padding: 1rem;
-
-    border-radius: 1.5rem;
-
-    background: $paletteWhite;
-
-    transition: all 0.2s;
-
-    &:hover {
-        transform: scale(1.01);
-    }
 }

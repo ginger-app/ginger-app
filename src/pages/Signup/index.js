@@ -12,7 +12,7 @@ import { InputField } from 'components';
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { AsYouType } from 'libphonenumber-js';
-import { validate as validateEmail } from 'email-validator';
+// import { validate as validateEmail } from 'email-validator';
 
 // Actions
 import { authActions } from 'bus/auth/actions';

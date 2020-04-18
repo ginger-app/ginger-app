@@ -7,13 +7,13 @@ import { NavLink } from 'react-router-dom';
 import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: state.auth.get('isAuthenticated'),
+    ...state,
 });
 
 const mapDispatchToProps = {};
 
 const CategoryItemComponent = (props) => {
-    const { className, sku, name, isAuthenticated, selected } = props;
+    const { className, sku, name } = props;
 
     return (
         <NavLink className={`${Styles.container} ${className}`} to={`/categories/${sku}`}>

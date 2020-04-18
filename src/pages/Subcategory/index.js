@@ -33,7 +33,7 @@ const SubcategoryComponent = ({
 }) => {
     useEffect(() => {
         getMarketSubcategoryDataAsync(sku);
-    }, []);
+    }, [getMarketSubcategoryDataAsync, sku]);
 
     const { name } = subcategoryData;
 

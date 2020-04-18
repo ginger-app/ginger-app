@@ -31,7 +31,7 @@ const HomeComponent = ({ className, isAuthenticated, getMarketCategoriesAsync })
 
     useEffect(() => {
         getMarketCategoriesAsync();
-    }, []);
+    }, [getMarketCategoriesAsync]);
 
     const handleSearch = ({ target: { value } }) => {
         debounce(() => {
@@ -47,13 +47,13 @@ const HomeComponent = ({ className, isAuthenticated, getMarketCategoriesAsync })
                 className={Styles.profileButton}
                 to={isAuthenticated ? book.profile : book.signin}
             >
-                <img src={profile} />
+                <img src={profile} alt='profile' />
             </NavLink>
             <NavLink
                 className={Styles.favoritesButton}
                 to={isAuthenticated ? book.profile : book.signin}
             >
-                <img src={heart} />
+                <img src={heart} alt='lists' />
             </NavLink>
             <DailyBonus className={Styles.dailyBonus} />
             <input

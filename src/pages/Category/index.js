@@ -27,7 +27,7 @@ const mapDispatchToProps = {
 const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categoryData }) => {
     useEffect(() => {
         getMarketCategoryDataAsync(sku);
-    }, []);
+    }, [getMarketCategoryDataAsync, sku]);
 
     const { name, subcategories } = categoryData;
 
