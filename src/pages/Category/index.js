@@ -88,7 +88,7 @@ const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categor
                             <div className={Styles.tag}>TagName</div>
                             <div className={Styles.tag}>TagName</div>
                         </Carousel>
-                        <MarketShowcase className={Styles.showcase} />
+                        <MarketShowcase className={Styles.showcase} items={subcategories} />
                     </section>
                 );
             }}

@@ -35,7 +35,7 @@ const SubcategoryComponent = ({
         getMarketSubcategoryDataAsync(sku);
     }, []);
 
-    console.log(subcategoryData);
+    const { name } = subcategoryData;
 
     return isEmpty(subcategoryData) ? (
         <Transition
@@ -78,7 +78,7 @@ const SubcategoryComponent = ({
                             ...opacityTransitionConfig().transitionStyles[state],
                         }}
                     >
-                        <PageTitle className={Styles.title} title={'Subcategory'} />
+                        <PageTitle className={Styles.title} title={name} />
                         <Carousel
                             className={Styles.tags}
                             itemsToShow={3}
@@ -93,7 +93,7 @@ const SubcategoryComponent = ({
                             <div className={Styles.tag}>TagName</div>
                             <div className={Styles.tag}>TagName</div>
                         </Carousel>
-                        <MarketShowcase className={Styles.showcase} />
+                        <MarketShowcase className={Styles.showcase} items={[]} />
                     </section>
                 );
             }}

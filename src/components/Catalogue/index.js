@@ -22,16 +22,6 @@ const mapDispatchToProps = {};
 const CatalogueComponent = ({ className, categories }) => {
     const [translate, setTranslate] = useState(0);
 
-    const _handleScroll = (e) => {
-        const { deltaY } = e;
-
-        if (translate === 0 && deltaY < 0) return setTranslate(0);
-
-        if (translate < categories.length * -180 && deltaY > 0) return null;
-
-        return setTranslate(deltaY < 0 ? translate + 75 : translate - 75);
-    };
-
     return (
         <section className={`${Styles.container} ${className}`}>
             <p className={Styles.title}>Catalogue</p>

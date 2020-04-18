@@ -16,10 +16,7 @@ const CategoryItemComponent = (props) => {
     const { className, sku, name, isAuthenticated, selected } = props;
 
     return (
-        <NavLink
-            className={`${Styles.container} ${className}`}
-            to={isAuthenticated ? `/categories/${sku}` : '/signin'}
-        >
+        <NavLink className={`${Styles.container} ${className}`} to={`/categories/${sku}`}>
             {name}
         </NavLink>
     );
