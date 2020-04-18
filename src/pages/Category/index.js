@@ -10,7 +10,6 @@ import Styles from './styles.module.scss';
 import { PageTitle, MarketShowcase } from 'components';
 
 // Instruments
-import Carousel from 'react-elastic-carousel';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { isEmpty } from 'lodash';
 
@@ -58,7 +57,7 @@ const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categor
     ) : (
         <Transition
             in
-            appear={!isEmpty(categoryData)}
+            appear
             mountOnEnter
             unmountOnExit
             timeout={opacityTransitionConfig().timeout}
@@ -74,20 +73,6 @@ const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categor
                         }}
                     >
                         <PageTitle className={Styles.title} title={name} />
-                        <Carousel
-                            className={Styles.tags}
-                            itemsToShow={3}
-                            itemsToScroll={2}
-                            showArrows={false}
-                            pagination={false}
-                            itemPadding={[0, 2, 0, 2]}
-                            enableTilt
-                            enableMouseSwipe
-                        >
-                            <div className={Styles.tag}>TagName</div>
-                            <div className={Styles.tag}>TagName</div>
-                            <div className={Styles.tag}>TagName</div>
-                        </Carousel>
                         <MarketShowcase className={Styles.showcase} items={subcategories} />
                     </section>
                 );
