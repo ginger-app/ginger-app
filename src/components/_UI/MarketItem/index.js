@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import Styles from './styles.module.scss';
 
 // Instruments
-import cart from 'theme/assets/svg/cart.svg';
+import { Icon, MarketItemOverlay } from 'components';
 import heart from 'theme/assets/svg/heart.svg';
 import heartFilled from 'theme/assets/svg/heart-filled.svg';
 import apples from 'theme/assets/images/apples-mock.png';
@@ -19,9 +19,13 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {};
 
 const MarketItemComponent = ({ className, style, to, name }) => {
+    // State
+    const [overlayEnabled, setOverlayState] = useState(true);
     const [heartHovered, setHeartHoveredState] = useState(false);
 
-    return (
+    return overlayEnabled ? (
+        <MarketItemOverlay setOverlayState={setOverlayState} style={style} className={className} />
+    ) : (
         <NavLink className={`${Styles.container} ${className}`} style={style} to={to}>
             <img
                 src={heartHovered ? heartFilled : heart}
@@ -36,7 +40,12 @@ const MarketItemComponent = ({ className, style, to, name }) => {
                 46<span>.99$</span>
             </p>
             <p className={Styles.amount}>1 kg</p>
-            <img src={cart} alt='' className={Styles.cart} />
+            <Icon
+                name='cart'
+                color='white'
+                className={Styles.cart}
+                onClick={() => setOverlayState(true)}
+            />
         </NavLink>
     );
 };
