@@ -33,7 +33,7 @@ export const opacityTransitionConfig = (duration = 300) => ({
 export const leftToRightSlideConfig = (duration = 300) => ({
     defaultStyles: {
         transform: 'translateX(-100vw)',
-        transition: 'transform 300ms ease-in-out',
+        transition: `transform ${duration}ms ease-in-out`,
     },
 
     transitionStyles: {
@@ -52,10 +52,8 @@ export const leftToRightSlideConfig = (duration = 300) => ({
     },
 
     timeout: {
-        entering: 0,
-        entered: 0,
-        exiting: duration,
-        exited: duration,
+        enter: duration,
+        exit: duration,
     },
 });
 
@@ -66,7 +64,7 @@ export const leftToRightSlideConfig = (duration = 300) => ({
 export const rightToLeftSlideConfig = (duration = 300) => ({
     defaultStyles: {
         transform: 'translateX(100vw)',
-        transition: 'transform 300ms ease-in-out',
+        transition: `transform ${duration}ms ease-in-out`,
     },
 
     transitionStyles: {
@@ -85,9 +83,38 @@ export const rightToLeftSlideConfig = (duration = 300) => ({
     },
 
     timeout: {
-        entering: 0,
-        entered: 0,
-        exiting: duration,
-        exited: duration,
+        enter: duration,
+        exit: duration,
+    },
+});
+
+/**
+ *
+ * @param {number} [duration = 300] Duration in ms
+ */
+export const bottomToTopSlideConfig = (duration = 300) => ({
+    defaultStyles: {
+        transform: 'translateY(100vh)',
+        transition: `transform ${duration}ms ease-in-out`,
+    },
+
+    transitionStyles: {
+        entering: {
+            transform: 'translateY(100vh)',
+        },
+        entered: {
+            transform: 'translateY(0)',
+        },
+        exiting: {
+            transform: 'translateY(100vh)',
+        },
+        exited: {
+            transform: 'translateY(100vh)',
+        },
+    },
+
+    timeout: {
+        enter: 0,
+        exit: duration,
     },
 });

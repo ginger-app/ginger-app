@@ -7,13 +7,14 @@ import { NavLink } from 'react-router-dom';
 import Styles from './styles.module.scss';
 
 // Instruments
+import { Portal } from 'react-portal';
 import { debounce } from 'lodash';
 import { book } from 'core';
 import profile from 'theme/assets/svg/profile.svg';
 import heart from 'theme/assets/svg/heart.svg';
 
 // Components
-import { DailyBonus, Catalogue } from 'components';
+import { DailyBonus, Catalogue, Toaster } from 'components';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
@@ -28,10 +29,22 @@ const mapDispatchToProps = {
 
 const HomeComponent = ({ className, isAuthenticated, getMarketCategoriesAsync }) => {
     const [searchValue, setSearchValue] = useState('');
+    const [showToaster, setToasterVisibility] = useState(false);
+    const [toasterMessage, setToasterMessage] = useState('');
 
     useEffect(() => {
         getMarketCategoriesAsync();
     }, [getMarketCategoriesAsync]);
+
+    useEffect(() => {
+        const showToaster = window.location.search.substring(1) === '404';
+        setToasterMessage('Page not found');
+        setToasterVisibility(showToaster);
+
+        setTimeout(() => {
+            setToasterVisibility(false);
+        }, 5000);
+    }, []);
 
     const handleSearch = ({ target: { value } }) => {
         debounce(() => {
@@ -63,6 +76,13 @@ const HomeComponent = ({ className, isAuthenticated, getMarketCategoriesAsync })
                 placeholder={'Search'}
             />
             <Catalogue className={Styles.catalogue} />
+            <Portal>
+                <Toaster
+                    inProp={showToaster}
+                    message={toasterMessage}
+                    closeToaster={() => setToasterVisibility(false)}
+                />
+            </Portal>
         </section>
     );
 };

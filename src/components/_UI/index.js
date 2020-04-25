@@ -3,4 +3,5 @@ export * from './MarketItem';
 export * from './CategoryItem';
 export * from './PageTitle';
 export * from './MarketItemOverlay';
+export * from './Toaster';
 export * from './Icon';

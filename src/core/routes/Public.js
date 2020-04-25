@@ -10,8 +10,8 @@ import { book } from 'core';
 
 export const Public = () => (
     <Switch>
-        <Route exact path={book.signin} component={LoginPage} />
-        <Route exact path={book.signup} component={SignupPage} />
+        {/* <Route exact path={book.signin} component={LoginPage} /> */}
+        {/* <Route exact path={book.signup} component={SignupPage} /> */}
         <Route exact path={book.home} component={HomePage} />
         <Route
             exact
@@ -23,6 +23,6 @@ export const Public = () => (
             path={`${book.categories}/:categorySku/:sku`}
             render={({ match }) => <SubcategoryPage sku={match.params.sku} />}
         />
-        <Redirect to={book.home} />
+        <Redirect to={`${book.home}?404`} />
     </Switch>
 );
