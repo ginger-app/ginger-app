@@ -37,10 +37,8 @@
 
     & .functionalButton {
         @include shadow;
+        @include centerContent;
         cursor: pointer;
-
-        display: grid;
-        place-items: center;
 
         width: 2.5rem;
         height: 2.5rem;

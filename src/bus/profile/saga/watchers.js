@@ -1,11 +1,17 @@
 //Core
-// import { takeEvery, all, call } from 'redux-saga/effects';
+import { takeEvery, all, call } from 'redux-saga/effects';
 
 //Types
-// import { types } from '../types';
+import { profileTypes as types } from '../types';
 
 //*REMEMBER TO REEXPORT
 //Workers
-import {} from './workers';
+import { addItemToCartWorker } from './workers';
 
-export function* watchProfile() {}
+function* watchAddItemToCart() {
+    yield takeEvery(types.ADD_ITEM_TO_CART_ASYNC, addItemToCartWorker);
+}
+
+export function* watchProfile() {
+    yield all([call(watchAddItemToCart)]);
+}

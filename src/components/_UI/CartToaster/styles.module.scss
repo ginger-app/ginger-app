@@ -1,0 +1,65 @@
+@import 'resources';
+
+.container {
+    display: grid;
+    // need to force rewriting default  toaster class -> using !important
+    grid-template-columns: repeat(4, min-content) !important;
+    place-items: center;
+    gap: 0.5rem;
+
+    transition: all 0.5s;
+
+    &.hidden {
+        transform: translateX(-95%);
+    }
+
+    & .leftArrow {
+        cursor: pointer;
+        @include centerContent;
+
+        height: 100%;
+        width: 2rem;
+    }
+
+    & .title {
+        grid-column: 2;
+        @include boldTitle;
+        color: $paletteWhite;
+    }
+
+    & .items {
+        grid-column: 3;
+
+        display: grid;
+        grid-template-columns: repeat(7, min-content);
+        place-items: center start;
+        padding-left: 0.5rem;
+
+        width: 11rem;
+
+        overflow: hidden;
+
+        & .cartItem {
+            height: 2rem;
+            width: 2rem;
+
+            margin-left: -0.5rem;
+
+            border-radius: 100%;
+            border: 1px solid $paletteDarkGrey_1;
+            background: $paletteBg;
+        }
+    }
+
+    & .itemsAmount {
+        cursor: pointer;
+        @include centerContent;
+        grid-column: 4;
+
+        height: 2rem;
+        width: 2rem;
+        background: $paletteGreen_1;
+
+        border-radius: 100%;
+    }
+}

@@ -30,13 +30,11 @@
 
     & .button {
         cursor: pointer;
+        @include centerContent;
 
         grid-row: 2;
         grid-column: 1;
         place-self: center end;
-
-        display: grid;
-        place-items: center;
 
         height: 4rem;
         width: 4rem;

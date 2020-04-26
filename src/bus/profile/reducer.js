@@ -17,6 +17,7 @@ const initialState = Map({
     orders: [],
     cards: [],
     lists: [],
+    cart: [],
     bonuses: 0,
 
     registrationDate: '',
@@ -36,6 +37,10 @@ export const profileReducer = (state = initialState, action) => {
 
         case types.CLEAR_PROFILE:
             return state.clear();
+
+        case types.ADD_ITEM_TO_CART:
+            const currentCart = state.get('cart');
+            return state.set('cart', [...currentCart, action.payload]);
 
         default:
             return state;

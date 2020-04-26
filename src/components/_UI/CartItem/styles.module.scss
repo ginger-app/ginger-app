@@ -1,0 +1,23 @@
+@import 'resources';
+
+.container {
+    display: grid;
+    grid-template-columns: 4rem 3fr 1fr 1fr;
+    place-items: center;
+    gap: 0.5rem;
+
+    color: $paletteBg;
+
+    & .image {
+        height: 3rem;
+        width: 3rem;
+
+        border-radius: 100%;
+        background: #fff;
+    }
+
+    & .name {
+        place-self: center start;
+        text-align: left;
+    }
+}

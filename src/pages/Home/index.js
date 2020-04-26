@@ -32,10 +32,12 @@ const HomeComponent = ({ className, isAuthenticated, getMarketCategoriesAsync })
     const [showToaster, setToasterVisibility] = useState(false);
     const [toasterMessage, setToasterMessage] = useState('');
 
+    // fetching categories
     useEffect(() => {
         getMarketCategoriesAsync();
     }, [getMarketCategoriesAsync]);
 
+    // showing toaster message (currently only for 404)
     useEffect(() => {
         const showToaster = window.location.search.substring(1) === '404';
         setToasterMessage('Page not found');

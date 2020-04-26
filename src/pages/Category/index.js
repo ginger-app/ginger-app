@@ -39,20 +39,17 @@ const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categor
             unmountOnExit
             timeout={opacityTransitionConfig().timeout}
         >
-            {(state) => {
-                console.log('Loading state -> ', state);
-                return (
-                    <section
-                        className={Styles.loadingContainer}
-                        style={{
-                            ...opacityTransitionConfig().defaultStyles,
-                            ...opacityTransitionConfig().transitionStyles[state],
-                        }}
-                    >
-                        Loading...
-                    </section>
-                );
-            }}
+            {(state) => (
+                <section
+                    className={Styles.loadingContainer}
+                    style={{
+                        ...opacityTransitionConfig().defaultStyles,
+                        ...opacityTransitionConfig().transitionStyles[state],
+                    }}
+                >
+                    Loading...
+                </section>
+            )}
         </Transition>
     ) : (
         <Transition
@@ -62,21 +59,18 @@ const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categor
             unmountOnExit
             timeout={opacityTransitionConfig().timeout}
         >
-            {(state) => {
-                console.log('Data state -> ', state);
-                return (
-                    <section
-                        className={Styles.container}
-                        style={{
-                            ...opacityTransitionConfig().defaultStyles,
-                            ...opacityTransitionConfig().transitionStyles[state],
-                        }}
-                    >
-                        <PageTitle className={Styles.title} title={name} />
-                        <MarketShowcase className={Styles.showcase} items={subcategories} />
-                    </section>
-                );
-            }}
+            {(state) => (
+                <section
+                    className={Styles.container}
+                    style={{
+                        ...opacityTransitionConfig().defaultStyles,
+                        ...opacityTransitionConfig().transitionStyles[state],
+                    }}
+                >
+                    <PageTitle className={Styles.title} title={name} />
+                    <MarketShowcase className={Styles.showcase} items={subcategories} />
+                </section>
+            )}
         </Transition>
     );
 };

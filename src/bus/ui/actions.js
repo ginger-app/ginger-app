@@ -10,6 +10,14 @@ export const uiActions = {
         type: types.STOP_FETCHING,
     }),
 
+    showCart: () => ({
+        type: types.SHOW_CART,
+    }),
+
+    hideCart: () => ({
+        type: types.HIDE_CART,
+    }),
+
     redirect: (endpoint) => ({
         type: types.REDIRECT,
         payload: endpoint,

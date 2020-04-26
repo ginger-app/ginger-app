@@ -13,10 +13,8 @@
 
     & .backButton {
         cursor: pointer;
+        @include centerContent;
         place-self: start;
-
-        display: grid;
-        place-items: center;
 
         height: 3rem;
         width: 3rem;

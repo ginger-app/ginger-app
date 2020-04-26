@@ -8,11 +8,9 @@
 
     & .backButton {
         cursor: pointer;
+        @include centerContent;
         grid-row: 1; // only for backButton
         grid-column: 1; // only for backButton
-
-        display: grid;
-        place-items: center;
 
         height: 100%;
         width: 100%;

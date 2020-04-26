@@ -11,5 +11,15 @@ export const profileActions = {
     clearProfile: () => ({
         type: types.CLEAR_PROFILE,
     }),
+
+    addItemToCart: (item) => ({
+        type: types.ADD_ITEM_TO_CART,
+        payload: item,
+    }),
+
     //Async
+    addItemToCartAsync: (item) => ({
+        type: types.ADD_ITEM_TO_CART_ASYNC,
+        payload: item,
+    }),
 };

@@ -17,11 +17,9 @@
 
     & .infoBlock {
         @include shadow;
+        @include centerContent;
         grid-row: 1;
         grid-column: 1;
-
-        display: grid;
-        place-items: center;
 
         width: 100%;
 
@@ -30,8 +28,7 @@
 
     & .marketItem {
         @include shadow;
-        display: grid;
-        place-items: center;
+        @include centerContent;
 
         border-radius: 1rem;
     }

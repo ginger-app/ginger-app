@@ -22,6 +22,6 @@ export const marketReducer = (state = initialState, action) => {
             return state.set('subcategoryData', fromJS(action.payload.data));
 
         default:
-            return initialState;
+            return state;
     }
 };

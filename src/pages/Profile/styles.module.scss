@@ -12,11 +12,9 @@
     & .backButton,
     .editButton {
         cursor: pointer;
+        @include centerContent;
         grid-row: 1; // only for backButton
         grid-column: 1; // only for backButton
-
-        display: grid;
-        place-items: center;
 
         height: 100%;
         width: 100%;
@@ -53,10 +51,8 @@
     & .listsBlock,
     .ordersBlock {
         cursor: pointer;
+        @include centerContent;
         grid-column: 1 / 3; // only for listsBlock
-
-        display: grid;
-        place-items: center;
         gap: 0.5rem;
 
         height: 100%;

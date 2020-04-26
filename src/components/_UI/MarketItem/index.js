@@ -26,7 +26,13 @@ const MarketItemComponent = ({ className, style, to, name }) => {
     const [heartHovered, setHeartHoveredState] = useState(false);
 
     return overlayEnabled ? (
-        <MarketItemOverlay setOverlayState={setOverlayState} style={style} className={className} />
+        <MarketItemOverlay
+            setOverlayState={setOverlayState}
+            style={style}
+            className={className}
+            name={name}
+            image={apples}
+        />
     ) : (
         <Transition
             in
