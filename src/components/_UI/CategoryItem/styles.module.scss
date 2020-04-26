@@ -12,6 +12,11 @@
     margin-bottom: 0.5rem; // needed for last raw
 
     border-radius: 1rem;
-
     background: $paletteWhite;
+
+    font-size: 0.8rem;
+
+    & .name {
+        place-self: start center;
+    }
 }

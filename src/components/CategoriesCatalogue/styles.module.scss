@@ -1,0 +1,40 @@
+@import 'resources';
+
+.container {
+    display: grid;
+    grid-template-rows: 18rem;
+    gap: 1rem;
+
+    &.extended {
+        grid-template-rows: 1.5rem 18rem;
+    }
+
+    & .title {
+        @include boldTitle;
+    }
+
+    & .carousele {
+        padding: 0.5rem 0.5rem 0;
+
+        overflow: hidden;
+
+        & .carouseleBlock {
+            display: grid;
+            grid-auto-flow: row;
+            place-items: center;
+
+            & .item {
+                height: 7rem;
+                width: 7rem;
+
+                margin: 0.5rem;
+            }
+        }
+    }
+
+    & .actionButton {
+        @include darkButton;
+        place-self: center;
+        margin: 0 1rem;
+    }
+}

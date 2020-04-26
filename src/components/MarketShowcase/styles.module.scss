@@ -27,9 +27,5 @@
     }
 
     & .marketItem {
-        @include shadow;
-        @include centerContent;
-
-        border-radius: 1rem;
     }
 }

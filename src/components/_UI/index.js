@@ -3,6 +3,7 @@ export * from './MarketItem';
 export * from './CategoryItem';
 export * from './PageTitle';
 export * from './MarketItemOverlay';
+export * from './Carousel';
 export * from './CartToaster';
 export * from './CartItem';
 export * from './Toaster';

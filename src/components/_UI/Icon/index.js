@@ -47,6 +47,27 @@ export function renderIcon({ name, color = '#000', size, width, height, onClick,
                 </svg>
             );
 
+        case 'home':
+            return (
+                <svg
+                    className={className}
+                    onClick={onClick}
+                    width={width || size || 20}
+                    height={height || size || 22}
+                    viewBox={`0 0 ${width || size || 20} ${height || size || 22}`}
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                >
+                    <path
+                        d='M7 20.1994V12.1994C7 11.0948 7.89543 10.1994 9 10.1994H11C12.1046 10.1994 13 11.0948 13 12.1994V20.1994M19 18.1994V8.66667C19 7.7409 18.5726 6.86698 17.8418 6.29861L11.8418 1.63194C10.7585 0.789353 9.24151 0.789351 8.15818 1.63194L2.15818 6.29861C1.42742 6.86698 1 7.7409 1 8.66667V18.1994C1 18.7298 1.21071 19.2386 1.58579 19.6136C1.96086 19.9887 2.46957 20.1994 3 20.1994H17C17.5304 20.1994 18.0391 19.9887 18.4142 19.6136C18.7893 19.2386 19 18.7298 19 18.1994Z'
+                        stroke={color}
+                        strokeWidth='2'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                    />
+                </svg>
+            );
+
         case 'profile':
             return (
                 <svg
@@ -65,7 +86,91 @@ export function renderIcon({ name, color = '#000', size, width, height, onClick,
                 </svg>
             );
 
-        case 'edit':
+        case 'filters':
+            return (
+                <svg
+                    className={className}
+                    onClick={onClick}
+                    width={width || size || 20}
+                    height={height || size || 20}
+                    viewBox={`0 0 ${width || size || 20} ${height || size || 20}`}
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                >
+                    <g clipPath='url(#clip0)'>
+                        <path
+                            d='M3.33337 17.5V11.6667'
+                            stroke={color}
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                        />
+                        <path
+                            d='M3.33337 8.33333V2.5'
+                            stroke={color}
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                        />
+                        <path
+                            d='M10 17.5V10'
+                            stroke={color}
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                        />
+                        <path
+                            d='M10 6.66667V2.5'
+                            stroke={color}
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                        />
+                        <path
+                            d='M16.6666 17.5V13.3333'
+                            stroke={color}
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                        />
+                        <path
+                            d='M16.6666 10V2.5'
+                            stroke={color}
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                        />
+                        <path
+                            d='M0.833374 11.6667H5.83337'
+                            stroke={color}
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                        />
+                        <path
+                            d='M7.5 6.66669H12.5'
+                            stroke={color}
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                        />
+                        <path
+                            d='M14.1666 13.3333H19.1666'
+                            stroke={color}
+                            strokeWidth='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                        />
+                    </g>
+                    <defs>
+                        <clipPath id='clip0'>
+                            <rect width='20' height='20' fill='white' />
+                        </clipPath>
+                    </defs>
+                </svg>
+            );
+
+        case 'filters':
             return (
                 <svg
                     className={className}
@@ -79,7 +184,7 @@ export function renderIcon({ name, color = '#000', size, width, height, onClick,
                     <path
                         d='M17.1797 3.51217L15.88 4.81184L13.1907 2.1225L14.4903 0.82283C14.5874 0.725723 14.7426 0.725723 14.8397 0.82283L17.1797 3.16283C17.2768 3.25994 17.2768 3.41506 17.1797 3.51217ZM3.43934 17.2525H0.75V14.5632L11.06 4.25316L13.7493 6.9425L3.43934 17.2525Z'
                         stroke={color}
-                        stroke-width='1.5'
+                        strokeWidth='1.5'
                     />
                 </svg>
             );

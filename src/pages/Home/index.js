@@ -14,7 +14,7 @@ import profile from 'theme/assets/svg/profile.svg';
 import heart from 'theme/assets/svg/heart.svg';
 
 // Components
-import { DailyBonus, Catalogue, Toaster } from 'components';
+import { DailyBonus, CategoriesCatalogue, Toaster } from 'components';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
@@ -77,7 +77,7 @@ const HomeComponent = ({ className, isAuthenticated, getMarketCategoriesAsync })
                 className={Styles.search}
                 placeholder={'Search'}
             />
-            <Catalogue className={Styles.catalogue} />
+            <CategoriesCatalogue className={Styles.catalogue} extended />
             <Portal>
                 <Toaster
                     inProp={showToaster}

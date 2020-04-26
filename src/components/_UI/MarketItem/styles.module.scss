@@ -1,12 +1,18 @@
 @import 'resources';
 
 .container {
+    @include shadow;
+    @include centerContent;
+
     display: grid;
     grid-template-rows: 1fr 6fr repeat(4, min-content);
 
+    height: 100%;
+    min-height: 15rem;
     padding: 1rem 0.75rem 0;
 
-    height: 100%;
+    border-radius: 1rem;
+    background: $paletteWhite;
 
     & .heart {
         grid-row: 1;

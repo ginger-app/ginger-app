@@ -2,8 +2,12 @@
 
 .container {
     display: grid;
-    grid-template-rows: 1.5rem 18rem;
+    grid-template-rows: 16rem;
     gap: 1rem;
+
+    &.extended {
+        grid-template-rows: 1.5rem 16rem;
+    }
 
     & .title {
         @include boldTitle;
@@ -17,11 +21,13 @@
         & .carouseleBlock {
             display: grid;
             grid-auto-flow: row;
-            gap: 1rem;
+            place-items: center;
 
             & .item {
                 height: 7rem;
                 width: 7rem;
+
+                margin: 0.5rem;
             }
         }
     }
@@ -30,5 +36,7 @@
         @include darkButton;
         place-self: center;
         margin: 0 1rem;
+
+        width: 90%;
     }
 }

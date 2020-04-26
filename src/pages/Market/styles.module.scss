@@ -1,0 +1,47 @@
+@import 'resources';
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 3rem 18rem 1fr;
+    place-items: center;
+
+    height: 100vh;
+    padding: 1rem 0;
+
+    & .homeButton,
+    .filtersButton {
+        @include shadow;
+        @include centerContent;
+        place-self: center start; // only for homeButton
+
+        height: 3rem;
+        width: 3rem;
+        margin: 0 1rem;
+
+        border-radius: 100%;
+        background: $paletteWhite;
+    }
+
+    & .filtersButton {
+        place-self: center end;
+    }
+
+    & .title {
+        @include boldTitle;
+    }
+
+    & .categories {
+        grid-column: 1 / 4;
+
+        height: 100%;
+        width: 100%;
+    }
+
+    & .categoryItemsCarousel {
+        grid-column: 1 / 4;
+
+        height: 100%;
+        width: 100%;
+    }
+}

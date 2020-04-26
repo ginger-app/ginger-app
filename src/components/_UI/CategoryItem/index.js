@@ -6,6 +6,9 @@ import { NavLink } from 'react-router-dom';
 // Styles
 import Styles from './styles.module.scss';
 
+// Mock
+import tomato from 'theme/assets/images/tomato-mock.png';
+
 const mapStateToProps = (state) => ({
     ...state,
 });
@@ -17,7 +20,8 @@ const CategoryItemComponent = (props) => {
 
     return (
         <NavLink className={`${Styles.container} ${className}`} to={`/categories/${sku}`}>
-            {name}
+            <img src={tomato} />
+            <span className={Styles.name}>{name}</span>
         </NavLink>
     );
 };
