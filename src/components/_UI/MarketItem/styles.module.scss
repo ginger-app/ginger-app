@@ -4,7 +4,7 @@
     display: grid;
     grid-template-rows: 1fr 6fr repeat(4, min-content);
 
-    padding: 1rem 0.75rem;
+    padding: 1rem 0.75rem 0;
 
     height: 100%;
 
@@ -57,5 +57,12 @@
     & .cart {
         grid-row: 6;
         place-self: center end;
+
+        position: relative;
+        left: 0.5rem;
+
+        width: 3rem;
+        height: 3rem;
+        padding: 0.3rem 0.75rem 0.75rem;
     }
 }
