@@ -20,7 +20,7 @@ const CategoryItemComponent = (props) => {
 
     return (
         <NavLink className={`${Styles.container} ${className}`} to={`/categories/${sku}`}>
-            <img src={tomato} />
+            <img src={tomato} alt='' />
             <span className={Styles.name}>{name}</span>
         </NavLink>
     );

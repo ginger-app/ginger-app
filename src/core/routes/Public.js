@@ -3,7 +3,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 //  Pages
-import { LoginPage, SignupPage, HomePage, CategoryPage, SubcategoryPage, MarketPage } from 'pages';
+import { HomePage, CategoryPage, SubcategoryPage, MarketPage } from 'pages';
 
 // Instruments
 import { book } from 'core';

@@ -8,7 +8,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Components
-import { Icon, CategoriesCatalogue, Carousel, ItemsCatalogue } from 'components';
+import { Icon, CategoriesCatalogue, ItemsCatalogue } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';

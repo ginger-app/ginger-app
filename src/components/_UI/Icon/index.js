@@ -170,7 +170,7 @@ export function renderIcon({ name, color = '#000', size, width, height, onClick,
                 </svg>
             );
 
-        case 'filters':
+        case 'edit':
             return (
                 <svg
                     className={className}

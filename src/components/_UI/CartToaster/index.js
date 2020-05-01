@@ -40,7 +40,7 @@ const CartToasterComponent = ({ className, cart, showCart }) => {
                     .reverse()
                     .slice(0, 7)
                     .map((item, index) => (
-                        <img src={mock} key={index} className={Styles.cartItem} />
+                        <img src={mock} key={index} className={Styles.cartItem} alt='' />
                     ))}
             </div>
             <div

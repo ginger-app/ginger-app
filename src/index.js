@@ -13,13 +13,25 @@ import { history } from './bus/init/middleware/core';
 import { App } from './core';
 
 // Components
-import { CartToaster, Cart } from 'components';
+import {
+    CartToaster,
+    Cart,
+    SignupOverlay,
+    LoginOverlay,
+    CodeConfirmationOverlay,
+} from 'components';
 
 render(
     <Provider store={store}>
         <Router history={history}>
             <App />
+
+            {/* All of the overlays and popups that should be
+                available on every possible page are below */}
             <CartToaster />
+            <SignupOverlay />
+            <LoginOverlay />
+            <CodeConfirmationOverlay />
             <Cart />
         </Router>
     </Provider>,

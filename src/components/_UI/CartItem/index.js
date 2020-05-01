@@ -7,7 +7,7 @@ import Styles from './styles.module.scss';
 export const CartItem = ({ className, name, image, price, amount, unit }) => {
     return (
         <section className={`${Styles.container} ${className}`}>
-            <img className={Styles.image} src={image} />
+            <img className={Styles.image} src={image} alt='' />
             <p className={Styles.name}>{name}</p>
             <p className={Styles.amount}>
                 {amount} {unit}

@@ -71,6 +71,11 @@
     user-select: none;
 }
 
+@mixin blur {
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+}
+
 @mixin shadow {
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }

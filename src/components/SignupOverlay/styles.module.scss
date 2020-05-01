@@ -1,0 +1,84 @@
+@import 'resources';
+
+.container {
+    @include blur;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: grid;
+    grid-template-rows: 4rem 1fr calc(50% + 5rem);
+    place-items: center start;
+    gap: 2rem;
+
+    width: 100vw;
+    height: 100vh;
+    padding: 1rem 0;
+
+    & .backButton {
+        @include lightButton;
+        @include centerContent;
+        place-self: center end;
+
+        width: 3rem;
+        height: 3rem;
+        margin: 1rem;
+
+        border-radius: 100%;
+        background: $paletteWhite;
+    }
+
+    & .title {
+        @include boldTitle;
+        place-self: end start;
+        margin-left: 2rem;
+    }
+
+    & .fieldsContainer {
+        @include shadow;
+        position: relative;
+        place-self: start;
+
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        place-items: center start;
+
+        width: 75%;
+        height: 10rem;
+        padding-left: 1rem;
+
+        background: $paletteWhite;
+        border-radius: 0 5rem 5rem 0;
+
+        & .input {
+            display: grid;
+            place-items: center start;
+
+            height: 100%;
+            width: 80%;
+            padding: 0 1rem;
+
+            border-top: 1px solid $paletteGrey_3;
+
+            &:first-of-type {
+                border-top: none;
+            }
+        }
+
+        & .button {
+            @include centerContent;
+            @include greenButton;
+            position: absolute;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+
+            width: 4rem;
+            height: 4rem;
+
+            background: $paletteGreen_2;
+            border-radius: 100%;
+        }
+    }
+}
