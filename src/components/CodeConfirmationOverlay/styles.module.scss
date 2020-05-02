@@ -16,6 +16,8 @@
     height: 100vh;
     padding: 1rem 0;
 
+    z-index: 3;
+
     & .backButton {
         @include lightButton;
         @include centerContent;

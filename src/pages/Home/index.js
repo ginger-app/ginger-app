@@ -11,6 +11,7 @@ import { Portal } from 'react-portal';
 import { debounce } from 'lodash';
 import { book } from 'core';
 import profile from 'theme/assets/svg/profile.svg';
+import login from 'theme/assets/svg/login.svg';
 import heart from 'theme/assets/svg/heart.svg';
 
 // Components
@@ -18,6 +19,7 @@ import { DailyBonus, CategoriesCatalogue, Toaster } from 'components';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
+import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.get('isAuthenticated'),
@@ -25,9 +27,15 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     getMarketCategoriesAsync: marketActions.getMarketCategoriesAsync,
+    showLoginOverlay: uiActions.showLoginOverlay,
 };
 
-const HomeComponent = ({ className, isAuthenticated, getMarketCategoriesAsync }) => {
+const HomeComponent = ({
+    className,
+    isAuthenticated,
+    getMarketCategoriesAsync,
+    showLoginOverlay,
+}) => {
     const [searchValue, setSearchValue] = useState('');
     const [showToaster, setToasterVisibility] = useState(false);
     const [toasterMessage, setToasterMessage] = useState('');
@@ -58,16 +66,17 @@ const HomeComponent = ({ className, isAuthenticated, getMarketCategoriesAsync })
 
     return (
         <section className={`${Styles.container} className`}>
-            <NavLink
-                className={Styles.profileButton}
-                to={isAuthenticated ? book.profile : book.signin}
-            >
-                <img src={profile} alt='profile' />
-            </NavLink>
-            <NavLink
-                className={Styles.favoritesButton}
-                to={isAuthenticated ? book.profile : book.signin}
-            >
+            {isAuthenticated ? (
+                <NavLink className={Styles.profileButton} to={book.profile}>
+                    <img src={profile} alt='profile' />
+                </NavLink>
+            ) : (
+                <div className={Styles.loginButton} onClick={showLoginOverlay}>
+                    <img src={login} alt='' />
+                </div>
+            )}
+
+            <NavLink className={Styles.favoritesButton} to={book.profile}>
                 <img src={heart} alt='lists' />
             </NavLink>
             <DailyBonus className={Styles.dailyBonus} />

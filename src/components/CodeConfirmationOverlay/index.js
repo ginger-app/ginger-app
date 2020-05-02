@@ -13,32 +13,35 @@ import { leftToRightSlideConfig } from 'utils/transitionConfig';
 
 // Actions
 import { authActions } from 'bus/auth/actions';
+import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    ...state,
+    codeConfirmationOverlay: state.ui.get('codeConfirmationOverlay'),
+    authData: state.auth.get('authData'),
 });
 
 const mapDispatchToProps = {
-    getAuthConfirmationCodeAsync: authActions.getAuthConfirmationCodeAsync,
-    sendConfirmationCodeAsync: authActions.sendConfirmationCodeAsync,
-    closeCodeConfirmation: authActions.closeCodeConfirmation,
+    sendLoginDataAsync: authActions.sendConfirmationCodeAsync,
+    sendSignupDataAsync: authActions.sendSignupDataAsync,
+    hideCodeConfirmationOverlay: uiActions.hideCodeConfirmationOverlay,
 };
 
 const CodeConfirmationOverlayComponent = ({
     className,
-    getAuthConfirmationCodeAsync,
-    sendConfirmationCodeAsync,
-    closeCodeConfirmation,
-    inProp,
+    sendLoginDataAsync,
+    sendSignupDataAsync,
+    hideCodeConfirmationOverlay,
+    codeConfirmationOverlay,
+    authData: { name, email, phoneNumber, signup },
 }) => {
+    const [code, setCodeValue] = useState('');
+
     return (
         <Portal>
             <Transition
-                in={inProp}
-                // in
+                in={codeConfirmationOverlay}
                 appear
                 mountOnEnter
-                unmountOnExit
                 timeout={leftToRightSlideConfig().timeout}
             >
                 {(state) => (
@@ -49,13 +52,35 @@ const CodeConfirmationOverlayComponent = ({
                             ...leftToRightSlideConfig().transitionStyles[state],
                         }}
                     >
-                        <div className={Styles.backButton}>
+                        <div className={Styles.backButton} onClick={hideCodeConfirmationOverlay}>
                             <Icon name='leftArrow' color='black' />
                         </div>
                         <p className={Styles.title}>CodeConfirmation page title!</p>
                         <div className={Styles.fieldsContainer}>
-                            <InputField className={Styles.input} title={'Number'} />
-                            <div className={Styles.button}>
+                            <InputField
+                                className={Styles.input}
+                                title={'Number'}
+                                value={code}
+                                onChange={({ target: { value } }) => setCodeValue(value)}
+                            />
+                            <div
+                                className={Styles.button}
+                                onClick={
+                                    signup
+                                        ? () =>
+                                              sendSignupDataAsync({
+                                                  phoneNumber,
+                                                  code,
+                                                  userData: {
+                                                      phoneNumber,
+                                                      email,
+                                                      firstName: name.split(' ')[0],
+                                                      lastName: name.split(' ')[1] || '',
+                                                  },
+                                              })
+                                        : () => sendLoginDataAsync({ phoneNumber, code })
+                                }
+                            >
                                 <Icon name='rightArrow' color='white' />
                             </div>
                         </div>

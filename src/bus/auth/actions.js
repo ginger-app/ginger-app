@@ -7,6 +7,10 @@ export const authActions = {
     openCodeConfirmation: () => ({ type: types.OPEN_CODE_CONFIRMATION }),
     closeCodeConfirmation: () => ({ type: types.CLOSE_CODE_CONFIRMATION }),
     logout: () => ({ type: types.SIGN_OUT }),
+    setAuthData: (data) => ({
+        type: types.SET_AUTH_DATA,
+        payload: data,
+    }),
 
     // Async
     getAuthConfirmationCodeAsync: (phoneNumber) => ({

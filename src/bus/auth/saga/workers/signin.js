@@ -21,10 +21,11 @@ export function* signinWorker({ payload: phoneNumber }) {
 
         if (response.status >= 400) throw new Error(result.message);
 
-        yield put(authActions.openCodeConfirmation());
+        // yield put(authActions.openCodeConfirmation());
+        yield put(uiActions.showCodeConfirmationOverlay());
     } catch (err) {
         if (err.message === 'No such user found') {
-            yield apply(history, history.push, ['/signup']);
+            yield put(uiActions.showSignupOverlay());
             // here we should probably show some toaster
         }
         yield put(uiActions.emitError(err, '-> signinWorker'));

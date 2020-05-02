@@ -21,10 +21,11 @@ export function* signupCodeWorker({ payload: phoneNumber }) {
 
         if (response.status >= 400) throw new Error(result.message);
 
-        yield put(authActions.openCodeConfirmation());
+        yield put(uiActions.showCodeConfirmationOverlay());
     } catch (err) {
         if (err.message === 'User already exists') {
-            yield apply(history, history.push, ['/signin']);
+            yield put(uiActions.showLoginOverlay());
+            yield put(uiActions.hideSignupOverlay());
             // here we should probably show some toaster
         }
         yield put(uiActions.emitError(err, '-> signupWorker'));

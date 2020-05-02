@@ -27,7 +27,7 @@ export function* signupWorker({ payload: { phoneNumber, code, userData } }) {
 
         yield put(profileActions.fillProfile(result.userData));
         yield put(authActions.authenticate());
-        yield put(authActions.closeCodeConfirmation());
+        yield put(uiActions.hideAllOverlays());
     } catch (err) {
         yield put(uiActions.emitError(err, '-> signupWorker'));
     } finally {

@@ -10,8 +10,6 @@ import { book } from 'core';
 
 export const Public = () => (
     <Switch>
-        {/* <Route exact path={book.signin} component={LoginPage} /> */}
-        {/* <Route exact path={book.signup} component={SignupPage} /> */}
         <Route exact path={book.home} component={HomePage} />
         <Route exact path={book.market} component={MarketPage} />
         <Route

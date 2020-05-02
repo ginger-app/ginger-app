@@ -10,52 +10,72 @@ import Styles from './styles.module.scss';
 // Instruments
 import { Icon, InputField } from 'components';
 import { leftToRightSlideConfig } from 'utils/transitionConfig';
+import { AsYouType } from 'libphonenumber-js';
 
 // Actions
 import { authActions } from 'bus/auth/actions';
+import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    ...state,
+    loginOverlay: state.ui.get('loginOverlay'),
 });
 
 const mapDispatchToProps = {
     getAuthConfirmationCodeAsync: authActions.getAuthConfirmationCodeAsync,
-    sendConfirmationCodeAsync: authActions.sendConfirmationCodeAsync,
-    closeCodeConfirmation: authActions.closeCodeConfirmation,
+    setAuthData: authActions.setAuthData,
+    hideLoginOverlay: uiActions.hideLoginOverlay,
+    showSignupOverlay: uiActions.showSignupOverlay,
 };
 
 const LoginOverlayComponent = ({
-    className,
     getAuthConfirmationCodeAsync,
-    sendConfirmationCodeAsync,
-    closeCodeConfirmation,
-    inProp,
+    loginOverlay,
+    hideLoginOverlay,
+    setAuthData,
 }) => {
+    const [phoneNumber, setPhoneNumber] = useState('+380');
+
+    const handlePhoneNumberChange = ({ target: { value } }) => {
+        if (!/^[0-9+ ]*$/.test(value)) return null;
+        if (value.length < 4 || value.length > 18) return null;
+
+        return setPhoneNumber(new AsYouType('UA').input(value));
+    };
+
     return (
         <Portal>
             <Transition
-                // in={inProp}
-                in
+                in={loginOverlay}
                 appear
                 mountOnEnter
-                unmountOnExit
                 timeout={leftToRightSlideConfig().timeout}
             >
                 {(state) => (
                     <section
-                        className={`${Styles.container} ${className}`}
+                        className={Styles.container}
                         style={{
                             ...leftToRightSlideConfig().defaultStyles,
                             ...leftToRightSlideConfig().transitionStyles[state],
                         }}
                     >
-                        <div className={Styles.backButton}>
+                        <div className={Styles.backButton} onClick={hideLoginOverlay}>
                             <Icon name='leftArrow' color='black' />
                         </div>
                         <p className={Styles.title}>Login page title!</p>
                         <div className={Styles.fieldsContainer}>
-                            <InputField className={Styles.input} title={'Number'} />
-                            <div className={Styles.button}>
+                            <InputField
+                                className={Styles.input}
+                                title={'Номер телефону'}
+                                value={phoneNumber}
+                                onChange={handlePhoneNumberChange}
+                            />
+                            <div
+                                className={Styles.button}
+                                onClick={() => {
+                                    setAuthData({ phoneNumber });
+                                    getAuthConfirmationCodeAsync(phoneNumber);
+                                }}
+                            >
                                 <Icon name='rightArrow' color='white' />
                             </div>
                         </div>

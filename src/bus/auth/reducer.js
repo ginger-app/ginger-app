@@ -7,6 +7,7 @@ import { authTypes as types } from './types';
 const initialState = Map({
     isAuthenticated: false,
     codeConfirmation: false,
+    authData: {},
 });
 
 export const authReducer = (state = initialState, action) => {
@@ -22,6 +23,9 @@ export const authReducer = (state = initialState, action) => {
 
         case types.SIGN_OUT:
             return state.set('isAuthenticated', false);
+
+        case types.SET_AUTH_DATA:
+            return state.set('authData', action.payload);
 
         default:
             return state;

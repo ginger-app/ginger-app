@@ -27,8 +27,7 @@ export function* codeConfirmationWorker({ payload: { phoneNumber, code } }) {
 
         yield put(profileActions.fillProfile(result.userData));
         yield put(authActions.authenticate());
-        yield put(authActions.closeCodeConfirmation());
-        yield apply(history, history.push, ['/']);
+        yield put(uiActions.hideAllOverlays());
     } catch (err) {
         yield put(uiActions.emitError(err, '-> codeConfirmationWorker'));
     } finally {
