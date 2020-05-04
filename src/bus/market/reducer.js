@@ -8,6 +8,7 @@ const initialState = Map({
     categories: List([]),
     categoryData: Map({}),
     subcategoryData: Map({}),
+    productData: Map({}),
 });
 
 export const marketReducer = (state = initialState, action) => {
@@ -20,6 +21,12 @@ export const marketReducer = (state = initialState, action) => {
 
         case types.FILL_MARKET_SUBCATEGORY_DATA:
             return state.set('subcategoryData', fromJS(action.payload.data));
+
+        case types.FILL_PRODUCT_DATA:
+            return state.set('productData', fromJS(action.payload.data));
+
+        case types.CLEAR_PRODUCT_DATA:
+            return state.set('productData', Map({}));
 
         default:
             return state;

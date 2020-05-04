@@ -1,0 +1,136 @@
+@import 'resources';
+
+.container {
+    @include shadow;
+    place-self: end center;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: min-content 40% 1fr 1fr 2fr 1fr 3fr 2fr;
+    gap: 0.5rem;
+
+    height: 95vh;
+    width: 95vw;
+    padding: 1rem 2rem 1.5rem;
+
+    border-radius: 1rem 1rem 0 0;
+    background: $paletteWhite;
+
+    & .arrowIcon {
+        cursor: pointer;
+        @include centerContent;
+        place-self: center;
+        grid-column: 1 / 3;
+
+        width: 20%;
+        height: 100%;
+        padding: 0.5rem;
+    }
+
+    & .image {
+        grid-column: 1 / 3;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    & .itemName,
+    .descriptionTitle {
+        @include boldTitle;
+        place-self: center start;
+        grid-column: 1 / 3;
+
+        color: $paletteBlack;
+    }
+
+    & .unit {
+        place-self: start;
+        grid-column: 1 / 3;
+        color: $paletteGrey_3;
+    }
+
+    & .amountContainer {
+        @include centerContent;
+        @include boldTitle;
+        place-self: center start;
+        grid-template-columns: repeat(3, 1fr);
+
+        height: 90%;
+        width: 100%;
+
+        border: 1px solid $paletteBlack;
+        border-radius: 3rem;
+
+        overflow: hidden;
+
+        & .amountButton {
+            cursor: pointer;
+            @include centerContent;
+
+            width: 100%;
+            height: 100%;
+        }
+
+        & .amountInput {
+            width: 100%;
+            height: 80%;
+
+            background: $paletteWhite;
+            border: 1px solid $paletteGrey_3;
+            border-radius: 10px;
+
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        & .amountDisabled {
+            @include centerContent;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    & .price {
+        place-self: center;
+
+        font-size: 2rem;
+        font-weight: bold;
+
+        color: $paletteGreen_1;
+
+        & span {
+            font-size: 1.5rem;
+            font-weight: normal;
+        }
+    }
+
+    & .description {
+        grid-column: 1 / 3;
+
+        height: 100%;
+
+        overflow: scroll;
+    }
+
+    & .favoritesButton {
+        @include lightButton;
+        @include centerContent;
+
+        width: 3rem;
+        height: 3rem;
+        padding: 0;
+    }
+
+    & .buyButton {
+        @include greenButton;
+        @include boldTitle;
+
+        display: grid;
+        grid-template-columns: 1fr 25%;
+        place-items: center;
+
+        color: $paletteWhite;
+    }
+}

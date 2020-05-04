@@ -1,0 +1,14 @@
+@import 'resources';
+
+.bg {
+    display: grid;
+    place-items: center;
+
+    height: 100vh;
+    width: 100vw;
+    padding: 1rem 0 0;
+
+    background: $paletteDefaulGradient;
+
+    overflow-y: hidden;
+}

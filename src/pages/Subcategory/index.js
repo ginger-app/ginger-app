@@ -72,7 +72,11 @@ const SubcategoryComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <PageTitle className={Styles.title} title={name} />
+                    <PageTitle
+                        className={Styles.title}
+                        title={name}
+                        // backButtonAction={clearSubcategoryData}
+                    />
                     <Carousel
                         className={Styles.tags}
                         itemsToShow={3}

@@ -13,7 +13,7 @@ export const ItemsCatalogue = ({ className, categoryName, extended, children }) 
         {extended && <p className={Styles.title}>{categoryName}</p>}
         <Carousel className={Styles.carousele} itemsToShow={2} itemsToScroll={2} enableAutoPlay>
             {children.map((item, index) => (
-                <MarketItem name={'Item name'} to='/market' key={index} />
+                <MarketItem name={'Item name'} to='/market' key={index} price={['46', '99']} />
             ))}
         </Carousel>
         {extended && (

@@ -18,6 +18,15 @@ export const marketActions = {
         payload: { data },
     }),
 
+    fillProductData: (data) => ({
+        type: types.FILL_PRODUCT_DATA,
+        payload: { data },
+    }),
+
+    clearProductData: () => ({
+        type: types.CLEAR_PRODUCT_DATA,
+    }),
+
     // Async
     getMarketCategoriesAsync: () => ({
         type: types.GET_MARKET_CATEGORIES_ASYNC,
@@ -30,6 +39,11 @@ export const marketActions = {
 
     getMarketSubcategoryDataAsync: (sku) => ({
         type: types.GET_MARKET_SUBCATEGORY_DATA_ASYNC,
+        payload: { sku },
+    }),
+
+    getProductDataAsync: (sku) => ({
+        type: types.GET_PRODUCT_DATA_ASYNC,
         payload: { sku },
     }),
 };

@@ -59,5 +59,9 @@ export const Api = {
         getSubcategoryData: (sku) => {
             return fetch(`${MAIN_URL}/market/subcategories/${sku}`);
         },
+
+        getProductData: (sku) => {
+            return fetch(`${MAIN_URL}/market/product/${sku}`);
+        },
     },
 };
