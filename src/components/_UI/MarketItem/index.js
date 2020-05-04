@@ -20,7 +20,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-const MarketItemComponent = ({ className, style, to, name }) => {
+const MarketItemComponent = ({ className, style, to, name, price }) => {
     // State
     const [overlayEnabled, setOverlayState] = useState(false);
     const [heartHovered, setHeartHoveredState] = useState(false);
@@ -61,7 +61,8 @@ const MarketItemComponent = ({ className, style, to, name }) => {
                     <img src={apples} alt='' className={Styles.itemImage} />
                     <p className={Styles.itemName}>{name}</p>
                     <p className={Styles.price}>
-                        46<span>.99$</span>
+                        {price[0]}
+                        <span>.{price[1]}₴</span>
                     </p>
                     <p className={Styles.amount}>1 kg</p>
                     <Icon

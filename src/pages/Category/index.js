@@ -76,12 +76,13 @@ const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categor
                             <NavLink
                                 to={`${window.location.pathname}/${item}`}
                                 className={Styles.tag}
+                                key={index}
                             >
                                 {item}
                             </NavLink>
                         ))}
                     />
-                    <MarketShowcase className={Styles.showcase} items={subcategories} />
+                    <MarketShowcase className={Styles.showcase} items={[]} />
                 </section>
             )}
         </Transition>

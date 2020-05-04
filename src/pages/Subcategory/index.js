@@ -7,10 +7,9 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Components
-import { PageTitle, MarketShowcase } from 'components';
+import { PageTitle, MarketShowcase, Carousel } from 'components';
 
 // Instruments
-import Carousel from 'react-elastic-carousel';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { isEmpty } from 'lodash';
 
@@ -35,7 +34,7 @@ const SubcategoryComponent = ({
         getMarketSubcategoryDataAsync(sku);
     }, [getMarketSubcategoryDataAsync, sku]);
 
-    const { name } = subcategoryData;
+    const { name, tags, items } = subcategoryData;
 
     return isEmpty(subcategoryData) ? (
         <Transition
@@ -77,18 +76,13 @@ const SubcategoryComponent = ({
                     <Carousel
                         className={Styles.tags}
                         itemsToShow={3}
-                        itemsToScroll={2}
-                        showArrows={false}
-                        pagination={false}
-                        itemPadding={[0, 2, 0, 2]}
-                        enableTilt
-                        enableMouseSwipe
-                    >
-                        <div className={Styles.tag}>TagName</div>
-                        <div className={Styles.tag}>TagName</div>
-                        <div className={Styles.tag}>TagName</div>
-                    </Carousel>
-                    <MarketShowcase className={Styles.showcase} items={[]} />
+                        items={tags.map((item, index) => (
+                            <div className={Styles.tag} key={index}>
+                                {item}
+                            </div>
+                        ))}
+                    />
+                    <MarketShowcase className={Styles.showcase} items={items} />
                 </section>
             )}
         </Transition>

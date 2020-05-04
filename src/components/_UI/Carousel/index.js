@@ -30,7 +30,7 @@ export const Carousel = ({
             onMouseLeave={() => setForceDisableAutoplay(false)}
         >
             <ElasticCarousel
-                itemsToShow={itemsToShow}
+                itemsToShow={Math.min(itemsToShow, items ? items.length : children.length)}
                 itemsToScroll={itemsToScroll}
                 showArrows={showArrows}
                 pagination={pagination}
