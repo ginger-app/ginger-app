@@ -2,12 +2,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
+import { NavLink } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
 
 // Components
-import { PageTitle, MarketShowcase } from 'components';
+import { PageTitle, MarketShowcase, Carousel } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -68,6 +69,18 @@ const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categor
                     }}
                 >
                     <PageTitle className={Styles.title} title={name} />
+                    <Carousel
+                        itemsToShow={2}
+                        className={Styles.tags}
+                        items={subcategories.map((item, index) => (
+                            <NavLink
+                                to={`${window.location.pathname}/${item}`}
+                                className={Styles.tag}
+                            >
+                                {item}
+                            </NavLink>
+                        ))}
+                    />
                     <MarketShowcase className={Styles.showcase} items={subcategories} />
                 </section>
             )}

@@ -13,11 +13,11 @@ export const ItemsCatalogue = ({ className, categoryName, extended, children }) 
         {extended && <p className={Styles.title}>{categoryName}</p>}
         <Carousel className={Styles.carousele} itemsToShow={2} itemsToScroll={2} enableAutoPlay>
             {children.map((item, index) => (
-                <MarketItem name={'Item name'} to='/market' />
+                <MarketItem name={'Item name'} to='/market' key={index} />
             ))}
         </Carousel>
         {extended && (
-            <NavLink className={Styles.actionButton} to={'/market'} extended>
+            <NavLink className={Styles.actionButton} to={'/market'}>
                 Show more
             </NavLink>
         )}
