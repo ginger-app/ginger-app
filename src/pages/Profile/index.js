@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -15,6 +15,7 @@ import edit from 'theme/assets/svg/edit-dark.svg';
 
 // Actions
 import { authActions } from 'bus/auth/actions';
+import { profileActions } from 'bus/profile/actions';
 
 const mapStateToProps = (state) => ({
     profile: state.profile.toJS(),
@@ -22,18 +23,43 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     logout: authActions.logout,
+    getUserDataAsync: profileActions.getUserDataAsync,
 };
 
-const ProfileComponent = ({ className, profile, logout }) => {
+const ProfileComponent = ({ className, profile, logout, getUserDataAsync }) => {
     const {
         firstName,
-        lists,
+        favorites,
         orders,
         bonuses,
         // userpic
     } = profile;
 
-    return (
+    useEffect(() => {
+        getUserDataAsync();
+    }, []);
+
+    return firstName.length === 0 ? (
+        <Transition
+            in
+            appear
+            mountOnEnter
+            unmountOnExit
+            timeout={opacityTransitionConfig().timeout}
+        >
+            {(state) => (
+                <section
+                    className={Styles.loading}
+                    style={{
+                        ...opacityTransitionConfig().defaultStyles,
+                        ...opacityTransitionConfig().transitionStyles[state],
+                    }}
+                >
+                    Loading....
+                </section>
+            )}
+        </Transition>
+    ) : (
         <Transition
             in
             appear
@@ -58,7 +84,7 @@ const ProfileComponent = ({ className, profile, logout }) => {
                     <img className={Styles.avatar} src={userpic} alt='avatar' />
                     <p className={Styles.name}>{firstName}</p>
                     <div className={Styles.listsBlock}>
-                        {lists.length} <span>Lists</span>
+                        {Object.keys(favorites).length} <span>Favorites</span>
                     </div>
                     <div className={Styles.ordersBlock}>
                         {orders.length} <span>Orders</span>

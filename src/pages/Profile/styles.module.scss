@@ -102,3 +102,9 @@
         grid-column: 1 / 5;
     }
 }
+
+.loading {
+    @include centerContent;
+    width: 100vw;
+    height: 100vh;
+}
