@@ -49,7 +49,7 @@ const ProductComponent = ({ sku, productData, getProductDataAsync, clearProductD
                     }}
                 >
                     {isEmpty(productData) ? (
-                        <TraceSpinner color='black' size={50} />
+                        <TraceSpinner color='white' size={50} />
                     ) : (
                         <ProductData sku={sku} />
                     )}

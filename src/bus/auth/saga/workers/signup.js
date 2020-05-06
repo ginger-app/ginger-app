@@ -21,11 +21,16 @@ export function* signupWorker({ payload: { phoneNumber, code, userData } }) {
                 code,
             },
         ]);
-        const result = yield apply(response, response.json);
+        const { message, userData, tokens } = yield apply(response, response.json);
 
-        if (response.status >= 400) throw new Error(result.message);
+        if (response.status >= 400) throw new Error(message);
 
-        yield put(profileActions.fillProfile(result.userData));
+        yield apply(sessionStorage, sessionStorage.setItem, ['ginger-token', tokens.accessToken]);
+        yield apply(sessionStorage, sessionStorage.setItem, [
+            'ginger-refresh',
+            tokens.refreshToken,
+        ]);
+        yield put(profileActions.fillProfile(userData));
         yield put(authActions.authenticate());
         yield put(uiActions.hideAllOverlays());
     } catch (err) {

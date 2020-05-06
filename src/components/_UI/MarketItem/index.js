@@ -1,5 +1,5 @@
 // Core
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
@@ -14,16 +14,42 @@ import heart from 'theme/assets/svg/heart.svg';
 import heartFilled from 'theme/assets/svg/heart-filled.svg';
 import apples from 'theme/assets/images/apples-mock.png';
 
+// Actions
+import { profileActions } from 'bus/profile/actions';
+
 const mapStateToProps = (state) => ({
-    ...state,
+    favorites: state.profile.get('favorites'),
+    isAuthenticated: state.auth.get('isAuthenticated'),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    addItemToFavoritesAsync: profileActions.addItemToFavoritesAsync,
+    addItemToFavorites: profileActions.addItemToFavorites,
+    removeItemFromFavorites: profileActions.removeItemFromFavorites,
+};
 
-const MarketItemComponent = ({ className, style, to, name, price }) => {
+const MarketItemComponent = ({
+    className,
+    style,
+    to,
+    name,
+    price,
+    favorites,
+    addItemToFavoritesAsync,
+    addItemToFavorites,
+    removeItemFromFavorites,
+    isAuthenticated,
+    sku,
+}) => {
     // State
     const [overlayEnabled, setOverlayState] = useState(false);
-    const [heartHovered, setHeartHoveredState] = useState(false);
+    const [isFavored, setFavoredState] = useState(false);
+
+    useEffect(() => {
+        if (favorites[sku]) {
+            setFavoredState(true);
+        }
+    }, []);
 
     return overlayEnabled ? (
         <MarketItemOverlay
@@ -52,10 +78,26 @@ const MarketItemComponent = ({ className, style, to, name, price }) => {
                     }}
                 >
                     <img
-                        src={heartHovered ? heartFilled : heart}
+                        src={isFavored ? heartFilled : heart}
                         className={Styles.heart}
-                        onMouseEnter={() => setHeartHoveredState(true)}
-                        onMouseLeave={() => setHeartHoveredState(false)}
+                        onClick={
+                            isFavored
+                                ? (e) => {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      setFavoredState(false);
+                                      //   removeItemFromFavorites(sku);
+                                  }
+                                : (e) => {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      setFavoredState(true);
+                                      // if user is already logged in - updateing his favorites
+                                      if (isAuthenticated) return addItemToFavoritesAsync(sku);
+                                      // otherwise - just locally
+                                      addItemToFavorites(sku);
+                                  }
+                        }
                         alt=''
                     />
                     <img src={apples} alt='' className={Styles.itemImage} />

@@ -17,6 +17,7 @@ const initialState = Map({
     orders: [],
     cards: [],
     lists: [],
+    favorites: {},
     cart: [],
     bonuses: 0,
 
@@ -41,6 +42,16 @@ export const profileReducer = (state = initialState, action) => {
         case types.ADD_ITEM_TO_CART:
             const currentCart = state.get('cart');
             return state.set('cart', [...currentCart, action.payload]);
+
+        case types.ADD_ITEM_TO_FAVORITES:
+            const currentFavorites = state.get('favorites');
+            return state.set('favorites', [...currentFavorites, action.payload]);
+
+        case types.REMOVE_ITEM_FROM_FAVORITES:
+            const filteredFavorites = state
+                .get('favorites')
+                .filter((item) => item !== action.payload);
+            return state.set('favorites', filteredFavorites);
 
         default:
             return state;

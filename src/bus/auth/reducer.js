@@ -22,6 +22,7 @@ export const authReducer = (state = initialState, action) => {
             return state.set('codeConfirmation', false);
 
         case types.SIGN_OUT:
+            sessionStorage.clear();
             return state.set('isAuthenticated', false);
 
         case types.SET_AUTH_DATA:

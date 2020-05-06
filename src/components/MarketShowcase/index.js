@@ -22,6 +22,7 @@ export const MarketShowcase = ({ className, items }) => {
                     to={`products/${sku}`}
                     name={nameUkr}
                     price={price.toFixed(2).split('.')}
+                    sku={sku}
                 />
             ))}
         </section>

@@ -21,13 +21,16 @@ export function* codeConfirmationWorker({ payload: { phoneNumber, code } }) {
                 code,
             },
         ]);
-        const result = yield apply(response, response.json);
+        const { tokens, message } = yield apply(response, response.json);
 
-        if (response.status >= 400) throw new Error(result.message);
+        if (response.status >= 400) throw new Error(message);
 
-        yield put(profileActions.fillProfile(result.userData));
-        yield put(authActions.authenticate());
-        yield put(uiActions.hideAllOverlays());
+        yield apply(sessionStorage, sessionStorage.setItem, ['ginger-token', tokens.accessToken]);
+        yield apply(sessionStorage, sessionStorage.setItem, [
+            'ginger-refresh',
+            tokens.refreshToken,
+        ]);
+        yield put(profileActions.getUserDataAsync(tokens));
     } catch (err) {
         yield put(uiActions.emitError(err, '-> codeConfirmationWorker'));
     } finally {

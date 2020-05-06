@@ -64,4 +64,26 @@ export const Api = {
             return fetch(`${MAIN_URL}/market/product/${sku}`);
         },
     },
+
+    profile: {
+        getCurrentUserData: () => {
+            return fetch(`${MAIN_URL}/profile/current`, {
+                method: 'GET',
+                headers: {
+                    'content-type': 'application/json',
+                    Authorization: sessionStorage.getItem('ginger-token'),
+                },
+            });
+        },
+
+        addItemToFavorites: ({ phoneNumber, sku }) => {
+            return fetch(`${MAIN_URL}/profile/favorites`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({ phoneNumber, sku }),
+            });
+        },
+    },
 };
