@@ -13,6 +13,7 @@ import { Icon, CartItem } from 'components';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
+import { marketActions } from 'bus/market/actions';
 
 const mapStateToProps = (state) => ({
     cartIsOpened: state.ui.get('cartIsOpened'),
@@ -21,9 +22,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     hideCart: uiActions.hideCart,
+    createNewOrderAsync: marketActions.createNewOrderAsync,
 };
 
-const CartComponent = ({ className, cartIsOpened, hideCart, cart }) => {
+const CartComponent = ({ className, cartIsOpened, hideCart, cart, createNewOrderAsync }) => {
     return (
         <Portal>
             <Transition
@@ -70,7 +72,9 @@ const CartComponent = ({ className, cartIsOpened, hideCart, cart }) => {
                         <p className={Styles.bonusAmount}>-10.25</p>
                         <p className={Styles.totalTitle}>Total:</p>
                         <p className={Styles.totalAmount}>100.50</p>
-                        <div className={Styles.button}>Gimme Money</div>
+                        <div className={Styles.button} onClick={createNewOrderAsync}>
+                            Gimme Money
+                        </div>
                     </section>
                 )}
             </Transition>

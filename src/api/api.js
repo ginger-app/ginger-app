@@ -63,6 +63,17 @@ export const Api = {
         getProductData: (sku) => {
             return fetch(`${MAIN_URL}/market/product/${sku}`);
         },
+
+        createNewOrder: (orderData) => {
+            return fetch(`${MAIN_URL}/market/orders`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    Authorization: sessionStorage.getItem('ginger-token'),
+                },
+                body: JSON.stringify(orderData),
+            });
+        },
     },
 
     profile: {

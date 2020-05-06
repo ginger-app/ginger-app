@@ -46,4 +46,9 @@ export const marketActions = {
         type: types.GET_PRODUCT_DATA_ASYNC,
         payload: { sku },
     }),
+
+    createNewOrderAsync: (orderData) => ({
+        type: types.CREATE_NEW_ORDER_ASYNC,
+        payload: { orderData },
+    }),
 };
