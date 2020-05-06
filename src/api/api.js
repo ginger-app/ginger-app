@@ -76,13 +76,25 @@ export const Api = {
             });
         },
 
-        addItemToFavorites: ({ phoneNumber, sku }) => {
+        addItemToFavorites: (sku) => {
             return fetch(`${MAIN_URL}/profile/favorites`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
+                    Authorization: sessionStorage.getItem('ginger-token'),
                 },
-                body: JSON.stringify({ phoneNumber, sku }),
+                body: JSON.stringify({ sku }),
+            });
+        },
+
+        removeItemFromFavorites: (sku) => {
+            return fetch(`${MAIN_URL}/profile/favorites/remove`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    Authorization: sessionStorage.getItem('ginger-token'),
+                },
+                body: JSON.stringify({ sku }),
             });
         },
     },

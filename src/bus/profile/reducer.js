@@ -44,14 +44,10 @@ export const profileReducer = (state = initialState, action) => {
             return state.set('cart', [...currentCart, action.payload]);
 
         case types.ADD_ITEM_TO_FAVORITES:
-            const currentFavorites = state.get('favorites');
-            return state.set('favorites', [...currentFavorites, action.payload]);
+            return state.set('favorites', { ...state.get('favorites'), [action.payload]: true });
 
         case types.REMOVE_ITEM_FROM_FAVORITES:
-            const filteredFavorites = state
-                .get('favorites')
-                .filter((item) => item !== action.payload);
-            return state.set('favorites', filteredFavorites);
+            return state.set('favorites', { ...state.get('favorites'), [action.payload]: false });
 
         default:
             return state;

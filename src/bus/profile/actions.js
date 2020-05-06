@@ -33,14 +33,14 @@ export const profileActions = {
         payload: item,
     }),
 
-    addItemToFavoritesAsync: (item) => ({
+    addItemToFavoritesAsync: (sku) => ({
         type: types.ADD_ITEM_TO_FAVORITES_ASYNC,
-        payload: item,
+        payload: { sku },
     }),
 
-    removeItemFromFavoritesAsync: (item) => ({
+    removeItemFromFavoritesAsync: (sku) => ({
         type: types.REMOVE_ITEM_FROM_FAVORITES_ASYNC,
-        payload: item,
+        payload: { sku },
     }),
 
     getUserDataAsync: (tokens) => ({

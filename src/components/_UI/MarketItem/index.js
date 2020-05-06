@@ -26,6 +26,7 @@ const mapDispatchToProps = {
     addItemToFavoritesAsync: profileActions.addItemToFavoritesAsync,
     addItemToFavorites: profileActions.addItemToFavorites,
     removeItemFromFavorites: profileActions.removeItemFromFavorites,
+    removeItemFromFavoritesAsync: profileActions.removeItemFromFavoritesAsync,
 };
 
 const MarketItemComponent = ({
@@ -38,6 +39,7 @@ const MarketItemComponent = ({
     addItemToFavoritesAsync,
     addItemToFavorites,
     removeItemFromFavorites,
+    removeItemFromFavoritesAsync,
     isAuthenticated,
     sku,
 }) => {
@@ -86,7 +88,10 @@ const MarketItemComponent = ({
                                       e.preventDefault();
                                       e.stopPropagation();
                                       setFavoredState(false);
-                                      //   removeItemFromFavorites(sku);
+                                      // if user is already logged in - updateing his favorites
+                                      if (isAuthenticated) return removeItemFromFavoritesAsync(sku);
+                                      // otherwise - just locally
+                                      removeItemFromFavorites(sku);
                                   }
                                 : (e) => {
                                       e.preventDefault();
