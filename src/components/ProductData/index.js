@@ -14,14 +14,32 @@ import { history } from 'bus/init/middleware/core';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
+import { profileActions } from 'bus/profile/actions';
 
 const mapStateToProps = (state) => ({
     productData: state.market.get('productData').toJS(),
+    favorites: state.profile.get('favorites'),
+    isAuthenticated: state.auth.get('isAuthenticated'),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    addItemToFavoritesAsync: profileActions.addItemToFavoritesAsync,
+    addItemToFavorites: profileActions.addItemToFavorites,
+    removeItemFromFavorites: profileActions.removeItemFromFavorites,
+    removeItemFromFavoritesAsync: profileActions.removeItemFromFavoritesAsync,
+};
 
-const ProductDataComponent = ({ className, sku, productData }) => {
+const ProductDataComponent = ({
+    className,
+    sku,
+    productData,
+    favorites,
+    addItemToFavoritesAsync,
+    addItemToFavorites,
+    removeItemFromFavorites,
+    removeItemFromFavoritesAsync,
+    isAuthenticated,
+}) => {
     const { nameUkr, stock, measurementValue: unit, price } = productData;
     const formattedPrice = price.toFixed(2).split('.');
 
@@ -93,8 +111,29 @@ const ProductDataComponent = ({ className, sku, productData }) => {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua.
                     </p>
-                    <div className={Styles.favoritesButton}>
-                        <Icon name='heart' color='black' />
+                    <div
+                        className={Styles.favoritesButton}
+                        onClick={
+                            favorites[sku]
+                                ? (e) => {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      // if user is already logged in - updateing his favorites
+                                      if (isAuthenticated) return removeItemFromFavoritesAsync(sku);
+                                      // otherwise - just locally
+                                      removeItemFromFavorites(sku);
+                                  }
+                                : (e) => {
+                                      e.preventDefault();
+                                      e.stopPropagation();
+                                      // if user is already logged in - updateing his favorites
+                                      if (isAuthenticated) return addItemToFavoritesAsync(sku);
+                                      // otherwise - just locally
+                                      addItemToFavorites(sku);
+                                  }
+                        }
+                    >
+                        <Icon name={favorites[sku] ? 'heart-filled' : 'heart'} color='red' />
                     </div>
                     <div className={Styles.buyButton}>
                         Купити <Icon name='cart' color='white' />

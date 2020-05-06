@@ -45,13 +45,6 @@ const MarketItemComponent = ({
 }) => {
     // State
     const [overlayEnabled, setOverlayState] = useState(false);
-    const [isFavored, setFavoredState] = useState(false);
-
-    useEffect(() => {
-        if (favorites[sku]) {
-            setFavoredState(true);
-        }
-    }, []);
 
     return overlayEnabled ? (
         <MarketItemOverlay
@@ -79,15 +72,15 @@ const MarketItemComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <img
-                        src={isFavored ? heartFilled : heart}
+                    <Icon
+                        name={favorites[sku] ? 'heart-filled' : 'heart'}
+                        color={favorites[sku] ? 'red' : 'black'}
                         className={Styles.heart}
                         onClick={
-                            isFavored
+                            favorites[sku]
                                 ? (e) => {
                                       e.preventDefault();
                                       e.stopPropagation();
-                                      setFavoredState(false);
                                       // if user is already logged in - updateing his favorites
                                       if (isAuthenticated) return removeItemFromFavoritesAsync(sku);
                                       // otherwise - just locally
@@ -96,14 +89,12 @@ const MarketItemComponent = ({
                                 : (e) => {
                                       e.preventDefault();
                                       e.stopPropagation();
-                                      setFavoredState(true);
                                       // if user is already logged in - updateing his favorites
                                       if (isAuthenticated) return addItemToFavoritesAsync(sku);
                                       // otherwise - just locally
                                       addItemToFavorites(sku);
                                   }
                         }
-                        alt=''
                     />
                     <img src={apples} alt='' className={Styles.itemImage} />
                     <p className={Styles.itemName}>{name}</p>
