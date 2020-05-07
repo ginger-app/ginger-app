@@ -5,6 +5,12 @@ import { MAIN_URL } from './config';
 // import queryString from 'query-string';
 
 export const Api = {
+    app: {
+        getGoogleMapsKey: () => {
+            return fetch(`${MAIN_URL}/app/g-maps`);
+        },
+    },
+
     auth: {
         getAuthenticationCode: (phoneNumber) => {
             return fetch(`${MAIN_URL}/auth/signin`, {

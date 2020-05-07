@@ -7,6 +7,7 @@ import { PublicRoutes } from './routes';
 
 // Actions
 import { profileActions } from 'bus/profile/actions';
+import { authActions } from 'bus/auth/actions';
 
 const mapStateToProps = ({ auth }) => ({
     isAuthenticated: auth.get('isAuthenticated'),
@@ -14,13 +15,15 @@ const mapStateToProps = ({ auth }) => ({
 
 const mapDispatchToProps = {
     getUserDataAsync: profileActions.getUserDataAsync,
+    getGoogleMapsKeyAsync: authActions.getGoogleMapsKeyAsync,
 };
 
-const AppComponent = ({ getUserDataAsync }) => {
+const AppComponent = ({ getUserDataAsync, getGoogleMapsKeyAsync }) => {
     useEffect(() => {
         if (sessionStorage.getItem('ginger-token')) {
             getUserDataAsync();
         }
+        getGoogleMapsKeyAsync();
     }, []);
 
     return <PublicRoutes />;

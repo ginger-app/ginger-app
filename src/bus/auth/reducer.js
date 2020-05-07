@@ -7,6 +7,7 @@ import { authTypes as types } from './types';
 const initialState = Map({
     isAuthenticated: false,
     codeConfirmation: false,
+    gmapsKey: '',
     authData: {},
 });
 
@@ -27,6 +28,9 @@ export const authReducer = (state = initialState, action) => {
 
         case types.SET_AUTH_DATA:
             return state.set('authData', action.payload);
+
+        case types.FILL_GOOGLE_MAPS_KEY:
+            return state.set('gmapsKey', action.payload.key);
 
         default:
             return state;

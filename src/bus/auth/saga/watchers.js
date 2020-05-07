@@ -5,7 +5,13 @@ import { takeEvery, all, call } from 'redux-saga/effects';
 import { authTypes as types } from '../types';
 
 // Workers
-import { signinWorker, codeConfirmationWorker, signupCodeWorker, signupWorker } from './workers';
+import {
+    signinWorker,
+    codeConfirmationWorker,
+    signupCodeWorker,
+    signupWorker,
+    getGmapsKeyWorker,
+} from './workers';
 
 function* watchSignin() {
     yield takeEvery(types.GET_AUTH_CONFIRMATION_CODE_ASYNC, signinWorker);
@@ -19,6 +25,9 @@ function* watchSignupCode() {
 function* watchSignup() {
     yield takeEvery(types.SEND_SIGNUP_DATA_ASYNC, signupWorker);
 }
+function* watchGetGoogleMapsKey() {
+    yield takeEvery(types.GET_GOOGLE_MAPS_KEY_ASYNC, getGmapsKeyWorker);
+}
 
 export function* watchAuth() {
     yield all([
@@ -26,5 +35,6 @@ export function* watchAuth() {
         call(watchCodeConfirmation),
         call(watchSignupCode),
         call(watchSignup),
+        call(watchGetGoogleMapsKey),
     ]);
 }
