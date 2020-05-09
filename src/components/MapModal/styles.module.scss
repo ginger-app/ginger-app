@@ -1,0 +1,98 @@
+@import 'resources';
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: grid;
+    grid-template-rows: 65% min-content 1fr min-content 1fr 1fr;
+    place-items: center;
+    gap: 0.5rem;
+
+    width: 100vw;
+    height: 100vh;
+    padding: 0 0 0.5rem 0;
+
+    background: $paletteWhite;
+
+    & .map {
+        width: 100%;
+        height: 100%;
+        background: $paletteDarkGrey_1;
+    }
+
+    & .inputTitle {
+        place-self: center start;
+        margin: 0.5rem 10% 0;
+
+        font-size: 0.8rem;
+    }
+
+    & .input {
+        @include boldTitle;
+        width: 90%;
+        height: 100%;
+        padding: 0 1rem;
+
+        background: $paletteBg;
+        border-radius: 12px;
+        border: none;
+
+        text-align: start;
+    }
+
+    & .button {
+        @include darkButton;
+        width: 90%;
+    }
+
+    & .requestAddressPopup {
+        position: fixed;
+        bottom: 1rem;
+
+        display: grid;
+        grid-template-rows: 1rem 3rem;
+        place-items: center;
+        gap: 1rem;
+
+        width: 90vw;
+        margin: 0 5vw;
+        padding: 1.5rem 1rem;
+
+        border-radius: 12px;
+        background: $paletteDarkGrey_1;
+
+        color: $paletteBg;
+
+        & .closeIcon {
+            grid-row: 1;
+            grid-column: 1;
+            place-self: center end;
+            cursor: pointer;
+        }
+
+        & .requestTitle {
+            grid-row: 1;
+            grid-column: 1;
+        }
+
+        & .addressInput {
+            @include boldTitle;
+            width: 90%;
+            height: 100%;
+            padding: 0 1rem;
+
+            background: $paletteBg;
+            border-radius: 12px;
+            border: none;
+
+            text-align: start;
+        }
+
+        & .requestButton {
+            @include lightButton;
+            width: 90%;
+        }
+    }
+}

@@ -8,3 +8,5 @@ export * from './CartToaster';
 export * from './CartItem';
 export * from './Toaster';
 export * from './Icon';
+export * from './Map';
+export * from './RequestNewAddress';
