@@ -1,0 +1,26 @@
+@import 'resources';
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: grid;
+    grid-template-rows: 2rem 1fr;
+    place-items: center;
+    gap: 1rem;
+
+    width: 100vw;
+    height: 100vh;
+    padding: 0 0 0.5rem 0;
+
+    background: $paletteDarkGrey_1;
+
+    & .arrowIcon {
+        cursor: pointer;
+        @include centerContent;
+
+        width: 20%;
+        height: 100%;
+    }
+}

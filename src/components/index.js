@@ -10,3 +10,4 @@ export * from './LoginOverlay';
 export * from './CodeConfirmationOverlay';
 export * from './ProductData';
 export * from './MapModal';
+export * from './DeliveryTimeModal';

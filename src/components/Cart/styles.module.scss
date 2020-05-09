@@ -103,5 +103,15 @@
         grid-column: 1 / 3;
 
         width: 50%;
+
+        border: 1px solid $paletteGreen_1;
+
+        &:disabled {
+            cursor: default;
+
+            background: none;
+            border: 1px solid $paletteGrey_3;
+            color: $paletteGrey_3;
+        }
     }
 }

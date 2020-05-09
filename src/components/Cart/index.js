@@ -9,7 +9,7 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
-import { Icon, CartItem, MapModal } from 'components';
+import { Icon, CartItem, MapModal, DeliveryTimeModal } from 'components';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
@@ -26,17 +26,23 @@ const mapDispatchToProps = {
 };
 
 const CartComponent = ({ className, cartIsOpened, hideCart, cart, createNewOrderAsync }) => {
-    const [mapOpened, setMapOpenedState] = useState(true);
+    const [mapOpened, setMapOpenedState] = useState(false);
+    const [timeSelector, setTimeSelectorOpenedState] = useState(false);
     const [address, setAddress] = useState('');
     const [addressDetails, setAddressDetails] = useState('');
     const [deliveryTime, setDeliveryTime] = useState('');
     const [deliveryComment, setDeliveryComment] = useState('');
 
+    const sum = 1000.5;
+    const discount = 0.05;
+
+    const actionDisabled = address.length === 0 || cart.length === 0;
+
     return (
         <Portal>
             <Transition
-                // in={cartIsOpened}
-                in
+                in={cartIsOpened}
+                // in
                 appear
                 mountOnEnter
                 unmountOnExit
@@ -50,10 +56,9 @@ const CartComponent = ({ className, cartIsOpened, hideCart, cart, createNewOrder
                                 ...bottomToTopSlideConfig().defaultStyles,
                                 ...bottomToTopSlideConfig().transitionStyles[state],
                             }}
-                            onClick={hideCart}
                         >
-                            <div className={Styles.arrowIcon}>
-                                <Icon onClick={hideCart} color='white' name='slideDownArrow' />
+                            <div className={Styles.arrowIcon} onClick={hideCart}>
+                                <Icon color='white' name='slideDownArrow' />
                             </div>
                             <p className={Styles.title}>
                                 Check your order delivery information below:
@@ -68,7 +73,10 @@ const CartComponent = ({ className, cartIsOpened, hideCart, cart, createNewOrder
                                 <Icon name='edit' color='black' />
                             </div>
                             <p className={Styles.deliveryTime}>Choose your delivery time</p>
-                            <div className={Styles.editButton}>
+                            <div
+                                className={Styles.editButton}
+                                onClick={() => setTimeSelectorOpenedState(true)}
+                            >
                                 <Icon name='edit' color='black' />
                             </div>
                             <div className={Styles.itemList}>
@@ -84,25 +92,26 @@ const CartComponent = ({ className, cartIsOpened, hideCart, cart, createNewOrder
                                 ))}
                             </div>
                             <p className={Styles.bonusTitle}>Your bonus:</p>
-                            <p className={Styles.bonusAmount}>-10.25</p>
+                            <p className={Styles.bonusAmount}>{(sum * discount).toFixed(2)}</p>
                             <p className={Styles.totalTitle}>Total:</p>
-                            <p className={Styles.totalAmount}>100.50</p>
-                            <div
+                            <p className={Styles.totalAmount}>
+                                {(sum * (1 - discount)).toFixed(2)}
+                            </p>
+                            <button
                                 className={Styles.button}
                                 onClick={() =>
                                     createNewOrderAsync({
-                                        sum: 1000.5,
-                                        userCart: {},
-                                        address: 'Kyiv, Pivnichna str., 6',
-                                        addressDetails: '',
-                                        comment: '',
-                                        deliveryTime: '',
-                                        deliveryComment: '',
+                                        sum: Number((sum * (1 - discount)).toFixed(2)),
+                                        userCart: cart,
+                                        address,
+                                        addressDetails,
+                                        deliveryTime: '10.00',
                                     })
                                 }
+                                disabled={actionDisabled}
                             >
                                 Gimme Money
-                            </div>
+                            </button>
                         </section>
 
                         <MapModal
@@ -112,6 +121,13 @@ const CartComponent = ({ className, cartIsOpened, hideCart, cart, createNewOrder
                             setAddress={setAddress}
                             addressDetails={addressDetails}
                             setAddressDetails={setAddressDetails}
+                        />
+
+                        <DeliveryTimeModal
+                            closeModal={() => setTimeSelectorOpenedState(false)}
+                            inProp={timeSelector}
+                            deliveryTime={deliveryTime}
+                            setDeliveryTime={setDeliveryTime}
                         />
                     </>
                 )}
