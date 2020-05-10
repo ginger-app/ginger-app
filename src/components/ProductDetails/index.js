@@ -28,6 +28,7 @@ const mapDispatchToProps = {
     addItemToFavorites: profileActions.addItemToFavorites,
     removeItemFromFavorites: profileActions.removeItemFromFavorites,
     removeItemFromFavoritesAsync: profileActions.removeItemFromFavoritesAsync,
+    addItemToCartAsync: profileActions.addItemToCartAsync,
 };
 
 const ProductDetailsComponent = ({
@@ -39,6 +40,7 @@ const ProductDetailsComponent = ({
     addItemToFavorites,
     removeItemFromFavorites,
     removeItemFromFavoritesAsync,
+    addItemToCartAsync,
     isAuthenticated,
     cart,
 }) => {
@@ -140,7 +142,20 @@ const ProductDetailsComponent = ({
                             color={favorites[sku] ? 'red' : 'black'}
                         />
                     </div>
-                    <div className={Styles.buyButton}>
+                    <div
+                        className={Styles.buyButton}
+                        onClick={() => {
+                            const { nameUkr, image, price, measurementValue } = productData;
+                            return addItemToCartAsync({
+                                sku,
+                                amount,
+                                price,
+                                name: nameUkr,
+                                image: mockApples,
+                                unit: measurementValue,
+                            });
+                        }}
+                    >
                         Купити <Icon name='cart' color='white' />
                     </div>
                 </section>

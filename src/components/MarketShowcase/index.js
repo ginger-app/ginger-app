@@ -12,7 +12,7 @@ export const MarketShowcase = ({ className, items }) => {
     return (
         <section className={`${Styles.container} ${className}`}>
             <div className={Styles.infoBlock}>Info</div>
-            {items.map(({ nameUkr, sku, price }, index) => (
+            {items.map(({ nameUkr, sku, price, measurementValue }, index) => (
                 <MarketItem
                     className={Styles.marketItem}
                     style={{
@@ -21,7 +21,9 @@ export const MarketShowcase = ({ className, items }) => {
                     key={index}
                     to={`products/${sku}`}
                     name={nameUkr}
-                    price={price.toFixed(2).split('.')}
+                    priceFormatted={price.toFixed(2).split('.')}
+                    price={price}
+                    measurementValue={measurementValue}
                     sku={sku}
                 />
             ))}

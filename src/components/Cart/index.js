@@ -39,7 +39,7 @@ const CartComponent = ({
     const [timeSelector, setTimeSelectorOpenedState] = useState(false);
     const [address, setAddress] = useState('');
     const [addressDetails, setAddressDetails] = useState('');
-    const [deliveryTime, setDeliveryTime] = useState('');
+    const [deliveryTime, setDeliveryTime] = useState('2020-05-10T13:21:21.068Z');
     const [deliveryComment, setDeliveryComment] = useState('');
 
     const sum =
@@ -123,7 +123,7 @@ const CartComponent = ({
                                         userCart: cart,
                                         address,
                                         addressDetails,
-                                        deliveryTime: '10.00',
+                                        deliveryTime,
                                     })
                                 }
                                 disabled={actionDisabled}

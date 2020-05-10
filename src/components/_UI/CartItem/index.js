@@ -15,7 +15,7 @@ export const CartItem = ({ className, name, image, price, amount, unit, removeIt
             <p className={Styles.amount}>
                 {amount} {unit}
             </p>
-            <p className={Styles.price}>{price}</p>
+            <p className={Styles.price}>{price.toFixed(2)}</p>
             <Icon name='close' color='white' className={Styles.icon} onClick={removeItem} />
         </section>
     );

@@ -28,6 +28,8 @@ const MarketItemOverlayComponent = ({
     addItemToCartAsync,
     name,
     image,
+    price,
+    unit,
     sku,
     cart,
 }) => {
@@ -37,15 +39,6 @@ const MarketItemOverlayComponent = ({
 
     // Methods
     const handleInput = ({ target: { value } }) => /^[0-9]*$/.test(value) && setAmount(value);
-
-    const mockItemData = {
-        sku,
-        name,
-        amount,
-        image,
-        price: Number(Math.random() * 100).toFixed(2),
-        unit: ['шт', 'кг', 'л'][Math.floor(Math.random() * 3)],
-    };
 
     return (
         <Transition
@@ -96,7 +89,14 @@ const MarketItemOverlayComponent = ({
                         onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
-                            addItemToCartAsync(mockItemData);
+                            addItemToCartAsync({
+                                sku,
+                                name,
+                                amount,
+                                image,
+                                price,
+                                unit,
+                            });
                             setOverlayState(false);
                         }}
                     >

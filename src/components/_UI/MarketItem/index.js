@@ -35,7 +35,9 @@ const MarketItemComponent = ({
     style,
     to,
     name,
+    measurementValue,
     price,
+    priceFormatted,
     favorites,
     addItemToFavoritesAsync,
     addItemToFavorites,
@@ -55,6 +57,8 @@ const MarketItemComponent = ({
             name={name}
             image={apples}
             sku={sku}
+            price={price}
+            unit={measurementValue}
         />
     ) : (
         <Transition
@@ -101,8 +105,8 @@ const MarketItemComponent = ({
                     <img src={apples} alt='' className={Styles.itemImage} />
                     <p className={Styles.itemName}>{name}</p>
                     <p className={Styles.price}>
-                        {price[0]}
-                        <span>.{price[1]}₴</span>
+                        {priceFormatted[0]}
+                        <span>.{priceFormatted[1]}₴</span>
                     </p>
                     <p className={Styles.amount}>1 kg</p>
                     <Icon
