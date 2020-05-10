@@ -50,12 +50,13 @@ const CartComponent = ({
                   .reduce((a, b) => a + b);
     const discount = 0.05;
 
-    const actionDisabled = address.length === 0 || cart.length === 0 || deliveryTime === '';
+    const actionDisabled =
+        address.length === 0 || Object.keys(cart).length === 0 || deliveryTime === '';
 
     return (
         <Portal>
             <Transition
-                in={cartIsOpened && Object.keys(cart).length > 0}
+                in={cartIsOpened}
                 appear
                 mountOnEnter
                 unmountOnExit
