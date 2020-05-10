@@ -10,6 +10,7 @@ import {
     SubcategoryPage,
     MarketPage,
     ProductPage,
+    OrdersPage,
 } from 'pages';
 
 // Instruments
@@ -20,6 +21,7 @@ export const PublicRoutes = () => (
         <Route exact path={book.profile} component={ProfilePage} />
         <Route exact path={book.home} component={HomePage} />
         <Route exact path={book.market} component={MarketPage} />
+        <Route exact path={book.orders} component={OrdersPage} />
         <Route
             exact
             path={`${book.categories}/:sku`}

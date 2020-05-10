@@ -1,6 +1,7 @@
 // Core
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 
 // Styles
@@ -86,9 +87,9 @@ const ProfileComponent = ({ className, profile, logout, getUserDataAsync }) => {
                     <div className={Styles.listsBlock}>
                         {Object.keys(favorites).length} <span>Favorites</span>
                     </div>
-                    <div className={Styles.ordersBlock}>
+                    <NavLink className={Styles.ordersBlock} to={'/orders'}>
                         {orders.length} <span>Orders</span>
-                    </div>
+                    </NavLink>
                     <p className={Styles.bonuses}>
                         Your bonuses: <span>{bonuses} $</span>
                     </p>

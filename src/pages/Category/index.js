@@ -82,7 +82,7 @@ const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categor
                             </NavLink>
                         ))}
                     />
-                    <MarketShowcase className={Styles.showcase} items={[]} />
+                    <MarketShowcase className={Styles.showcase} items={[]} marketType />
                 </section>
             )}
         </Transition>

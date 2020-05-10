@@ -1,5 +1,6 @@
 // Core
 import { put, apply } from 'redux-saga/effects';
+// import {getFavorites} from '../selectors';
 
 // Instruments
 import { Api } from 'api';
@@ -8,6 +9,7 @@ import { history } from 'bus/init/middleware/core';
 // Actions
 import { uiActions } from 'bus/ui/actions';
 import { authActions } from 'bus/auth/actions';
+import { profileActions } from 'bus/profile/actions';
 
 export function* signinWorker({ payload: phoneNumber }) {
     try {
@@ -21,7 +23,6 @@ export function* signinWorker({ payload: phoneNumber }) {
 
         if (response.status >= 400) throw new Error(result.message);
 
-        // yield put(authActions.openCodeConfirmation());
         yield put(uiActions.showCodeConfirmationOverlay());
     } catch (err) {
         if (err.message === 'No such user found') {

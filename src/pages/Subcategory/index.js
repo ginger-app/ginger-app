@@ -88,7 +88,7 @@ const SubcategoryComponent = ({
                             </div>
                         ))}
                     />
-                    <MarketShowcase className={Styles.showcase} items={items} />
+                    <MarketShowcase className={Styles.showcase} items={items} marketType />
                 </section>
             )}
         </Transition>
