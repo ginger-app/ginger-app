@@ -47,8 +47,10 @@ const CartToasterComponent = ({ className, cart, showCart }) => {
             <div className={Styles.leftArrow} onClick={() => setHiddenState(true)}>
                 <Icon name='leftArrow' color='white' />
             </div>
-            <p className={Styles.title}>Кошик</p>
-            <div className={Styles.items}>
+            <p className={Styles.title} onClick={showCart}>
+                Кошик
+            </p>
+            <div className={Styles.items} onClick={showCart}>
                 {Object.keys(cart)
                     .reverse()
                     .slice(0, 7)

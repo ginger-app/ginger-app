@@ -12,9 +12,9 @@ export const profileActions = {
         type: types.CLEAR_PROFILE,
     }),
 
-    addItemToCart: (item) => ({
-        type: types.ADD_ITEM_TO_CART,
-        payload: item,
+    updateCart: (cart) => ({
+        type: types.UPDATE_CART,
+        payload: cart,
     }),
 
     addItemToFavorites: (item) => ({
@@ -31,6 +31,11 @@ export const profileActions = {
     addItemToCartAsync: (item) => ({
         type: types.ADD_ITEM_TO_CART_ASYNC,
         payload: item,
+    }),
+
+    removeItemFromCartAsync: (sku) => ({
+        type: types.REMOVE_ITEM_FROM_CART_ASYNC,
+        payload: sku,
     }),
 
     addItemToFavoritesAsync: (sku) => ({

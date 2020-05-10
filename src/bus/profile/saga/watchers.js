@@ -11,10 +11,14 @@ import {
     addItemToFavoritesWorker,
     getUserDataWorker,
     removeItemFromFavoritesWorker,
+    removeItemFromCartWorker,
 } from './workers';
 
 function* watchAddItemToCart() {
     yield takeEvery(types.ADD_ITEM_TO_CART_ASYNC, addItemToCartWorker);
+}
+function* watchRemoveItemFromCart() {
+    yield takeEvery(types.REMOVE_ITEM_FROM_CART_ASYNC, removeItemFromCartWorker);
 }
 function* watchAddItemToFavorites() {
     yield takeEvery(types.ADD_ITEM_TO_FAVORITES_ASYNC, addItemToFavoritesWorker);
@@ -32,5 +36,6 @@ export function* watchProfile() {
         call(watchAddItemToFavorites),
         call(watchGetUserData),
         call(watchRemoveItemFromFavorites),
+        call(watchRemoveItemFromCart),
     ]);
 }

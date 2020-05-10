@@ -22,12 +22,14 @@
     }
 
     & .title {
+        cursor: pointer;
         grid-column: 2;
         @include boldTitle;
         color: $paletteWhite;
     }
 
     & .items {
+        cursor: pointer;
         grid-column: 3;
 
         display: flex;

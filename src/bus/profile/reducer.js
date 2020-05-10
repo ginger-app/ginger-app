@@ -39,7 +39,7 @@ export const profileReducer = (state = initialState, action) => {
         case types.CLEAR_PROFILE:
             return state.clear();
 
-        case types.ADD_ITEM_TO_CART:
+        case types.UPDATE_CART:
             return state.set('cart', action.payload);
 
         case types.ADD_ITEM_TO_FAVORITES:

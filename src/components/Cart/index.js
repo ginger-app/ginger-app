@@ -14,6 +14,7 @@ import { Icon, CartItem, MapModal, DeliveryTimeModal } from 'components';
 // Actions
 import { uiActions } from 'bus/ui/actions';
 import { marketActions } from 'bus/market/actions';
+import { profileActions } from 'bus/profile/actions';
 
 const mapStateToProps = (state) => ({
     cartIsOpened: state.ui.get('cartIsOpened'),
@@ -23,9 +24,17 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     hideCart: uiActions.hideCart,
     createNewOrderAsync: marketActions.createNewOrderAsync,
+    removeItemFromCartAsync: profileActions.removeItemFromCartAsync,
 };
 
-const CartComponent = ({ className, cartIsOpened, hideCart, cart, createNewOrderAsync }) => {
+const CartComponent = ({
+    className,
+    cartIsOpened,
+    hideCart,
+    cart,
+    createNewOrderAsync,
+    removeItemFromCartAsync,
+}) => {
     const [mapOpened, setMapOpenedState] = useState(false);
     const [timeSelector, setTimeSelectorOpenedState] = useState(false);
     const [address, setAddress] = useState('');
@@ -46,8 +55,7 @@ const CartComponent = ({ className, cartIsOpened, hideCart, cart, createNewOrder
     return (
         <Portal>
             <Transition
-                in={cartIsOpened}
-                // in
+                in={cartIsOpened && Object.keys(cart).length > 0}
                 appear
                 mountOnEnter
                 unmountOnExit
@@ -85,16 +93,20 @@ const CartComponent = ({ className, cartIsOpened, hideCart, cart, createNewOrder
                                 <Icon name='edit' color='black' />
                             </div>
                             <div className={Styles.itemList}>
-                                {cart.map(({ name, price, amount, image, unit }, index) => (
-                                    <CartItem
-                                        name={name}
-                                        price={price}
-                                        amount={amount}
-                                        image={image}
-                                        unit={unit}
-                                        key={index}
-                                    />
-                                ))}
+                                {Object.keys(cart).map((item, index) => {
+                                    const { name, price, amount, image, unit, sku } = cart[item];
+                                    return (
+                                        <CartItem
+                                            name={name}
+                                            price={price}
+                                            amount={amount}
+                                            image={image}
+                                            unit={unit}
+                                            key={index}
+                                            removeItem={() => removeItemFromCartAsync(sku)}
+                                        />
+                                    );
+                                })}
                             </div>
                             <p className={Styles.bonusTitle}>Your bonus:</p>
                             <p className={Styles.bonusAmount}>{(sum * discount).toFixed(2)}</p>
