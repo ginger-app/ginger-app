@@ -7,7 +7,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Components
-import { ProductData } from 'components';
+import { ProductDetails } from 'components';
 
 // Instruments
 import { isEmpty } from 'lodash';
@@ -51,7 +51,7 @@ const ProductComponent = ({ sku, productData, getProductDataAsync, clearProductD
                     {isEmpty(productData) ? (
                         <TraceSpinner color='white' size={50} />
                     ) : (
-                        <ProductData sku={sku} />
+                        <ProductDetails sku={sku} />
                     )}
                 </section>
             )}

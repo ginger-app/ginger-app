@@ -20,6 +20,7 @@ const mapStateToProps = (state) => ({
     productData: state.market.get('productData').toJS(),
     favorites: state.profile.get('favorites'),
     isAuthenticated: state.auth.get('isAuthenticated'),
+    cart: state.profile.get('cart'),
 });
 
 const mapDispatchToProps = {
@@ -29,7 +30,7 @@ const mapDispatchToProps = {
     removeItemFromFavoritesAsync: profileActions.removeItemFromFavoritesAsync,
 };
 
-const ProductDataComponent = ({
+const ProductDetailsComponent = ({
     className,
     sku,
     productData,
@@ -39,12 +40,13 @@ const ProductDataComponent = ({
     removeItemFromFavorites,
     removeItemFromFavoritesAsync,
     isAuthenticated,
+    cart,
 }) => {
     const { nameUkr, stock, measurementValue: unit, price } = productData;
     const formattedPrice = price.toFixed(2).split('.');
 
     // State
-    const [amount, setAmount] = useState(1);
+    const [amount, setAmount] = useState(cart[sku]?.amount || 1);
     const [inputDisabled, disableInput] = useState(true);
 
     // Methods
@@ -133,7 +135,10 @@ const ProductDataComponent = ({
                                   }
                         }
                     >
-                        <Icon name={favorites[sku] ? 'heart-filled' : 'heart'} color='red' />
+                        <Icon
+                            name={favorites[sku] ? 'heart-filled' : 'heart'}
+                            color={favorites[sku] ? 'red' : 'black'}
+                        />
                     </div>
                     <div className={Styles.buyButton}>
                         Купити <Icon name='cart' color='white' />
@@ -144,4 +149,4 @@ const ProductDataComponent = ({
     );
 };
 
-export const ProductData = connect(mapStateToProps, mapDispatchToProps)(ProductDataComponent);
+export const ProductDetails = connect(mapStateToProps, mapDispatchToProps)(ProductDetailsComponent);

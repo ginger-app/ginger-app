@@ -43,7 +43,6 @@ const MarketItemComponent = ({
     removeItemFromFavoritesAsync,
     isAuthenticated,
     sku,
-    cart,
 }) => {
     // State
     const [overlayEnabled, setOverlayState] = useState(false);
@@ -56,7 +55,6 @@ const MarketItemComponent = ({
             name={name}
             image={apples}
             sku={sku}
-            defaultAmount={cart[sku]?.amount}
         />
     ) : (
         <Transition

@@ -13,7 +13,9 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 // Actions
 import { profileActions } from 'bus/profile/actions';
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+    cart: state.profile.get('cart'),
+});
 
 const mapDispatchToProps = {
     addItemToCartAsync: profileActions.addItemToCartAsync,
@@ -27,10 +29,10 @@ const MarketItemOverlayComponent = ({
     name,
     image,
     sku,
-    defaultAmount = 1,
+    cart,
 }) => {
     // State
-    const [amount, setAmount] = useState(defaultAmount);
+    const [amount, setAmount] = useState(cart[sku]?.amount || 1);
     const [inputDisabled, disableInput] = useState(true);
 
     // Methods
