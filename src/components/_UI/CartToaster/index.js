@@ -25,10 +25,23 @@ const mapDispatchToProps = {
 const CartToasterComponent = ({ className, cart, showCart }) => {
     const [hidden, setHiddenState] = useState(false);
 
+    const sum =
+        Object.keys(cart).length === 0
+            ? 0
+            : Object.keys(cart)
+                  .map((item) => +cart[item].price * +cart[item].amount)
+                  .reduce((a, b) => a + b);
+    const discount = 0.05;
+
     return (
         <Toaster
-            className={`${Styles.container} ${hidden && Styles.hidden}`}
-            inProp={cart.length > 0}
+            className={`${Styles.container}`}
+            containerStyles={
+                hidden && {
+                    transform: 'translateX(-80%)',
+                }
+            }
+            inProp={Object.keys(cart).length > 0}
         >
             {/* Wrapping icon in div to give it more "clickable" space */}
             <div className={Styles.leftArrow} onClick={() => setHiddenState(true)}>
@@ -36,18 +49,15 @@ const CartToasterComponent = ({ className, cart, showCart }) => {
             </div>
             <p className={Styles.title}>Кошик</p>
             <div className={Styles.items}>
-                {cart
+                {Object.keys(cart)
                     .reverse()
                     .slice(0, 7)
                     .map((item, index) => (
                         <img src={mock} key={index} className={Styles.cartItem} alt='' />
                     ))}
             </div>
-            <div
-                className={Styles.itemsAmount}
-                onClick={hidden ? () => setHiddenState(false) : showCart}
-            >
-                {cart.length}
+            <div className={Styles.sum} onClick={hidden ? () => setHiddenState(false) : showCart}>
+                {(sum * (1 - discount)).toFixed(2)}₴
             </div>
         </Toaster>
     );

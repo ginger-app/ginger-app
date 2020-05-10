@@ -18,6 +18,7 @@ import { marketActions } from 'bus/market/actions';
 
 const mapStateToProps = (state) => ({
     subcategoryData: state.market.get('subcategoryData').toJS(),
+    cart: state.profile.get('cart'),
 });
 
 const mapDispatchToProps = {
@@ -29,6 +30,7 @@ const SubcategoryComponent = ({
     sku,
     getMarketSubcategoryDataAsync,
     subcategoryData,
+    cart,
 }) => {
     useEffect(() => {
         getMarketSubcategoryDataAsync(sku);

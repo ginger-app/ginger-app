@@ -20,6 +20,7 @@ import { profileActions } from 'bus/profile/actions';
 const mapStateToProps = (state) => ({
     favorites: state.profile.get('favorites'),
     isAuthenticated: state.auth.get('isAuthenticated'),
+    cart: state.profile.get('cart'),
 });
 
 const mapDispatchToProps = {
@@ -42,6 +43,7 @@ const MarketItemComponent = ({
     removeItemFromFavoritesAsync,
     isAuthenticated,
     sku,
+    cart,
 }) => {
     // State
     const [overlayEnabled, setOverlayState] = useState(false);
@@ -53,6 +55,8 @@ const MarketItemComponent = ({
             className={className}
             name={name}
             image={apples}
+            sku={sku}
+            defaultAmount={cart[sku]?.amount}
         />
     ) : (
         <Transition

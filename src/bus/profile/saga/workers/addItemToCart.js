@@ -1,5 +1,6 @@
 // Core
-import { put, apply } from 'redux-saga/effects';
+import { put, apply, select } from 'redux-saga/effects';
+import { getCart } from '../selectors';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
@@ -13,7 +14,14 @@ export function* addItemToCartWorker({ payload }) {
         // updating user cart data in db
         // yield apply(Api, Api.profile.updateUserCart, [payload]);
 
-        yield put(profileActions.addItemToCart(payload));
+        const currentCart = yield select(getCart);
+
+        yield put(
+            profileActions.addItemToCart({
+                ...currentCart,
+                [payload.sku]: payload,
+            }),
+        );
     } catch (error) {
         yield put(uiActions.emitError(error, '-> addItemToCartWorker'));
     }

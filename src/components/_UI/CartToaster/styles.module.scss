@@ -2,12 +2,12 @@
 
 .container {
     display: grid;
-    // need to force rewriting default  toaster class -> using !important
-    grid-template-columns: repeat(4, min-content) !important;
+    // need to force rewriting default toaster class -> using !important
+    grid-template-columns: repeat(2, min-content) 1fr min-content !important;
     place-items: center;
     gap: 0.5rem;
 
-    transition: all 0.5s;
+    max-width: 95vw;
 
     &.hidden {
         transform: translateX(-95%);
@@ -30,12 +30,11 @@
     & .items {
         grid-column: 3;
 
-        display: grid;
-        grid-template-columns: repeat(7, min-content);
-        place-items: center start;
-        padding-left: 0.5rem;
+        display: flex;
+        justify-items: flex-start;
 
-        width: 11rem;
+        width: 100%;
+        padding-left: 0.5rem;
 
         overflow: hidden;
 
@@ -51,15 +50,15 @@
         }
     }
 
-    & .itemsAmount {
+    & .sum {
         cursor: pointer;
         @include centerContent;
         grid-column: 4;
 
         height: 2rem;
-        width: 2rem;
-        background: $paletteGreen_1;
+        padding: 0 0.5rem;
 
-        border-radius: 100%;
+        background: $paletteGreen_1;
+        border-radius: 2rem;
     }
 }

@@ -33,10 +33,15 @@ const CartComponent = ({ className, cartIsOpened, hideCart, cart, createNewOrder
     const [deliveryTime, setDeliveryTime] = useState('');
     const [deliveryComment, setDeliveryComment] = useState('');
 
-    const sum = 1000.5;
+    const sum =
+        Object.keys(cart).length === 0
+            ? 0
+            : Object.keys(cart)
+                  .map((item) => +cart[item].price * +cart[item].amount)
+                  .reduce((a, b) => a + b);
     const discount = 0.05;
 
-    const actionDisabled = address.length === 0 || cart.length === 0;
+    const actionDisabled = address.length === 0 || cart.length === 0 || deliveryTime === '';
 
     return (
         <Portal>

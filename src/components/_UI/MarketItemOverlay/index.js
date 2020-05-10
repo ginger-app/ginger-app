@@ -26,15 +26,18 @@ const MarketItemOverlayComponent = ({
     addItemToCartAsync,
     name,
     image,
+    sku,
+    defaultAmount = 1,
 }) => {
     // State
-    const [amount, setAmount] = useState(1);
+    const [amount, setAmount] = useState(defaultAmount);
     const [inputDisabled, disableInput] = useState(true);
 
     // Methods
     const handleInput = ({ target: { value } }) => /^[0-9]*$/.test(value) && setAmount(value);
 
     const mockItemData = {
+        sku,
         name,
         amount,
         image,
