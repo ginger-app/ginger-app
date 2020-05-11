@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -12,13 +12,25 @@ import { PageTitle, MarketShowcase, Carousel } from 'components';
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
+// Actions
+import { uiActions } from 'bus/ui/actions';
+
 const mapStateToProps = (state) => ({
     orders: state.profile.get('orders'),
+    isAuthenticated: state.auth.get('isAuthenticated'),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    showLoginOverlay: uiActions.showLoginOverlay,
+};
 
-const OrdersComponent = ({ className, orders }) => {
+const OrdersComponent = ({ className, orders, isAuthenticated, showLoginOverlay }) => {
+    useEffect(() => {
+        if (!isAuthenticated) {
+            showLoginOverlay('/');
+        }
+    }, [isAuthenticated]);
+
     return (
         <Transition
             in

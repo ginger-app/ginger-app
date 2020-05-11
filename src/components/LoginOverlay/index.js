@@ -8,6 +8,7 @@ import { Portal } from 'react-portal';
 import Styles from './styles.module.scss';
 
 // Instruments
+import { history } from 'bus/init/middleware/core';
 import { Icon, InputField } from 'components';
 import { leftToRightSlideConfig } from 'utils/transitionConfig';
 import { AsYouType } from 'libphonenumber-js';
@@ -18,6 +19,7 @@ import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     loginOverlay: state.ui.get('loginOverlay'),
+    backButtonPath: state.ui.get('backButtonPath'),
 });
 
 const mapDispatchToProps = {
@@ -32,6 +34,7 @@ const LoginOverlayComponent = ({
     loginOverlay,
     hideLoginOverlay,
     setAuthData,
+    backButtonPath,
 }) => {
     const [phoneNumber, setPhoneNumber] = useState('+380');
 
@@ -58,7 +61,17 @@ const LoginOverlayComponent = ({
                             ...leftToRightSlideConfig().transitionStyles[state],
                         }}
                     >
-                        <div className={Styles.backButton} onClick={hideLoginOverlay}>
+                        <div
+                            className={Styles.backButton}
+                            onClick={
+                                backButtonPath
+                                    ? () => {
+                                          history.push(backButtonPath);
+                                          hideLoginOverlay();
+                                      }
+                                    : hideLoginOverlay
+                            }
+                        >
                             <Icon name='leftArrow' color='black' />
                         </div>
                         <p className={Styles.title}>Login page title!</p>

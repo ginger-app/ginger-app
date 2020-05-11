@@ -47,13 +47,13 @@ const MapComponent = ({
         });
 
         const response = await fetch(
-            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyDxKveg_noV5LGsCZX-3Yw4weewRAo_-4k`,
+            `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyARsbWyaDDZFM-lsKMOdf27zGLxDIbJHlg`,
         );
 
         const result = await response.json();
 
         const mapped = result.results.map((item) => item.formatted_address);
-        setAddress(mapped[0]);
+        setAddress(mapped[0].split(',').slice(0, -2).join(','));
     };
 
     // handling google search
@@ -70,12 +70,11 @@ const MapComponent = ({
             return suggestRequestingNewAddress();
         }
 
-        // console.log('Address -> ', formattedAddress);
         setMarkerCoords({
             lat: lat(),
             lng: lng(),
         });
-        setAddress(formattedAddress);
+        setAddress(formattedAddress.split(',').slice(0, -2).join(','));
         closeAddressSuggestion();
     };
 

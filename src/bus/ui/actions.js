@@ -21,8 +21,9 @@ export const uiActions = {
     }),
 
     // Overlays actions
-    showLoginOverlay: () => ({
+    showLoginOverlay: (backButtonPath) => ({
         type: types.SHOW_LOGIN_OVERLAY,
+        payload: { backButtonPath },
     }),
 
     showSignupOverlay: () => ({

@@ -5,7 +5,7 @@ import React from 'react';
 import Styles from './styles.module.scss';
 
 // Components
-import { MarketItem } from 'components';
+import { MarketItem, OrderItem } from 'components';
 
 export const MarketShowcase = ({ className, items, orderType, marketType }) => {
     // console.log(items);
@@ -30,17 +30,19 @@ export const MarketShowcase = ({ className, items, orderType, marketType }) => {
                 ))}
             {orderType &&
                 items.map(({ date, status, address, sum, id }, index) => (
-                    <div
+                    <OrderItem
                         className={Styles.marketItem}
                         style={{
                             gridRow: `${index + 1} / ${index + 3}`,
                         }}
                         key={index}
-                    >
-                        {status}
-                        <br />
-                        {sum}
-                    </div>
+                        status={status}
+                        address={address}
+                        id={id}
+                        priceFormatted={sum.toFixed(2).split('.')}
+                        date={date}
+                        deliveryTime={'10:00-11:00'}
+                    />
                 ))}
         </section>
     );

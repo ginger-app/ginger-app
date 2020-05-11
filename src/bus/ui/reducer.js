@@ -10,6 +10,7 @@ const initialState = Map({
     codeConfirmationOverlay: false,
     signupOverlay: false,
     loginOverlay: false,
+    backButtonPath: null,
 });
 
 export const uiReducer = (state = initialState, action) => {
@@ -30,10 +31,16 @@ export const uiReducer = (state = initialState, action) => {
 
         // Overlays
         case types.SHOW_LOGIN_OVERLAY:
-            return state.set('loginOverlay', true);
+            return state.merge({
+                loginOverlay: true,
+                backButtonPath: action.payload.backButtonPath || null,
+            });
 
         case types.HIDE_LOGIN_OVERLAY:
-            return state.set('loginOverlay', false);
+            return state.merge({
+                loginOverlay: false,
+                backButtonPath: null,
+            });
 
         case types.SHOW_SIGNUP_OVERLAY:
             return state.set('signupOverlay', true);
@@ -52,6 +59,7 @@ export const uiReducer = (state = initialState, action) => {
                 codeConfirmationOverlay: false,
                 loginOverlay: false,
                 signupOverlay: false,
+                backButtonPath: null,
             });
 
         // Errors
