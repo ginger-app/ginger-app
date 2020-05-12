@@ -36,27 +36,29 @@ const CartComponent = ({
     removeItemFromCartAsync,
 }) => {
     const [mapOpened, setMapOpenedState] = useState(false);
-    const [timeSelector, setTimeSelectorOpenedState] = useState(false);
+    const [timeSelector, setTimeSelectorOpenedState] = useState(true);
     const [address, setAddress] = useState('');
     const [addressDetails, setAddressDetails] = useState('');
-    const [deliveryTime, setDeliveryTime] = useState('2020-05-10T13:21:21.068Z');
+    const [deliveryTime, setDeliveryTime] = useState('');
+    const [displayDeliveryTime, setDisplayDeliveryTime] = useState('Choose your delivery time');
     const [deliveryComment, setDeliveryComment] = useState('');
 
+    const actionDisabled =
+        address.length === 0 || Object.keys(cart).length === 0 || deliveryTime === '';
+
+    const discount = 0.05;
     const sum =
         Object.keys(cart).length === 0
             ? 0
             : Object.keys(cart)
                   .map((item) => +cart[item].price * +cart[item].amount)
                   .reduce((a, b) => a + b);
-    const discount = 0.05;
-
-    const actionDisabled =
-        address.length === 0 || Object.keys(cart).length === 0 || deliveryTime === '';
 
     return (
         <Portal>
             <Transition
-                in={cartIsOpened}
+                // in={cartIsOpened}
+                in
                 appear
                 mountOnEnter
                 unmountOnExit
@@ -86,7 +88,7 @@ const CartComponent = ({
                             >
                                 <Icon name='edit' color='black' />
                             </div>
-                            <p className={Styles.deliveryTime}>Choose your delivery time</p>
+                            <p className={Styles.deliveryTime}>{displayDeliveryTime}</p>
                             <div
                                 className={Styles.editButton}
                                 onClick={() => setTimeSelectorOpenedState(true)}
@@ -146,6 +148,7 @@ const CartComponent = ({
                             inProp={timeSelector}
                             deliveryTime={deliveryTime}
                             setDeliveryTime={setDeliveryTime}
+                            setDisplayDeliveryTime={setDisplayDeliveryTime}
                         />
                     </>
                 )}

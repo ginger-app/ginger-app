@@ -6,21 +6,122 @@
     left: 0;
 
     display: grid;
-    grid-template-rows: 2rem 1fr;
+    grid-template-rows: 2rem 2fr 1fr 1fr 60% 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     place-items: center;
     gap: 1rem;
 
     width: 100vw;
     height: 100vh;
-    padding: 0 0 0.5rem 0;
+    padding: 0.5rem 1rem 2rem;
 
     background: $paletteDarkGrey_1;
+    color: $paletteWhite;
 
     & .arrowIcon {
-        cursor: pointer;
         @include centerContent;
+        cursor: pointer;
+        grid-column: 1 / 4;
 
         width: 20%;
         height: 100%;
+    }
+
+    & .title {
+        grid-column: 1 / 4;
+        place-self: start;
+
+        display: grid;
+        place-items: start;
+
+        margin-left: 1rem;
+
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    & .expressDelivery {
+        grid-column: 1 / 4;
+    }
+
+    & .subtitle {
+        grid-column: 1 / 4;
+        font-size: 1.25rem;
+    }
+
+    & .expressDelivery {
+        padding: 0.5rem 1.5rem;
+        border: 2px solid $paletteWhite;
+        border-radius: 2rem;
+
+        &.activeExpressDelivery {
+            border: 2px solid $paletteGreen_1;
+            color: $paletteGreen_1;
+        }
+
+        &.disabled {
+            border: 2px solid $paletteGrey_1;
+            color: $paletteGrey_1;
+        }
+    }
+
+    & .timeColumn {
+        display: grid;
+        place-items: center;
+        gap: 0.5rem;
+
+        width: 100%;
+        height: 100%;
+
+        & .timeColumnTitle {
+            margin-bottom: 0.5rem;
+            text-transform: capitalize;
+            font-weight: bold;
+        }
+
+        & .activeTimeslot,
+        .disabledTimeslot,
+        .chosenTimeslot {
+            @include centerContent;
+
+            width: 100%;
+            height: 100%;
+            padding: 0.5rem;
+
+            border-radius: 2rem;
+
+            font-size: 0.8rem;
+        }
+
+        & .activeTimeslot {
+            cursor: pointer;
+
+            border: 2px solid $paletteWhite;
+            transition: all 0.3s;
+
+            &:hover {
+                border: 2px solid $paletteGreen_1;
+                color: $paletteGreen_1;
+            }
+        }
+
+        & .disabledTimeslot {
+            border: 2px solid $paletteGrey_1;
+            color: $paletteGrey_1;
+        }
+
+        & .chosenTimeslot {
+            cursor: pointer;
+
+            border: 2px solid $paletteGreen_1;
+            color: $paletteGreen_1;
+        }
+    }
+
+    & .button {
+        @include greenButton;
+        grid-column: 1 / 4;
+
+        width: 75%;
     }
 }
