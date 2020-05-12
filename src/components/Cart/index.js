@@ -36,7 +36,7 @@ const CartComponent = ({
     removeItemFromCartAsync,
 }) => {
     const [mapOpened, setMapOpenedState] = useState(false);
-    const [timeSelector, setTimeSelectorOpenedState] = useState(true);
+    const [timeSelector, setTimeSelectorOpenedState] = useState(false);
     const [address, setAddress] = useState('');
     const [addressDetails, setAddressDetails] = useState('');
     const [deliveryTime, setDeliveryTime] = useState('');
@@ -57,8 +57,7 @@ const CartComponent = ({
     return (
         <Portal>
             <Transition
-                // in={cartIsOpened}
-                in
+                in={cartIsOpened}
                 appear
                 mountOnEnter
                 unmountOnExit
