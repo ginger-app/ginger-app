@@ -11,6 +11,7 @@ import moment from 'moment';
 import { Icon, OrderStatusLabel, CartItem } from 'components';
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import { history } from 'bus/init/middleware/core';
+import mock from 'theme/assets/images/apples-mock.png';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
@@ -24,17 +25,15 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {};
 
 const OrderDetailsComponent = ({ className, sku, orderData, isAuthenticated }) => {
-    // useEffect(() => {
-    //     if (!isAuthenticated) {
-    //         history.push('/');
-    //     }
-    // }, [isAuthenticated]);
+    useEffect(() => {
+        if (!isAuthenticated) {
+            history.push('/');
+        }
+    }, [isAuthenticated]);
 
     const { date, address, userCart, sum, status } = orderData;
 
     const sumFormatted = sum.toFixed(2).split('.');
-
-    console.log(sum, '->', sumFormatted);
 
     return (
         <Transition
@@ -56,24 +55,26 @@ const OrderDetailsComponent = ({ className, sku, orderData, isAuthenticated }) =
                         <div className={Styles.arrowIcon} onClick={history.goBack}>
                             <Icon color='#bbb6b6' name='slideDownArrow' />
                         </div>
-                        <p className={Styles.date}>{date}</p>
+                        <p className={Styles.date}>{moment(date).local().toLocaleString()}</p>
                         <p className={Styles.address}>{address}</p>
                         <OrderStatusLabel status={status} className={Styles.statusLabel} />
                         <div className={Styles.cart}>
-                            <p className={Styles.cartItem}>123123123123</p>
-                            <p className={Styles.cartItem}>123123123123</p>
-                            <p className={Styles.cartItem}>123123123123</p>
-                            <p className={Styles.cartItem}>123123123123</p>
-                            <p className={Styles.cartItem}>123123123123</p>
-                            <p className={Styles.cartItem}>123123123123</p>
-                            <p className={Styles.cartItem}>123123123123</p>
-                            <p className={Styles.cartItem}>123123123123</p>
-                            <p className={Styles.cartItem}>123123123123</p>
-                            <p className={Styles.cartItem}>123123123123</p>
-                            <p className={Styles.cartItem}>123123123123</p>
-                            <p className={Styles.cartItem}>123123123123</p>
-                            <p className={Styles.cartItem}>123123123123</p>
-                            <p className={Styles.cartItem}>123123123123</p>
+                            {Object.keys(userCart).map((item, index) => {
+                                const { amount, name, price, unit, sku } = userCart[item];
+
+                                return (
+                                    <CartItem
+                                        amount={amount}
+                                        name={name}
+                                        unit={unit}
+                                        image={mock}
+                                        sku={sku}
+                                        price={price.toFixed(2).split('.')}
+                                        orderDetails
+                                        key={index}
+                                    />
+                                );
+                            })}
                         </div>
                     </section>
                     <div className={Styles.footer}>

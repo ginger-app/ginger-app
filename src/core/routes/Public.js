@@ -48,6 +48,11 @@ export const PublicRoutes = () => (
             path={`${book.categories}/:categorySku/:subcategorySku/:sku`}
             render={({ match }) => <ProductPage sku={match.params.sku} />}
         />
+        <Route
+            exact
+            path={`/products/:sku`}
+            render={({ match }) => <ProductPage sku={match.params.sku} />}
+        />
         <Redirect to={`${book.home}?404`} />
     </Switch>
 );
