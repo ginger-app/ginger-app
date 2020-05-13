@@ -7,7 +7,7 @@ import Styles from './styles.module.scss';
 // Instruments
 import arrow from 'theme/assets/svg/right-arrow.svg';
 
-export const InputField = ({ className, title, value, onChange, buttonAction, autofocus }) => {
+export const InputField = ({ className, title, value, onChange, buttonAction, autoFocus }) => {
     return (
         <section className={`${Styles.container} ${className}`}>
             {/* <p className={Styles.title}>{title}</p> */}
@@ -16,7 +16,7 @@ export const InputField = ({ className, title, value, onChange, buttonAction, au
                 onChange={onChange}
                 value={value}
                 placeholder={title}
-                autofocus
+                autoFocus
             />
             {buttonAction && (
                 <div className={Styles.button} onClick={buttonAction}>

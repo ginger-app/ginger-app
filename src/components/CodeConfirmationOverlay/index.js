@@ -79,7 +79,7 @@ const CodeConfirmationOverlayComponent = ({
                                 title={'Number'}
                                 value={code}
                                 onChange={({ target: { value } }) => setCodeValue(value)}
-                                autofocus
+                                autoFocus
                             />
                             <div
                                 className={Styles.button}

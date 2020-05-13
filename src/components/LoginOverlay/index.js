@@ -88,7 +88,7 @@ const LoginOverlayComponent = ({
                                 title={'Номер телефону'}
                                 value={phoneNumber}
                                 onChange={_handlePhoneNumberChange}
-                                autofocus
+                                autoFocus
                             />
                             <div
                                 className={Styles.button}
