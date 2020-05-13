@@ -2,11 +2,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
+import { NavLink } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
 
 // Instruments
+import { OrderStatusLabel } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 const mapStateToProps = (state) => ({
@@ -25,15 +27,6 @@ const OrderItemComponent = ({
     deliveryTime,
     priceFormatted,
 }) => {
-    const classNames = {
-        Pending: Styles.pendingStatus,
-        'Awaiting collection': Styles.preparingStatus,
-        'Awaiting shipment': Styles.preparingStatus,
-        Shipping: Styles.preparingStatus,
-        Completed: Styles.completedStatus,
-        Cancelled: Styles.cancelledStatus,
-    };
-
     return (
         <Transition
             in
@@ -43,15 +36,16 @@ const OrderItemComponent = ({
             timeout={opacityTransitionConfig().timeout}
         >
             {(state) => (
-                <section
+                <NavLink
                     className={`${Styles.container} className`}
                     style={{
                         ...style,
                         ...opacityTransitionConfig().defaultStyles,
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
+                    to={`/orders/${id}`}
                 >
-                    <div className={`${Styles.status} ${classNames[status]}`}>{status}</div>
+                    <OrderStatusLabel status={status} />
                     <p className={Styles.orderId}>
                         Замовлення
                         <span>№{id}</span>
@@ -63,7 +57,7 @@ const OrderItemComponent = ({
                         {priceFormatted[0]}
                         <span>.{priceFormatted[1]}₴</span>
                     </p>
-                </section>
+                </NavLink>
             )}
         </Transition>
     );

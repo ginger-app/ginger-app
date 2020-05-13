@@ -11,6 +11,7 @@ import {
     MarketPage,
     ProductPage,
     OrdersPage,
+    OrderDetailsPage,
 } from 'pages';
 
 // Instruments
@@ -22,6 +23,11 @@ export const PublicRoutes = () => (
         <Route exact path={book.home} component={HomePage} />
         <Route exact path={book.market} component={MarketPage} />
         <Route exact path={book.orders} component={OrdersPage} />
+        <Route
+            exact
+            path={`${book.orders}/:id`}
+            render={({ match }) => <OrderDetailsPage id={match.params.id} />}
+        />
         <Route
             exact
             path={`${book.categories}/:sku`}

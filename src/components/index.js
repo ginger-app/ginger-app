@@ -9,5 +9,6 @@ export * from './SignupOverlay';
 export * from './LoginOverlay';
 export * from './CodeConfirmationOverlay';
 export * from './ProductDetails';
+export * from './OrderDetails';
 export * from './MapModal';
 export * from './DeliveryTimeModal';

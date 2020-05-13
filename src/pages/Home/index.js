@@ -86,7 +86,7 @@ const HomeComponent = ({
                 className={Styles.search}
                 placeholder={'Search'}
             />
-            <CategoriesCatalogue className={Styles.catalogue} extended />
+            <CategoriesCatalogue className={Styles.catalogue} itemsToShow={2} extended />
             <Portal>
                 <Toaster
                     inProp={showToaster}

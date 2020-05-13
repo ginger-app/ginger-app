@@ -9,6 +9,7 @@ const initialState = Map({
     categoryData: Map({}),
     subcategoryData: Map({}),
     productData: Map({}),
+    orderData: Map({}),
 });
 
 export const marketReducer = (state = initialState, action) => {
@@ -25,8 +26,14 @@ export const marketReducer = (state = initialState, action) => {
         case types.FILL_PRODUCT_DATA:
             return state.set('productData', fromJS(action.payload.data));
 
+        case types.FILL_ORDER_DATA:
+            return state.set('orderData', fromJS(action.payload.data));
+
         case types.CLEAR_PRODUCT_DATA:
             return state.set('productData', Map({}));
+
+        case types.CLEAR_ORDER_DATA:
+            return state.set('orderData', Map({}));
 
         default:
             return state;

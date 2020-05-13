@@ -18,10 +18,15 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-const CatalogueComponent = ({ className, categories, extended }) => (
+const CatalogueComponent = ({ className, categories, itemsToShow, itemsToScroll, extended }) => (
     <section className={`${Styles.container} ${extended && Styles.extended} ${className}`}>
         {extended && <p className={Styles.title}>Catalogue</p>}
-        <Carousel className={Styles.carousele} itemsToScroll={1} enableAutoPlay>
+        <Carousel
+            className={Styles.carousele}
+            itemsToShow={itemsToShow}
+            itemsToScroll={itemsToScroll}
+            enableAutoPlay
+        >
             {/* test case */}
             {[...categories, ...categories].map(({ name, sku }, index) => (
                 <div className={Styles.carouseleBlock} key={index}>

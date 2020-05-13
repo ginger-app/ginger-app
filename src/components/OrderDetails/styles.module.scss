@@ -1,0 +1,84 @@
+@import 'resources';
+
+.container {
+    @include shadow;
+    place-self: end center;
+
+    display: grid;
+    grid-template-columns: 55% 45%;
+    grid-template-rows: min-content 3rem 2rem 1fr;
+    gap: 0.5rem;
+
+    height: 95vh;
+    width: 95vw;
+    padding: 1rem 2rem 1.5rem;
+
+    border-radius: 1rem 1rem 0 0;
+    background: $paletteWhite;
+
+    & .arrowIcon {
+        cursor: pointer;
+        @include centerContent;
+        place-self: center;
+        grid-column: 1 / 3;
+
+        width: 20%;
+        height: 100%;
+        padding: 0.5rem;
+    }
+
+    & .statusLabel {
+        grid-column: 2;
+        grid-row: 2 / 4;
+        place-self: start center;
+    }
+
+    & .date,
+    .address {
+        grid-column: 1;
+    }
+
+    & .cart {
+        grid-column: 1 / 3;
+
+        display: grid;
+
+        width: 100%;
+        height: 100%;
+
+        overflow-y: scroll;
+
+        & .cartItem {
+            font-size: 3rem;
+
+            &:last-of-type {
+                margin-bottom: 5rem;
+            }
+        }
+    }
+}
+
+.footer {
+    @include blur;
+    position: fixed;
+    bottom: 0;
+
+    display: grid;
+    grid-auto-flow: column;
+    place-items: center end;
+
+    width: 95vw;
+    height: 4rem;
+    margin: 0 2.5vw;
+
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    color: $paletteGreen_1;
+
+    & span {
+        place-self: center start;
+        font-size: 1rem;
+        font-weight: normal;
+    }
+}

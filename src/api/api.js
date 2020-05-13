@@ -80,6 +80,16 @@ export const Api = {
                 body: JSON.stringify(orderData),
             });
         },
+
+        getOrderData: (id) => {
+            return fetch(`${MAIN_URL}/market/orders/${id}`, {
+                method: 'GET',
+                headers: {
+                    'content-type': 'application/json',
+                    Authorization: sessionStorage.getItem('ginger-token'),
+                },
+            });
+        },
     },
 
     profile: {
