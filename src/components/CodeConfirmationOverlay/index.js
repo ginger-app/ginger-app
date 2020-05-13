@@ -36,6 +36,23 @@ const CodeConfirmationOverlayComponent = ({
 }) => {
     const [code, setCodeValue] = useState('');
 
+    const _handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            return signup
+                ? sendSignupDataAsync({
+                      phoneNumber,
+                      code,
+                      userData: {
+                          phoneNumber,
+                          email,
+                          firstName: name.split(' ')[0],
+                          lastName: name.split(' ')[1] || '',
+                      },
+                  })
+                : sendLoginDataAsync({ phoneNumber, code });
+        }
+    };
+
     return (
         <Portal>
             <Transition
@@ -56,12 +73,13 @@ const CodeConfirmationOverlayComponent = ({
                             <Icon name='leftArrow' color='black' />
                         </div>
                         <p className={Styles.title}>CodeConfirmation page title!</p>
-                        <div className={Styles.fieldsContainer}>
+                        <div className={Styles.fieldsContainer} onKeyPress={_handleKeyPress}>
                             <InputField
                                 className={Styles.input}
                                 title={'Number'}
                                 value={code}
                                 onChange={({ target: { value } }) => setCodeValue(value)}
+                                autofocus
                             />
                             <div
                                 className={Styles.button}

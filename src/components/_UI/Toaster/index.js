@@ -18,7 +18,7 @@ export const Toaster = ({
     closeToaster,
     children,
 }) => {
-    const { timeout, defaultStyles, transitionStyles } = bottomToTopSlideConfig(1000);
+    const { timeout, defaultStyles, transitionStyles } = bottomToTopSlideConfig(500);
 
     return (
         <Transition in={inProp} appear mountOnEnter unmountOnExit timeout={timeout}>

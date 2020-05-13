@@ -55,15 +55,24 @@
         border: 2px solid $paletteWhite;
         border-radius: 2rem;
 
+        transition: all 0.3s;
+
         &.activeExpressDelivery {
-            border: 2px solid $paletteGreen_1;
-            color: $paletteGreen_1;
+            border: 2px solid $paletteBg;
+            background: $paletteBg;
+            color: $paletteDarkGrey_1;
         }
 
         &.disabled {
             cursor: default;
             border: 2px solid $paletteGrey_1;
             color: $paletteGrey_1;
+        }
+
+        &:hover {
+            border: 2px solid $paletteBg;
+            background: $paletteBg;
+            color: $paletteDarkGrey_1;
         }
     }
 
@@ -93,6 +102,8 @@
             border-radius: 2rem;
 
             font-size: 0.8rem;
+
+            transition: all 0.3s;
         }
 
         & .activeTimeslot {
@@ -102,8 +113,9 @@
             transition: all 0.3s;
 
             &:hover {
-                border: 2px solid $paletteGreen_1;
-                color: $paletteGreen_1;
+                border: 2px solid $paletteBg;
+                background: $paletteBg;
+                color: $paletteDarkGrey_1;
             }
         }
 
@@ -115,8 +127,9 @@
         & .chosenTimeslot {
             cursor: pointer;
 
-            border: 2px solid $paletteGreen_1;
-            color: $paletteGreen_1;
+            border: 2px solid $paletteBg;
+            background: $paletteBg;
+            color: $paletteDarkGrey_1;
         }
     }
 

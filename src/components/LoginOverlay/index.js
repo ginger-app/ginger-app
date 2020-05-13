@@ -36,13 +36,20 @@ const LoginOverlayComponent = ({
     setAuthData,
     backButtonPath,
 }) => {
-    const [phoneNumber, setPhoneNumber] = useState('+380');
+    const [phoneNumber, setPhoneNumber] = useState('+380639999999');
 
-    const handlePhoneNumberChange = ({ target: { value } }) => {
+    const _handlePhoneNumberChange = ({ target: { value } }) => {
         if (!/^[0-9+ ]*$/.test(value)) return null;
         if (value.length < 4 || value.length > 18) return null;
 
         return setPhoneNumber(new AsYouType('UA').input(value));
+    };
+
+    const _handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            setAuthData({ phoneNumber });
+            getAuthConfirmationCodeAsync(phoneNumber);
+        }
     };
 
     return (
@@ -75,12 +82,13 @@ const LoginOverlayComponent = ({
                             <Icon name='leftArrow' color='black' />
                         </div>
                         <p className={Styles.title}>Login page title!</p>
-                        <div className={Styles.fieldsContainer}>
+                        <div className={Styles.fieldsContainer} onKeyPress={_handleKeyPress}>
                             <InputField
                                 className={Styles.input}
                                 title={'Номер телефону'}
                                 value={phoneNumber}
-                                onChange={handlePhoneNumberChange}
+                                onChange={_handlePhoneNumberChange}
+                                autofocus
                             />
                             <div
                                 className={Styles.button}
