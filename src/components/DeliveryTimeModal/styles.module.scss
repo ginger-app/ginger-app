@@ -50,6 +50,7 @@
     }
 
     & .expressDelivery {
+        cursor: pointer;
         padding: 0.5rem 1.5rem;
         border: 2px solid $paletteWhite;
         border-radius: 2rem;
@@ -60,6 +61,7 @@
         }
 
         &.disabled {
+            cursor: default;
             border: 2px solid $paletteGrey_1;
             color: $paletteGrey_1;
         }

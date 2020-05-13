@@ -72,7 +72,7 @@ const DeliveryTimeModalComponent = ({
         Checking if targetHour is still selectable for today.
         (used only for today - we do not have any restriction for tomorrow or other days)
     */
-    const checkAvailablity = (targetHour) => new Date().getHours() + 3 < targetHour;
+    const checkAvailablity = (targetHour) => moment().add(1, 'hour').isBefore(targetHour);
 
     const getClosestHourTime = () => {
         const closestDeliveryTime = moment().startOf('hour').add(2, 'hours').format();
