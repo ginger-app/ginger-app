@@ -23,18 +23,22 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     getMarketSubcategoryDataAsync: marketActions.getMarketSubcategoryDataAsync,
+    clearMarketSubcategoryData: marketActions.clearMarketSubcategoryData,
 };
 
 const SubcategoryComponent = ({
     className,
     sku,
     getMarketSubcategoryDataAsync,
+    clearMarketSubcategoryData,
     subcategoryData,
     cart,
 }) => {
     useEffect(() => {
         getMarketSubcategoryDataAsync(sku);
-    }, [getMarketSubcategoryDataAsync, sku]);
+
+        return clearMarketSubcategoryData;
+    }, [sku]);
 
     const { name, tags, items } = subcategoryData;
 

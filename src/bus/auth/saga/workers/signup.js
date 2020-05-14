@@ -9,14 +9,14 @@ import { uiActions } from 'bus/ui/actions';
 import { profileActions } from 'bus/profile/actions';
 import { authActions } from 'bus/auth/actions';
 
-export function* signupWorker({ payload: { phoneNumber, code, userData } }) {
+export function* signupWorker({ payload: { phoneNumber, code, userData: userSignupData } }) {
     try {
         yield put(uiActions.startFetching());
 
         const response = yield apply(Api, Api.auth.confirmSignupCode, [
             {
                 // removing all spaces from phone number
-                ...userData,
+                ...userSignupData,
                 phoneNumber: phoneNumber.split(' ').join(''),
                 code,
             },

@@ -23,13 +23,21 @@ export const marketActions = {
         payload: { data },
     }),
 
-    clearProductData: () => ({
-        type: types.CLEAR_PRODUCT_DATA,
-    }),
-
     fillOrderData: (data) => ({
         type: types.FILL_ORDER_DATA,
         payload: { data },
+    }),
+
+    clearMarketCategoryData: () => ({
+        type: types.CLEAR_MARKET_CATEGORY_DATA,
+    }),
+
+    clearMarketSubcategoryData: () => ({
+        type: types.CLEAR_MARKET_SUBCATEGORY_DATA,
+    }),
+
+    clearProductData: () => ({
+        type: types.CLEAR_PRODUCT_DATA,
     }),
 
     clearOrderData: () => ({

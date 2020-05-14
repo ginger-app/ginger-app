@@ -23,11 +23,11 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    logout: authActions.logout,
+    logoutAsync: authActions.logoutAsync,
     getUserDataAsync: profileActions.getUserDataAsync,
 };
 
-const ProfileComponent = ({ className, profile, logout, getUserDataAsync }) => {
+const ProfileComponent = ({ className, profile, logoutAsync, getUserDataAsync }) => {
     const {
         firstName,
         favorites,
@@ -95,7 +95,7 @@ const ProfileComponent = ({ className, profile, logout, getUserDataAsync }) => {
                     </p>
                     <div className={Styles.getBonusesButton}>Get bonuses</div>
                     <div className={Styles.termsAndConditionsButton}>Terms & Conditions</div>
-                    <div className={Styles.logoutButton} onClick={logout}>
+                    <div className={Styles.logoutButton} onClick={logoutAsync}>
                         Log out
                     </div>
                 </section>

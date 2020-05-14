@@ -13,18 +13,18 @@ export const MarketShowcase = ({ className, items, orderType, marketType }) => {
         <section className={`${Styles.container} ${className}`}>
             <div className={Styles.infoBlock}>Info</div>
             {marketType &&
-                items.map(({ nameUkr, sku, price, measurementValue }, index) => (
+                items.map(({ nameUkr, sku, price, unit }, index) => (
                     <MarketItem
                         className={Styles.marketItem}
                         style={{
                             gridRow: `${index + 1} / ${index + 3}`,
                         }}
                         key={index}
-                        to={`products/${sku}`}
+                        to={`/products/${sku}`}
                         name={nameUkr}
                         priceFormatted={price.toFixed(2).split('.')}
                         price={price}
-                        measurementValue={measurementValue}
+                        unit={unit}
                         sku={sku}
                     />
                 ))}

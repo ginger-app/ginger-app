@@ -23,14 +23,23 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     getMarketCategoryDataAsync: marketActions.getMarketCategoryDataAsync,
+    clearMarketCategoryData: marketActions.clearMarketCategoryData,
 };
 
-const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categoryData }) => {
+const CategoryComponent = ({
+    className,
+    sku,
+    getMarketCategoryDataAsync,
+    clearMarketCategoryData,
+    categoryData,
+}) => {
     useEffect(() => {
         getMarketCategoryDataAsync(sku);
+
+        return clearMarketCategoryData;
     }, [getMarketCategoryDataAsync, sku]);
 
-    const { name, subcategories } = categoryData;
+    const { name, subcategories, items } = categoryData;
 
     return isEmpty(categoryData) ? (
         <Transition
@@ -82,7 +91,7 @@ const CategoryComponent = ({ className, sku, getMarketCategoryDataAsync, categor
                             </NavLink>
                         ))}
                     />
-                    <MarketShowcase className={Styles.showcase} items={[]} marketType />
+                    <MarketShowcase className={Styles.showcase} items={items} marketType />
                 </section>
             )}
         </Transition>

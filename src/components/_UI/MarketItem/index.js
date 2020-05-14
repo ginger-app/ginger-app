@@ -35,7 +35,7 @@ const MarketItemComponent = ({
     style,
     to,
     name,
-    measurementValue,
+    unit,
     price,
     priceFormatted,
     favorites,
@@ -58,7 +58,7 @@ const MarketItemComponent = ({
             image={apples}
             sku={sku}
             price={price}
-            unit={measurementValue}
+            unit={unit}
         />
     ) : (
         <Transition

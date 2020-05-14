@@ -22,6 +22,10 @@ export const authActions = {
     }),
 
     // Async
+    logoutAsync: () => ({
+        type: types.SIGN_OUT_ASYNC,
+    }),
+
     getAuthConfirmationCodeAsync: (phoneNumber) => ({
         type: types.GET_AUTH_CONFIRMATION_CODE_ASYNC,
         payload: phoneNumber,

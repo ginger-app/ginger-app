@@ -29,6 +29,12 @@ export const marketReducer = (state = initialState, action) => {
         case types.FILL_ORDER_DATA:
             return state.set('orderData', fromJS(action.payload.data));
 
+        case types.CLEAR_MARKET_CATEGORY_DATA:
+            return state.set('categoryData', Map({}));
+
+        case types.CLEAR_MARKET_SUBCATEGORY_DATA:
+            return state.set('subcategoryData', Map({}));
+
         case types.CLEAR_PRODUCT_DATA:
             return state.set('productData', Map({}));
 

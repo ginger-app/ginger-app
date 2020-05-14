@@ -28,7 +28,7 @@ const CatalogueComponent = ({ className, categories, itemsToShow, itemsToScroll,
             enableAutoPlay
         >
             {/* test case */}
-            {[...categories, ...categories].map(({ name, sku }, index) => (
+            {categories.map(({ name, sku }, index) => (
                 <div className={Styles.carouseleBlock} key={index}>
                     <CategoryItem className={Styles.item} name={name} sku={sku} />
                     <CategoryItem className={Styles.item} name={name} sku={sku} />

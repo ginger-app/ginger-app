@@ -11,10 +11,14 @@ import {
     signupCodeWorker,
     signupWorker,
     getGmapsKeyWorker,
+    logout,
 } from './workers';
 
 function* watchSignin() {
     yield takeEvery(types.GET_AUTH_CONFIRMATION_CODE_ASYNC, signinWorker);
+}
+function* watchSignout() {
+    yield takeEvery(types.SIGN_OUT_ASYNC, logout);
 }
 function* watchCodeConfirmation() {
     yield takeEvery(types.SEND_CONFIRMATION_CODE_ASYNC, codeConfirmationWorker);
@@ -32,6 +36,7 @@ function* watchGetGoogleMapsKey() {
 export function* watchAuth() {
     yield all([
         call(watchSignin),
+        call(watchSignout),
         call(watchCodeConfirmation),
         call(watchSignupCode),
         call(watchSignup),

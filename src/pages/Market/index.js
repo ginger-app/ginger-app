@@ -62,7 +62,7 @@ const MarketComponent = ({ className, getMarketCategoriesAsync }) => {
                         categoryName={'Fruits and Vegetables'}
                         extended
                     >
-                        {Array(10).fill('1')}
+                        {[]}
                     </ItemsCatalogue>
                 </section>
             )}

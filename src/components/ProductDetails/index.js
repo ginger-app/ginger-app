@@ -44,7 +44,7 @@ const ProductDetailsComponent = ({
     isAuthenticated,
     cart,
 }) => {
-    const { nameUkr, stock, measurementValue: unit, price } = productData;
+    const { nameUkr, stock, unit: unit, price } = productData;
     const formattedPrice = price.toFixed(2).split('.');
 
     // State
@@ -145,14 +145,14 @@ const ProductDetailsComponent = ({
                     <div
                         className={Styles.buyButton}
                         onClick={() => {
-                            const { nameUkr, image, price, measurementValue } = productData;
+                            const { nameUkr, image, price, unit } = productData;
                             return addItemToCartAsync({
                                 sku,
                                 amount,
                                 price,
                                 name: nameUkr,
                                 image: mockApples,
-                                unit: measurementValue,
+                                unit: unit,
                             });
                         }}
                     >
