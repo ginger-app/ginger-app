@@ -5,6 +5,8 @@
     grid-template-rows: 18rem;
     gap: 1rem;
 
+    width: 100%;
+
     &.extended {
         grid-template-rows: 1.5rem 18rem;
     }

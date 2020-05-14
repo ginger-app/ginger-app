@@ -15,7 +15,7 @@ import login from 'theme/assets/svg/login.svg';
 import heart from 'theme/assets/svg/heart.svg';
 
 // Components
-import { DailyBonus, CategoriesCatalogue, Toaster } from 'components';
+import { DailyBonus, CategoriesCatalogue, Toaster, LastOrder } from 'components';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
@@ -80,12 +80,7 @@ const HomeComponent = ({
                 <img src={heart} alt='lists' />
             </NavLink>
             <DailyBonus className={Styles.dailyBonus} />
-            <input
-                value={searchValue}
-                onChange={handleSearch}
-                className={Styles.search}
-                placeholder={'Search'}
-            />
+            <LastOrder className={Styles.lastOrder} />
             <CategoriesCatalogue className={Styles.catalogue} itemsToShow={2} extended />
             <Portal>
                 <Toaster

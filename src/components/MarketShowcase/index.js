@@ -8,7 +8,6 @@ import Styles from './styles.module.scss';
 import { MarketItem, OrderItem } from 'components';
 
 export const MarketShowcase = ({ className, items, orderType, marketType }) => {
-    // console.log(items);
     return (
         <section className={`${Styles.container} ${className}`}>
             <div className={Styles.infoBlock}>Info</div>

@@ -12,3 +12,4 @@ export * from './ProductDetails';
 export * from './OrderDetails';
 export * from './MapModal';
 export * from './DeliveryTimeModal';
+export * from './LastOrder';

@@ -3,7 +3,9 @@
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 1rem;
+    grid-auto-rows: min-content;
+    grid-gap: 1.5rem;
+    place-items: center;
 
     height: 100vh;
     padding: 1rem;
@@ -12,6 +14,7 @@
     .loginButton {
         @include lightButton;
         @include centerContent;
+        place-self: center start;
 
         width: 3rem;
         height: 3rem;
@@ -51,17 +54,8 @@
         }
     }
 
-    & .search {
-        @include shadow;
+    & .lastOrder {
         grid-column: 1 / 3;
-
-        margin: 1rem;
-        padding: 0.75rem 2rem;
-
-        border: none;
-        border-radius: 2rem;
-
-        font-size: 1.25rem;
     }
 
     & .dailyBonus,

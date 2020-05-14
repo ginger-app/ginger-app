@@ -12,6 +12,7 @@ import {
     ProductPage,
     OrdersPage,
     OrderDetailsPage,
+    FavoritesPage,
 } from 'pages';
 
 // Instruments
@@ -53,6 +54,7 @@ export const PublicRoutes = () => (
             path={`/products/:sku`}
             render={({ match }) => <ProductPage sku={match.params.sku} />}
         />
+        <Route exact path={book.favorites} component={FavoritesPage} />
         <Redirect to={`${book.home}?404`} />
     </Switch>
 );

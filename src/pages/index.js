@@ -1,5 +1,6 @@
 export * from './Profile';
 export * from './Category';
+export * from './Favorites';
 export * from './Subcategory';
 export * from './Product';
 export * from './Market';

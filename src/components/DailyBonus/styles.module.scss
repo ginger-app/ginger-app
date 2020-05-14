@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
 
-    padding: 1rem;
+    padding: 0 1rem;
 
     font-weight: bold;
     font-size: 1.5rem;
@@ -19,7 +19,7 @@
         border-radius: 2rem;
         border: 1px solid $paletteGreen_1;
 
-        font-size: 2rem;
+        // font-size: rem;
         color: $paletteGreen_1;
         text-align: center;
     }
