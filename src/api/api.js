@@ -75,7 +75,7 @@ export const Api = {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
-                    Authorization: sessionStorage.getItem('ginger-token'),
+                    Authorization: localStorage.getItem('ginger-token'),
                 },
                 body: JSON.stringify(orderData),
             });
@@ -86,7 +86,7 @@ export const Api = {
                 method: 'GET',
                 headers: {
                     'content-type': 'application/json',
-                    Authorization: sessionStorage.getItem('ginger-token'),
+                    Authorization: localStorage.getItem('ginger-token'),
                 },
             });
         },
@@ -98,7 +98,7 @@ export const Api = {
                 method: 'GET',
                 headers: {
                     'content-type': 'application/json',
-                    Authorization: sessionStorage.getItem('ginger-token'),
+                    Authorization: localStorage.getItem('ginger-token'),
                 },
             });
         },
@@ -108,7 +108,7 @@ export const Api = {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
-                    Authorization: sessionStorage.getItem('ginger-token'),
+                    Authorization: localStorage.getItem('ginger-token'),
                 },
                 body: JSON.stringify({ sku }),
             });
@@ -119,7 +119,7 @@ export const Api = {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
-                    Authorization: sessionStorage.getItem('ginger-token'),
+                    Authorization: localStorage.getItem('ginger-token'),
                 },
                 body: JSON.stringify({ sku }),
             });

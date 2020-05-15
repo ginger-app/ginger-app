@@ -25,11 +25,8 @@ export function* codeConfirmationWorker({ payload: { phoneNumber, code } }) {
 
         if (response.status >= 400) throw new Error(message);
 
-        yield apply(sessionStorage, sessionStorage.setItem, ['ginger-token', tokens.accessToken]);
-        yield apply(sessionStorage, sessionStorage.setItem, [
-            'ginger-refresh',
-            tokens.refreshToken,
-        ]);
+        yield apply(localStorage, localStorage.setItem, ['ginger-token', tokens.accessToken]);
+        yield apply(localStorage, localStorage.setItem, ['ginger-refresh', tokens.refreshToken]);
         yield put(profileActions.getUserDataAsync(tokens));
     } catch (err) {
         yield put(uiActions.emitError(err, '-> codeConfirmationWorker'));

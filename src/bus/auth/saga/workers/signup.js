@@ -25,11 +25,8 @@ export function* signupWorker({ payload: { phoneNumber, code, userData: userSign
 
         if (response.status >= 400) throw new Error(message);
 
-        yield apply(sessionStorage, sessionStorage.setItem, ['ginger-token', tokens.accessToken]);
-        yield apply(sessionStorage, sessionStorage.setItem, [
-            'ginger-refresh',
-            tokens.refreshToken,
-        ]);
+        yield apply(localStorage, localStorage.setItem, ['ginger-token', tokens.accessToken]);
+        yield apply(localStorage, localStorage.setItem, ['ginger-refresh', tokens.refreshToken]);
         yield put(profileActions.fillProfile(userData));
         yield put(authActions.authenticate());
         yield put(uiActions.hideAllOverlays());

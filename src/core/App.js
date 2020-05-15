@@ -20,7 +20,7 @@ const mapDispatchToProps = {
 
 const AppComponent = ({ getUserDataAsync, getGoogleMapsKeyAsync }) => {
     useEffect(() => {
-        if (sessionStorage.getItem('ginger-token')) {
+        if (localStorage.getItem('ginger-token')) {
             getUserDataAsync();
         }
         getGoogleMapsKeyAsync();
