@@ -27,6 +27,11 @@ export const profileActions = {
         payload: item,
     }),
 
+    repeatLastOrder: (orderData) => ({
+        type: types.REPEAT_LAST_ORDER,
+        payload: orderData,
+    }),
+
     //Async
     addItemToCartAsync: (item) => ({
         type: types.ADD_ITEM_TO_CART_ASYNC,

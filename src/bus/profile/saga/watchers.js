@@ -12,6 +12,7 @@ import {
     getUserDataWorker,
     removeItemFromFavoritesWorker,
     removeItemFromCartWorker,
+    repeatLastOrderWorker,
 } from './workers';
 
 function* watchAddItemToCart() {
@@ -29,6 +30,9 @@ function* watchRemoveItemFromFavorites() {
 function* watchGetUserData() {
     yield takeEvery(types.GET_USER_DATA_ASYNC, getUserDataWorker);
 }
+function* watchRepeatLastOrder() {
+    yield takeEvery(types.REPEAT_LAST_ORDER, repeatLastOrderWorker);
+}
 
 export function* watchProfile() {
     yield all([
@@ -37,5 +41,6 @@ export function* watchProfile() {
         call(watchGetUserData),
         call(watchRemoveItemFromFavorites),
         call(watchRemoveItemFromCart),
+        call(watchRepeatLastOrder),
     ]);
 }

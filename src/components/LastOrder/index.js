@@ -9,15 +9,20 @@ import Styles from './styles.module.scss';
 import { Icon } from 'components';
 import mock from 'theme/assets/images/apples-mock.png';
 
+// Actions
+import { profileActions } from 'bus/profile/actions';
+
 const mapStateToProps = (state) => ({
     orders: state.profile.get('orders'),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    updateCart: profileActions.updateCart,
+};
 
-const LastOrderComponent = ({ className, orders }) => {
+const LastOrderComponent = ({ className, orders, updateCart }) => {
     const orderData = orders.length > 0 && orders[0];
-    const { userCart, date } = orderData;
+    const { userCart, date, address, deliveryTime } = orderData;
 
     return (
         <section className={`${Styles.container} ${className}`}>
@@ -33,7 +38,7 @@ const LastOrderComponent = ({ className, orders }) => {
                                 <img src={mock} key={index} className={Styles.cartItem} alt='' />
                             ))}
                     </div>
-                    <div className={Styles.button}>
+                    <div className={Styles.button} onClick={() => updateCart(userCart)}>
                         <Icon name='cart' color='white' className={Styles.icon} />
                     </div>
                 </>

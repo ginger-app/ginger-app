@@ -3,8 +3,13 @@
 /////////////////////////
 
 @mixin media($breakpoint) {
-    @if $breakpoint == xs {
+    @if $breakpoint == xxs {
         @media only screen and (min-width: 320px) {
+            @content;
+        }
+    }
+    @if $breakpoint == xs {
+        @media only screen and (min-width: 360px) {
             @content;
         }
     }

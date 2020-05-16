@@ -23,6 +23,7 @@ import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.get('isAuthenticated'),
+    orders: state.profile.get('orders'),
 });
 
 const mapDispatchToProps = {
@@ -35,6 +36,7 @@ const HomeComponent = ({
     isAuthenticated,
     getMarketCategoriesAsync,
     showLoginOverlay,
+    orders,
 }) => {
     const [searchValue, setSearchValue] = useState('');
     const [showToaster, setToasterVisibility] = useState(false);
@@ -81,7 +83,12 @@ const HomeComponent = ({
             </NavLink>
             <DailyBonus className={Styles.dailyBonus} />
             <LastOrder className={Styles.lastOrder} />
-            <CategoriesCatalogue className={Styles.catalogue} itemsToShow={2} extended />
+            <CategoriesCatalogue
+                className={Styles.catalogue}
+                buttonStyle={{ width: '90%' }}
+                itemsToShow={3}
+                extended
+            />
             <Portal>
                 <Toaster
                     inProp={showToaster}

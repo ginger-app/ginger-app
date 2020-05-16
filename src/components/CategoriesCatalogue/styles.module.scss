@@ -2,13 +2,13 @@
 
 .container {
     display: grid;
-    grid-template-rows: 18rem;
-    gap: 1rem;
+    grid-template-rows: 1fr;
+    gap: 0.5rem;
 
     width: 100%;
 
     &.extended {
-        grid-template-rows: 1.5rem 18rem;
+        grid-template-rows: 1.5rem 1fr;
     }
 
     & .title {
@@ -16,7 +16,7 @@
     }
 
     & .carousele {
-        padding: 0.5rem 0.5rem 0;
+        padding: 0 0.5rem;
 
         overflow: hidden;
 
