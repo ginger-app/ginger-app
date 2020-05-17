@@ -74,13 +74,20 @@ const HomeComponent = ({
                 </NavLink>
             ) : (
                 <div className={Styles.loginButton} onClick={showLoginOverlay}>
-                    <img src={login} alt='' />
+                    <img src={login} alt='profile' />
                 </div>
             )}
 
-            <NavLink className={Styles.favoritesButton} to={book.profile}>
-                <img src={heart} alt='lists' />
-            </NavLink>
+            {isAuthenticated ? (
+                <NavLink className={Styles.favoritesButton} to={book.favorites}>
+                    <img src={heart} alt='lists' />
+                </NavLink>
+            ) : (
+                <div className={Styles.favoritesButton} onClick={showLoginOverlay}>
+                    <img src={heart} alt='lists' />
+                </div>
+            )}
+
             <DailyBonus className={Styles.dailyBonus} />
             <LastOrder className={Styles.lastOrder} />
             <CategoriesCatalogue

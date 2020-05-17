@@ -18,17 +18,19 @@ import { book } from 'core/routes';
 import { marketActions } from 'bus/market/actions';
 
 const mapStateToProps = (state) => ({
-    ...state,
+    categories: state.market.get('categories').toJS(),
 });
 
 const mapDispatchToProps = {
     getMarketCategoriesAsync: marketActions.getMarketCategoriesAsync,
 };
 
-const MarketComponent = ({ className, getMarketCategoriesAsync }) => {
+const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) => {
     useEffect(() => {
         getMarketCategoriesAsync();
     }, [getMarketCategoriesAsync]);
+
+    const fruitsAndVegetablesCategory = categories.filter(({ name }) => name === 'does')[0];
 
     return (
         <Transition
@@ -51,18 +53,16 @@ const MarketComponent = ({ className, getMarketCategoriesAsync }) => {
                         <Icon name='home' />
                     </NavLink>
                     <p className={Styles.title}>Market</p>
-                    <div className={Styles.filtersButton}>
-                        <Icon name='filters' />
-                    </div>
 
                     {/* Main section */}
                     <CategoriesCatalogue className={Styles.categories} />
                     <ItemsCatalogue
                         className={Styles.categoryItemsCarousel}
                         categoryName={'Fruits and Vegetables'}
+                        categorySku={fruitsAndVegetablesCategory?.sku}
                         extended
                     >
-                        {[]}
+                        {fruitsAndVegetablesCategory?.items || []}
                     </ItemsCatalogue>
                 </section>
             )}

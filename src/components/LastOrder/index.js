@@ -43,7 +43,7 @@ const LastOrderComponent = ({ className, orders, updateCart }) => {
                     </div>
                 </>
             ) : (
-                <p>No orders</p>
+                <p className={Styles.mock}>Some news shit</p>
             )}
         </section>
     );

@@ -16,7 +16,7 @@
     height: 100vh;
     padding: 1rem 0;
 
-    z-index: 2;
+    z-index: 1001;
 
     & .backButton {
         @include lightButton;

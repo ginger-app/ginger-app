@@ -47,7 +47,7 @@ export const profileReducer = (state = initialState, action) => {
             });
 
         case types.CLEAR_PROFILE:
-            return state;
+            return initialState;
 
         case types.UPDATE_CART:
             return state.set('cart', action.payload);

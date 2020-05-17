@@ -19,12 +19,14 @@ import { profileActions } from 'bus/profile/actions';
 const mapStateToProps = (state) => ({
     cartIsOpened: state.ui.get('cartIsOpened'),
     cart: state.profile.get('cart'),
+    isAuthenticated: state.auth.get('isAuthenticated'),
 });
 
 const mapDispatchToProps = {
     hideCart: uiActions.hideCart,
     createNewOrderAsync: marketActions.createNewOrderAsync,
     removeItemFromCartAsync: profileActions.removeItemFromCartAsync,
+    showLoginOverlay: uiActions.showLoginOverlay,
 };
 
 const CartComponent = ({
@@ -34,6 +36,8 @@ const CartComponent = ({
     cart,
     createNewOrderAsync,
     removeItemFromCartAsync,
+    isAuthenticated,
+    showLoginOverlay,
 }) => {
     const [mapOpened, setMapOpenedState] = useState(false);
     const [timeSelector, setTimeSelectorOpenedState] = useState(false);
@@ -118,14 +122,17 @@ const CartComponent = ({
                             </p>
                             <button
                                 className={Styles.button}
-                                onClick={() =>
-                                    createNewOrderAsync({
-                                        sum: Number((sum * (1 - discount)).toFixed(2)),
-                                        userCart: cart,
-                                        address,
-                                        addressDetails,
-                                        deliveryTime,
-                                    })
+                                onClick={
+                                    isAuthenticated
+                                        ? () =>
+                                              createNewOrderAsync({
+                                                  sum: Number((sum * (1 - discount)).toFixed(2)),
+                                                  userCart: cart,
+                                                  address,
+                                                  addressDetails,
+                                                  deliveryTime,
+                                              })
+                                        : showLoginOverlay
                                 }
                                 disabled={actionDisabled}
                             >
