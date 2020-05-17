@@ -2,7 +2,6 @@ export * from './RequestNewAddress';
 export * from './MarketItemOverlay';
 export * from './OrderStatusLabel';
 export * from './CategoryItem';
-export * from './CartToaster';
 export * from './MarketItem';
 export * from './InputField';
 export * from './OrderItem';

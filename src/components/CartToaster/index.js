@@ -33,12 +33,19 @@ const CartToasterComponent = ({ className, cart, showCart }) => {
                   .reduce((a, b) => a + b);
     const discount = 0.05;
 
+    const countContainerTranslateValue = () => {
+        const containerWidth = document.getElementsByClassName(Styles.container)[0].clientWidth;
+        const sumWidth = document.getElementsByClassName(Styles.sum)[0].clientWidth;
+
+        return `translateX(calc((-95vw - ${containerWidth}px) / 2 + ${sumWidth}px + 0.75rem))`;
+    };
+
     return (
         <Toaster
             className={`${Styles.container}`}
             containerStyles={
                 hidden && {
-                    transform: 'translateX(-80%)',
+                    transform: countContainerTranslateValue(),
                 }
             }
             inProp={Object.keys(cart).length > 0}
