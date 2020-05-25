@@ -2,11 +2,11 @@
 
 .container {
     display: grid;
-    grid-template-rows: 15rem;
+    grid-template-rows: min-content;
     gap: 0.5rem;
 
     &.extended {
-        grid-template-rows: 1.5rem 15rem;
+        grid-template-rows: 1.5rem min-content 3rem;
     }
 
     & .title {
@@ -16,19 +16,11 @@
     & .carousele {
         padding: 0 0.5rem;
 
-        overflow: hidden;
+        & .item {
+            min-height: 15rem;
+            min-width: 10rem !important; // forcing rewriting of flex-box default widths
 
-        & .carouseleBlock {
-            display: grid;
-            grid-auto-flow: row;
-            place-items: center;
-
-            & .item {
-                height: 7rem;
-                width: 7rem;
-
-                margin: 0.5rem;
-            }
+            margin: 0.5rem;
         }
     }
 

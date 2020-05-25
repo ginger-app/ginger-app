@@ -12,11 +12,11 @@ export const ItemsCatalogue = ({ className, categoryName, categorySku, extended,
     return (
         <section className={`${Styles.container} ${extended && Styles.extended} ${className}`}>
             {extended && <p className={Styles.title}>{categoryName}</p>}
-            <Carousel className={Styles.carousele} itemsToShow={2} itemsToScroll={2} enableAutoPlay>
-                {children.map(({ nameUkr, sku, price, unit }, index) => (
+            <Carousel className={Styles.carousele}>
+                {[...children, ...children].map(({ nameUkr, sku, price, unit }, index) => (
+                    // <div key={index} className={Styles.item}>
                     <MarketItem
-                        className={Styles.marketItem}
-                        key={index}
+                        className={Styles.item}
                         to={`/products/${sku}`}
                         name={nameUkr}
                         priceFormatted={price.toFixed(2).split('.')}
@@ -24,6 +24,7 @@ export const ItemsCatalogue = ({ className, categoryName, categorySku, extended,
                         unit={unit}
                         sku={sku}
                     />
+                    // </div>
                 ))}
             </Carousel>
             {extended && (

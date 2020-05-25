@@ -41,15 +41,9 @@ const CatalogueComponent = ({
     return (
         <section className={`${Styles.container} ${extended && Styles.extended} ${className}`}>
             {extended && <p className={Styles.title}>Catalogue</p>}
-            <Carousel
-                className={Styles.carousele}
-                itemsToShow={itemsToShow}
-                itemsToScroll={itemsToScroll}
-                enableAutoPlay
-            >
-                {/* test case */}
+            <Carousel className={Styles.carousele}>
                 {formattedCategories.map((item, index) => (
-                    <div className={Styles.carouseleBlock} key={index}>
+                    <div key={index}>
                         <CategoryItem
                             className={Styles.item}
                             name={item[0].name}

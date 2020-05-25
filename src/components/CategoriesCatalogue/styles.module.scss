@@ -18,19 +18,11 @@
     & .carousele {
         padding: 0 0.5rem;
 
-        overflow: hidden;
+        & .item {
+            height: 6.5rem;
+            width: 6.5rem !important; // forcing rewriting of flex-box default widths
 
-        & .carouseleBlock {
-            display: grid;
-            grid-auto-flow: row;
-            place-items: center;
-
-            & .item {
-                height: 6.5rem;
-                width: 6.5rem;
-
-                margin: 0.5rem;
-            }
+            margin: 0.5rem;
         }
     }
 
