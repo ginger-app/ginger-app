@@ -9,16 +9,24 @@
     user-select: none;
 
     &::-webkit-scrollbar {
-        width: 4px;
-        height: 4px;
+        width: 0;
+        height: 0;
     }
 
-    &::-webkit-scrollbar-thumb {
-        background: $paletteGrey_1;
-        border-radius: 4px;
-    }
-    &::-webkit-scrollbar-track {
-        background-color: transparent;
+    @include media(xl) {
+        &::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $paletteGrey_1;
+            border-radius: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
     }
 }
 

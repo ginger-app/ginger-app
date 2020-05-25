@@ -1,17 +1,35 @@
 // Core
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // Styles
 import Styles from './styles.module.scss';
 
 export const Carousel = ({ className, items, children }) => {
     const [translateValue, setTranslateValue] = useState(0);
-    const elementId = Date.now();
+    const contentRef = useRef(null);
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        // declaring handler to removeListener on unmount
+        const handler = (e) => {
+            if (contentRef.current.scrollWidth - contentRef.current.clientWidth > 0) {
+                e.preventDefault();
+            }
+        };
+
+        // setting listener
+        containerRef.current.addEventListener('wheel', handler);
+
+        // removing listener
+        return () => {
+            containerRef.current.removeEventListener('wheel', handler);
+        };
+    }, []);
 
     // mousewheel support (when possible)
-    const handleScroll = ({ deltaY, target }) => {
-        const element = document.getElementById(elementId);
-        const maxTranslateValue = element.scrollWidth - element.clientWidth;
+    const _handleScroll = ({ deltaY, target, stopPropagation }) => {
+        const { scrollWidth, clientWidth, addEventListener } = contentRef.current;
+        const maxTranslateValue = scrollWidth - clientWidth;
 
         return deltaY > 0
             ? // scroll right-to-left up to container width
@@ -22,10 +40,10 @@ export const Carousel = ({ className, items, children }) => {
 
     return (
         <section className={`${Styles.container} ${className}`}>
-            <div className={Styles.carousele} onWheel={handleScroll}>
+            <div className={Styles.carousele} onWheel={_handleScroll} ref={containerRef}>
                 <div
                     className={Styles.carouseleContentBox}
-                    id={elementId}
+                    ref={contentRef}
                     style={{
                         transform: `translateX(${translateValue}px)`,
                     }}

@@ -30,8 +30,6 @@ const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) =>
         getMarketCategoriesAsync();
     }, [getMarketCategoriesAsync]);
 
-    const fruitsAndVegetablesCategory = categories.filter(({ name }) => name === 'does')[0];
-
     return (
         <Transition
             in
@@ -66,14 +64,16 @@ const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) =>
 
                     {/* Main section */}
                     <CategoriesCatalogue className={Styles.categories} />
-                    <ItemsCatalogue
-                        className={Styles.categoryItemsCarousel}
-                        categoryName={'Fruits and Vegetables'}
-                        categorySku={fruitsAndVegetablesCategory?.sku}
-                        extended
-                    >
-                        {fruitsAndVegetablesCategory?.items || []}
-                    </ItemsCatalogue>
+                    {categories.map(({ name, items, sku }, index) => (
+                        <ItemsCatalogue
+                            key={index}
+                            className={Styles.categoryItemsCarousel}
+                            categoryName={name}
+                            categorySku={sku}
+                            items={items}
+                            extended
+                        />
+                    ))}
                 </section>
             )}
         </Transition>

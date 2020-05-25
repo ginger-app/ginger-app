@@ -28,6 +28,7 @@ const initialState = Map({
     isAdmin: false,
     isWorker: false,
 
+    dailyBonus: 5,
     userpic,
 });
 

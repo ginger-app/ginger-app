@@ -10,13 +10,14 @@ import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.get('isAuthenticated'),
+    dailyBonus: state.profile.get('dailyBonus'),
 });
 
 const mapDispatchToProps = {
     showLoginOverlay: uiActions.showLoginOverlay,
 };
 
-const DailyBonusComponent = ({ className, isAuthenticated, showLoginOverlay }) => {
+const DailyBonusComponent = ({ className, isAuthenticated, dailyBonus, showLoginOverlay }) => {
     const [bonusOpened, setBonusOpenedState] = useState(false);
 
     useEffect(() => {
@@ -40,7 +41,7 @@ const DailyBonusComponent = ({ className, isAuthenticated, showLoginOverlay }) =
         <section className={`${Styles.container} ${className}`}>
             <p className={Styles.title}>Твій бонус на сьогодні:</p>
             {bonusOpened && isAuthenticated ? (
-                <div className={Styles.percent}>5%</div>
+                <div className={Styles.percent}>{dailyBonus}%</div>
             ) : (
                 <div className={Styles.actionButton} onClick={_handleBonusOpen}>
                     Check

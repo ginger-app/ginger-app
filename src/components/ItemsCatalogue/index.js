@@ -8,12 +8,21 @@ import Styles from './styles.module.scss';
 // Components
 import { MarketItem, Carousel } from 'components';
 
-export const ItemsCatalogue = ({ className, categoryName, categorySku, extended, children }) => {
+export const ItemsCatalogue = ({
+    className,
+    categoryName,
+    categorySku,
+    extended,
+    children,
+    items,
+}) => {
+    const itemsToShow = items || children;
+
     return (
         <section className={`${Styles.container} ${extended && Styles.extended} ${className}`}>
             {extended && <p className={Styles.title}>{categoryName}</p>}
             <Carousel className={Styles.carousele}>
-                {[...children, ...children].map(({ nameUkr, sku, price, unit }, index) => (
+                {itemsToShow.map(({ nameUkr, sku, price, unit }, index) => (
                     <MarketItem
                         className={Styles.item}
                         to={`/products/${sku}`}
@@ -22,6 +31,7 @@ export const ItemsCatalogue = ({ className, categoryName, categorySku, extended,
                         price={price}
                         unit={unit}
                         sku={sku}
+                        key={index}
                     />
                 ))}
             </Carousel>

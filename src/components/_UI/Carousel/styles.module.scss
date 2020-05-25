@@ -7,7 +7,7 @@
     overflow: hidden;
 
     & .carousele {
-        width: 100%;
+        max-width: 100%;
         overflow-x: auto;
 
         &::-webkit-scrollbar {
