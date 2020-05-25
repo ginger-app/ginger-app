@@ -3,30 +3,37 @@
 .container {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    place-items: center;
+    gap: 1rem;
 
+    width: 100%;
     padding: 0 1rem;
 
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
 
     & .percent {
-        place-self: center;
         @include centerContent;
+        place-self: center;
 
-        width: 100%;
-        height: 100%;
+        min-width: 7.5rem;
+        padding: 1rem;
 
         border-radius: 2rem;
         border: 1px solid $paletteGreen_1;
 
-        // font-size: rem;
         color: $paletteGreen_1;
         text-align: center;
     }
 
     & .actionButton {
         @include greenButton;
-        place-self: start;
+        @include centerContent;
+        place-self: center;
+
+        max-width: 10rem;
         padding: 1rem;
+
+        border: 1px solid $paletteGreen_1;
     }
 }
