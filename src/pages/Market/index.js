@@ -8,7 +8,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Components
-import { Icon, CategoriesCatalogue, ItemsCatalogue } from 'components';
+import { Icon, CategoriesCatalogue, ItemsCatalogue, PageTitle } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -49,10 +49,20 @@ const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) =>
                     }}
                 >
                     {/* Header section */}
-                    <NavLink className={Styles.homeButton} to={book.home}>
-                        <Icon name='home' />
-                    </NavLink>
-                    <p className={Styles.title}>Market</p>
+                    <PageTitle
+                        className={Styles.header}
+                        leftButton={
+                            <NavLink className={Styles.homeButton} to={book.home}>
+                                <Icon name='home' />
+                            </NavLink>
+                        }
+                        title={'Market'}
+                        rightButton={
+                            <div className={Styles.searchButton}>
+                                <Icon name='search' />
+                            </div>
+                        }
+                    />
 
                     {/* Main section */}
                     <CategoriesCatalogue className={Styles.categories} />

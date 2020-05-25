@@ -25,6 +25,11 @@
             margin: 0.75rem 0;
 
             font-size: 0.75rem;
+
+            &:hover {
+                background: $paletteGrey_1;
+                color: $paletteWhite;
+            }
         }
     }
 

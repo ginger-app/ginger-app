@@ -21,10 +21,16 @@
             @include lightButton;
             display: grid;
             place-items: center;
+            grid-template-columns: max-content;
 
-            margin: 0.75rem 0;
+            margin: 0.75rem 0.25rem;
 
             font-size: 0.75rem;
+
+            &:hover {
+                background: $paletteGrey_1;
+                color: $paletteWhite;
+            }
         }
     }
 

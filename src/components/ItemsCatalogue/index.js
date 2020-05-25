@@ -14,7 +14,6 @@ export const ItemsCatalogue = ({ className, categoryName, categorySku, extended,
             {extended && <p className={Styles.title}>{categoryName}</p>}
             <Carousel className={Styles.carousele}>
                 {[...children, ...children].map(({ nameUkr, sku, price, unit }, index) => (
-                    // <div key={index} className={Styles.item}>
                     <MarketItem
                         className={Styles.item}
                         to={`/products/${sku}`}
@@ -24,7 +23,6 @@ export const ItemsCatalogue = ({ className, categoryName, categorySku, extended,
                         unit={unit}
                         sku={sku}
                     />
-                    // </div>
                 ))}
             </Carousel>
             {extended && (

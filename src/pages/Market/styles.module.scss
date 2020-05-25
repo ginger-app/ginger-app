@@ -9,10 +9,17 @@
     height: 100vh;
     padding: 1rem 0;
 
+    & .header {
+        grid-column: 1 / 4;
+        width: 100%;
+        height: 100%;
+    }
+
     & .homeButton,
-    .filtersButton {
+    .searchButton {
         @include shadow;
         @include centerContent;
+        cursor: pointer;
         place-self: center start; // only for homeButton
 
         height: 3rem;
@@ -23,12 +30,8 @@
         background: $paletteWhite;
     }
 
-    & .filtersButton {
+    & .searchButton {
         place-self: center end;
-    }
-
-    & .title {
-        @include boldTitle;
     }
 
     & .categories {

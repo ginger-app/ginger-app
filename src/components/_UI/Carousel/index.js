@@ -14,8 +14,10 @@ export const Carousel = ({ className, items, children }) => {
         const maxTranslateValue = element.scrollWidth - element.clientWidth;
 
         return deltaY > 0
-            ? setTranslateValue(Math.max(translateValue - 75, 1 - maxTranslateValue))
-            : setTranslateValue(Math.min(translateValue + 75, 0));
+            ? // scroll right-to-left up to container width
+              setTranslateValue(Math.max(translateValue - 75, 1 - maxTranslateValue))
+            : // scroll left-to-right up to 0 translate
+              setTranslateValue(Math.min(translateValue + 75, 0));
     };
 
     return (
