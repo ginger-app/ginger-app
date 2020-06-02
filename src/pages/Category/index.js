@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 import Styles from './styles.module.scss';
 
 // Components
-import { PageTitle, MarketShowcase, Carousel } from 'components';
+import { PageTitle, MarketShowcase, Carousel, Icon } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -16,6 +16,7 @@ import { isEmpty } from 'lodash';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
+import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     categoryData: state.market.get('categoryData').toJS(),
@@ -24,6 +25,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     getMarketCategoryDataAsync: marketActions.getMarketCategoryDataAsync,
     clearMarketCategoryData: marketActions.clearMarketCategoryData,
+    showFilters: uiActions.showFilters,
 };
 
 const CategoryComponent = ({
@@ -32,6 +34,7 @@ const CategoryComponent = ({
     getMarketCategoryDataAsync,
     clearMarketCategoryData,
     categoryData,
+    showFilters,
 }) => {
     useEffect(() => {
         getMarketCategoryDataAsync(sku);
@@ -77,7 +80,15 @@ const CategoryComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <PageTitle className={Styles.title} title={name} />
+                    <PageTitle
+                        className={Styles.title}
+                        title={name}
+                        rightButton={
+                            <div className={Styles.button} onClick={showFilters}>
+                                <Icon name='filters' />
+                            </div>
+                        }
+                    />
                     <Carousel
                         itemsToShow={2}
                         className={Styles.tags}

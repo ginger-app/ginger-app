@@ -7,7 +7,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Components
-import { PageTitle, MarketShowcase, Carousel } from 'components';
+import { PageTitle, MarketShowcase, Carousel, Icon } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -15,6 +15,7 @@ import { isEmpty } from 'lodash';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
+import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     subcategoryData: state.market.get('subcategoryData').toJS(),
@@ -24,6 +25,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     getMarketSubcategoryDataAsync: marketActions.getMarketSubcategoryDataAsync,
     clearMarketSubcategoryData: marketActions.clearMarketSubcategoryData,
+    showFilters: uiActions.showFilters,
 };
 
 const SubcategoryComponent = ({
@@ -32,6 +34,7 @@ const SubcategoryComponent = ({
     getMarketSubcategoryDataAsync,
     clearMarketSubcategoryData,
     subcategoryData,
+    showFilters,
     cart,
 }) => {
     useEffect(() => {
@@ -82,6 +85,11 @@ const SubcategoryComponent = ({
                         className={Styles.title}
                         title={name}
                         // backButtonAction={clearSubcategoryData}
+                        rightButton={
+                            <div className={Styles.button} onClick={showFilters}>
+                                <Icon name='filters' />
+                            </div>
+                        }
                     />
                     <Carousel
                         className={Styles.tags}

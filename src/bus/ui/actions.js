@@ -11,13 +11,21 @@ export const uiActions = {
         type: types.STOP_FETCHING,
     }),
 
-    // Cart actions
+    // Market related actions
     showCart: () => ({
         type: types.SHOW_CART,
     }),
 
+    showFilters: () => ({
+        type: types.SHOW_FILTERS,
+    }),
+
     hideCart: () => ({
         type: types.HIDE_CART,
+    }),
+
+    hideFilters: () => ({
+        type: types.HIDE_FILTERS,
     }),
 
     // Routing

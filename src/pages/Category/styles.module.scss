@@ -36,6 +36,19 @@
         }
     }
 
+    & .button {
+        cursor: pointer;
+        @include shadow;
+        @include lightButton;
+        @include centerContent;
+
+        height: 100%;
+        width: 100%;
+        padding: 0;
+
+        border-radius: 100%;
+    }
+
     & .showcase {
         grid-column: 1 / 3;
     }

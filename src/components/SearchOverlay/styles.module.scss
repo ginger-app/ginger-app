@@ -36,12 +36,6 @@
 
         background: $paletteWhite;
 
-        transition: border-radius 0.1s;
-
-        &.noBottomRadius {
-            // border-radius: 2rem 2rem 0 0;
-        }
-
         & .input {
             height: 100%;
             width: 100%;

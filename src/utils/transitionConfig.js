@@ -121,3 +121,34 @@ export const bottomToTopSlideConfig = (duration = 300) => ({
         exit: duration,
     },
 });
+
+/**
+ *
+ * @param {number} [duration = 300] Duration in ms
+ */
+export const topToBottomSlideConfig = (duration = 300) => ({
+    defaultStyles: {
+        transform: 'translateY(-100vh)',
+        transition: `transform ${duration}ms ease-in-out`,
+    },
+
+    transitionStyles: {
+        entering: {
+            transform: 'translateY(-100vh)',
+        },
+        entered: {
+            transform: 'translateY(0)',
+        },
+        exiting: {
+            transform: 'translateY(-100vh)',
+        },
+        exited: {
+            transform: 'translateY(-100vh)',
+        },
+    },
+
+    timeout: {
+        enter: duration,
+        exit: duration,
+    },
+});

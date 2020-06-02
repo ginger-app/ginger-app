@@ -8,6 +8,7 @@ const initialState = Map({
     isFetching: false,
     cartIsOpened: false,
     searchOpened: false,
+    filtersOpened: false,
     codeConfirmationOverlay: false,
     signupOverlay: false,
     loginOverlay: false,
@@ -23,12 +24,18 @@ export const uiReducer = (state = initialState, action) => {
         case types.STOP_FETCHING:
             return state.set('isFetching', false);
 
-        // Cart
+        // Market
         case types.SHOW_CART:
             return state.set('cartIsOpened', true);
 
+        case types.SHOW_FILTERS:
+            return state.set('filtersOpened', true);
+
         case types.HIDE_CART:
             return state.set('cartIsOpened', false);
+
+        case types.HIDE_FILTERS:
+            return state.set('filtersOpened', false);
 
         // Routing
         case types.SET_BACK_BUTTON_PATH:

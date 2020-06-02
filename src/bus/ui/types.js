@@ -7,9 +7,11 @@ export const types = {
     REDIRECT: 'REDIRECT',
     SET_BACK_BUTTON_PATH: 'SET_BACK_BUTTON_PATH',
 
-    // Cart
+    // Market stuff
     SHOW_CART: 'SHOW_CART',
+    SHOW_FILTERS: 'SHOW_FILTERS',
     HIDE_CART: 'HIDE_CART',
+    HIDE_FILTERS: 'HIDE_FILTERS',
 
     // Overlays
     SHOW_LOGIN_OVERLAY: 'SHOW_LOGIN_OVERLAY',

@@ -20,6 +20,7 @@ import {
     LoginOverlay,
     CodeConfirmationOverlay,
     SearchOverlay,
+    FiltersOverlay,
 } from 'components';
 
 render(
@@ -34,6 +35,7 @@ render(
             <LoginOverlay />
             <CodeConfirmationOverlay />
             <SearchOverlay />
+            <FiltersOverlay />
             <Cart />
         </Router>
     </Provider>,
