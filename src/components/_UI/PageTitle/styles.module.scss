@@ -32,6 +32,12 @@
         border-radius: 2rem;
         transition: width 0.3s;
 
+        &.rightButton {
+            grid-column: 3;
+            margin: 0 1rem;
+            place-self: end;
+        }
+
         &.active {
             grid-column: 1 / 4;
             width: 90%;

@@ -17,8 +17,7 @@
         height: 100%;
     }
 
-    & .homeButton,
-    .searchButton {
+    & .homeButton {
         @include shadow;
         @include centerContent;
         cursor: pointer;

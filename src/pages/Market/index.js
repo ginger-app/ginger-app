@@ -55,11 +55,7 @@ const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) =>
                             </NavLink>
                         }
                         title={'Market'}
-                        rightButton={
-                            <div className={Styles.searchButton}>
-                                <Icon name='search' />
-                            </div>
-                        }
+                        rightButton={'search'}
                     />
 
                     {/* Main section */}

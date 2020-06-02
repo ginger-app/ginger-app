@@ -60,8 +60,20 @@ const PageTitleComponent = ({
                     <Icon name='search' />
                 </div>
             )}
-            {centerButton ? centerButton : !search && <p className={Styles.title}>{title}</p>}
-            {!searchOpened && rightButton}
+            {centerButton
+                ? centerButton
+                : !search && !searchOpened && <p className={Styles.title}>{title}</p>}
+            {!searchOpened && rightButton !== 'search' && rightButton}
+            {rightButton === 'search' && (
+                <div
+                    className={`${Styles.searchButton} ${Styles.rightButton} ${
+                        searchOpened && Styles.active
+                    }`}
+                    onClick={showSearchOverlay}
+                >
+                    <Icon name='search' />
+                </div>
+            )}
         </section>
     );
 };
@@ -70,7 +82,7 @@ PageTitleComponent.propTypes = {
     className: PropTypes.string,
     title: PropTypes.string,
     leftButton: PropTypes.element,
-    rightButton: PropTypes.element,
+    rightButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
     centerButton: PropTypes.element,
     search: PropTypes.bool,
 };
