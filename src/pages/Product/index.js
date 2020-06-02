@@ -26,7 +26,13 @@ const mapDispatchToProps = {
     clearProductData: marketActions.clearProductData,
 };
 
-const ProductComponent = ({ sku, productData, getProductDataAsync, clearProductData }) => {
+const ProductComponent = ({
+    sku,
+    productData,
+    getProductDataAsync,
+    clearProductData,
+    location,
+}) => {
     useEffect(() => {
         getProductDataAsync(sku);
 

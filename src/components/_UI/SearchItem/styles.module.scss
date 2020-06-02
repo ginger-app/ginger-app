@@ -1,0 +1,44 @@
+@import 'resources';
+
+.container {
+    @include shadow;
+    cursor: pointer;
+
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    place-items: center start;
+    gap: 0.5rem;
+
+    width: 100%;
+    height: 5rem;
+    padding: 0.5rem 1.5rem 0.5rem 1rem;
+
+    background: $paletteWhite;
+    border-radius: 3rem;
+
+    overflow: hidden;
+
+    & .image {
+        height: 100%;
+    }
+
+    & .itemName {
+        text-transform: capitalize;
+    }
+
+    & .unit {
+        color: $paletteGrey_3;
+        margin: 0 0.5rem;
+
+        font-size: 0.8rem;
+    }
+
+    & .price {
+        place-self: center end;
+
+        font-size: 1.2rem;
+        font-weight: bold;
+
+        color: $paletteGreen_1;
+    }
+}

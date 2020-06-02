@@ -20,6 +20,12 @@ export const uiActions = {
         type: types.HIDE_CART,
     }),
 
+    // Routing
+    setBackButtonPath: (path) => ({
+        type: types.SET_BACK_BUTTON_PATH,
+        payload: { path },
+    }),
+
     // Overlays actions
     showLoginOverlay: (backButtonPath) => ({
         type: types.SHOW_LOGIN_OVERLAY,
@@ -34,6 +40,10 @@ export const uiActions = {
         type: types.SHOW_CODE_OVERLAY,
     }),
 
+    showSearchOverlay: () => ({
+        type: types.SHOW_SEARCH_OVERLAY,
+    }),
+
     hideLoginOverlay: () => ({
         type: types.HIDE_LOGIN_OVERLAY,
     }),
@@ -44,6 +54,10 @@ export const uiActions = {
 
     hideCodeConfirmationOverlay: () => ({
         type: types.HIDE_CODE_OVERLAY,
+    }),
+
+    hideSearchOverlay: () => ({
+        type: types.HIDE_SEARCH_OVERLAY,
     }),
 
     hideAllOverlays: () => ({

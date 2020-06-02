@@ -1,0 +1,68 @@
+@import 'resources';
+
+.container {
+    @include blur;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: grid;
+    grid-auto-rows: min-content 1fr;
+    place-items: start center;
+    gap: 1rem;
+
+    width: 100vw;
+    height: 100vh;
+    padding: 1rem 0;
+
+    z-index: 1000; // always on top
+
+    & .inputContainer {
+        @include shadow;
+        place-self: start center;
+
+        display: grid;
+        grid-template-columns: min-content 1fr min-content;
+        place-items: center;
+        gap: 1rem;
+
+        width: 90%;
+        height: 3rem;
+        padding: 0 1rem;
+
+        border-radius: 2rem;
+        border: none;
+
+        background: $paletteWhite;
+
+        transition: border-radius 0.1s;
+
+        &.noBottomRadius {
+            // border-radius: 2rem 2rem 0 0;
+        }
+
+        & .input {
+            height: 100%;
+            width: 100%;
+
+            border: none;
+        }
+
+        & .close {
+            cursor: pointer;
+        }
+    }
+
+    & .searchResults {
+        display: grid;
+        grid-auto-rows: min-content;
+        place-items: center;
+        gap: 0.5rem;
+
+        width: 90%;
+        max-height: 100%;
+
+        overflow-y: scroll;
+    }
+}

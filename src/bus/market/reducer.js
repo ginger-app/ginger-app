@@ -10,10 +10,12 @@ const initialState = Map({
     subcategoryData: Map({}),
     productData: Map({}),
     orderData: Map({}),
+    searchResults: List(),
 });
 
 export const marketReducer = (state = initialState, action) => {
     switch (action.type) {
+        // FILLING
         case types.FILL_MARKET_CATEGORIES:
             return state.set('categories', fromJS(action.payload.categories));
 
@@ -29,6 +31,10 @@ export const marketReducer = (state = initialState, action) => {
         case types.FILL_ORDER_DATA:
             return state.set('orderData', fromJS(action.payload.data));
 
+        case types.FILL_SEARCH_RESULTS:
+            return state.set('searchResults', fromJS(action.payload.items));
+
+        // CLEARING
         case types.CLEAR_MARKET_CATEGORY_DATA:
             return state.set('categoryData', Map({}));
 
@@ -40,6 +46,9 @@ export const marketReducer = (state = initialState, action) => {
 
         case types.CLEAR_ORDER_DATA:
             return state.set('orderData', Map({}));
+
+        case types.CLEAR_SEARCH_RESULTS:
+            return state.set('searchResults', List());
 
         default:
             return state;

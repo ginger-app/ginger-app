@@ -90,6 +90,10 @@ export const Api = {
                 },
             });
         },
+
+        searchProductsByName: (itemName) => {
+            return fetch(`${MAIN_URL}/market/product?name=${itemName}`);
+        },
     },
 
     profile: {

@@ -14,3 +14,4 @@ export * from './OrderDetails';
 export * from './MapModal';
 export * from './DeliveryTimeModal';
 export * from './LastOrder';
+export * from './SearchOverlay';

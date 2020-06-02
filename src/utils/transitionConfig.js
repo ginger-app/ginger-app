@@ -1,11 +1,11 @@
 /**
  *
- * @param {number} [duration = 300] Duration in ms
+ * @param {number} [duration] Duration in ms
  */
-export const opacityTransitionConfig = (duration = 300) => ({
+export const opacityTransitionConfig = (duration) => ({
     defaultStyles: {
         opacity: 0,
-        transition: `opacity ${duration}ms ease-in-out`,
+        transition: `opacity ${duration || 300}ms ease-in-out`,
     },
 
     transitionStyles: {
@@ -23,7 +23,10 @@ export const opacityTransitionConfig = (duration = 300) => ({
         },
     },
 
-    timeout: 0,
+    timeout: {
+        enter: duration || 0,
+        exit: 0,
+    },
 });
 
 /**

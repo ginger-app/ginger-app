@@ -9,18 +9,20 @@ import Styles from './styles.module.scss';
 // Instruments
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import { Icon } from 'components';
-import mockApples from 'theme/assets/images/apples-mock.png';
 import { history } from 'bus/init/middleware/core';
+import mockApples from 'theme/assets/images/apples-mock.png';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
 import { profileActions } from 'bus/profile/actions';
+import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     productData: state.market.get('productData').toJS(),
     favorites: state.profile.get('favorites'),
     isAuthenticated: state.auth.get('isAuthenticated'),
     cart: state.profile.get('cart'),
+    backButtonPath: state.ui.get('backButtonPath'),
 });
 
 const mapDispatchToProps = {
@@ -29,6 +31,7 @@ const mapDispatchToProps = {
     removeItemFromFavorites: profileActions.removeItemFromFavorites,
     removeItemFromFavoritesAsync: profileActions.removeItemFromFavoritesAsync,
     addItemToCartAsync: profileActions.addItemToCartAsync,
+    showSearchOverlay: uiActions.showSearchOverlay,
 };
 
 const ProductDetailsComponent = ({
@@ -41,7 +44,9 @@ const ProductDetailsComponent = ({
     removeItemFromFavorites,
     removeItemFromFavoritesAsync,
     addItemToCartAsync,
+    showSearchOverlay,
     isAuthenticated,
+    backButtonPath,
     cart,
 }) => {
     const { nameUkr, stock, unit: unit, price } = productData;
@@ -71,7 +76,15 @@ const ProductDetailsComponent = ({
                         ...bottomToTopSlideConfig(700).transitionStyles[state],
                     }}
                 >
-                    <div className={Styles.arrowIcon} onClick={history.goBack}>
+                    <div
+                        className={Styles.arrowIcon}
+                        onClick={() => {
+                            if (backButtonPath === 'openSearch') {
+                                showSearchOverlay();
+                            }
+                            history.goBack();
+                        }}
+                    >
                         <Icon color='#bbb6b6' name='slideDownArrow' />
                     </div>
                     <img src={mockApples} className={Styles.image} alt='' />

@@ -7,6 +7,7 @@ import { types } from './types';
 const initialState = Map({
     isFetching: false,
     cartIsOpened: false,
+    searchOpened: false,
     codeConfirmationOverlay: false,
     signupOverlay: false,
     loginOverlay: false,
@@ -28,6 +29,10 @@ export const uiReducer = (state = initialState, action) => {
 
         case types.HIDE_CART:
             return state.set('cartIsOpened', false);
+
+        // Routing
+        case types.SET_BACK_BUTTON_PATH:
+            return state.set('backButtonPath', action.payload.path);
 
         // Overlays
         case types.SHOW_LOGIN_OVERLAY:
@@ -53,6 +58,12 @@ export const uiReducer = (state = initialState, action) => {
 
         case types.HIDE_CODE_OVERLAY:
             return state.set('codeConfirmationOverlay', false);
+
+        case types.SHOW_SEARCH_OVERLAY:
+            return state.set('searchOpened', true);
+
+        case types.HIDE_SEARCH_OVERLAY:
+            return state.set('searchOpened', false);
 
         case types.HIDE_ALL_OVERLAYS:
             return state.merge({

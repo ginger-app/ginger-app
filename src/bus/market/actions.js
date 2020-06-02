@@ -3,6 +3,8 @@ import { marketTypes as types } from './types';
 
 export const marketActions = {
     // Sync
+
+    // Filling
     fillMarketCategories: (categories) => ({
         type: types.FILL_MARKET_CATEGORIES,
         payload: { categories },
@@ -28,6 +30,12 @@ export const marketActions = {
         payload: { data },
     }),
 
+    fillSearchResults: (items) => ({
+        type: types.FILL_SEARCH_RESULTS,
+        payload: { items },
+    }),
+
+    // Clearing
     clearMarketCategoryData: () => ({
         type: types.CLEAR_MARKET_CATEGORY_DATA,
     }),
@@ -42,6 +50,10 @@ export const marketActions = {
 
     clearOrderData: () => ({
         type: types.CLEAR_ORDER_DATA,
+    }),
+
+    clearSearchResults: () => ({
+        type: types.CLEAR_SEARCH_RESULTS,
     }),
 
     // Async
@@ -72,5 +84,10 @@ export const marketActions = {
     createNewOrderAsync: (orderData) => ({
         type: types.CREATE_NEW_ORDER_ASYNC,
         payload: { orderData },
+    }),
+
+    searchItemsByNameAsync: (itemName) => ({
+        type: types.SEARCH_ITEMS_BY_NAME_ASYNC,
+        payload: { itemName },
     }),
 };

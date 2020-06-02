@@ -19,6 +19,7 @@ import {
     SignupOverlay,
     LoginOverlay,
     CodeConfirmationOverlay,
+    SearchOverlay,
 } from 'components';
 
 render(
@@ -32,6 +33,7 @@ render(
             <SignupOverlay />
             <LoginOverlay />
             <CodeConfirmationOverlay />
+            <SearchOverlay />
             <Cart />
         </Router>
     </Provider>,

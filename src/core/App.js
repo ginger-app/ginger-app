@@ -23,6 +23,7 @@ const AppComponent = ({ getUserDataAsync, getGoogleMapsKeyAsync }) => {
         if (localStorage.getItem('ginger-token')) {
             getUserDataAsync();
         }
+
         getGoogleMapsKeyAsync();
     }, []);
 

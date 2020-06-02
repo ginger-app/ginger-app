@@ -2,20 +2,18 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { Portal } from 'react-portal';
 
 // Styles
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Portal } from 'react-portal';
+import { Icon } from 'components';
 import { debounce } from 'lodash';
 import { book } from 'core';
-import profile from 'theme/assets/svg/profile.svg';
-import login from 'theme/assets/svg/login.svg';
-import heart from 'theme/assets/svg/heart.svg';
 
 // Components
-import { DailyBonus, CategoriesCatalogue, Toaster, LastOrder } from 'components';
+import { DailyBonus, CategoriesCatalogue, Toaster, LastOrder, PageTitle } from 'components';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
@@ -68,28 +66,34 @@ const HomeComponent = ({
 
     return (
         <section className={`${Styles.container} className`}>
-            {isAuthenticated ? (
-                <NavLink className={Styles.profileButton} to={book.profile}>
-                    <img src={profile} alt='profile' />
-                </NavLink>
-            ) : (
-                <div className={Styles.loginButton} onClick={showLoginOverlay}>
-                    <img src={login} alt='profile' />
-                </div>
-            )}
-
-            {isAuthenticated ? (
-                <NavLink className={Styles.favoritesButton} to={book.favorites}>
-                    <img src={heart} alt='lists' />
-                </NavLink>
-            ) : (
-                <div className={Styles.favoritesButton} onClick={showLoginOverlay}>
-                    <img src={heart} alt='lists' />
-                </div>
-            )}
-
-            <DailyBonus className={Styles.dailyBonus} />
+            <PageTitle
+                className={Styles.header}
+                leftButton={
+                    isAuthenticated ? (
+                        <NavLink className={Styles.profileButton} to={book.profile}>
+                            <Icon name='profile' color='black' />
+                        </NavLink>
+                    ) : (
+                        <div className={Styles.loginButton} onClick={showLoginOverlay}>
+                            <Icon name='login' color='black' />
+                        </div>
+                    )
+                }
+                rightButton={
+                    isAuthenticated ? (
+                        <NavLink className={Styles.favoritesButton} to={book.favorites}>
+                            <Icon name='heart' color='black' />
+                        </NavLink>
+                    ) : (
+                        <div className={Styles.favoritesButton} onClick={showLoginOverlay}>
+                            <Icon name='heart' color='black' />
+                        </div>
+                    )
+                }
+                search
+            />
             <LastOrder className={Styles.lastOrder} />
+            <DailyBonus className={Styles.dailyBonus} />
             <CategoriesCatalogue
                 className={Styles.catalogue}
                 buttonStyle={{ width: '90%' }}
