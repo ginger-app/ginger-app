@@ -55,6 +55,12 @@
             padding: 0;
 
             border-radius: 100%;
+
+            transition: all 0.3s;
+
+            &.active {
+                background: $paletteGrey_1;
+            }
         }
 
         & .sign {

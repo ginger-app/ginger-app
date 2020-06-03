@@ -20,6 +20,7 @@ import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     categoryData: state.market.get('categoryData').toJS(),
+    sortingOption: state.market.get('sortingOption'),
 });
 
 const mapDispatchToProps = {
@@ -35,6 +36,7 @@ const CategoryComponent = ({
     clearMarketCategoryData,
     categoryData,
     showFilters,
+    sortingOption,
 }) => {
     useEffect(() => {
         getMarketCategoryDataAsync(sku);
@@ -43,6 +45,13 @@ const CategoryComponent = ({
     }, [getMarketCategoryDataAsync, sku]);
 
     const { name, subcategories, items } = categoryData;
+
+    const sortedItems =
+        sortingOption === 'cheapest'
+            ? items.sort((a, b) => a.price - b.price)
+            : sortingOption === 'expensive'
+            ? items.sort((a, b) => b.price - a.price)
+            : items;
 
     return isEmpty(categoryData) ? (
         <Transition
@@ -102,7 +111,7 @@ const CategoryComponent = ({
                             </NavLink>
                         ))}
                     />
-                    <MarketShowcase className={Styles.showcase} items={items} marketType />
+                    <MarketShowcase className={Styles.showcase} items={sortedItems} marketType />
                 </section>
             )}
         </Transition>

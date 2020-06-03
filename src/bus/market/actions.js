@@ -3,6 +3,14 @@ import { marketTypes as types } from './types';
 
 export const marketActions = {
     // Sync
+    setSortingOption: (option) => ({
+        type: types.SET_SORTING_OPTION,
+        payload: { option },
+    }),
+
+    clearSortingOption: () => ({
+        type: types.CLEAR_SORTING_OPTION,
+    }),
 
     // Filling
     fillMarketCategories: (categories) => ({

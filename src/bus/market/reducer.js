@@ -11,10 +11,17 @@ const initialState = Map({
     productData: Map({}),
     orderData: Map({}),
     searchResults: List(),
+    sortingOption: null,
 });
 
 export const marketReducer = (state = initialState, action) => {
     switch (action.type) {
+        case types.SET_SORTING_OPTION:
+            return state.set('sortingOption', action.payload.option);
+
+        case types.CLEAR_SORTING_OPTION:
+            return state.set('sortingOption', null);
+
         // FILLING
         case types.FILL_MARKET_CATEGORIES:
             return state.set('categories', fromJS(action.payload.categories));

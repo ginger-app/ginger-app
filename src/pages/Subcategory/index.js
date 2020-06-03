@@ -20,6 +20,7 @@ import { uiActions } from 'bus/ui/actions';
 const mapStateToProps = (state) => ({
     subcategoryData: state.market.get('subcategoryData').toJS(),
     cart: state.profile.get('cart'),
+    sortingOption: state.market.get('sortingOption'),
 });
 
 const mapDispatchToProps = {
@@ -35,6 +36,7 @@ const SubcategoryComponent = ({
     clearMarketSubcategoryData,
     subcategoryData,
     showFilters,
+    sortingOption,
     cart,
 }) => {
     useEffect(() => {
@@ -44,6 +46,13 @@ const SubcategoryComponent = ({
     }, [sku]);
 
     const { name, tags, items } = subcategoryData;
+
+    const sortedItems =
+        sortingOption === 'cheapest'
+            ? items.sort((a, b) => a.price - b.price)
+            : sortingOption === 'expensive'
+            ? items.sort((a, b) => b.price - a.price)
+            : items;
 
     return isEmpty(subcategoryData) ? (
         <Transition
@@ -100,7 +109,7 @@ const SubcategoryComponent = ({
                             </div>
                         ))}
                     />
-                    <MarketShowcase className={Styles.showcase} items={items} marketType />
+                    <MarketShowcase className={Styles.showcase} items={sortedItems} marketType />
                 </section>
             )}
         </Transition>
