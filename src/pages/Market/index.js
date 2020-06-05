@@ -67,6 +67,7 @@ const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) =>
                             categoryName={name}
                             categorySku={sku}
                             items={items}
+                            index={index}
                             extended
                         />
                     ))}

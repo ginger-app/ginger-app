@@ -16,7 +16,7 @@ export const opacityTransitionConfig = (duration) => ({
             opacity: 1,
         },
         exiting: {
-            opacity: 1,
+            opacity: 0,
         },
         exited: {
             opacity: 0,

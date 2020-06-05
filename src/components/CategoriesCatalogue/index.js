@@ -48,11 +48,13 @@ const CatalogueComponent = ({
                             className={Styles.item}
                             name={item[0].name}
                             sku={item[0].sku}
+                            index={index}
                         />
                         <CategoryItem
                             className={Styles.item}
                             name={item[1].name}
                             sku={item[1].sku}
+                            index={index}
                         />
                     </div>
                 ))}

@@ -3,11 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Portal } from 'react-portal';
+import { Transition } from 'react-transition-group';
 
 // Styles
 import Styles from './styles.module.scss';
 
 // Instruments
+import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { Icon } from 'components';
 import { debounce } from 'lodash';
 import { book } from 'core';
@@ -65,49 +67,68 @@ const HomeComponent = ({
     };
 
     return (
-        <section className={`${Styles.container} className`}>
-            <PageTitle
-                className={Styles.header}
-                leftButton={
-                    isAuthenticated ? (
-                        <NavLink className={Styles.profileButton} to={book.profile}>
-                            <Icon name='profile' color='black' />
-                        </NavLink>
-                    ) : (
-                        <div className={Styles.loginButton} onClick={showLoginOverlay}>
-                            <Icon name='login' color='black' />
-                        </div>
-                    )
-                }
-                rightButton={
-                    isAuthenticated ? (
-                        <NavLink className={Styles.favoritesButton} to={book.favorites}>
-                            <Icon name='heart' color='black' />
-                        </NavLink>
-                    ) : (
-                        <div className={Styles.favoritesButton} onClick={showLoginOverlay}>
-                            <Icon name='heart' color='black' />
-                        </div>
-                    )
-                }
-                search
-            />
-            <LastOrder className={Styles.lastOrder} />
-            <DailyBonus className={Styles.dailyBonus} />
-            <CategoriesCatalogue
-                className={Styles.catalogue}
-                buttonStyle={{ width: '90%' }}
-                itemsToShow={3}
-                extended
-            />
-            <Portal>
-                <Toaster
-                    inProp={showToaster}
-                    message={toasterMessage}
-                    closeToaster={() => setToasterVisibility(false)}
-                />
-            </Portal>
-        </section>
+        <Transition
+            in
+            appear
+            mountOnEnter
+            unmountOnExit
+            timeout={{
+                ...opacityTransitionConfig().timeout,
+                enter: 300,
+            }}
+        >
+            {(state) => (
+                <section
+                    className={Styles.container}
+                    style={{
+                        ...opacityTransitionConfig().defaultStyles,
+                        ...opacityTransitionConfig().transitionStyles[state],
+                    }}
+                >
+                    <PageTitle
+                        className={Styles.header}
+                        leftButton={
+                            isAuthenticated ? (
+                                <NavLink className={Styles.profileButton} to={book.profile}>
+                                    <Icon name='profile' color='black' />
+                                </NavLink>
+                            ) : (
+                                <div className={Styles.loginButton} onClick={showLoginOverlay}>
+                                    <Icon name='login' color='black' />
+                                </div>
+                            )
+                        }
+                        rightButton={
+                            isAuthenticated ? (
+                                <NavLink className={Styles.favoritesButton} to={book.favorites}>
+                                    <Icon name='heart' color='black' />
+                                </NavLink>
+                            ) : (
+                                <div className={Styles.favoritesButton} onClick={showLoginOverlay}>
+                                    <Icon name='heart' color='black' />
+                                </div>
+                            )
+                        }
+                        search
+                    />
+                    <LastOrder className={Styles.lastOrder} />
+                    <DailyBonus className={Styles.dailyBonus} />
+                    <CategoriesCatalogue
+                        className={Styles.catalogue}
+                        buttonStyle={{ width: '90%' }}
+                        itemsToShow={3}
+                        extended
+                    />
+                    <Portal>
+                        <Toaster
+                            inProp={showToaster}
+                            message={toasterMessage}
+                            closeToaster={() => setToasterVisibility(false)}
+                        />
+                    </Portal>
+                </section>
+            )}
+        </Transition>
     );
 };
 

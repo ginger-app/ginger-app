@@ -16,3 +16,4 @@ export * from './DeliveryTimeModal';
 export * from './LastOrder';
 export * from './SearchOverlay';
 export * from './FiltersOverlay';
+export * from './Preloader';

@@ -2,9 +2,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { Transition } from 'react-transition-group';
 
 // Styles
 import Styles from './styles.module.scss';
+
+// Instruments
+import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Mock
 import tomato from 'theme/assets/images/tomato-mock.png';
@@ -16,13 +20,33 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {};
 
 const CategoryItemComponent = (props) => {
-    const { className, sku, name } = props;
+    const { className, sku, name, index } = props;
 
     return (
-        <NavLink className={`${Styles.container} ${className}`} to={`/categories/${sku}`}>
-            <img src={tomato} alt='' />
-            <span className={Styles.name}>{name}</span>
-        </NavLink>
+        <Transition
+            in
+            appear
+            mountOnEnter
+            unmountOnExit
+            timeout={{
+                ...opacityTransitionConfig(Math.min(index * 50, 500)).timeout,
+                exit: 300,
+            }}
+        >
+            {(state) => (
+                <NavLink
+                    className={`${Styles.container} ${className}`}
+                    to={`/categories/${sku}`}
+                    style={{
+                        ...opacityTransitionConfig().defaultStyles,
+                        ...opacityTransitionConfig().transitionStyles[state],
+                    }}
+                >
+                    <img src={tomato} alt='' />
+                    <span className={Styles.name}>{name}</span>
+                </NavLink>
+            )}
+        </Transition>
     );
 };
 
