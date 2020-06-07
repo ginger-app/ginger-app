@@ -24,6 +24,7 @@ import { uiActions } from 'bus/ui/actions';
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.get('isAuthenticated'),
     orders: state.profile.get('orders'),
+    logs: state.ui.get('logs'),
 });
 
 const mapDispatchToProps = {
@@ -37,6 +38,7 @@ const HomeComponent = ({
     getMarketCategoriesAsync,
     showLoginOverlay,
     orders,
+    logs,
 }) => {
     const [searchValue, setSearchValue] = useState('');
     const [showToaster, setToasterVisibility] = useState(false);
@@ -66,6 +68,39 @@ const HomeComponent = ({
         setSearchValue(value);
     };
 
+    const sendLogs = async (e) => {
+        e.preventDefault();
+
+        const response = await fetch(`${process.env.REACT_APP_MAIN_URL}/app/logs`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                logs,
+            }),
+        });
+
+        const data = await response.json();
+        document.getElementById('app').style.transition = 'background 0.3s';
+
+        if (response.status >= 400) {
+            document.getElementById('app').style.background = '#c63838';
+
+            setTimeout(() => {
+                document.getElementById('app').style.background = null;
+            }, 500);
+
+            return null;
+        }
+
+        document.getElementById('app').style.background = '#00c438';
+
+        setTimeout(() => {
+            document.getElementById('app').style.background = null;
+        }, 500);
+    };
+
     return (
         <Transition
             in
@@ -84,6 +119,7 @@ const HomeComponent = ({
                         ...opacityTransitionConfig().defaultStyles,
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
+                    onContextMenu={sendLogs}
                 >
                     <PageTitle
                         className={Styles.header}

@@ -8,6 +8,9 @@ import { uiActions } from 'bus/ui/actions';
 // Api
 import { Api } from 'api';
 
+// Instruments
+import { Logger } from 'bus/utils';
+
 export function* getOrderDataWorker({ payload: { id } }) {
     try {
         const response = yield apply(Api, Api.market.getOrderData, [id]);

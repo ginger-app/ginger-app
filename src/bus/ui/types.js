@@ -26,4 +26,7 @@ export const types = {
 
     // Errors
     EMIT_ERROR: 'EMIT_ERROR',
+
+    // TEMP
+    WRITE_LOG: 'WRITE_LOG',
 };

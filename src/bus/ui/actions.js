@@ -79,4 +79,10 @@ export const uiActions = {
         error: true,
         meta,
     }),
+
+    // TEMP
+    writeLog: (string) => ({
+        type: types.WRITE_LOG,
+        payload: { string },
+    }),
 };

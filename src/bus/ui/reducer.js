@@ -13,6 +13,7 @@ const initialState = Map({
     signupOverlay: false,
     loginOverlay: false,
     backButtonPath: null,
+    logs: '',
 });
 
 export const uiReducer = (state = initialState, action) => {
@@ -83,6 +84,10 @@ export const uiReducer = (state = initialState, action) => {
         // Errors
         case types.EMIT_ERROR:
             return state.set('errorMessage', action.payload.message);
+
+        // TEMP
+        case types.WRITE_LOG:
+            return state.set('logs', state.get('logs') + action.payload.string);
 
         default:
             return state;
