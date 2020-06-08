@@ -20,20 +20,20 @@ const mapDispatchToProps = {
 const DailyBonusComponent = ({ className, isAuthenticated, dailyBonus, showLoginOverlay }) => {
     const [bonusOpened, setBonusOpenedState] = useState(false);
 
-    useEffect(() => {
-        const bonusOpenedDate = localStorage.getItem('opto-market-bonus-opened-date');
+    // useEffect(() => {
+    //     const bonusOpenedDate = localStorage.getItem('opto-market-bonus-opened-date');
 
-        if (bonusOpenedDate) {
-            setBonusOpenedState(
-                isAuthenticated && bonusOpenedDate === new Date().toLocaleDateString(),
-            );
-        }
-    }, [isAuthenticated]);
+    //     if (bonusOpenedDate) {
+    //         setBonusOpenedState(
+    //             isAuthenticated && bonusOpenedDate === new Date().toLocaleDateString(),
+    //         );
+    //     }
+    // }, [isAuthenticated]);
 
     const _handleBonusOpen = () => {
         if (!isAuthenticated) return showLoginOverlay();
 
-        localStorage.setItem('opto-market-bonus-opened-date', new Date().toLocaleDateString());
+        // localStorage.setItem('opto-market-bonus-opened-date', new Date().toLocaleDateString());
         return setBonusOpenedState(true);
     };
 

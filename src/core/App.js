@@ -20,9 +20,12 @@ const mapDispatchToProps = {
 
 const AppComponent = ({ getUserDataAsync, getGoogleMapsKeyAsync }) => {
     useEffect(() => {
-        if (localStorage.getItem('ginger-token')) {
-            getUserDataAsync();
-        }
+        // not even trying to handle error
+        try {
+            if (localStorage.getItem('ginger-token')) {
+                getUserDataAsync();
+            }
+        } catch (err) {}
 
         getGoogleMapsKeyAsync();
     }, []);
