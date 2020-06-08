@@ -1,6 +1,8 @@
 @import 'resources';
 
 .container {
+    @include fullHeight;
+
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 3rem;
@@ -8,7 +10,6 @@
     place-items: center;
     gap: 1rem;
 
-    height: 100vh;
     padding: 1rem 0;
 
     & .header {

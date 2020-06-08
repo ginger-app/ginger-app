@@ -32,18 +32,6 @@ const CatalogueComponent = ({
     extended,
     Logger,
 }) => {
-    useEffect(() => {
-        console.log(
-            'First render',
-            'CategoriesCatalogue first render',
-            `Categories length -> ${categories.length}`,
-        );
-    }, []);
-
-    useEffect(() => {
-        console.log('consective renders');
-    });
-
     /**
      * We want to render columns of 2 categories. For that we have to devide
      * categories array into array of arrays that consist of 2 items.

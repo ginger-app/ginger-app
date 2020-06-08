@@ -1,6 +1,8 @@
 @import 'resources';
 
 .container {
+    @include fullHeight;
+
     position: fixed;
     top: 0;
     left: 0;
@@ -9,7 +11,6 @@
     place-items: center;
 
     width: 100vw;
-    height: 100vh;
 
     background: $paletteBg;
 

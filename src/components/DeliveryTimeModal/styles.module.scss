@@ -1,6 +1,8 @@
 @import 'resources';
 
 .container {
+    @include fullHeight;
+
     position: fixed;
     top: 0;
     left: 0;
@@ -12,7 +14,6 @@
     gap: 1rem;
 
     width: 100vw;
-    height: 100vh;
     padding: 0.5rem 1rem 2rem;
 
     background: $paletteDarkGrey_1;

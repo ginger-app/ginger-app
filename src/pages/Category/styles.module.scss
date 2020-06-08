@@ -1,11 +1,11 @@
 @import 'resources';
 
 .container {
+    @include fullHeight;
+
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 3rem min-content 1fr;
-
-    height: 100vh;
 
     padding: 1rem;
 
@@ -55,9 +55,10 @@
 }
 
 .loadingContainer {
+    @include fullHeight;
+
     display: grid;
     place-items: center;
 
     width: 100vw;
-    height: 100vh;
 }

@@ -1,11 +1,11 @@
 @import 'resources';
 
 .container {
+    @include fullHeight;
+
     display: grid;
     grid-template-rows: 3rem 1fr;
     gap: 1rem;
-
-    height: 100vh;
 
     padding: 1rem;
 }
