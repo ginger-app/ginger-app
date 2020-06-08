@@ -29,7 +29,7 @@ const mapDispatchToProps = {
 
 const ProfileComponent = ({ className, profile, logoutAsync, getUserDataAsync }) => {
     const {
-        firstName,
+        name,
         favorites,
         orders,
         bonuses,
@@ -40,7 +40,7 @@ const ProfileComponent = ({ className, profile, logoutAsync, getUserDataAsync })
         getUserDataAsync();
     }, []);
 
-    return firstName.length === 0 ? (
+    return name.length === 0 ? (
         <Transition
             in
             appear
@@ -83,7 +83,7 @@ const ProfileComponent = ({ className, profile, logoutAsync, getUserDataAsync })
                         <img src={edit} alt='edit profile' />
                     </div>
                     <img className={Styles.avatar} src={userpic} alt='avatar' />
-                    <p className={Styles.name}>{firstName}</p>
+                    <p className={Styles.name}>{name}</p>
                     <NavLink className={Styles.listsBlock} to={'/favorites'}>
                         {Object.keys(favorites).length} <span>Favorites</span>
                     </NavLink>

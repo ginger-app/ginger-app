@@ -8,8 +8,7 @@ import { profileTypes as types } from './types';
 import userpic from 'theme/assets/images/ginger.jpg';
 
 const initialState = Map({
-    firstName: '',
-    lastName: '',
+    name: '',
     phoneNumber: '',
     email: '',
 

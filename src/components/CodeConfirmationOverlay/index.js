@@ -45,8 +45,7 @@ const CodeConfirmationOverlayComponent = ({
                       userData: {
                           phoneNumber,
                           email,
-                          firstName: name.split(' ')[0],
-                          lastName: name.split(' ')[1] || '',
+                          name,
                       },
                   })
                 : sendLoginDataAsync({ phoneNumber, code });
@@ -92,8 +91,7 @@ const CodeConfirmationOverlayComponent = ({
                                                   userData: {
                                                       phoneNumber,
                                                       email,
-                                                      firstName: name.split(' ')[0],
-                                                      lastName: name.split(' ')[1] || '',
+                                                      name,
                                                   },
                                               })
                                         : () => sendLoginDataAsync({ phoneNumber, code })

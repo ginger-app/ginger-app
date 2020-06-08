@@ -12,6 +12,7 @@ export function* ErrorHandler(res, options) {
             return yield put(uiActions.showLoginOverlay());
 
         default:
+            return alert(status, message);
             break;
     }
 }
