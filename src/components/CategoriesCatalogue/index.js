@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
@@ -12,11 +12,16 @@ import { CategoryItem, Carousel } from 'components';
 // Instruments
 import { book } from 'core';
 
+// Actions
+import { Logger } from 'bus/utils';
+
 const mapStateToProps = (state) => ({
     categories: state.market.get('categories').toJS(),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    Logger,
+};
 
 const CatalogueComponent = ({
     className,
@@ -25,7 +30,20 @@ const CatalogueComponent = ({
     itemsToShow,
     itemsToScroll,
     extended,
+    Logger,
 }) => {
+    useEffect(() => {
+        console.log(
+            'First render',
+            'CategoriesCatalogue first render',
+            `Categories length -> ${categories.length}`,
+        );
+    }, []);
+
+    useEffect(() => {
+        console.log('consective renders');
+    });
+
     /**
      * We want to render columns of 2 categories. For that we have to devide
      * categories array into array of arrays that consist of 2 items.

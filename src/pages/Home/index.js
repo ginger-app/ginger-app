@@ -119,7 +119,7 @@ const HomeComponent = ({
                         ...opacityTransitionConfig().defaultStyles,
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
-                    onContextMenu={sendLogs}
+                    onContextMenuCapture={sendLogs}
                 >
                     <PageTitle
                         className={Styles.header}
