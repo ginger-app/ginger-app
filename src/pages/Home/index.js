@@ -6,20 +6,18 @@ import { Portal } from 'react-portal';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import { Icon } from 'components';
-import { debounce } from 'lodash';
 import { book } from 'core';
 
 // Components
-import { DailyBonus, CategoriesCatalogue, Toaster, LastOrder, PageTitle } from 'components';
+import { DailyBonus, CategoriesCatalogue, Toaster, LastOrder, PageTitle, Icon } from 'components';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
 import { uiActions } from 'bus/ui/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.get('isAuthenticated'),
@@ -33,14 +31,12 @@ const mapDispatchToProps = {
 };
 
 const HomeComponent = ({
-    className,
     isAuthenticated,
     getMarketCategoriesAsync,
     showLoginOverlay,
-    orders,
-    logs,
+    // orders,
+    // logs,
 }) => {
-    const [searchValue, setSearchValue] = useState('');
     const [showToaster, setToasterVisibility] = useState(false);
     const [toasterMessage, setToasterMessage] = useState('');
 
@@ -51,55 +47,14 @@ const HomeComponent = ({
 
     // showing toaster message (currently only for 404)
     useEffect(() => {
-        const showToaster = window.location.search.substring(1) === '404';
+        const toasterVisibility = window.location.search.substring(1) === '404';
         setToasterMessage('Page not found');
-        setToasterVisibility(showToaster);
+        setToasterVisibility(toasterVisibility);
 
         setTimeout(() => {
             setToasterVisibility(false);
         }, 5000);
     }, []);
-
-    const handleSearch = ({ target: { value } }) => {
-        debounce(() => {
-            //api call here
-        }, 500);
-
-        setSearchValue(value);
-    };
-
-    const sendLogs = async (e) => {
-        e.preventDefault();
-
-        const response = await fetch(`${process.env.REACT_APP_MAIN_URL}/app/logs`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify({
-                logs,
-            }),
-        });
-
-        const data = await response.json();
-        document.getElementById('app').style.transition = 'background 0.3s';
-
-        if (response.status >= 400) {
-            document.getElementById('app').style.background = '#c63838';
-
-            setTimeout(() => {
-                document.getElementById('app').style.background = null;
-            }, 500);
-
-            return null;
-        }
-
-        document.getElementById('app').style.background = '#00c438';
-
-        setTimeout(() => {
-            document.getElementById('app').style.background = null;
-        }, 500);
-    };
 
     return (
         <Transition
@@ -119,7 +74,6 @@ const HomeComponent = ({
                         ...opacityTransitionConfig().defaultStyles,
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
-                    onContextMenuCapture={sendLogs}
                 >
                     <PageTitle
                         className={Styles.header}

@@ -1,19 +1,17 @@
 // Core
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Components
-import { Map, Icon, RequestNewAddress } from 'components';
+import { Map, RequestNewAddress } from 'components';
 
 // Instruments
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
+import Styles from './styles.module.scss';
 
 export const MapModal = ({
-    className,
     address,
     setAddress,
     addressDetails,
@@ -51,7 +49,7 @@ export const MapModal = ({
                     <input
                         value={address}
                         className={Styles.input}
-                        placeholder={'Choose your address on a map'}
+                        placeholder='Choose your address on a map'
                         // onChange={({ target: { value } }) => setAddress(value)}
                         disabled
                     />

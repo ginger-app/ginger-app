@@ -17,13 +17,11 @@
 
     & .carousele {
         padding: 0 0.5rem;
-
         min-height: 16rem;
 
         & .item {
             height: 7.5rem;
             width: 6.5rem !important; // forcing rewriting of flex-box default widths
-
             margin: 0.5rem;
         }
     }
@@ -31,6 +29,7 @@
     & .actionButton {
         @include darkButton;
         place-self: center;
+
         margin: 0 1rem;
     }
 }

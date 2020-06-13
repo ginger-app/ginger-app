@@ -14,24 +14,26 @@
     }
 
     & .leftArrow {
-        cursor: pointer;
         @include centerContent;
+        cursor: pointer;
 
         height: 100%;
         width: 2rem;
     }
 
     & .title {
-        cursor: pointer;
-        grid-column: 2;
         @include boldTitle;
+        cursor: pointer;
+
+        grid-column: 2;
+
         color: $paletteWhite;
     }
 
     & .items {
         cursor: pointer;
-        grid-column: 3;
 
+        grid-column: 3;
         display: flex;
         justify-items: flex-start;
 
@@ -43,24 +45,26 @@
         & .cartItem {
             height: 2rem;
             width: 2rem;
-
             margin-left: -0.5rem;
 
-            border-radius: 100%;
-            border: 1px solid $paletteDarkGrey_1;
             background: $paletteBg;
+
+            border: 1px solid $paletteDarkGrey_1;
+            border-radius: 100%;
         }
     }
 
     & .sum {
-        cursor: pointer;
         @include centerContent;
+        cursor: pointer;
+
         grid-column: 4;
 
         height: 2rem;
         padding: 0 0.5rem;
 
         background: $paletteGreen_1;
+
         border-radius: 2rem;
     }
 }

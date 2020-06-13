@@ -13,31 +13,34 @@
     width: 95vw;
     padding: 1rem 2rem 1.5rem;
 
-    border-radius: 1rem 1rem 0 0;
     background: $paletteWhite;
 
+    border-radius: 1rem 1rem 0 0;
+
     & .arrowIcon {
-        cursor: pointer;
         @include centerContent;
+        cursor: pointer;
         place-self: center;
+
         grid-column: 1 / 3;
 
-        width: 20%;
         height: 100%;
+        width: 20%;
         padding: 0.5rem;
     }
 
     & .image {
         grid-column: 1 / 3;
 
-        width: 100%;
         height: 100%;
+        width: 100%;
     }
 
     & .itemName,
     .descriptionTitle {
         @include boldTitle;
         place-self: center start;
+
         grid-column: 1 / 3;
 
         color: $paletteBlack;
@@ -45,7 +48,9 @@
 
     & .unit {
         place-self: start;
+
         grid-column: 1 / 3;
+
         color: $paletteGrey_3;
     }
 
@@ -53,6 +58,7 @@
         @include centerContent;
         @include boldTitle;
         place-self: center start;
+
         grid-template-columns: repeat(3, 1fr);
 
         height: 90%;
@@ -64,31 +70,33 @@
         overflow: hidden;
 
         & .amountButton {
-            cursor: pointer;
             @include centerContent;
+            cursor: pointer;
 
-            width: 100%;
             height: 100%;
+            width: 100%;
         }
 
         & .amountInput {
-            width: 100%;
             height: 80%;
+            width: 100%;
 
             background: $paletteWhite;
+
             border: 1px solid $paletteGrey_3;
             border-radius: 10px;
 
-            text-align: center;
             font-size: 1.5rem;
             font-weight: bold;
+            text-align: center;
         }
 
         & .amountDisabled {
             @include centerContent;
             cursor: pointer;
-            width: 100%;
+
             height: 100%;
+            width: 100%;
         }
     }
 
@@ -117,9 +125,8 @@
     & .favoritesButton {
         @include lightButton;
         @include centerContent;
-
-        width: 3rem;
         height: 3rem;
+        width: 3rem;
         padding: 0;
     }
 

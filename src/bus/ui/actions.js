@@ -1,4 +1,4 @@
-//Types
+// Types
 import { types } from './types';
 
 export const uiActions = {

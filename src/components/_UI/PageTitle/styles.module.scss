@@ -10,10 +10,11 @@
 
     & .backButton,
     .searchButton {
-        cursor: pointer;
         @include shadow;
         @include lightButton;
         @include centerContent;
+        cursor: pointer;
+
         grid-column: 1; // only for backButton
 
         height: 100%;
@@ -30,16 +31,20 @@
         width: 3rem;
 
         border-radius: 2rem;
+
         transition: width 0.3s;
 
         &.rightButton {
-            grid-column: 3;
-            margin: 0 1rem;
             place-self: end;
+
+            grid-column: 3;
+
+            margin: 0 1rem;
         }
 
         &.active {
             grid-column: 1 / 4;
+
             width: 90%;
         }
     }

@@ -19,11 +19,12 @@
         min-width: 7.5rem;
         padding: 1rem;
 
-        border-radius: 2rem;
         border: 1px solid $paletteGreen_1;
+        border-radius: 2rem;
+
+        text-align: center;
 
         color: $paletteGreen_1;
-        text-align: center;
     }
 
     & .actionButton {

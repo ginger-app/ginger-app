@@ -5,7 +5,6 @@ import { Transition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Components
 import { PageTitle, MarketShowcase, Carousel, Icon } from 'components';
@@ -17,6 +16,7 @@ import { isEmpty } from 'lodash';
 // Actions
 import { marketActions } from 'bus/market/actions';
 import { uiActions } from 'bus/ui/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     categoryData: state.market.get('categoryData').toJS(),
@@ -30,7 +30,6 @@ const mapDispatchToProps = {
 };
 
 const CategoryComponent = ({
-    className,
     sku,
     getMarketCategoryDataAsync,
     clearMarketCategoryData,
@@ -42,7 +41,7 @@ const CategoryComponent = ({
         getMarketCategoryDataAsync(sku);
 
         return clearMarketCategoryData;
-    }, [getMarketCategoryDataAsync, sku]);
+    }, [sku, getMarketCategoryDataAsync, clearMarketCategoryData]);
 
     const { name, subcategories, items } = categoryData;
 

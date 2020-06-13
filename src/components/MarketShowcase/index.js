@@ -2,10 +2,10 @@
 import React from 'react';
 
 // Styles
+import { MarketItem, OrderItem } from 'components';
 import Styles from './styles.module.scss';
 
 // Components
-import { MarketItem, OrderItem } from 'components';
 
 export const MarketShowcase = ({ className, items, orderType, marketType }) => {
     return (
@@ -40,7 +40,7 @@ export const MarketShowcase = ({ className, items, orderType, marketType }) => {
                         id={id}
                         priceFormatted={sum.toFixed(2).split('.')}
                         date={date}
-                        deliveryTime={'10:00-11:00'}
+                        deliveryTime='10:00-11:00'
                     />
                 ))}
         </section>

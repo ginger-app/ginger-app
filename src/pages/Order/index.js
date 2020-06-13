@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Components
 import { OrderDetails } from 'components';
@@ -15,6 +14,7 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     orderData: state.market.get('orderData').toJS(),
@@ -25,12 +25,12 @@ const mapDispatchToProps = {
     clearOrderData: marketActions.clearOrderData,
 };
 
-const OrderComponent = ({ className, id, getOrderDataAsync, clearOrderData, orderData }) => {
+const OrderComponent = ({ id, getOrderDataAsync, clearOrderData, orderData }) => {
     useEffect(() => {
         getOrderDataAsync(id);
 
         return clearOrderData;
-    }, [id]);
+    }, [id, getOrderDataAsync, clearOrderData]);
 
     return (
         <Transition

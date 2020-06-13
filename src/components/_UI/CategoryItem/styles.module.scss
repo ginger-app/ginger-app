@@ -7,12 +7,13 @@
     display: grid;
     place-items: center;
 
-    width: 100%;
     height: 6rem;
+    width: 100%;
     margin-bottom: 0.5rem; // needed for last raw
 
-    border-radius: 1rem;
     background: $paletteWhite;
+
+    border-radius: 1rem;
 
     font-size: 0.8rem;
 

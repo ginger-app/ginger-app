@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Components
 import { PageTitle, MarketShowcase, Carousel, Icon } from 'components';
@@ -16,10 +15,10 @@ import { isEmpty } from 'lodash';
 // Actions
 import { marketActions } from 'bus/market/actions';
 import { uiActions } from 'bus/ui/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     subcategoryData: state.market.get('subcategoryData').toJS(),
-    cart: state.profile.get('cart'),
     sortingOption: state.market.get('sortingOption'),
 });
 
@@ -30,20 +29,19 @@ const mapDispatchToProps = {
 };
 
 const SubcategoryComponent = ({
-    className,
+    // className,
     sku,
     getMarketSubcategoryDataAsync,
     clearMarketSubcategoryData,
     subcategoryData,
     showFilters,
     sortingOption,
-    cart,
 }) => {
     useEffect(() => {
         getMarketSubcategoryDataAsync(sku);
 
         return clearMarketSubcategoryData;
-    }, [sku]);
+    }, [sku, getMarketSubcategoryDataAsync, clearMarketSubcategoryData]);
 
     const { name, tags, items } = subcategoryData;
 

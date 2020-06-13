@@ -5,13 +5,13 @@ import { NavLink } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Mock
 import tomato from 'theme/assets/images/tomato-mock.png';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     ...state,

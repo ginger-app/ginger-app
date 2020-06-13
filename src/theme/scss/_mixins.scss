@@ -11,10 +11,11 @@
 
 // Texts styling
 @mixin boldTitle {
-    color: $paletteBlack;
     font-size: 1.2rem;
     font-weight: bold;
     text-align: center;
+
+    color: $paletteBlack;
 }
 
 // Buttons
@@ -25,11 +26,13 @@
     padding: 1rem;
 
     background: $paletteGrey_1;
+
     border-radius: 2rem;
 
-    color: $paletteWhite;
     font-weight: bold;
     text-align: center;
+
+    color: $paletteWhite;
 
     transition: background 0.2s;
 
@@ -46,14 +49,16 @@
     padding: 1rem;
 
     background: $paletteWhite;
+
     border-radius: 2rem;
 
-    color: $paletteBlack;
     font-weight: bold;
     text-align: center;
 
-    &:hover {
-    }
+    color: $paletteBlack;
+
+    // &:hover {
+    // }
 }
 
 @mixin greenButton {
@@ -63,14 +68,16 @@
     padding: 1rem;
 
     background: $paletteGreen_1;
+
     border-radius: 2rem;
 
-    color: $paletteWhite;
     font-weight: bold;
     text-align: center;
 
-    &:hover {
-    }
+    color: $paletteWhite;
+
+    // &:hover {
+    // }
 }
 
 @mixin disableSelect {
@@ -79,6 +86,7 @@
 
 @mixin blur {
     background-color: rgba(255, 255, 255, 0.15);
+
     backdrop-filter: blur(10px);
 }
 

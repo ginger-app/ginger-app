@@ -1,10 +1,9 @@
 // Core
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Components
 import { CategoryItem, Carousel } from 'components';
@@ -13,25 +12,15 @@ import { CategoryItem, Carousel } from 'components';
 import { book } from 'core';
 
 // Actions
-import { Logger } from 'bus/utils';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     categories: state.market.get('categories').toJS(),
 });
 
-const mapDispatchToProps = {
-    Logger,
-};
+const mapDispatchToProps = {};
 
-const CatalogueComponent = ({
-    className,
-    buttonStyle,
-    categories,
-    itemsToShow,
-    itemsToScroll,
-    extended,
-    Logger,
-}) => {
+const CatalogueComponent = ({ className, buttonStyle, categories, extended }) => {
     /**
      * We want to render columns of 2 categories. For that we have to devide
      * categories array into array of arrays that consist of 2 items.
@@ -41,8 +30,10 @@ const CatalogueComponent = ({
             if (index % 2 === 0) {
                 return [item, categories[index + 1]];
             }
+
+            return null;
         })
-        .filter((item) => item); // filter will skip undefined's
+        .filter((item) => item); // filter will skip null's
 
     return (
         <section className={`${Styles.container} ${extended && Styles.extended} ${className}`}>

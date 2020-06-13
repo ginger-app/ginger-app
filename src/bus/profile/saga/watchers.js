@@ -1,11 +1,11 @@
-//Core
+// Core
 import { takeEvery, all, call } from 'redux-saga/effects';
 
-//Types
+// Types
 import { profileTypes as types } from '../types';
 
-//*REMEMBER TO REEXPORT
-//Workers
+//* REMEMBER TO REEXPORT
+// Workers
 import {
     addItemToCartWorker,
     addItemToFavoritesWorker,

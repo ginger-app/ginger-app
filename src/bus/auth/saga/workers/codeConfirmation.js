@@ -3,10 +3,8 @@ import { put, apply } from 'redux-saga/effects';
 
 // Instruments
 import { Api } from 'api';
-import { history } from 'bus/init/middleware/core';
 
 // Actions
-import { authActions } from 'bus/auth/actions';
 import { uiActions } from 'bus/ui/actions';
 import { profileActions } from 'bus/profile/actions';
 

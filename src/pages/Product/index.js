@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Components
 import { ProductDetails } from 'components';
@@ -16,6 +15,7 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     productData: state.market.get('productData').toJS(),
@@ -31,13 +31,13 @@ const ProductComponent = ({
     productData,
     getProductDataAsync,
     clearProductData,
-    location,
+    // location,
 }) => {
     useEffect(() => {
         getProductDataAsync(sku);
 
         return clearProductData;
-    }, []);
+    }, [sku, getProductDataAsync, clearProductData]);
     return (
         <Transition
             in

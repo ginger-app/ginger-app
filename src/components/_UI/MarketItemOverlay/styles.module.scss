@@ -10,8 +10,9 @@
     min-height: 15rem;
     padding: 1rem 0.75rem;
 
-    border-radius: 1rem;
     background: $paletteWhite;
+
+    border-radius: 1rem;
 
     & .closeOverlay {
         cursor: pointer;
@@ -21,21 +22,22 @@
     & .amountDisabled {
         cursor: pointer;
 
-        text-align: center;
         font-size: 1.5rem;
         font-weight: bold;
+        text-align: center;
     }
 
     & .amountInput {
         width: 5rem;
 
         background: $paletteWhite;
+
         border: 1px solid $paletteGrey_3;
         border-radius: 10px;
 
-        text-align: center;
         font-size: 1.5rem;
         font-weight: bold;
+        text-align: center;
     }
 
     & .functionalButton {
@@ -43,8 +45,8 @@
         @include centerContent;
         cursor: pointer;
 
-        width: 2.5rem;
         height: 2.5rem;
+        width: 2.5rem;
 
         border-radius: 100%;
 

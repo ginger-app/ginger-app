@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
-import { PageTitle, MarketShowcase, Carousel } from 'components';
+import { PageTitle, MarketShowcase } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     favorites: state.profile.get('favorites'),
@@ -29,13 +29,13 @@ const FavoritesComponent = ({ className, favorites }) => {
         >
             {(state) => (
                 <section
-                    className={`${Styles.container} className`}
+                    className={`${Styles.container} ${className}`}
                     style={{
                         ...opacityTransitionConfig().defaultStyles,
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <PageTitle className={Styles.title} title={'Favorites'} />
+                    <PageTitle className={Styles.title} title='Favorites' />
                     <MarketShowcase className={Styles.showcase} items={items} marketType />
                 </section>
             )}

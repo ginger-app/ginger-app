@@ -9,7 +9,6 @@
     & input {
         @include centerContent;
         padding: 0 1rem;
-
         width: 100%;
 
         border-radius: 10rem;
@@ -17,19 +16,19 @@
     }
 
     & .button {
-        cursor: pointer;
         @include centerContent;
-
-        grid-row: 2;
-        grid-column: 1;
+        cursor: pointer;
         place-self: center end;
+
+        grid-column: 1;
+        grid-row: 2;
 
         height: 4rem;
         width: 4rem;
 
-        border-radius: 100%;
-
         background: $paletteGreen_2;
+
+        border-radius: 100%;
 
         transition: all 0.3s;
 

@@ -13,32 +13,35 @@
     margin: 0 5vw;
     padding: 1.5rem 1rem;
 
-    border-radius: 12px;
     background: $paletteDarkGrey_1;
+
+    border-radius: 12px;
 
     color: $paletteBg;
 
     & .closeIcon {
-        grid-row: 1;
-        grid-column: 1;
-        place-self: center end;
         cursor: pointer;
+        place-self: center end;
+
+        grid-column: 1;
+        grid-row: 1;
     }
 
     & .requestTitle {
-        grid-row: 1;
         grid-column: 1;
+        grid-row: 1;
     }
 
     & .addressInput {
         @include boldTitle;
-        width: 90%;
         height: 100%;
+        width: 90%;
         padding: 0 1rem;
 
         background: $paletteBg;
-        border-radius: 12px;
+
         border: none;
+        border-radius: 12px;
 
         text-align: start;
     }

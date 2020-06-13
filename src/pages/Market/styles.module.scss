@@ -14,6 +14,7 @@
 
     & .header {
         grid-column: 1 / 4;
+
         width: 100%;
         height: 100%;
     }
@@ -28,8 +29,9 @@
         width: 3rem;
         margin: 0 1rem;
 
-        border-radius: 100%;
         background: $paletteWhite;
+
+        border-radius: 100%;
     }
 
     & .searchButton {

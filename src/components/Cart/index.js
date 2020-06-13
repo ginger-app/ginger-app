@@ -5,7 +5,6 @@ import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
@@ -15,6 +14,7 @@ import { Icon, CartItem, MapModal, DeliveryTimeModal } from 'components';
 import { uiActions } from 'bus/ui/actions';
 import { marketActions } from 'bus/market/actions';
 import { profileActions } from 'bus/profile/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     cartIsOpened: state.ui.get('cartIsOpened'),
@@ -45,7 +45,7 @@ const CartComponent = ({
     const [addressDetails, setAddressDetails] = useState('');
     const [deliveryTime, setDeliveryTime] = useState('');
     const [displayDeliveryTime, setDisplayDeliveryTime] = useState('Choose your delivery time');
-    const [deliveryComment, setDeliveryComment] = useState('');
+    // const [deliveryComment, setDeliveryComment] = useState('');
 
     const actionDisabled =
         address.length === 0 || Object.keys(cart).length === 0 || deliveryTime === '';

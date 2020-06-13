@@ -1,13 +1,13 @@
 // Core
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 // Components
-import { PublicRoutes } from './routes';
 
 // Actions
 import { profileActions } from 'bus/profile/actions';
 import { authActions } from 'bus/auth/actions';
+import { PublicRoutes } from './routes';
 
 const mapStateToProps = ({ auth }) => ({
     isAuthenticated: auth.get('isAuthenticated'),
@@ -25,6 +25,7 @@ const AppComponent = ({ getUserDataAsync, getGoogleMapsKeyAsync }) => {
             if (localStorage.getItem('ginger-token')) {
                 getUserDataAsync();
             }
+            // eslint-disable-next-line
         } catch (err) {}
 
         // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
@@ -33,7 +34,7 @@ const AppComponent = ({ getUserDataAsync, getGoogleMapsKeyAsync }) => {
         document.documentElement.style.setProperty('--vh', `${vh}px`);
 
         getGoogleMapsKeyAsync();
-    }, []);
+    }, [getGoogleMapsKeyAsync, getUserDataAsync]);
 
     return <PublicRoutes />;
 };

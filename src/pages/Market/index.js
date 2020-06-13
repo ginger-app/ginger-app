@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Components
 import { Icon, CategoriesCatalogue, ItemsCatalogue, PageTitle } from 'components';
@@ -16,6 +15,7 @@ import { book } from 'core/routes';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     categories: state.market.get('categories').toJS(),
@@ -54,8 +54,8 @@ const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) =>
                                 <Icon name='home' />
                             </NavLink>
                         }
-                        title={'Market'}
-                        rightButton={'search'}
+                        title='Market'
+                        rightButton='search'
                     />
 
                     {/* Main section */}

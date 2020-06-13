@@ -5,11 +5,11 @@ import { Transition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { OrderStatusLabel } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     ...state,
@@ -37,7 +37,7 @@ const OrderItemComponent = ({
         >
             {(state) => (
                 <NavLink
-                    className={`${Styles.container} className`}
+                    className={`${Styles.container} ${className}`}
                     style={{
                         ...style,
                         ...opacityTransitionConfig().defaultStyles,

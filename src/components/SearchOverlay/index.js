@@ -5,7 +5,6 @@ import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { Icon, SearchItem } from 'components';
@@ -15,6 +14,7 @@ import { useDebounce } from 'utils/customHooks';
 // Actions
 import { uiActions } from 'bus/ui/actions';
 import { marketActions } from 'bus/market/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     searchOpened: state.ui.get('searchOpened'),
@@ -57,11 +57,7 @@ const SearchOverlayComponent = ({
                 clearSearchResults();
             }, 500);
         }
-    }, [debouncedValue]);
-
-    const _handleInput = ({ target: { value } }) => {
-        setInputValue(value);
-    };
+    }, [debouncedValue, clearSearchResults, searchItemsByNameAsync]);
 
     return (
         <Portal>

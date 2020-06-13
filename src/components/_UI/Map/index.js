@@ -3,11 +3,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 // Styles
-import Styles from './styles.module.scss';
-
-// Instruments
 import { isEmpty } from 'lodash';
-import { centerCoords, libraries, options, paths } from './config';
 import {
     GoogleMap,
     LoadScript,
@@ -15,6 +11,10 @@ import {
     Marker,
     StandaloneSearchBox,
 } from '@react-google-maps/api';
+import Styles from './styles.module.scss';
+
+// Instruments
+import { centerCoords, libraries, options, paths } from './config';
 
 const mapStateToProps = (state) => ({
     gmapsKey: state.auth.get('gmapsKey'),
@@ -66,7 +66,7 @@ const MapComponent = ({
             },
         } = addresses[0];
 
-        if (50.5291635 < lat() || lat() < 50.4889755 || 30.5304211 < lng() || lng() < 30.4831379) {
+        if (lat() > 50.5291635 || lat() < 50.4889755 || lng() > 30.5304211 || lng() < 30.4831379) {
             return suggestRequestingNewAddress();
         }
 

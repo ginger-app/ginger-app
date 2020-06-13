@@ -5,7 +5,6 @@ import { Transition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { leftToRightSlideConfig } from 'utils/transitionConfig';
@@ -13,6 +12,7 @@ import mockImage from 'theme/assets/images/apples-mock.png';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     ...state,
@@ -31,7 +31,7 @@ const SearchItemComponent = ({
     setBackButtonPath,
     image,
     nameUkr,
-    unit,
+    // unit,
     price,
     sku,
 }) => {
@@ -61,7 +61,7 @@ const SearchItemComponent = ({
                         ...leftToRightSlideConfig().transitionStyles[state],
                     }}
                 >
-                    <img src={mockImage} className={Styles.image} />
+                    <img src={image || mockImage} className={Styles.image} alt='' />
                     <p className={Styles.itemName}>{nameUkr}</p>
                     <p className={Styles.price}>{price}₴</p>
                 </NavLink>

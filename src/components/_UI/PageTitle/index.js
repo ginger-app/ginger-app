@@ -2,17 +2,16 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Portal } from 'react-portal';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { history } from 'bus/init/middleware/core';
-import { Icon, SearchOverlay } from 'components';
+import { Icon } from 'components';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     searchOpened: state.ui.get('searchOpened'),
@@ -41,7 +40,7 @@ const PageTitleComponent = ({
             showSearchOverlay();
             setBackButtonPath(null);
         }
-    }, []);
+    }, [backButtonPath, showSearchOverlay, setBackButtonPath]);
 
     return (
         <section className={`${Styles.container} ${className}`}>
@@ -60,9 +59,7 @@ const PageTitleComponent = ({
                     <Icon name='search' />
                 </div>
             )}
-            {centerButton
-                ? centerButton
-                : !search && !searchOpened && <p className={Styles.title}>{title}</p>}
+            {centerButton || (!search && !searchOpened && <p className={Styles.title}>{title}</p>)}
             {!searchOpened && rightButton !== 'search' && rightButton}
             {rightButton === 'search' && (
                 <div

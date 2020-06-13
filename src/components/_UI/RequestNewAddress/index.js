@@ -1,17 +1,15 @@
 // Core
 import React from 'react';
-import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { Icon } from 'components';
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
+import Styles from './styles.module.scss';
 
 export const RequestNewAddress = ({
-    className,
     inProp,
     requestedAddress,
     setRequestedAddress,
@@ -44,7 +42,7 @@ export const RequestNewAddress = ({
                         autoFocus
                         value={requestedAddress}
                         className={Styles.addressInput}
-                        placesholder={'Type in your address'}
+                        placesholder='Type in your address'
                         onChange={({ target: { value } }) => setRequestedAddress(value)}
                     />
                     <div

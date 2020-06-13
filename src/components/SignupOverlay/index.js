@@ -1,11 +1,10 @@
 // Core
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { Icon, InputField } from 'components';
@@ -16,6 +15,7 @@ import { AsYouType } from 'libphonenumber-js';
 // Actions
 import { authActions } from 'bus/auth/actions';
 import { uiActions } from 'bus/ui/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     signupOverlay: state.ui.get('signupOverlay'),
@@ -33,9 +33,7 @@ const mapDispatchToProps = {
 const SignupOverlayComponent = ({
     getSignupConfirmationCodeAsync,
     signupOverlay,
-    showLoginOverlay,
     hideSignupOverlay,
-    showCodeOverlay,
     setAuthData,
     preFilledPhoneNumber,
 }) => {
@@ -88,14 +86,14 @@ const SignupOverlayComponent = ({
                             />
                             <InputField
                                 className={Styles.input}
-                                title={'Номер телефону'}
+                                title='Номер телефону'
                                 value={phoneNumber}
                                 onChange={handlePhoneNumberChange}
                                 // className={phoneNumber.length === 4 && Styles.unfinishedPhoneNumber}
                             />
                             <InputField
                                 className={Styles.input}
-                                title={'Електронна пошта'}
+                                title='Електронна пошта'
                                 value={email}
                                 onChange={({ target: { value } }) => setEmail(value)}
                             />

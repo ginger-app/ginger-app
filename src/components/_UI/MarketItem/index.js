@@ -1,21 +1,19 @@
 // Core
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { Icon, MarketItemOverlay } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import heart from 'theme/assets/svg/heart.svg';
-import heartFilled from 'theme/assets/svg/heart-filled.svg';
 import apples from 'theme/assets/images/apples-mock.png';
 
 // Actions
 import { profileActions } from 'bus/profile/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     favorites: state.profile.get('favorites'),

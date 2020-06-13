@@ -10,25 +10,28 @@ export const Carousel = ({ className, items, children }) => {
     const containerRef = useRef(null);
 
     useEffect(() => {
+        const content = contentRef;
+        const container = containerRef;
+
         // declaring handler to removeListener on unmount
         const handler = (e) => {
-            if (contentRef.current.scrollWidth - contentRef.current.clientWidth > 0) {
+            if (content.current.scrollWidth - content.current.clientWidth > 0) {
                 e.preventDefault();
             }
         };
 
         // setting listener
-        containerRef.current.addEventListener('wheel', handler);
+        container.current.addEventListener('wheel', handler);
 
         // removing listener
         return () => {
-            containerRef.current.removeEventListener('wheel', handler);
+            container.current.removeEventListener('wheel', handler);
         };
     }, []);
 
     // mousewheel support (when possible)
-    const _handleScroll = ({ deltaY, target, stopPropagation }) => {
-        const { scrollWidth, clientWidth, addEventListener } = contentRef.current;
+    const _handleScroll = ({ deltaY }) => {
+        const { scrollWidth, clientWidth } = contentRef.current;
         const maxTranslateValue = scrollWidth - clientWidth;
 
         return deltaY > 0

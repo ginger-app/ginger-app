@@ -1,7 +1,7 @@
-//Core
+// Core
 import { Map } from 'immutable';
 
-//Types
+// Types
 import { types } from './types';
 
 const initialState = Map({

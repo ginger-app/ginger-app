@@ -2,25 +2,30 @@
 
 .container {
     padding: 0.5rem 1rem;
+
     border-radius: 1rem;
 
     &.completedStatus {
         background: #00c43848;
+
         color: #008f28;
     }
 
     &.pendingStatus {
         background: #0071c41c;
+
         color: #006278e3;
     }
 
     &.preparingStatus {
         background: #c4b0003b;
+
         color: #d8a007;
     }
 
     &.cancelledStatus {
         background: #c400003b;
+
         color: #d80707;
     }
 }

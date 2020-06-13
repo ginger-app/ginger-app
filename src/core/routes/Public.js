@@ -51,7 +51,7 @@ export const PublicRoutes = () => (
         />
         <Route
             exact
-            path={`/products/:sku`}
+            path='/products/:sku'
             render={({ match }) => <ProductPage sku={match.params.sku} />}
         />
         <Route exact path={book.favorites} component={FavoritesPage} />

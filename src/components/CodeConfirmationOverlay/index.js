@@ -5,7 +5,6 @@ import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { Icon, InputField } from 'components';
@@ -14,6 +13,7 @@ import { leftToRightSlideConfig } from 'utils/transitionConfig';
 // Actions
 import { authActions } from 'bus/auth/actions';
 import { uiActions } from 'bus/ui/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     codeConfirmationOverlay: state.ui.get('codeConfirmationOverlay'),
@@ -75,7 +75,7 @@ const CodeConfirmationOverlayComponent = ({
                         <div className={Styles.fieldsContainer} onKeyPress={_handleKeyPress}>
                             <InputField
                                 className={Styles.input}
-                                title={'Number'}
+                                title='Number'
                                 value={code}
                                 onChange={({ target: { value } }) => setCodeValue(value)}
                                 autoFocus

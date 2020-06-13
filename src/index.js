@@ -8,11 +8,6 @@ import { ConnectedRouter as Router } from 'connected-react-router';
 import './theme/scss/index.scss';
 
 // App
-import { store } from './bus/init/store';
-import { history } from './bus/init/middleware/core';
-import { App } from './core';
-
-// Components
 import {
     CartToaster,
     Cart,
@@ -22,6 +17,11 @@ import {
     SearchOverlay,
     FiltersOverlay,
 } from 'components';
+import { store } from './bus/init/store';
+import { history } from './bus/init/middleware/core';
+import { App } from './core';
+
+// Components
 
 render(
     <Provider store={store}>

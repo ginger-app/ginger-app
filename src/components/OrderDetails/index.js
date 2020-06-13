@@ -1,10 +1,9 @@
 // Core
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import moment from 'moment';
@@ -12,10 +11,9 @@ import { Icon, OrderStatusLabel, CartItem } from 'components';
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import { history } from 'bus/init/middleware/core';
 import mock from 'theme/assets/images/apples-mock.png';
+import Styles from './styles.module.scss';
 
 // Actions
-import { marketActions } from 'bus/market/actions';
-import { profileActions } from 'bus/profile/actions';
 
 const mapStateToProps = (state) => ({
     orderData: state.market.get('orderData').toJS(),
@@ -24,7 +22,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-const OrderDetailsComponent = ({ className, sku, orderData, isAuthenticated }) => {
+const OrderDetailsComponent = ({ className, orderData, isAuthenticated }) => {
     useEffect(() => {
         if (!isAuthenticated) {
             history.push('/');

@@ -1,12 +1,12 @@
 // Core
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 // Styles
+import { uiActions } from 'bus/ui/actions';
 import Styles from './styles.module.scss';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.get('isAuthenticated'),

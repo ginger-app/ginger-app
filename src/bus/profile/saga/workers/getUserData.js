@@ -19,7 +19,7 @@ export function* getUserDataWorker() {
 
         if (response.status >= 400) {
             yield apply(ErrorHandler, ErrorHandler, [response]);
-            throw new Error(response.message);
+            throw new Error(message);
         }
 
         yield put(profileActions.fillProfile(userData));

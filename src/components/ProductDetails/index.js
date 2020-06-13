@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
@@ -13,9 +12,9 @@ import { history } from 'bus/init/middleware/core';
 import mockApples from 'theme/assets/images/apples-mock.png';
 
 // Actions
-import { marketActions } from 'bus/market/actions';
 import { profileActions } from 'bus/profile/actions';
 import { uiActions } from 'bus/ui/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     productData: state.market.get('productData').toJS(),
@@ -49,7 +48,7 @@ const ProductDetailsComponent = ({
     backButtonPath,
     cart,
 }) => {
-    const { nameUkr, stock, unit: unit, price } = productData;
+    const { nameUkr, stock, unit, price, image } = productData;
     const formattedPrice = price.toFixed(2).split('.');
 
     // State
@@ -157,17 +156,16 @@ const ProductDetailsComponent = ({
                     </div>
                     <div
                         className={Styles.buyButton}
-                        onClick={() => {
-                            const { nameUkr, image, price, unit } = productData;
-                            return addItemToCartAsync({
+                        onClick={() =>
+                            addItemToCartAsync({
                                 sku,
                                 amount,
                                 price,
                                 name: nameUkr,
-                                image: mockApples,
-                                unit: unit,
-                            });
-                        }}
+                                image: image || mockApples,
+                                unit,
+                            })
+                        }
                     >
                         Купити <Icon name='cart' color='white' />
                     </div>

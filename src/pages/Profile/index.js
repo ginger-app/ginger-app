@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -17,6 +16,7 @@ import edit from 'theme/assets/svg/edit-dark.svg';
 // Actions
 import { authActions } from 'bus/auth/actions';
 import { profileActions } from 'bus/profile/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     profile: state.profile.toJS(),
@@ -27,7 +27,7 @@ const mapDispatchToProps = {
     getUserDataAsync: profileActions.getUserDataAsync,
 };
 
-const ProfileComponent = ({ className, profile, logoutAsync, getUserDataAsync }) => {
+const ProfileComponent = ({ profile, logoutAsync, getUserDataAsync }) => {
     const {
         name,
         favorites,
@@ -38,7 +38,7 @@ const ProfileComponent = ({ className, profile, logoutAsync, getUserDataAsync })
 
     useEffect(() => {
         getUserDataAsync();
-    }, []);
+    }, [getUserDataAsync]);
 
     return name.length === 0 ? (
         <Transition
@@ -84,10 +84,10 @@ const ProfileComponent = ({ className, profile, logoutAsync, getUserDataAsync })
                     </div>
                     <img className={Styles.avatar} src={userpic} alt='avatar' />
                     <p className={Styles.name}>{name}</p>
-                    <NavLink className={Styles.listsBlock} to={'/favorites'}>
+                    <NavLink className={Styles.listsBlock} to='/favorites'>
                         {Object.keys(favorites).length} <span>Favorites</span>
                     </NavLink>
-                    <NavLink className={Styles.ordersBlock} to={'/orders'}>
+                    <NavLink className={Styles.ordersBlock} to='/orders'>
                         {orders.length} <span>Orders</span>
                     </NavLink>
                     <p className={Styles.bonuses}>

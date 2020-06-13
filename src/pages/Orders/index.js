@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Components
 import { PageTitle, MarketShowcase, Carousel } from 'components';
@@ -14,6 +13,7 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     orders: state.profile.get('orders'),
@@ -24,12 +24,12 @@ const mapDispatchToProps = {
     showLoginOverlay: uiActions.showLoginOverlay,
 };
 
-const OrdersComponent = ({ className, orders, isAuthenticated, showLoginOverlay }) => {
+const OrdersComponent = ({ orders, isAuthenticated, showLoginOverlay }) => {
     useEffect(() => {
         if (!isAuthenticated) {
             showLoginOverlay('/');
         }
-    }, [isAuthenticated]);
+    }, [isAuthenticated, showLoginOverlay]);
 
     const [filterParameter, setFilterParameter] = useState('All');
     const possibleFilters = {
@@ -63,7 +63,7 @@ const OrdersComponent = ({ className, orders, isAuthenticated, showLoginOverlay 
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <PageTitle className={Styles.title} title={'Orders'} />
+                    <PageTitle className={Styles.title} title='Orders' />
                     <Carousel
                         itemsToShow={2}
                         className={Styles.tags}

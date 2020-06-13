@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { useState, useEffect } from 'react';
 
 export const useDebounce = (value, delay) => {
@@ -11,7 +12,7 @@ export const useDebounce = (value, delay) => {
         return () => {
             clearTimeout(handler);
         };
-    }, [value]);
+    }, [value, delay]);
 
     return debouncedValue;
 };

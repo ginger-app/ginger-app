@@ -1,10 +1,10 @@
 // Core
-import { put, apply, select } from 'redux-saga/effects';
-import { getCart } from '../selectors';
+import { put, select } from 'redux-saga/effects';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
 import { profileActions } from 'bus/profile/actions';
+import { getCart } from '../selectors';
 
 // Api
 // import { Api } from 'api';

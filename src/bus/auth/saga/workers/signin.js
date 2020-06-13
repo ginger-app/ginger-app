@@ -1,15 +1,11 @@
 // Core
 import { put, apply } from 'redux-saga/effects';
-// import {getFavorites} from '../selectors';
 
 // Instruments
 import { Api } from 'api';
-import { history } from 'bus/init/middleware/core';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
-import { authActions } from 'bus/auth/actions';
-import { profileActions } from 'bus/profile/actions';
 
 export function* signinWorker({ payload: phoneNumber }) {
     try {

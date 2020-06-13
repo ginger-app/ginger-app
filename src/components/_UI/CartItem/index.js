@@ -3,10 +3,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 // Styles
+import { Icon } from 'components';
 import Styles from './styles.module.scss';
 
 // Components
-import { Icon } from 'components';
 
 export const CartItem = ({
     className,

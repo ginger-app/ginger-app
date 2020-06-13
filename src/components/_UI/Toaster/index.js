@@ -3,11 +3,11 @@ import React from 'react';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { Icon } from 'components';
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
+import Styles from './styles.module.scss';
 
 export const Toaster = ({
     className,
@@ -32,9 +32,7 @@ export const Toaster = ({
                     }}
                 >
                     <div className={`${Styles.toaster} ${className}`}>
-                        {children ? (
-                            children
-                        ) : (
+                        {children || (
                             <>
                                 {message}
                                 <Icon

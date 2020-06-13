@@ -1,8 +1,8 @@
-//Types
+// Types
 import { profileTypes as types } from './types';
 
 export const profileActions = {
-    //Sync
+    // Sync
     fillProfile: (userData) => ({
         type: types.FILL_PROFILE,
         payload: userData,
@@ -32,7 +32,7 @@ export const profileActions = {
         payload: orderData,
     }),
 
-    //Async
+    // Async
     addItemToCartAsync: (item) => ({
         type: types.ADD_ITEM_TO_CART_ASYNC,
         payload: item,

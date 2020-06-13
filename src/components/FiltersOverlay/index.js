@@ -5,7 +5,6 @@ import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { Icon } from 'components';
@@ -14,6 +13,7 @@ import { opacityTransitionConfig, topToBottomSlideConfig } from 'utils/transitio
 // Actions
 import { uiActions } from 'bus/ui/actions';
 import { marketActions } from 'bus/market/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     filtersOpened: state.ui.get('filtersOpened'),
@@ -27,7 +27,6 @@ const mapDispatchToProps = {
 };
 
 const FiltersOverlayComponent = ({
-    className,
     hideFilters,
     setSortingOption,
     clearSortingOption,

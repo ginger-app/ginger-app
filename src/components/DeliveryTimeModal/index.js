@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import moment from 'moment';
 import { Icon } from 'components';
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     ...state,

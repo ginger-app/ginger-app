@@ -23,33 +23,37 @@
         @include centerContent;
         place-self: center end;
 
-        width: 3rem;
         height: 3rem;
+        width: 3rem;
         margin: 1rem;
 
-        border-radius: 100%;
         background: $paletteWhite;
+
+        border-radius: 100%;
     }
 
     & .title {
         @include boldTitle;
         place-self: end start;
+
         margin-left: 2rem;
     }
 
     & .fieldsContainer {
         @include shadow;
-        position: relative;
         place-self: start;
+
+        position: relative;
 
         display: grid;
         place-items: center start;
 
-        width: 75%;
         height: 4rem;
+        width: 75%;
         padding-left: 1rem;
 
         background: $paletteWhite;
+
         border-radius: 0 15% 15% 0;
 
         & .input {
@@ -70,15 +74,17 @@
             @include centerContent;
             @include greenButton;
             position: absolute;
-            right: -1rem;
             top: 50%;
-            transform: translateY(-50%);
+            right: -1rem;
 
-            width: 4rem;
             height: 4rem;
+            width: 4rem;
 
             background: $paletteGreen_2;
+
             border-radius: 100%;
+
+            transform: translateY(-50%);
         }
     }
 }

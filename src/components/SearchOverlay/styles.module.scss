@@ -27,14 +27,14 @@
         place-items: center;
         gap: 1rem;
 
-        width: 90%;
         height: 3rem;
+        width: 90%;
         padding: 0 1rem;
 
-        border-radius: 2rem;
-        border: none;
-
         background: $paletteWhite;
+
+        border: none;
+        border-radius: 2rem;
 
         & .input {
             height: 100%;

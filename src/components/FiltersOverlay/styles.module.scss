@@ -31,12 +31,14 @@
         padding: 1rem 1rem 0;
 
         background: $paletteBg;
+
         border-radius: 0 0 2rem 2rem;
 
         & .title {
             @include boldTitle;
-            grid-column: 1 / 4;
             place-self: end start;
+
+            grid-column: 1 / 4;
 
             font-size: 1rem;
         }
@@ -70,11 +72,12 @@
         & .arrow {
             @include centerContent;
             cursor: pointer;
-            grid-column: 1 / 4;
             place-self: center;
 
-            width: 50%;
+            grid-column: 1 / 4;
+
             height: 100%;
+            width: 50%;
 
             transform: rotateX(180deg);
         }

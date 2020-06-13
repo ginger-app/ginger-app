@@ -5,7 +5,6 @@ import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { history } from 'bus/init/middleware/core';
@@ -16,6 +15,7 @@ import { AsYouType } from 'libphonenumber-js';
 // Actions
 import { authActions } from 'bus/auth/actions';
 import { uiActions } from 'bus/ui/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     loginOverlay: state.ui.get('loginOverlay'),
@@ -85,7 +85,7 @@ const LoginOverlayComponent = ({
                         <div className={Styles.fieldsContainer} onKeyPress={_handleKeyPress}>
                             <InputField
                                 className={Styles.input}
-                                title={'Номер телефону'}
+                                title='Номер телефону'
                                 value={phoneNumber}
                                 onChange={_handlePhoneNumberChange}
                                 autoFocus

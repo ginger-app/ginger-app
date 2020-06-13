@@ -14,6 +14,7 @@
     padding: 0.5rem 1.5rem 0.5rem 1rem;
 
     background: $paletteWhite;
+
     border-radius: 3rem;
 
     overflow: hidden;
@@ -27,10 +28,11 @@
     }
 
     & .unit {
-        color: $paletteGrey_3;
         margin: 0 0.5rem;
 
         font-size: 0.8rem;
+
+        color: $paletteGrey_3;
     }
 
     & .price {

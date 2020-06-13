@@ -17,11 +17,13 @@
     padding: 0.5rem 1rem 2rem;
 
     background: $paletteDarkGrey_1;
+
     color: $paletteWhite;
 
     & .arrowIcon {
         @include centerContent;
         cursor: pointer;
+
         grid-column: 1 / 4;
 
         width: 20%;
@@ -29,50 +31,57 @@
     }
 
     & .title {
-        grid-column: 1 / 4;
         place-self: start;
 
         display: grid;
+        grid-column: 1 / 4;
         place-items: start;
 
         margin-left: 1rem;
 
-        font-weight: bold;
         font-size: 1.5rem;
-    }
-
-    & .expressDelivery {
-        grid-column: 1 / 4;
+        font-weight: bold;
     }
 
     & .subtitle {
         grid-column: 1 / 4;
+
         font-size: 1.25rem;
     }
 
     & .expressDelivery {
         cursor: pointer;
+
+        grid-column: 1 / 4;
+
         padding: 0.5rem 1.5rem;
+
         border: 2px solid $paletteWhite;
         border-radius: 2rem;
 
         transition: all 0.3s;
 
         &.activeExpressDelivery {
-            border: 2px solid $paletteBg;
             background: $paletteBg;
+
+            border: 2px solid $paletteBg;
+
             color: $paletteDarkGrey_1;
         }
 
         &.disabled {
             cursor: default;
+
             border: 2px solid $paletteGrey_1;
+
             color: $paletteGrey_1;
         }
 
         &:hover {
-            border: 2px solid $paletteBg;
             background: $paletteBg;
+
+            border: 2px solid $paletteBg;
+
             color: $paletteDarkGrey_1;
         }
     }
@@ -87,6 +96,7 @@
 
         & .timeColumnTitle {
             margin-bottom: 0.5rem;
+
             text-transform: capitalize;
             font-weight: bold;
         }
@@ -111,25 +121,31 @@
             cursor: pointer;
 
             border: 2px solid $paletteWhite;
+
             transition: all 0.3s;
 
             &:hover {
-                border: 2px solid $paletteBg;
                 background: $paletteBg;
+
+                border: 2px solid $paletteBg;
+
                 color: $paletteDarkGrey_1;
             }
         }
 
         & .disabledTimeslot {
             border: 2px solid $paletteGrey_1;
+
             color: $paletteGrey_1;
         }
 
         & .chosenTimeslot {
             cursor: pointer;
 
-            border: 2px solid $paletteBg;
             background: $paletteBg;
+
+            border: 2px solid $paletteBg;
+
             color: $paletteDarkGrey_1;
         }
     }

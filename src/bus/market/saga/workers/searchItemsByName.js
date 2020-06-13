@@ -18,7 +18,7 @@ export function* searchItemsByNameWorker({ payload: { itemName } }) {
 
         if (response.status >= 400) {
             yield apply(ErrorHandler, ErrorHandler, [response]);
-            throw new Error(response.message);
+            throw new Error(message);
         }
 
         yield put(marketActions.fillSearchResults(data));

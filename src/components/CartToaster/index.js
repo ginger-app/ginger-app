@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Components
 import { Toaster, Icon } from 'components';
@@ -13,6 +12,7 @@ import mock from 'theme/assets/images/apples-mock.png';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     cart: state.profile.get('cart'),
@@ -42,7 +42,7 @@ const CartToasterComponent = ({ className, cart, showCart }) => {
 
     return (
         <Toaster
-            className={`${Styles.container}`}
+            className={`${Styles.container} ${className}`}
             containerStyles={
                 hidden && {
                     transform: countContainerTranslateValue(),

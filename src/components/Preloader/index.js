@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import logo from 'theme/assets/svg/logo.svg';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     ...state,
@@ -16,7 +16,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-const PreloaderComponent = ({ className, inProp }) => {
+const PreloaderComponent = ({ inProp }) => {
     return (
         <Transition
             in={inProp}

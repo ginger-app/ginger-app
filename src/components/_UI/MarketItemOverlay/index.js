@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
-import Styles from './styles.module.scss';
 
 // Instruments
 import { Icon } from 'components';
@@ -12,6 +11,7 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
 import { profileActions } from 'bus/profile/actions';
+import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     cart: state.profile.get('cart'),

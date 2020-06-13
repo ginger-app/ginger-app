@@ -3,10 +3,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 // Styles
+import { MarketItem, Carousel } from 'components';
 import Styles from './styles.module.scss';
 
 // Components
-import { MarketItem, Carousel } from 'components';
 
 export const ItemsCatalogue = ({
     className,
