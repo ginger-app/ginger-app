@@ -12,6 +12,12 @@
     -webkit-focus-ring-color: rgba(255, 255, 255, 0) !important;
     outline: none !important;
 
+    & input,
+    textarea {
+        // fucking Safari disables inputs if user-select: none;
+        user-select: auto !important;
+    }
+
     &::-webkit-scrollbar {
         width: 0;
         height: 0;
