@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import { Transition } from 'react-transition-group';
 
 // Styles
+import Styles from './styles.module.scss';
 
 // Components
 import { Map, RequestNewAddress } from 'components';
 
 // Instruments
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
-import Styles from './styles.module.scss';
 
 export const MapModal = ({
     address,

@@ -3,6 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 // Styles
+import Styles from './styles.module.scss';
 
 // Instruments
 import { Icon } from 'components';
@@ -10,7 +11,6 @@ import mock from 'theme/assets/images/apples-mock.png';
 
 // Actions
 import { profileActions } from 'bus/profile/actions';
-import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     orders: state.profile.get('orders'),

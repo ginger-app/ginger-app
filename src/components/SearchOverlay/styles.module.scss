@@ -49,11 +49,6 @@
     }
 
     & .searchResults {
-        display: grid;
-        grid-auto-rows: min-content;
-        place-items: center;
-        gap: 0.5rem;
-
         width: 90%;
         max-height: 100%;
 

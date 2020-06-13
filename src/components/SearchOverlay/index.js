@@ -7,7 +7,7 @@ import { Portal } from 'react-portal';
 // Styles
 
 // Instruments
-import { Icon, SearchItem } from 'components';
+import { Icon, MarketShowcase } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { useDebounce } from 'utils/customHooks';
 
@@ -48,7 +48,7 @@ const SearchOverlayComponent = ({
             setTimeout(() => {
                 searchItemsByNameAsync(debouncedValue);
                 setShowItems(true);
-            }, 300);
+            }, 500);
         } else {
             setShowItems(false);
 
@@ -85,7 +85,10 @@ const SearchOverlayComponent = ({
                             <input
                                 className={Styles.input}
                                 value={inputValue}
-                                onChange={({ target: { value } }) => setInputValue(value)}
+                                onChange={({ target: { value } }) => {
+                                    setInputValue(value);
+                                    setShowItems(false);
+                                }}
                                 autoFocus
                             />
                             <Icon
@@ -94,16 +97,12 @@ const SearchOverlayComponent = ({
                                 onClick={hideSearchOverlay}
                             />
                         </div>
-                        <div className={Styles.searchResults}>
-                            {searchResults.map((item, index) => (
-                                <SearchItem
-                                    key={index}
-                                    index={index}
-                                    inProp={showItems}
-                                    {...item}
-                                />
-                            ))}
-                        </div>
+                        <MarketShowcase
+                            className={Styles.searchResults}
+                            items={searchResults}
+                            inProp={showItems && searchResults.length > 0}
+                            marketType
+                        />
                     </section>
                 )}
             </Transition>
