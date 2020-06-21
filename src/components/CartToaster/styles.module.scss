@@ -1,70 +1,41 @@
 @import 'resources';
 
 .container {
-    display: grid;
-    // need to force rewriting default toaster class -> using !important
-    grid-template-columns: repeat(2, min-content) 1fr min-content !important;
-    place-items: center;
-    gap: 0.5rem;
+    @include centerContent;
+    cursor: pointer;
 
-    max-width: 95vw;
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
 
-    &.hidden {
-        transform: translateX(-95%);
+    height: 4rem;
+    width: 4rem;
+
+    background: $paletteDarkGrey_1;
+
+    border-radius: 100%;
+
+    & .icon {
+        height: 35%;
+        width: 35%;
     }
 
-    & .leftArrow {
+    & .badge {
         @include centerContent;
-        cursor: pointer;
 
-        height: 100%;
-        width: 2rem;
-    }
-
-    & .title {
-        @include boldTitle;
-        cursor: pointer;
-
-        grid-column: 2;
-
-        color: $paletteWhite;
-    }
-
-    & .items {
-        cursor: pointer;
-
-        grid-column: 3;
-        display: flex;
-        justify-items: flex-start;
-
-        width: 100%;
-        padding-left: 0.5rem;
-
-        overflow: hidden;
-
-        & .cartItem {
-            height: 2rem;
-            width: 2rem;
-            margin-left: -0.5rem;
-
-            background: $paletteBg;
-
-            border: 1px solid $paletteDarkGrey_1;
-            border-radius: 100%;
-        }
-    }
-
-    & .sum {
-        @include centerContent;
-        cursor: pointer;
-
-        grid-column: 4;
+        position: absolute;
+        top: -10px;
+        right: -5px;
 
         height: 2rem;
-        padding: 0 0.5rem;
+        width: 2rem;
 
-        background: $paletteGreen_1;
+        background: $paletteGreen_2;
 
-        border-radius: 2rem;
+        border-radius: 100%;
+
+        font-weight: bold;
+
+        color: $paletteWhite;
     }
 }

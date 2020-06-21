@@ -20,12 +20,20 @@ export const uiActions = {
         type: types.SHOW_FILTERS,
     }),
 
+    showCartIcon: () => ({
+        type: types.SHOW_CART_ICON,
+    }),
+
     hideCart: () => ({
         type: types.HIDE_CART,
     }),
 
     hideFilters: () => ({
         type: types.HIDE_FILTERS,
+    }),
+
+    hideCartIcon: () => ({
+        type: types.HIDE_CART_ICON,
     }),
 
     // Routing

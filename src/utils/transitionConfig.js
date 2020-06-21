@@ -94,25 +94,26 @@ export const rightToLeftSlideConfig = (duration = 300) => ({
 /**
  *
  * @param {number} [duration = 300] Duration in ms
+ * @param {number} [translateY = '100vh'] Translate value
  */
-export const bottomToTopSlideConfig = (duration = 300) => ({
+export const bottomToTopSlideConfig = (duration = 300, translateY = '100vh') => ({
     defaultStyles: {
-        transform: 'translateY(100vh)',
+        transform: `translateY(${translateY})`,
         transition: `transform ${duration}ms ease-in-out`,
     },
 
     transitionStyles: {
         entering: {
-            transform: 'translateY(100vh)',
+            transform: `translateY(${translateY})`,
         },
         entered: {
-            transform: 'translateY(0)',
+            transform: `translateY(0)`,
         },
         exiting: {
-            transform: 'translateY(100vh)',
+            transform: `translateY(${translateY})`,
         },
         exited: {
-            transform: 'translateY(100vh)',
+            transform: `translateY(${translateY})`,
         },
     },
 

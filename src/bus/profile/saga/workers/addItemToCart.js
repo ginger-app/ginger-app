@@ -22,6 +22,7 @@ export function* addItemToCartWorker({ payload }) {
                 [payload.sku]: payload,
             }),
         );
+        yield put(uiActions.showCartIcon());
     } catch (error) {
         yield put(uiActions.emitError(error, '-> addItemToCartWorker'));
     }

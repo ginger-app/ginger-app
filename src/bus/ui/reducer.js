@@ -13,6 +13,7 @@ const initialState = Map({
     signupOverlay: false,
     loginOverlay: false,
     backButtonPath: null,
+    cartIconVisible: true,
     logs: '',
 });
 
@@ -32,11 +33,17 @@ export const uiReducer = (state = initialState, action) => {
         case types.SHOW_FILTERS:
             return state.set('filtersOpened', true);
 
+        case types.SHOW_CART_ICON:
+            return state.set('cartIconVisible', true);
+
         case types.HIDE_CART:
             return state.set('cartIsOpened', false);
 
         case types.HIDE_FILTERS:
             return state.set('filtersOpened', false);
+
+        case types.HIDE_CART_ICON:
+            return state.set('cartIconVisible', false);
 
         // Routing
         case types.SET_BACK_BUTTON_PATH:

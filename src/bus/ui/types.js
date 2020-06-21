@@ -10,8 +10,10 @@ export const types = {
     // Market stuff
     SHOW_CART: 'SHOW_CART',
     SHOW_FILTERS: 'SHOW_FILTERS',
+    SHOW_CART_ICON: 'SHOW_CART_ICON',
     HIDE_CART: 'HIDE_CART',
     HIDE_FILTERS: 'HIDE_FILTERS',
+    HIDE_CART_ICON: 'HIDE_CART_ICON',
 
     // Overlays
     SHOW_LOGIN_OVERLAY: 'SHOW_LOGIN_OVERLAY',

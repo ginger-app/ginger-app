@@ -1,5 +1,6 @@
 // Core
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 
 // Styles
@@ -48,4 +49,13 @@ export const Toaster = ({
             )}
         </Transition>
     );
+};
+
+Toaster.propTypes = {
+    className: PropTypes.string,
+    containerClassName: PropTypes.string,
+    inProp: PropTypes.bool.isRequired,
+    closeToaster: PropTypes.func,
+    message: PropTypes.string,
+    children: PropTypes.node,
 };
