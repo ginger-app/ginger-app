@@ -56,7 +56,7 @@ const PageTitleComponent = ({
                     className={`${Styles.searchButton} ${searchOpened && Styles.active}`}
                     onClick={showSearchOverlay}
                 >
-                    <Icon name='search' />
+                    <Icon name='search' color={searchOpened ? 'white' : 'black'} />
                 </div>
             )}
             {centerButton || (!search && !searchOpened && <p className={Styles.title}>{title}</p>)}
@@ -68,7 +68,7 @@ const PageTitleComponent = ({
                     }`}
                     onClick={showSearchOverlay}
                 >
-                    <Icon name='search' />
+                    <Icon name='search' color={searchOpened ? 'white' : 'black'} />
                 </div>
             )}
         </section>
