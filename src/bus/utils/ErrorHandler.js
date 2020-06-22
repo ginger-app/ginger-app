@@ -1,15 +1,16 @@
 // Core
-import { put } from 'redux-saga/effects';
+// import { put } from 'redux-saga/effects';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+// import { uiActions } from 'bus/ui/actions';
 
 export function* ErrorHandler(res, options) {
     const { status, message } = res;
 
     switch (status) {
         case 401:
-            return yield put(uiActions.showLoginOverlay());
+            return yield;
+        // return yield put(uiActions.showLoginOverlay());
 
         default:
             return { status, message, options };

@@ -11,20 +11,36 @@
 
     & .title {
         grid-column: 1 / 3;
+        grid-row: 1;
+    }
+
+    & .carousele {
+        border-radius: 10rem;
     }
 
     & .tags {
         grid-column: 1 / 3;
+        grid-row: 2;
 
         padding: 0;
 
+        & :last-of-type {
+            margin-right: 0.5rem;
+        }
+
+        & :first-of-type {
+            margin-left: 1.2rem;
+        }
+
         & .tag {
             @include lightButton;
-            display: grid;
-            place-items: center;
+            @include centerContent;
+
             grid-template-columns: max-content;
 
-            margin: 0.75rem 0.25rem;
+            height: 2.5rem;
+            margin: 0.5rem 0.25rem;
+            padding: 0 1rem;
 
             font-size: 0.75rem;
 
@@ -36,6 +52,25 @@
                 color: $paletteWhite;
             }
         }
+    }
+
+    & .filterButton {
+        @include centerContent;
+        @include shadow;
+        cursor: pointer;
+        place-self: center start;
+
+        grid-column: 1;
+        grid-row: 2;
+
+        height: 2.5rem;
+        width: 2.5rem;
+
+        background: $paletteWhite;
+
+        border-radius: 100%;
+
+        z-index: 2;
     }
 
     & .button {

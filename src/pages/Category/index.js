@@ -5,6 +5,7 @@ import { Transition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
 
 // Styles
+import Styles from './styles.module.scss';
 
 // Components
 import { PageTitle, MarketShowcase, Carousel, Icon } from 'components';
@@ -16,7 +17,6 @@ import { isEmpty } from 'lodash';
 // Actions
 import { marketActions } from 'bus/market/actions';
 import { uiActions } from 'bus/ui/actions';
-import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     categoryData: state.market.get('categoryData').toJS(),
@@ -88,18 +88,11 @@ const CategoryComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <PageTitle
-                        className={Styles.title}
-                        title={name}
-                        rightButton={
-                            <div className={Styles.button} onClick={showFilters}>
-                                <Icon name='filters' />
-                            </div>
-                        }
-                    />
+                    <PageTitle className={Styles.title} title={name} rightButton='search' />
                     <Carousel
                         itemsToShow={2}
                         className={Styles.tags}
+                        carouseleClassName={Styles.carousele}
                         items={subcategories.map((item, index) => (
                             <NavLink
                                 to={`${window.location.pathname}/${item}`}
@@ -110,6 +103,9 @@ const CategoryComponent = ({
                             </NavLink>
                         ))}
                     />
+                    <div className={Styles.filterButton} onClick={showFilters}>
+                        <Icon name='filters' color='black' />
+                    </div>
                     <MarketShowcase className={Styles.showcase} items={sortedItems} marketType />
                 </section>
             )}
