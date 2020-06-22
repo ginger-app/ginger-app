@@ -7,7 +7,7 @@ import { Portal } from 'react-portal';
 // Styles
 
 // Instruments
-import { bottomToTopSlideConfig } from 'utils/transitionConfig';
+import { leftToRightSlideConfig } from 'utils/transitionConfig';
 import { Icon, CartItem, MapModal, DeliveryTimeModal } from 'components';
 
 // Actions
@@ -65,20 +65,17 @@ const CartComponent = ({
                 appear
                 mountOnEnter
                 unmountOnExit
-                timeout={bottomToTopSlideConfig().timeout}
+                timeout={leftToRightSlideConfig().timeout}
             >
                 {(state) => (
                     <>
                         <section
                             className={`${Styles.container} ${className}`}
                             style={{
-                                ...bottomToTopSlideConfig().defaultStyles,
-                                ...bottomToTopSlideConfig().transitionStyles[state],
+                                ...leftToRightSlideConfig().defaultStyles,
+                                ...leftToRightSlideConfig().transitionStyles[state],
                             }}
                         >
-                            <div className={Styles.arrowIcon} onClick={hideCart}>
-                                <Icon color='white' name='slideDownArrow' />
-                            </div>
                             <p className={Styles.title}>
                                 Check your order delivery information below:
                             </p>
@@ -120,6 +117,9 @@ const CartComponent = ({
                             <p className={Styles.totalAmount}>
                                 {(sum * (1 - discount)).toFixed(2)}
                             </p>
+                            <div className={Styles.backButton} onClick={hideCart}>
+                                <Icon name='leftArrow' />
+                            </div>
                             <button
                                 className={Styles.button}
                                 onClick={
