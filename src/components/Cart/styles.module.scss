@@ -17,6 +17,8 @@
 
     background: $paletteDarkGrey_1;
 
+    z-index: 1000;
+
     & .arrowIcon {
         @include centerContent;
         cursor: pointer;

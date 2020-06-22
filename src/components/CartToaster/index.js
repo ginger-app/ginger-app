@@ -16,18 +16,19 @@ import { uiActions } from 'bus/ui/actions';
 const mapStateToProps = (state) => ({
     cart: state.profile.get('cart'),
     cartIconVisible: state.ui.get('cartIconVisible'),
+    cartIsOpened: state.ui.get('cartIsOpened'),
 });
 
 const mapDispatchToProps = {
     showCart: uiActions.showCart,
 };
 
-const CartToasterComponent = ({ cart, showCart, cartIconVisible }) => {
+const CartToasterComponent = ({ cart, showCart, cartIconVisible, cartIsOpened }) => {
     const cartLength = Object.keys(cart).length;
 
     return (
         <Transition
-            in={cartLength > 0 && cartIconVisible}
+            in={cartLength > 0 && cartIconVisible && !cartIsOpened}
             appear
             timeout={bottomToTopSlideConfig().timeout}
         >
