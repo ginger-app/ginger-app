@@ -26,9 +26,13 @@ export const addToggleCartIconListener = (ref, show, hide) => {
     showCartIcon = show;
     hideCartIcon = hide;
 
+    if (!elementRef.current) return null;
+
     elementRef.current.addEventListener('scroll', handleCartIconToggling);
 };
 
 export const removeToggleCartIconListener = () => {
+    if (!elementRef.current) return null;
+
     elementRef.current.removeEventListener('scroll', handleCartIconToggling);
 };

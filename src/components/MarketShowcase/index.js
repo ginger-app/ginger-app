@@ -36,7 +36,7 @@ const MarketShowcaseComponent = ({
         addToggleCartIconListener(ref, showCartIcon, hideCartIcon);
 
         return removeToggleCartIconListener;
-    }, []);
+    }, [ref, inProp]);
 
     return (
         <Transition
