@@ -88,18 +88,10 @@ const SubcategoryComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <PageTitle
-                        className={Styles.title}
-                        title={name}
-                        // backButtonAction={clearSubcategoryData}
-                        rightButton={
-                            <div className={Styles.button} onClick={showFilters}>
-                                <Icon name='filters' />
-                            </div>
-                        }
-                    />
+                    <PageTitle className={Styles.title} title={name} rightButton='search' />
                     <Carousel
                         className={Styles.tags}
+                        carouseleClassName={Styles.carousele}
                         itemsToShow={3}
                         items={tags.map((item, index) => (
                             <div className={Styles.tag} key={index}>
@@ -107,6 +99,9 @@ const SubcategoryComponent = ({
                             </div>
                         ))}
                     />
+                    <div className={Styles.filterButton} onClick={showFilters}>
+                        <Icon name='filters' color='black' />
+                    </div>
                     <MarketShowcase className={Styles.showcase} items={sortedItems} marketType />
                 </section>
             )}
