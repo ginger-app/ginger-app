@@ -53,6 +53,8 @@ const MarketShowcaseComponent = ({
                         priceFormatted={price.toFixed(2).split('.')}
                         price={price}
                         unit={unit}
+                        discount={index % 2 === 0 ? 10 : null}
+                        xp={index + 1}
                         sku={sku}
                     />
                 ))}

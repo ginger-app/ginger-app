@@ -138,7 +138,7 @@ const MarketItemComponent = ({
                         </>
                     )}
 
-                    <p className={Styles.amount}>1 kg</p>
+                    <p className={Styles.unit}>1 kg</p>
                     <Icon
                         name='cart'
                         color='black'
