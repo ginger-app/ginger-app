@@ -1,143 +1,170 @@
 @import 'resources';
 
 .container {
-    @include shadow;
-    place-self: end center;
-
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: min-content 40% 1fr 1fr 2fr 1fr 3fr 2fr;
-    gap: 0.5rem;
+    grid-template-rows: 75vh 3rem;
+    grid-template-columns: 2fr 3fr;
+    place-items: start center;
+    gap: 1rem;
 
-    height: 95vh;
-    width: 95vw;
-    padding: 1rem 2rem 1.5rem;
+    padding: 0 1rem;
 
-    background: $paletteWhite;
-
-    border-radius: 1rem 1rem 0 0;
-
-    & .arrowIcon {
-        @include centerContent;
-        cursor: pointer;
+    & .itemInfo {
+        @include shadow;
         place-self: center;
 
-        grid-column: 1 / 3;
+        position: relative;
 
-        height: 100%;
-        width: 20%;
-        padding: 0.5rem;
-    }
-
-    & .image {
+        display: grid;
         grid-column: 1 / 3;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 50% 1fr 1fr 2fr 1fr 2fr;
+        gap: 0.5rem;
 
         height: 100%;
         width: 100%;
-    }
+        padding: 1rem 1.5rem 2rem;
 
-    & .itemName,
-    .descriptionTitle {
-        @include boldTitle;
-        place-self: center start;
+        background: $paletteWhite;
 
-        grid-column: 1 / 3;
+        border-radius: 1rem;
 
-        color: $paletteBlack;
-    }
-
-    & .unit {
-        place-self: start;
-
-        grid-column: 1 / 3;
-
-        color: $paletteGrey_3;
-    }
-
-    & .amountContainer {
-        @include centerContent;
-        @include boldTitle;
-        place-self: center start;
-
-        grid-template-columns: repeat(3, 1fr);
-
-        height: 90%;
-        width: 100%;
-
-        border: 1px solid $paletteBlack;
-        border-radius: 3rem;
-
-        overflow: hidden;
-
-        & .amountButton {
+        & .favoritesButton {
+            @include lightButton;
             @include centerContent;
-            cursor: pointer;
+
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+
+            height: 3rem;
+            width: 3rem;
+            padding: 0;
+        }
+
+        & .image {
+            grid-column: 1 / 3;
 
             height: 100%;
             width: 100%;
         }
 
-        & .amountInput {
-            height: 80%;
+        & .itemName,
+        .descriptionTitle {
+            @include boldTitle;
+            place-self: center start;
+
+            grid-column: 1 / 3;
+
+            color: $paletteBlack;
+        }
+
+        & .unit {
+            place-self: start;
+
+            grid-column: 1 / 3;
+
+            color: $paletteGrey_3;
+        }
+
+        & .amountContainer {
+            @include centerContent;
+            @include boldTitle;
+            place-self: center start;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            height: 90%;
             width: 100%;
 
-            background: $paletteWhite;
+            border: 1px solid $paletteBlack;
+            border-radius: 3rem;
 
-            border: 1px solid $paletteGrey_3;
-            border-radius: 10px;
+            overflow: hidden;
 
-            font-size: 1.5rem;
+            & .amountButton {
+                @include centerContent;
+                cursor: pointer;
+
+                height: 100%;
+                width: 100%;
+            }
+
+            & .amountInput {
+                height: 80%;
+                width: 100%;
+
+                background: $paletteWhite;
+
+                border: 1px solid $paletteGrey_3;
+                border-radius: 10px;
+
+                font-size: 1.5rem;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            & .amountDisabled {
+                @include centerContent;
+                cursor: pointer;
+
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        & .price {
+            place-self: center;
+
+            font-size: 2rem;
             font-weight: bold;
-            text-align: center;
+
+            color: $paletteGreen_1;
+
+            & span {
+                font-size: 1.5rem;
+                font-weight: normal;
+            }
         }
 
-        & .amountDisabled {
-            @include centerContent;
-            cursor: pointer;
+        & .description {
+            grid-column: 1 / 3;
 
             height: 100%;
-            width: 100%;
+
+            overflow: scroll;
         }
     }
 
-    & .price {
-        place-self: center;
-
-        font-size: 2rem;
-        font-weight: bold;
-
-        color: $paletteGreen_1;
-
-        & span {
-            font-size: 1.5rem;
-            font-weight: normal;
-        }
-    }
-
-    & .description {
-        grid-column: 1 / 3;
-
-        height: 100%;
-
-        overflow: scroll;
-    }
-
-    & .favoritesButton {
+    & .backButton {
         @include lightButton;
         @include centerContent;
-        height: 3rem;
-        width: 3rem;
+        place-self: center start;
+
+        height: 2.5rem;
+        width: 2.5rem;
         padding: 0;
     }
 
     & .buyButton {
-        @include greenButton;
-        @include boldTitle;
+        @include darkButton;
+        place-self: center end;
 
         display: grid;
-        grid-template-columns: 1fr 25%;
-        place-items: center;
+        grid-template-columns: repeat(2, min-content);
+        gap: 1rem;
 
-        color: $paletteWhite;
+        width: auto;
+        padding: 0.75rem 2.5rem;
+
+        border-radius: 2rem;
+
+        font-size: 1.25rem;
+        font-weight: normal;
+
+        & .buyIcon {
+            position: relative;
+            top: 2px;
+        }
     }
 }
