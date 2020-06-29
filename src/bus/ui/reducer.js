@@ -14,6 +14,8 @@ const initialState = Map({
     loginOverlay: false,
     backButtonPath: null,
     cartIconVisible: true,
+    orderPlacedSuccesfully: false,
+    orderPlacementError: false,
     logs: '',
 });
 
@@ -44,6 +46,9 @@ export const uiReducer = (state = initialState, action) => {
 
         case types.HIDE_CART_ICON:
             return state.set('cartIconVisible', false);
+
+        case types.SET_ORDER_PLACED_STATE:
+            return state.set('orderPlacedSuccesfully', action.payload.state);
 
         // Routing
         case types.SET_BACK_BUTTON_PATH:

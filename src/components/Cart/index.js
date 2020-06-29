@@ -7,8 +7,8 @@ import { Portal } from 'react-portal';
 // Styles
 
 // Instruments
-import { leftToRightSlideConfig } from 'utils/transitionConfig';
-import { Icon, CartItem, MapModal, DeliveryTimeModal } from 'components';
+import { cartTransitionConfig } from 'utils/transitionConfig';
+import { Icon, CartItem, MapModal, DeliveryTimeModal, OrderSuccessModal } from 'components';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
@@ -20,6 +20,7 @@ const mapStateToProps = (state) => ({
     cartIsOpened: state.ui.get('cartIsOpened'),
     cart: state.profile.get('cart'),
     isAuthenticated: state.auth.get('isAuthenticated'),
+    orderPlacedSuccesfully: state.ui.get('orderPlacedSuccesfully'),
 });
 
 const mapDispatchToProps = {
@@ -32,6 +33,7 @@ const mapDispatchToProps = {
 const CartComponent = ({
     className,
     cartIsOpened,
+    orderPlacedSuccesfully,
     hideCart,
     cart,
     createNewOrderAsync,
@@ -65,15 +67,15 @@ const CartComponent = ({
                 appear
                 mountOnEnter
                 unmountOnExit
-                timeout={leftToRightSlideConfig().timeout}
+                timeout={cartTransitionConfig().timeout}
             >
                 {(state) => (
                     <>
                         <section
                             className={`${Styles.container} ${className}`}
                             style={{
-                                ...leftToRightSlideConfig().defaultStyles,
-                                ...leftToRightSlideConfig().transitionStyles[state],
+                                ...cartTransitionConfig().defaultStyles,
+                                ...cartTransitionConfig().transitionStyles[state],
                             }}
                         >
                             <p className={Styles.title}>
@@ -156,6 +158,8 @@ const CartComponent = ({
                             setDeliveryTime={setDeliveryTime}
                             setDisplayDeliveryTime={setDisplayDeliveryTime}
                         />
+
+                        <OrderSuccessModal inProp={orderPlacedSuccesfully} />
                     </>
                 )}
             </Transition>

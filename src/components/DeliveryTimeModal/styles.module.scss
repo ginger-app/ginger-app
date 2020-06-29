@@ -20,6 +20,8 @@
 
     color: $paletteWhite;
 
+    z-index: 999; // overlay
+
     & .arrowIcon {
         @include centerContent;
         cursor: pointer;

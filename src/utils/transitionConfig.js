@@ -1,3 +1,7 @@
+/* ------------------------------------------------- */
+/* DEFAULT TRANSITIONS */
+/* ------------------------------------------------- */
+
 /**
  *
  * @param {number} [duration] Duration in ms
@@ -33,29 +37,29 @@ export const opacityTransitionConfig = (duration) => ({
  *
  * @param {number} [duration = 300] Duration in ms
  */
-export const leftToRightSlideConfig = (duration = 300) => ({
+export const leftToRightSlideConfig = (duration = 500) => ({
     defaultStyles: {
-        transform: 'translateX(-100vw)',
+        transform: 'translateX(100vw)',
         transition: `transform ${duration}ms ease-in-out`,
     },
 
     transitionStyles: {
         entering: {
-            transform: 'translateX(-100vw)',
+            transform: 'translateX(100vw)',
         },
         entered: {
             transform: 'translateX(0)',
         },
         exiting: {
-            transform: 'translateX(-100vw)',
+            transform: 'translateX(100vw)',
         },
         exited: {
-            transform: 'translateX(-100vw)',
+            transform: 'translateX(100vw)',
         },
     },
 
     timeout: {
-        enter: duration,
+        enter: 0,
         exit: duration,
     },
 });
@@ -86,7 +90,7 @@ export const rightToLeftSlideConfig = (duration = 300) => ({
     },
 
     timeout: {
-        enter: duration,
+        enter: 0,
         exit: duration,
     },
 });
@@ -149,7 +153,45 @@ export const topToBottomSlideConfig = (duration = 300) => ({
     },
 
     timeout: {
-        enter: duration,
+        enter: 0,
+        exit: duration,
+    },
+});
+
+/* ------------------------------------------------- */
+/* CUSTOM TRANSITIONS */
+/* ------------------------------------------------- */
+
+/**
+ *
+ * @param {number} [duration = 300] Duration in ms
+ */
+export const cartTransitionConfig = (duration = 300) => ({
+    defaultStyles: {
+        opacity: 0,
+        transform: 'translateX(0)',
+        transition: `transform ${duration}ms ease-in, opacity ${duration}ms ease-in-out`,
+    },
+
+    transitionStyles: {
+        entering: {
+            opacity: 0,
+        },
+        entered: {
+            opacity: 1,
+        },
+        exiting: {
+            transform: 'translateX(100vw)',
+            opacity: 1,
+        },
+        exited: {
+            transform: 'translateX(100vw)',
+            opacity: 1,
+        },
+    },
+
+    timeout: {
+        enter: 0,
         exit: duration,
     },
 });

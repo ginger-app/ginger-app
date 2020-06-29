@@ -25,6 +25,7 @@ export const ItemsCatalogue = ({
                 {itemsToShow.map(({ nameUkr, sku, price, unit }, index) => (
                     <MarketItem
                         className={Styles.item}
+                        itemIndex={index}
                         to={`/products/${sku}`}
                         name={nameUkr}
                         priceFormatted={price.toFixed(2).split('.')}

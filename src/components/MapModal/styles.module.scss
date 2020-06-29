@@ -16,6 +16,8 @@
 
     background: $paletteWhite;
 
+    z-index: 999; // overlay
+
     & .map {
         width: 100%;
         height: 100%;

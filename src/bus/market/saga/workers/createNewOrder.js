@@ -1,5 +1,5 @@
 // Core
-import { put, apply } from 'redux-saga/effects';
+import { put, apply, delay } from 'redux-saga/effects';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
@@ -26,9 +26,11 @@ export function* createNewOrderWorker({ payload: { orderData } }) {
 
         if (response.status >= 400) throw new Error(result.message);
 
-        yield put(uiActions.hideCart());
+        yield put(uiActions.setOrderPlacedState(true));
         yield put(profileActions.updateCart({}));
-        console.log('Showing success popup');
+        yield delay(3000);
+        yield put(uiActions.hideCart());
+        yield put(uiActions.setOrderPlacedState(false));
     } catch (err) {
         yield apply(Logger, Logger, ['err', 'Creating new order err', err]);
         yield put(uiActions.emitError(err, '-> createNewOrderWorker'));

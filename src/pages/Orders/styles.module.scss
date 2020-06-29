@@ -20,12 +20,17 @@
 
         & .tag {
             @include lightButton;
-            display: grid;
-            place-items: center;
+            @include centerContent;
 
-            margin: 0.75rem 0;
+            grid-template-columns: max-content;
+
+            height: 2.5rem;
+            margin: 0.5rem 0.25rem;
+            padding: 0 1rem;
 
             font-size: 0.75rem;
+
+            transition: 0.3s all;
 
             &:hover {
                 background: $paletteGrey_1;

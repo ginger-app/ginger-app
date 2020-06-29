@@ -30,6 +30,7 @@ const mapDispatchToProps = {
 
 const MarketItemComponent = ({
     className,
+    itemIndex,
     style,
     to,
     name,
@@ -64,7 +65,8 @@ const MarketItemComponent = ({
             appear
             mountOnEnter
             unmountOnExit
-            timeout={opacityTransitionConfig().timeout}
+            // items will appear 1-by-1
+            timeout={{ ...opacityTransitionConfig().timeout, enter: itemIndex * 75 + 200 }}
         >
             {(state) => (
                 <NavLink

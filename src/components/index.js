@@ -13,6 +13,7 @@ export * from './ProductDetails';
 export * from './OrderDetails';
 export * from './MapModal';
 export * from './DeliveryTimeModal';
+export * from './OrderSuccessModal';
 export * from './LastOrder';
 export * from './SearchOverlay';
 export * from './FiltersOverlay';

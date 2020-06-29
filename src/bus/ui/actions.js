@@ -36,6 +36,11 @@ export const uiActions = {
         type: types.HIDE_CART_ICON,
     }),
 
+    setOrderPlacedState: (state) => ({
+        type: types.SET_ORDER_PLACED_STATE,
+        payload: { state },
+    }),
+
     // Routing
     setBackButtonPath: (path) => ({
         type: types.SET_BACK_BUTTON_PATH,
