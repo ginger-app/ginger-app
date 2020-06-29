@@ -9,6 +9,7 @@ import { Transition } from 'react-transition-group';
 // Instruments
 import { Icon, MarketItemOverlay } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
+import discountLabel from 'theme/assets/svg/discount.svg';
 import apples from 'theme/assets/images/apples-mock.png';
 
 // Actions
@@ -43,6 +44,8 @@ const MarketItemComponent = ({
     removeItemFromFavorites,
     removeItemFromFavoritesAsync,
     isAuthenticated,
+    discount,
+    xp = 3,
     sku,
 }) => {
     // State
@@ -78,6 +81,13 @@ const MarketItemComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
+                    {discount && (
+                        <div className={Styles.discount}>
+                            <img src={discountLabel} alt='' />
+                            <span>{discount}%</span>
+                        </div>
+                    )}
+                    <p className={Styles.xp}>+{xp} xp</p>
                     <Icon
                         name={favorites[sku] ? 'heart-filled' : 'heart'}
                         color={favorites[sku] ? 'red' : 'black'}
@@ -87,7 +97,7 @@ const MarketItemComponent = ({
                                 ? (e) => {
                                       e.preventDefault();
                                       e.stopPropagation();
-                                      // if user is already logged in - updateing his favorites
+                                      // if user is already logged in - updating his favorites
                                       if (isAuthenticated) return removeItemFromFavoritesAsync(sku);
                                       // otherwise - just locally
                                       removeItemFromFavorites(sku);
@@ -95,7 +105,7 @@ const MarketItemComponent = ({
                                 : (e) => {
                                       e.preventDefault();
                                       e.stopPropagation();
-                                      // if user is already logged in - updateing his favorites
+                                      // if user is already logged in - updating his favorites
                                       if (isAuthenticated) return addItemToFavoritesAsync(sku);
                                       // otherwise - just locally
                                       addItemToFavorites(sku);
@@ -104,10 +114,30 @@ const MarketItemComponent = ({
                     />
                     <img src={apples} alt='' className={Styles.itemImage} />
                     <p className={Styles.itemName}>{name}</p>
-                    <p className={Styles.price}>
-                        {priceFormatted[0]}
-                        <span>.{priceFormatted[1]}₴</span>
-                    </p>
+
+                    {/* PRICE BLOCK */}
+                    {/* Default price (no discount) */}
+                    {!discount && (
+                        <p className={Styles.price}>
+                            {priceFormatted[0]}
+                            <span>.{priceFormatted[1]}₴</span>
+                        </p>
+                    )}
+
+                    {/* Dsicounted item case */}
+                    {discount && (
+                        <>
+                            <p className={`${Styles.price} ${Styles.oldPrice}`}>
+                                {priceFormatted[0]}
+                                <span>.{priceFormatted[1]}₴</span>
+                            </p>
+                            <p className={`${Styles.price} ${Styles.newPrice}`}>
+                                {+priceFormatted[0]}
+                                <span>.{priceFormatted[1]}₴</span>
+                            </p>
+                        </>
+                    )}
+
                     <p className={Styles.amount}>1 kg</p>
                     <Icon
                         name='cart'
