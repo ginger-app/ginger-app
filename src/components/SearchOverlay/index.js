@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
+import { NavLink } from 'react-router-dom';
 import { Portal } from 'react-portal';
 
 // Styles
@@ -37,6 +38,7 @@ const SearchOverlayComponent = ({
 }) => {
     const [inputValue, setInputValue] = useState('');
     const [showItems, setShowItems] = useState(true);
+    const [displayCategory, setDisplayCategory] = useState('');
     const debouncedValue = useDebounce(inputValue, 500);
 
     useEffect(() => {
@@ -58,6 +60,19 @@ const SearchOverlayComponent = ({
             }, 500);
         }
     }, [debouncedValue, clearSearchResults, searchItemsByNameAsync]);
+
+    useEffect(() => {
+        const occurencies = {};
+
+        if (searchResults.length > 0) {
+            searchResults.forEach((item) => {
+                occurencies[item.categories[0]] = occurencies[item.categories[0]] + 1 || 1;
+            });
+
+            const mostRepetitive = Object.keys(occurencies).sort((key) => occurencies[key])[0];
+            setDisplayCategory(mostRepetitive);
+        }
+    }, [searchResults]);
 
     return (
         <Portal>
@@ -99,8 +114,18 @@ const SearchOverlayComponent = ({
                         </div>
                         <MarketShowcase
                             className={Styles.searchResults}
-                            items={searchResults}
+                            items={searchResults.slice(0, 10)}
                             inProp={showItems && searchResults.length > 0}
+                            infoBlock={
+                                displayCategory && (
+                                    <NavLink
+                                        to={`/categories/${displayCategory}`}
+                                        onClick={hideSearchOverlay}
+                                    >
+                                        В категорію
+                                    </NavLink>
+                                )
+                            }
                             marketType
                         />
                     </section>

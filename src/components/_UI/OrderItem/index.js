@@ -17,16 +17,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-const OrderItemComponent = ({
-    className,
-    style,
-    status,
-    id,
-    date,
-    address,
-    deliveryTime,
-    priceFormatted,
-}) => {
+const OrderItemComponent = ({ className, style, status, id, date, address, priceFormatted }) => {
     return (
         <Transition
             in
@@ -52,7 +43,6 @@ const OrderItemComponent = ({
                     </p>
                     <p className={Styles.date}>{new Date(date).toLocaleDateString()}</p>
                     <p className={Styles.address}>{address}</p>
-                    <p className={Styles.deliveryTime}>{deliveryTime}</p>
                     <p className={Styles.price}>
                         {priceFormatted[0]}
                         <span>.{priceFormatted[1]}₴</span>

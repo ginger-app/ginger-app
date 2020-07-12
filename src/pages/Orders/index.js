@@ -1,12 +1,12 @@
 // Core
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
 
 // Components
-import { PageTitle, MarketShowcase, Carousel } from 'components';
+import { PageTitle, MarketShowcase } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -31,21 +31,21 @@ const OrdersComponent = ({ orders, isAuthenticated, showLoginOverlay }) => {
         }
     }, [isAuthenticated, showLoginOverlay]);
 
-    const [filterParameter, setFilterParameter] = useState('All');
-    const possibleFilters = {
-        Pending: 'До сплати',
-        Completed: 'Завершені',
-        Shipping: 'Вже їдуть',
-        'Awaiting collection': 'Збираються',
-        'Awaiting shipment': 'Вже на виході',
-        Cancelled: 'Відмінені :(',
-        All: 'Всі',
-    };
+    // const [filterParameter, setFilterParameter] = useState('All');
+    // const possibleFilters = {
+    //     Pending: 'До сплати',
+    //     Completed: 'Завершені',
+    //     Shipping: 'Вже їдуть',
+    //     'Awaiting collection': 'Збираються',
+    //     'Awaiting shipment': 'Вже на виході',
+    //     Cancelled: 'Відмінені :(',
+    //     All: 'Всі',
+    // };
 
-    const filteredOrders =
-        filterParameter === 'All'
-            ? orders
-            : orders.filter(({ status }) => status === filterParameter);
+    // const filteredOrders =
+    //     filterParameter === 'All'
+    //         ? orders
+    //         : orders.filter(({ status }) => status === filterParameter);
 
     return (
         <Transition
@@ -64,20 +64,7 @@ const OrdersComponent = ({ orders, isAuthenticated, showLoginOverlay }) => {
                     }}
                 >
                     <PageTitle className={Styles.title} title='Orders' />
-                    <Carousel
-                        itemsToShow={2}
-                        className={Styles.tags}
-                        items={Object.keys(possibleFilters).map((item, index) => (
-                            <div
-                                className={Styles.tag}
-                                onClick={() => setFilterParameter(item)}
-                                key={index}
-                            >
-                                {possibleFilters[item]}
-                            </div>
-                        ))}
-                    />
-                    <MarketShowcase className={Styles.showcase} items={filteredOrders} orderType />
+                    <MarketShowcase className={Styles.showcase} items={orders} orderType />
                 </section>
             )}
         </Transition>

@@ -39,22 +39,22 @@ export const opacityTransitionConfig = (duration) => ({
  */
 export const leftToRightSlideConfig = (duration = 500) => ({
     defaultStyles: {
-        transform: 'translateX(100vw)',
+        transform: 'translateX(-100vw)',
         transition: `transform ${duration}ms ease-in-out`,
     },
 
     transitionStyles: {
         entering: {
-            transform: 'translateX(100vw)',
+            transform: 'translateX(-100vw)',
         },
         entered: {
             transform: 'translateX(0)',
         },
         exiting: {
-            transform: 'translateX(100vw)',
+            transform: 'translateX(-100vw)',
         },
         exited: {
-            transform: 'translateX(100vw)',
+            transform: 'translateX(-100vw)',
         },
     },
 

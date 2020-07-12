@@ -8,7 +8,7 @@
     left: 0;
 
     display: grid;
-    grid-template-rows: 1rem 2fr 1fr 1fr 60% 1fr;
+    grid-template-rows: 2fr 1fr 1fr 60% 1fr;
     grid-template-columns: 1fr 1fr 1fr;
     place-items: center;
     gap: 1rem;
@@ -21,16 +21,6 @@
     color: $paletteWhite;
 
     z-index: 999; // overlay
-
-    & .arrowIcon {
-        @include centerContent;
-        cursor: pointer;
-
-        grid-column: 1 / 4;
-
-        width: 20%;
-        height: 100%;
-    }
 
     & .title {
         place-self: start;

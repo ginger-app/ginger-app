@@ -7,7 +7,6 @@ import { Transition } from 'react-transition-group';
 
 // Instruments
 import moment from 'moment';
-import { Icon } from 'components';
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import Styles from './styles.module.scss';
 
@@ -102,9 +101,6 @@ const DeliveryTimeModalComponent = ({
                         ...bottomToTopSlideConfig().transitionStyles[state],
                     }}
                 >
-                    <div className={Styles.arrowIcon} onClick={closeModal}>
-                        <Icon color='white' name='slideDownArrow' />
-                    </div>
                     <p className={Styles.title}>
                         Дивись, <span>ми можемо привезти:</span>
                     </p>

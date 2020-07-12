@@ -27,6 +27,7 @@ const MarketShowcaseComponent = ({
     inProp,
     showCartIcon,
     hideCartIcon,
+    infoBlock,
 }) => {
     const ref = useRef(null);
 
@@ -38,7 +39,7 @@ const MarketShowcaseComponent = ({
 
     return (
         <section className={`${Styles.container} ${className}`} ref={ref}>
-            <div className={Styles.infoBlock}>Info</div>
+            <div className={Styles.infoBlock}>{infoBlock || 'info'}</div>
             {marketType &&
                 items.map(({ nameUkr, sku, price, unit }, index) => (
                     <MarketItem
