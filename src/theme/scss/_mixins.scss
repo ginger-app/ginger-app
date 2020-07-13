@@ -62,6 +62,7 @@
 }
 
 @mixin greenButton {
+    // @include shadow(transparent);
     cursor: pointer;
 
     width: 100%;
@@ -76,8 +77,11 @@
 
     color: $paletteWhite;
 
-    // &:hover {
-    // }
+    transition: box-shadow 0.3s;
+
+    &:hover {
+        // @include shadow($paletteGreen_1);
+    }
 }
 
 @mixin disableSelect {
@@ -90,8 +94,8 @@
     backdrop-filter: blur(10px);
 }
 
-@mixin shadow {
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+@mixin shadow($shadowColor: #0000001a) {
+    box-shadow: 0px 0px 12px $shadowColor;
 }
 
 @mixin centerContent {

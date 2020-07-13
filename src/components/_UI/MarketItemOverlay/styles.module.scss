@@ -1,6 +1,8 @@
 @import 'resources';
 
 .container {
+    @include shadow;
+
     display: grid;
     grid-template-rows: min-content 1fr min-content 1fr 1fr;
     place-items: center;
