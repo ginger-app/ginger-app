@@ -100,6 +100,7 @@ const CodeConfirmationOverlayComponent = ({
                                 <Icon name='rightArrow' color='white' />
                             </div>
                         </div>
+                        <div className={Styles.resendCode}>Resend code</div>
                     </section>
                 )}
             </Transition>

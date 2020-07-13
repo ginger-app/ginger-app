@@ -85,7 +85,7 @@
 }
 
 @mixin blur {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(150, 150, 150, 0.15);
 
     backdrop-filter: blur(10px);
 }

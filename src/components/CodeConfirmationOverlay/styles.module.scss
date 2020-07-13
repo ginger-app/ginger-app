@@ -9,14 +9,14 @@
     left: 0;
 
     display: grid;
-    grid-template-rows: 4rem 1fr calc(50% + 5rem);
+    grid-template-rows: 4rem 1fr calc(50% - 5rem) min-content;
     place-items: center start;
     gap: 2rem;
 
     width: 100vw;
     padding: 1rem 0;
 
-    z-index: 1002;
+    z-index: 1002; // overlay
 
     & .backButton {
         @include lightButton;
@@ -87,5 +87,14 @@
 
             transform: translateY(-50%);
         }
+    }
+
+    & .resendCode {
+        @include centerContent;
+        @include lightButton;
+        place-self: center;
+
+        max-width: 10rem;
+        margin-bottom: 5rem;
     }
 }
