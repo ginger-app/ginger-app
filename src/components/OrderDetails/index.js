@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
+import Styles from './styles.module.scss';
 
 // Instruments
 import moment from 'moment';
@@ -11,18 +12,28 @@ import { Icon, OrderStatusLabel, CartItem } from 'components';
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import { history } from 'bus/init/middleware/core';
 import mock from 'theme/assets/images/apples-mock.png';
-import Styles from './styles.module.scss';
 
 // Actions
+import { profileActions } from 'bus/profile/actions';
+import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     orderData: state.market.get('orderData').toJS(),
     isAuthenticated: state.auth.get('isAuthenticated'),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    updateCart: profileActions.updateCart,
+    showCartIcon: uiActions.showCartIcon,
+};
 
-const OrderDetailsComponent = ({ className, orderData, isAuthenticated }) => {
+const OrderDetailsComponent = ({
+    className,
+    orderData,
+    isAuthenticated,
+    updateCart,
+    showCartIcon,
+}) => {
     useEffect(() => {
         if (!isAuthenticated) {
             history.push('/');
@@ -50,9 +61,6 @@ const OrderDetailsComponent = ({ className, orderData, isAuthenticated }) => {
                             ...bottomToTopSlideConfig(700).transitionStyles[state],
                         }}
                     >
-                        <div className={Styles.arrowIcon} onClick={history.goBack}>
-                            <Icon color='#bbb6b6' name='slideDownArrow' />
-                        </div>
                         <p className={Styles.date}>{moment(date).local().toLocaleString()}</p>
                         <p className={Styles.address}>{address}</p>
                         <OrderStatusLabel status={status} className={Styles.statusLabel} />
@@ -76,8 +84,22 @@ const OrderDetailsComponent = ({ className, orderData, isAuthenticated }) => {
                         </div>
                     </section>
                     <div className={Styles.footer}>
-                        {sumFormatted[0]}
-                        <span>.{sumFormatted[1]}₴</span>
+                        <div className={Styles.backButton} onClick={history.goBack}>
+                            <Icon name='leftArrow' />
+                        </div>
+                        <p>
+                            {sumFormatted[0]}
+                            <span>.{sumFormatted[1]}₴</span>
+                        </p>
+                        <div
+                            className={Styles.repeatOrderButton}
+                            onClick={() => {
+                                updateCart(userCart);
+                                showCartIcon();
+                            }}
+                        >
+                            <Icon name='cart' color='white' className={Styles.icon} />
+                        </div>
                     </div>
                 </>
             )}

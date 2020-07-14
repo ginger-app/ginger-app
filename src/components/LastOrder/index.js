@@ -1,6 +1,7 @@
 // Core
 import React from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -9,20 +10,15 @@ import Styles from './styles.module.scss';
 import { Icon } from 'components';
 import mock from 'theme/assets/images/apples-mock.png';
 
-// Actions
-import { profileActions } from 'bus/profile/actions';
-
 const mapStateToProps = (state) => ({
     orders: state.profile.get('orders'),
 });
 
-const mapDispatchToProps = {
-    updateCart: profileActions.updateCart,
-};
+const mapDispatchToProps = {};
 
-const LastOrderComponent = ({ className, orders, updateCart }) => {
+const LastOrderComponent = ({ className, orders }) => {
     const orderData = orders.length > 0 && orders[0];
-    const { userCart, date } = orderData;
+    const { userCart, date, id } = orderData;
 
     return (
         <section className={`${Styles.container} ${className}`}>
@@ -38,9 +34,9 @@ const LastOrderComponent = ({ className, orders, updateCart }) => {
                                 <img src={mock} key={index} className={Styles.cartItem} alt='' />
                             ))}
                     </div>
-                    <div className={Styles.button} onClick={() => updateCart(userCart)}>
+                    <NavLink className={Styles.button} to={`/orders/${id}`}>
                         <Icon name='cart' color='white' className={Styles.icon} />
-                    </div>
+                    </NavLink>
                 </>
             ) : (
                 <p className={Styles.mock}>Some news shit</p>

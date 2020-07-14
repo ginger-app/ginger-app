@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -30,6 +30,19 @@ const OrdersComponent = ({ orders, isAuthenticated, showLoginOverlay }) => {
             showLoginOverlay('/');
         }
     }, [isAuthenticated, showLoginOverlay]);
+
+    const statusesImportance = {
+        Pending: 1,
+        Shipping: 2,
+        'Awaiting shipment': 3,
+        'Awaiting collection': 4,
+        Completed: 5,
+        Cancelled: 6,
+    };
+
+    const inProgressFirst = (a, b) => statusesImportance[a.status] - statusesImportance[b.status];
+
+    const getSortedOrders = useCallback(() => orders.sort(inProgressFirst), [orders]);
 
     // const [filterParameter, setFilterParameter] = useState('All');
     // const possibleFilters = {
@@ -64,7 +77,11 @@ const OrdersComponent = ({ orders, isAuthenticated, showLoginOverlay }) => {
                     }}
                 >
                     <PageTitle className={Styles.title} title='Orders' />
-                    <MarketShowcase className={Styles.showcase} items={orders} orderType />
+                    <MarketShowcase
+                        className={Styles.showcase}
+                        items={getSortedOrders()}
+                        orderType
+                    />
                 </section>
             )}
         </Transition>

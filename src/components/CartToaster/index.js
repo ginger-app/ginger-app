@@ -21,9 +21,10 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     showCart: uiActions.showCart,
+    hideCartIcon: uiActions.hideCartIcon,
 };
 
-const CartToasterComponent = ({ cart, showCart, cartIconVisible, cartIsOpened }) => {
+const CartToasterComponent = ({ cart, showCart, cartIconVisible, cartIsOpened, hideCartIcon }) => {
     const cartLength = Object.keys(cart).length;
 
     return (
@@ -40,6 +41,10 @@ const CartToasterComponent = ({ cart, showCart, cartIconVisible, cartIsOpened })
                         ...bottomToTopSlideConfig(300, '6rem').transitionStyles[state],
                     }}
                     onClick={showCart}
+                    onContextMenu={(e) => {
+                        e.preventDefault();
+                        hideCartIcon();
+                    }}
                 >
                     <Icon name='cart' color='white' className={Styles.icon} />
                     <div className={Styles.badge}>{cartLength <= 10 ? cartLength : '10+'}</div>
