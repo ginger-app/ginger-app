@@ -19,6 +19,30 @@
 }
 
 // Buttons
+@mixin deafultGradientButton {
+    @include shadow(transparent);
+
+    cursor: pointer;
+
+    width: 100%;
+    padding: 1rem;
+
+    background: $paletteDefaulGradient;
+
+    border-radius: 2rem;
+
+    font-weight: bold;
+    text-align: center;
+
+    color: $paletteWhite;
+
+    transition: box-shadow 0.2s;
+
+    &:hover {
+        @include shadow($paletteBlue_1);
+    }
+}
+
 @mixin darkButton {
     cursor: pointer;
 
@@ -68,7 +92,7 @@
     width: 100%;
     padding: 1rem;
 
-    background: $paletteGreen_1;
+    background: $paletteBlue_1;
 
     border-radius: 2rem;
 
@@ -79,9 +103,9 @@
 
     transition: box-shadow 0.3s;
 
-    &:hover {
-        // @include shadow($paletteGreen_1);
-    }
+    // &:hover {
+    //     // @include shadow($paletteBlue_1);
+    // }
 }
 
 @mixin disableSelect {

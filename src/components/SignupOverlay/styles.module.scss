@@ -74,7 +74,7 @@
 
         & .button {
             @include centerContent;
-            @include greenButton;
+            @include deafultGradientButton;
             position: absolute;
             top: 50%;
             right: -1rem;
@@ -82,7 +82,7 @@
             height: 4rem;
             width: 4rem;
 
-            background: $paletteGreen_2;
+            background: $paletteBlue_2;
 
             border-radius: 100%;
 

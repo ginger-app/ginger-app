@@ -70,7 +70,7 @@
 
     & .button {
         @include centerContent;
-        @include greenButton;
+        @include deafultGradientButton;
         place-self: center end;
 
         grid-column: 3;

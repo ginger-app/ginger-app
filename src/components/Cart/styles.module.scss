@@ -125,14 +125,14 @@
     }
 
     & .button {
-        @include greenButton;
+        @include deafultGradientButton;
         place-self: center end;
 
         grid-column: 2 / 4;
 
         width: 75%;
 
-        border: 1px solid $paletteGreen_1;
+        border: 1px solid $paletteBlue_1;
 
         &:disabled {
             cursor: default;

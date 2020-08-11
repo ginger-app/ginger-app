@@ -74,7 +74,7 @@
     font-size: 1.5rem;
     font-weight: bold;
 
-    color: $paletteGreen_1;
+    color: $paletteBlue_1;
 
     & .backButton {
         @include shadow;
@@ -93,7 +93,7 @@
 
     & .repeatOrderButton {
         @include centerContent;
-        @include greenButton;
+        @include deafultGradientButton;
         place-self: center end;
 
         grid-column: 3;
