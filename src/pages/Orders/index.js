@@ -42,23 +42,8 @@ const OrdersComponent = ({ orders, isAuthenticated, showLoginOverlay }) => {
 
     const inProgressFirst = (a, b) => statusesImportance[a.status] - statusesImportance[b.status];
 
+    // eslint-disable-next-line
     const getSortedOrders = useCallback(() => orders.sort(inProgressFirst), [orders]);
-
-    // const [filterParameter, setFilterParameter] = useState('All');
-    // const possibleFilters = {
-    //     Pending: 'До сплати',
-    //     Completed: 'Завершені',
-    //     Shipping: 'Вже їдуть',
-    //     'Awaiting collection': 'Збираються',
-    //     'Awaiting shipment': 'Вже на виході',
-    //     Cancelled: 'Відмінені :(',
-    //     All: 'Всі',
-    // };
-
-    // const filteredOrders =
-    //     filterParameter === 'All'
-    //         ? orders
-    //         : orders.filter(({ status }) => status === filterParameter);
 
     return (
         <Transition

@@ -36,7 +36,7 @@
 
     color: $paletteWhite;
 
-    transition: box-shadow 0.2s;
+    transition: box-shadow 0.5s;
 
     &:hover {
         @include shadow($paletteBlue_1);
