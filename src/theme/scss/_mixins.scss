@@ -27,7 +27,7 @@
     width: 100%;
     padding: 1rem;
 
-    background: $paletteDefaulGradient;
+    background: $paletteDefaultGradient;
 
     border-radius: 2rem;
 
@@ -108,6 +108,7 @@
     // }
 }
 
+// Others
 @mixin disableSelect {
     user-select: none;
 }

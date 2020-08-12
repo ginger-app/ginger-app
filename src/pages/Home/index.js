@@ -12,7 +12,14 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core';
 
 // Components
-import { DailyBonus, CategoriesCatalogue, Toaster, LastOrder, PageTitle, Icon } from 'components';
+import {
+    CreateNewOrder,
+    CategoriesCatalogue,
+    Toaster,
+    LastOrder,
+    PageTitle,
+    Icon,
+} from 'components';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
@@ -102,7 +109,7 @@ const HomeComponent = ({
                         search
                     />
                     <LastOrder className={Styles.lastOrder} />
-                    <DailyBonus className={Styles.dailyBonus} />
+                    <CreateNewOrder className={Styles.dailyBonus} />
                     <CategoriesCatalogue
                         className={Styles.catalogue}
                         buttonStyle={{ width: '90%' }}
