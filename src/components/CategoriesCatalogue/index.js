@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 // Styles
 
 // Components
-import { CategoryItem, Carousel } from 'components';
+import { CategoryItem, Carousel, Button } from 'components';
 
 // Instruments
 import { book } from 'core';
@@ -57,9 +57,18 @@ const CatalogueComponent = ({ className, buttonStyle, categories, extended }) =>
                 ))}
             </Carousel>
             {extended && (
-                <NavLink className={Styles.actionButton} to={book.market} style={buttonStyle}>
-                    Show more
-                </NavLink>
+                <Button
+                    className={Styles.actionButtonContainer}
+                    content={
+                        <NavLink
+                            className={Styles.actionButton}
+                            to={book.market}
+                            style={buttonStyle}
+                        >
+                            В маркет
+                        </NavLink>
+                    }
+                />
             )}
         </section>
     );

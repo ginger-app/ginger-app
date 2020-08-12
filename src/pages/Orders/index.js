@@ -6,7 +6,7 @@ import { Transition } from 'react-transition-group';
 // Styles
 
 // Components
-import { PageTitle, MarketShowcase } from 'components';
+import { Navigation, MarketShowcase } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -61,7 +61,7 @@ const OrdersComponent = ({ orders, isAuthenticated, showLoginOverlay }) => {
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <PageTitle className={Styles.title} title='Orders' />
+                    <Navigation className={Styles.title} title='Orders' />
                     <MarketShowcase
                         className={Styles.showcase}
                         items={getSortedOrders()}

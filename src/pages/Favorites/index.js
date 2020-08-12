@@ -6,7 +6,7 @@ import { Transition } from 'react-transition-group';
 // Styles
 
 // Instruments
-import { PageTitle, MarketShowcase } from 'components';
+import { Navigation, MarketShowcase } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import Styles from './styles.module.scss';
 
@@ -35,7 +35,7 @@ const FavoritesComponent = ({ className, favorites }) => {
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <PageTitle className={Styles.title} title='Favorites' />
+                    <Navigation className={Styles.title} title='Favorites' />
                     <MarketShowcase className={Styles.showcase} items={items} marketType />
                 </section>
             )}

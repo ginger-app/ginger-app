@@ -17,7 +17,7 @@ import {
     CategoriesCatalogue,
     Toaster,
     LastOrder,
-    PageTitle,
+    Navigation,
     Icon,
 } from 'components';
 
@@ -82,7 +82,15 @@ const HomeComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <PageTitle
+                    <LastOrder className={Styles.lastOrder} />
+                    <CreateNewOrder className={Styles.dailyBonus} />
+                    <CategoriesCatalogue
+                        className={Styles.catalogue}
+                        buttonStyle={{ width: '90%' }}
+                        itemsToShow={3}
+                        extended
+                    />
+                    <Navigation
                         className={Styles.header}
                         leftButton={
                             isAuthenticated ? (
@@ -108,14 +116,8 @@ const HomeComponent = ({
                         }
                         search
                     />
-                    <LastOrder className={Styles.lastOrder} />
-                    <CreateNewOrder className={Styles.dailyBonus} />
-                    <CategoriesCatalogue
-                        className={Styles.catalogue}
-                        buttonStyle={{ width: '90%' }}
-                        itemsToShow={3}
-                        extended
-                    />
+
+                    {/* Toasters, popups, modals */}
                     <Portal>
                         <Toaster
                             inProp={showToaster}

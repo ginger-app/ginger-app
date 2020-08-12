@@ -7,7 +7,7 @@ import { Transition } from 'react-transition-group';
 // Styles
 
 // Components
-import { Icon, CategoriesCatalogue, ItemsCatalogue, PageTitle } from 'components';
+import { Icon, CategoriesCatalogue, ItemsCatalogue, Navigation } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -47,7 +47,7 @@ const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) =>
                     }}
                 >
                     {/* Header section */}
-                    <PageTitle
+                    <Navigation
                         className={Styles.header}
                         leftButton={
                             <NavLink className={Styles.homeButton} to={book.home}>

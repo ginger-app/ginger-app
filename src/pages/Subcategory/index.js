@@ -6,7 +6,7 @@ import { Transition } from 'react-transition-group';
 // Styles
 
 // Components
-import { PageTitle, MarketShowcase, Carousel, Icon } from 'components';
+import { Navigation, MarketShowcase, Carousel, Icon } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -88,7 +88,7 @@ const SubcategoryComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <PageTitle className={Styles.title} title={name} rightButton='search' />
+                    <Navigation className={Styles.title} title={name} rightButton='search' />
                     <Carousel
                         className={Styles.tags}
                         carouseleClassName={Styles.carousele}

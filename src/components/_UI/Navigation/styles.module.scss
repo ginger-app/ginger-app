@@ -1,12 +1,21 @@
 @import 'resources';
 
 .container {
+    @include blur;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
     display: grid;
     grid-template-columns: 3rem 1fr 3rem;
     place-items: center;
     gap: 1rem;
 
     width: 100%;
+    padding: 0.5rem 0;
+
+    border-radius: 2rem 2rem 0 0;
 
     & .backButton,
     .searchButton {

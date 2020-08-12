@@ -1,0 +1,18 @@
+@import 'resources';
+
+.filledButton {
+    @include deafultGradientButton;
+}
+
+.container {
+    @include centerContent;
+
+    width: 100%;
+
+    border-radius: 2rem;
+
+    & button {
+        @include centerContent;
+        background: $paletteBg;
+    }
+}

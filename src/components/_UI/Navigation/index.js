@@ -23,7 +23,7 @@ const mapDispatchToProps = {
     setBackButtonPath: uiActions.setBackButtonPath,
 };
 
-const PageTitleComponent = ({
+const NavigationComponent = ({
     className,
     searchOpened,
     backButtonPath,
@@ -75,7 +75,7 @@ const PageTitleComponent = ({
     );
 };
 
-PageTitleComponent.propTypes = {
+NavigationComponent.propTypes = {
     className: PropTypes.string,
     title: PropTypes.string,
     leftButton: PropTypes.element,
@@ -84,4 +84,4 @@ PageTitleComponent.propTypes = {
     search: PropTypes.bool,
 };
 
-export const PageTitle = connect(mapStateToProps, mapDispatchToProps)(PageTitleComponent);
+export const Navigation = connect(mapStateToProps, mapDispatchToProps)(NavigationComponent);

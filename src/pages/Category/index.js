@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 import Styles from './styles.module.scss';
 
 // Components
-import { PageTitle, MarketShowcase, Carousel, Icon } from 'components';
+import { Navigation, MarketShowcase, Carousel, Icon } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -88,7 +88,7 @@ const CategoryComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <PageTitle className={Styles.title} title={name} rightButton='search' />
+                    <Navigation className={Styles.title} title={name} rightButton='search' />
                     <Carousel
                         itemsToShow={2}
                         className={Styles.tags}
