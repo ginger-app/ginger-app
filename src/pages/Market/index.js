@@ -46,19 +46,10 @@ const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) =>
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    {/* Header section */}
-                    <Navigation
-                        className={Styles.header}
-                        leftButton={
-                            <NavLink className={Styles.homeButton} to={book.home}>
-                                <Icon name='home' />
-                            </NavLink>
-                        }
-                        title='Market'
-                        rightButton='search'
-                    />
+                    {/* Title */}
+                    <p className={Styles.title}>Маркет</p>
 
-                    {/* Main section */}
+                    {/* Content section */}
                     <CategoriesCatalogue className={Styles.categories} />
                     {categories.map(({ name, items, sku }, index) => (
                         <ItemsCatalogue
@@ -71,6 +62,17 @@ const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) =>
                             extended
                         />
                     ))}
+
+                    <Navigation
+                        className={Styles.header}
+                        leftButton={
+                            <NavLink className={Styles.homeButton} to={book.home}>
+                                <Icon name='home' />
+                            </NavLink>
+                        }
+                        title='Market'
+                        search
+                    />
                 </section>
             )}
         </Transition>

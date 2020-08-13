@@ -43,7 +43,9 @@ const NavigationComponent = ({
     }, [backButtonPath, showSearchOverlay, setBackButtonPath]);
 
     return (
-        <section className={`${Styles.container} ${className}`}>
+        <section
+            className={`${Styles.container} ${searchOpened && Styles.searchOpened} ${className}`}
+        >
             {leftButton
                 ? !searchOpened && leftButton
                 : !searchOpened && (
@@ -78,9 +80,9 @@ const NavigationComponent = ({
 NavigationComponent.propTypes = {
     className: PropTypes.string,
     title: PropTypes.string,
-    leftButton: PropTypes.element,
+    leftButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
     rightButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-    centerButton: PropTypes.element,
+    centerButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
     search: PropTypes.bool,
 };
 

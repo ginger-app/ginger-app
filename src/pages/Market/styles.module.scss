@@ -5,18 +5,20 @@
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 3rem;
     grid-auto-rows: min-content;
     place-items: center;
     gap: 1rem;
 
     padding: 1rem 0;
 
-    & .header {
-        grid-column: 1 / 4;
+    & .title {
+        @include boldTitle;
+        position: relative;
+        top: 1rem;
 
-        width: 100%;
-        height: 100%;
+        padding-left: 1rem;
+
+        text-align: left;
     }
 
     & .homeButton {
