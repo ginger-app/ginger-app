@@ -1,12 +1,11 @@
 // Core
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
 // Styles
-import { MarketItem, Carousel } from 'components';
 import Styles from './styles.module.scss';
 
 // Components
+import { MarketItem, Carousel, Link } from 'components';
 
 export const ItemsCatalogue = ({
     className,
@@ -19,8 +18,16 @@ export const ItemsCatalogue = ({
     const itemsToShow = items || children;
 
     return (
-        <section className={`${Styles.container} ${extended && Styles.extended} ${className}`}>
+        <section className={`${Styles.container} ${className}`}>
             {extended && <p className={Styles.title}>{categoryName}</p>}
+            {extended && (
+                <Link
+                    className={Styles.showMore}
+                    to={`/categories/${categorySku}`}
+                    text='Дивитись всі'
+                />
+            )}
+
             <Carousel className={Styles.carousele}>
                 {itemsToShow.map(({ nameUkr, sku, price, unit }, index) => (
                     <MarketItem
@@ -36,11 +43,6 @@ export const ItemsCatalogue = ({
                     />
                 ))}
             </Carousel>
-            {extended && (
-                <NavLink className={Styles.actionButton} to={`/categories/${categorySku}`}>
-                    Show more
-                </NavLink>
-            )}
         </section>
     );
 };

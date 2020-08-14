@@ -1,6 +1,7 @@
 // Core
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -8,7 +9,7 @@ import Styles from './styles.module.scss';
 // Instruments
 import { GradientBorder } from 'components';
 
-export const Button = ({
+export const Link = ({
     className,
     onClick,
     filled,
@@ -17,19 +18,18 @@ export const Button = ({
     gradientText,
     fontWeight,
     whiteBackground,
-    contentClassName,
+    to,
 }) => {
     return filled ? (
-        <button className={`${Styles.filledButton} ${className}`} onClick={onClick}>
+        <NavLink className={`${Styles.filledButton} ${className}`} to={to} onClick={onClick}>
             {text || content}
-        </button>
+        </NavLink>
     ) : (
         <GradientBorder className={`${Styles.container} ${className}`}>
             {content || (
-                <button
-                    className={`${Styles.button} ${
-                        whiteBackground && Styles.whiteBackground
-                    } ${contentClassName}`}
+                <NavLink
+                    className={`${Styles.button} ${whiteBackground && Styles.whiteBackground}`}
+                    to={to}
                 >
                     <span
                         className={gradientText && Styles.gradientText}
@@ -39,20 +39,21 @@ export const Button = ({
                     >
                         {text}
                     </span>
-                </button>
+                </NavLink>
             )}
         </GradientBorder>
     );
 };
 
 // Prop types validation
-Button.propTypes = {
+Link.propTypes = {
     className: PropTypes.string,
-    contentClassName: PropTypes.string,
+    to: PropTypes.string.isRequired,
     onClick: PropTypes.func,
     filled: PropTypes.bool,
     gradientText: PropTypes.bool,
     fontWeight: PropTypes.oneOf(['normal', 'bold']),
+    whiteBackground: PropTypes.bool,
     content: (props, propName, componentName) => {
         if (!props.content && !props.text) {
             return new Error(`One of props 'content' or 'text' must exist in '${componentName}'.`);

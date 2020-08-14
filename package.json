@@ -38,6 +38,7 @@
         "react-router-redux": "^4.0.8",
         "react-scripts": "3.4.1",
         "react-spinners-kit": "^1.9.1",
+        "react-style-proptype": "^3.2.2",
         "react-transition-group": "^4.3.0",
         "redux": "^4.0.5",
         "redux-logger": "^3.0.6",

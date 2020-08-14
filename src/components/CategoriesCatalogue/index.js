@@ -1,18 +1,18 @@
 // Core
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 
 // Styles
+import Styles from './styles.module.scss';
 
 // Components
-import { CategoryItem, Carousel, Button } from 'components';
+import { CategoryItem, Carousel, Link } from 'components';
 
 // Instruments
 import { book } from 'core';
 
 // Actions
-import Styles from './styles.module.scss';
+//
 
 const mapStateToProps = (state) => ({
     categories: state.market.get('categories').toJS(),
@@ -20,7 +20,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-const CatalogueComponent = ({ className, buttonStyle, categories, extended }) => {
+const CatalogueComponent = ({ className, categories, extended }) => {
     /**
      * We want to render columns of 2 categories. For that we have to devide
      * categories array into array of arrays that consist of 2 items.
@@ -57,17 +57,11 @@ const CatalogueComponent = ({ className, buttonStyle, categories, extended }) =>
                 ))}
             </Carousel>
             {extended && (
-                <Button
+                <Link
                     className={Styles.actionButtonContainer}
-                    content={
-                        <NavLink
-                            className={Styles.actionButton}
-                            to={book.market}
-                            style={buttonStyle}
-                        >
-                            В маркет
-                        </NavLink>
-                    }
+                    to={book.market}
+                    text='В маркет'
+                    fontWeight='bold'
                 />
             )}
         </section>

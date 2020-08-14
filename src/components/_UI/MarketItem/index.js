@@ -68,11 +68,12 @@ const MarketItemComponent = ({ className, itemIndex, style, to, name, priceForma
                     <p className={Styles.sellersAmount}>3 постачальника</p>
                     <Button
                         className={Styles.button}
-                        content={
-                            <NavLink className={Styles.link} to={to}>
-                                <span>Обрати</span>
-                            </NavLink>
-                        }
+                        contentClassName={Styles.buttonContent}
+                        text='Обрати'
+                        onClick={() => null}
+                        fontWeight='bold'
+                        gradientText
+                        whiteBackground
                     />
                 </NavLink>
             )}

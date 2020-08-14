@@ -66,6 +66,8 @@
     }
 
     & .button {
+        @include centerContent;
+        cursor: pointer;
         place-self: center;
 
         /*
@@ -79,34 +81,12 @@
         width: calc(100% + 1.75rem);
         padding: 1px;
 
-        & .link {
-            @include centerContent;
-            cursor: pointer;
+        border-radius: 1rem;
 
-            width: 100%;
-            height: 100%;
+        & .buttonContent {
+            border-radius: 0.9rem;
 
-            background: $paletteWhite;
-
-            border: none;
-            border-radius: 2rem;
-
-            transition: all 0.3s;
-
-            & span {
-                @include gradientText;
-                font-weight: bold;
-            }
-
-            &:hover {
-                background: $paletteDefaultGradient;
-
-                & span {
-                    background: transparent;
-
-                    -webkit-text-fill-color: $paletteWhite;
-                }
-            }
+            font-size: 1.1rem;
         }
     }
 }

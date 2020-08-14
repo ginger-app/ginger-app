@@ -5,10 +5,18 @@ import PropTypes from 'prop-types';
 // Styles
 import Styles from './styles.module.scss';
 
-export const GradientBorder = ({ className, children }) => {
-    return <section className={`${Styles.gradientBorder} ${className}`}>{children}</section>;
+// Instruments
+import stylePropType from 'react-style-proptype';
+
+export const GradientBorder = ({ className, children, style }) => {
+    return (
+        <section className={`${Styles.gradientBorder} ${className}`} style={style}>
+            {children}
+        </section>
+    );
 };
 
 GradientBorder.propTypes = {
     className: PropTypes.string,
+    style: stylePropType,
 };

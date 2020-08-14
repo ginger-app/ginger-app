@@ -13,5 +13,6 @@ export * from './CartItem';
 export * from './Carousel';
 export * from './Toaster';
 export * from './Button';
+export * from './Link';
 export * from './Icon';
 export * from './Map';
