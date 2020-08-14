@@ -15,7 +15,11 @@ export const Button = ({ className, onClick, filled, text, content }) => {
         </button>
     ) : (
         <GradientBorder className={`${Styles.container} ${className}`}>
-            {content || <button className={Styles.button}>{text}</button>}
+            {content || (
+                <button className={Styles.button}>
+                    <span>{text}</span>
+                </button>
+            )}
         </GradientBorder>
     );
 };

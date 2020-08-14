@@ -20,6 +20,15 @@
     color: $paletteBlack;
 }
 
+@mixin gradientText($gradient: $paletteDefaultGradient) {
+    background: $gradient;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    transition: all 0.3s;
+}
+
 // Buttons
 @mixin deafultGradientButton {
     @include shadow(transparent);

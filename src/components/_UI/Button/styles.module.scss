@@ -13,6 +13,30 @@
 
     & button {
         @include centerContent;
-        background: $paletteBg;
+        cursor: pointer;
+
+        width: 100%;
+        height: 100%;
+
+        background: $paletteWhite;
+
+        border: none;
+        border-radius: 2rem;
+
+        transition: all 0.3s;
+
+        & span {
+            @include gradientText;
+        }
+
+        &:hover {
+            background: $paletteDefaultGradient;
+
+            & span {
+                background: transparent;
+
+                -webkit-text-fill-color: $paletteWhite;
+            }
+        }
     }
 }

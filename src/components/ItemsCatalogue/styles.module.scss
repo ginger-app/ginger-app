@@ -2,11 +2,11 @@
 
 .container {
     display: grid;
-    grid-template-rows: min-content;
+    grid-template-rows: max-content;
     gap: 0.5rem;
 
     &.extended {
-        grid-template-rows: 1.5rem min-content 3rem;
+        grid-template-rows: 1.5rem max-content 3rem;
     }
 
     & .title {
