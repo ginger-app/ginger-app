@@ -5,6 +5,7 @@ import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
 
 // Styles
+import Styles from './styles.module.scss';
 
 // Instruments
 import { cartTransitionConfig } from 'utils/transitionConfig';
@@ -14,7 +15,6 @@ import { Icon, CartItem, MapModal, DeliveryTimeModal, OrderSuccessModal } from '
 import { uiActions } from 'bus/ui/actions';
 import { marketActions } from 'bus/market/actions';
 import { profileActions } from 'bus/profile/actions';
-import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     cartIsOpened: state.ui.get('cartIsOpened'),

@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 import Styles from './styles.module.scss';
 
 // Components
-import { Navigation, MarketShowcase, Carousel, Icon } from 'components';
+import { Navigation, MarketShowcase, Carousel } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -16,7 +16,6 @@ import { isEmpty } from 'lodash';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
-import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     categoryData: state.market.get('categoryData').toJS(),
@@ -26,7 +25,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     getMarketCategoryDataAsync: marketActions.getMarketCategoryDataAsync,
     clearMarketCategoryData: marketActions.clearMarketCategoryData,
-    showFilters: uiActions.showFilters,
 };
 
 const CategoryComponent = ({
@@ -34,7 +32,6 @@ const CategoryComponent = ({
     getMarketCategoryDataAsync,
     clearMarketCategoryData,
     categoryData,
-    showFilters,
     sortingOption,
 }) => {
     useEffect(() => {
@@ -88,7 +85,11 @@ const CategoryComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <Navigation className={Styles.title} title={name} rightButton='search' />
+                    {/* Title */}
+                    <p className={Styles.title}>{name}</p>
+
+                    {/* Content */}
+                    <MarketShowcase className={Styles.showcase} items={sortedItems} marketType />
                     <Carousel
                         itemsToShow={2}
                         className={Styles.tags}
@@ -103,10 +104,9 @@ const CategoryComponent = ({
                             </NavLink>
                         ))}
                     />
-                    <div className={Styles.filterButton} onClick={showFilters}>
-                        <Icon name='filters' color='black' />
-                    </div>
-                    <MarketShowcase className={Styles.showcase} items={sortedItems} marketType />
+
+                    {/* Footer */}
+                    <Navigation search />
                 </section>
             )}
         </Transition>

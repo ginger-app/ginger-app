@@ -90,6 +90,8 @@ const HomeComponent = ({
                         itemsToShow={3}
                         extended
                     />
+
+                    {/* Footer navigation */}
                     <Navigation
                         className={Styles.header}
                         leftButton={

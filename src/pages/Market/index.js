@@ -64,7 +64,6 @@ const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) =>
                     ))}
 
                     <Navigation
-                        className={Styles.header}
                         leftButton={
                             <NavLink className={Styles.homeButton} to={book.home}>
                                 <Icon name='home' />
