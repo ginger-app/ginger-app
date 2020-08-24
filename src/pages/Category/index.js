@@ -88,7 +88,7 @@ const CategoryComponent = ({
                     {/* Title */}
                     <p className={Styles.title}>{name}</p>
 
-                    {/* Content */}
+                    {/* Content + filters */}
                     <MarketShowcase className={Styles.showcase} items={sortedItems} marketType />
                     <Carousel
                         itemsToShow={2}
