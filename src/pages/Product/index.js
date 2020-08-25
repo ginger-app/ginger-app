@@ -4,18 +4,16 @@ import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
+import Styles from './styles.module.scss';
 
 // Components
-import { ProductDetails } from 'components';
+import { ProductDetails, Navigation } from 'components';
 
 // Instruments
-import { isEmpty } from 'lodash';
-import { TraceSpinner } from 'react-spinners-kit';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
-import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     productData: state.market.get('productData').toJS(),
@@ -26,13 +24,7 @@ const mapDispatchToProps = {
     clearProductData: marketActions.clearProductData,
 };
 
-const ProductComponent = ({
-    sku,
-    productData,
-    getProductDataAsync,
-    clearProductData,
-    // location,
-}) => {
+const ProductComponent = ({ sku, productData, getProductDataAsync, clearProductData }) => {
     useEffect(() => {
         getProductDataAsync(sku);
 
@@ -48,17 +40,15 @@ const ProductComponent = ({
         >
             {(state) => (
                 <section
-                    className={Styles.bg}
+                    className={Styles.container}
                     style={{
                         ...opacityTransitionConfig().defaultStyles,
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    {isEmpty(productData) ? (
-                        <TraceSpinner color='white' size={50} />
-                    ) : (
-                        <ProductDetails sku={sku} />
-                    )}
+                    <ProductDetails productData={productData} />
+                    <div>ПОСТАЧАЛЬНИК</div>
+                    <Navigation search />
                 </section>
             )}
         </Transition>

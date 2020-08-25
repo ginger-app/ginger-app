@@ -1,170 +1,136 @@
 @import 'resources';
 
 .container {
+    @include centerContent;
+    @include shadow;
+
     display: grid;
-    grid-template-rows: 75vh 3rem;
-    grid-template-columns: 2fr 3fr;
-    place-items: start center;
-    gap: 1rem;
+    grid-template-columns: 1fr 1px 1fr;
+    grid-template-rows: repeat(6, max-content) max-content max-content;
+    gap: 0.25rem;
 
-    padding: 0 1rem;
+    width: 100%;
+    padding: 1rem;
 
-    & .itemInfo {
-        @include shadow;
-        place-self: center;
+    border-radius: 1rem;
 
-        position: relative;
+    // Left side
+    & .image {
+        grid-row: 1 / 5;
 
-        display: grid;
-        grid-column: 1 / 3;
-        grid-template-columns: 50% 50%;
-        grid-template-rows: 50% 1fr 1fr 2fr 1fr 2fr;
-        gap: 0.5rem;
+        width: 100%;
+    }
+
+    & .itemName {
+        grid-column: 1;
+        display: -webkit-box;
+
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    & .price {
+        grid-column: 1;
+        display: flex;
+        justify-content: space-between;
+
+        width: 100%;
+
+        & .unit {
+            color: $paletteGrey_3;
+        }
+    }
+
+    // Devider
+    & .devider {
+        grid-row: 1 / 8;
+        grid-column: 2;
+
+        width: 100%;
+        height: 90%;
+
+        background: $paletteGrey_4;
+    }
+
+    // Right side
+    & .supplierSubtitle {
+        place-self: center end;
+
+        grid-column: 3;
+        grid-row: 1;
+
+        color: $paletteGrey_3;
+    }
+
+    & .supplierName {
+        place-self: center end;
+
+        grid-column: 3;
+        grid-row: 2;
+
+        font-weight: bold;
+    }
+
+    & .ranking {
+        place-self: center end;
+
+        grid-column: 3;
+        grid-row: 3;
 
         height: 100%;
         width: 100%;
-        padding: 1rem 1.5rem 2rem;
 
-        background: $paletteWhite;
+        background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/1077px-Star_icon_stylized.svg.png');
+        background-size: contain;
+    }
 
-        border-radius: 1rem;
+    & .deliveryConditions {
+        place-self: start end;
 
-        & .favoritesButton {
-            @include lightButton;
-            @include centerContent;
+        grid-column: 3;
+        grid-row: 4 / 7;
 
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
+        width: 100%;
 
-            height: 3rem;
-            width: 3rem;
-            padding: 0;
-        }
-
-        & .image {
-            grid-column: 1 / 3;
-
-            height: 100%;
-            width: 100%;
-        }
-
-        & .itemName,
-        .descriptionTitle {
-            @include boldTitle;
-            place-self: center start;
-
-            grid-column: 1 / 3;
-
-            color: $paletteBlack;
-        }
-
-        & .unit {
-            place-self: start;
-
-            grid-column: 1 / 3;
+        & .title {
+            text-align: right;
 
             color: $paletteGrey_3;
         }
 
-        & .amountContainer {
-            @include centerContent;
-            @include boldTitle;
-            place-self: center start;
-
-            grid-template-columns: repeat(3, 1fr);
-
-            height: 90%;
-            width: 100%;
-
-            border: 1px solid $paletteBlack;
-            border-radius: 3rem;
-
-            overflow: hidden;
-
-            & .amountButton {
-                @include centerContent;
-                cursor: pointer;
-
-                height: 100%;
-                width: 100%;
-            }
-
-            & .amountInput {
-                height: 80%;
-                width: 100%;
-
-                background: $paletteWhite;
-
-                border: 1px solid $paletteGrey_3;
-                border-radius: 10px;
-
-                font-size: 1.5rem;
-                font-weight: bold;
-                text-align: center;
-            }
-
-            & .amountDisabled {
-                @include centerContent;
-                cursor: pointer;
-
-                height: 100%;
-                width: 100%;
-            }
-        }
-
-        & .price {
-            place-self: center;
-
-            font-size: 2rem;
+        & .item {
+            font-size: 0.8rem;
             font-weight: bold;
-
-            color: $paletteBlue_1;
-
-            & span {
-                font-size: 1.5rem;
-                font-weight: normal;
-            }
-        }
-
-        & .description {
-            grid-column: 1 / 3;
-
-            height: 100%;
-
-            overflow: scroll;
+            text-align: right;
         }
     }
 
-    & .backButton {
-        @include lightButton;
-        @include centerContent;
-        place-self: center start;
-
-        height: 2.5rem;
-        width: 2.5rem;
-        padding: 0;
-    }
-
-    & .buyButton {
-        @include darkButton;
-        place-self: center end;
-
+    // Locations
+    & .locations {
+        grid-column: 1 / 4;
         display: grid;
-        grid-template-columns: repeat(2, min-content);
-        gap: 1rem;
 
-        width: auto;
-        padding: 0.75rem 2.5rem;
+        width: 100%;
+        max-height: 50vh;
 
-        border-radius: 2rem;
+        overflow: scroll;
+        transition: all 0.5s;
 
-        font-size: 1.25rem;
-        font-weight: normal;
+        & .location {
+            display: grid;
+            grid-template-columns: 1fr 3rem;
+            place-items: center start;
+            gap: 1rem;
 
-        & .buyIcon {
-            position: relative;
-            top: 2px;
+            height: 4rem;
+            padding: 0.5rem 0;
+
+            border-top: 1px solid $paletteGrey_3;
         }
+    }
+
+    & .actionButton {
+        grid-column: 1 / 4;
     }
 }

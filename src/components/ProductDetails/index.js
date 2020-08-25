@@ -1,20 +1,17 @@
 // Core
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
+import Styles from './styles.module.scss';
 
 // Instruments
-import { bottomToTopSlideConfig } from 'utils/transitionConfig';
-import { Icon, FavoritesButton } from 'components';
-import { history } from 'bus/init/middleware/core';
+import { opacityTransitionConfig } from 'utils/transitionConfig';
+import { Button, RadioButton } from 'components';
 import mockApples from 'theme/assets/images/apples-mock.png';
 
 // Actions
-import { profileActions } from 'bus/profile/actions';
-import { uiActions } from 'bus/ui/actions';
-import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     productData: state.market.get('productData').toJS(),
@@ -22,30 +19,40 @@ const mapStateToProps = (state) => ({
     backButtonPath: state.ui.get('backButtonPath'),
 });
 
-const mapDispatchToProps = {
-    addItemToCartAsync: profileActions.addItemToCartAsync,
-    showSearchOverlay: uiActions.showSearchOverlay,
-};
+const mapDispatchToProps = {};
 
 const ProductDetailsComponent = ({
     className,
-    sku,
+    // sku,
     productData,
-    addItemToCartAsync,
-    showSearchOverlay,
-    backButtonPath,
-    cart,
 }) => {
-    const { nameUkr, stock, unit, price, image } = productData;
-    const formattedPrice = price.toFixed(2).split('.');
+    // const { nameUkr, stock, unit, price, image } = productData;
+    const locations = [
+        'Montgolfiere0',
+        'Montgolfiere1',
+        'Montgolfiere2',
+        'Montgolfiere3',
+        'Montgolfiere4',
+        'Montgolfiere5',
+        'Montgolfiere6',
+        'Montgolfiere7',
+        'Montgolfiere8',
+    ];
+    const { nameUkr, price, unit } = productData;
+    const [expanded, setExpandedState] = useState(false);
+    const [locationsData, setLocationsData] = useState({});
+    const [locationsAdded, setLocationsAddedAmount] = useState(0);
 
-    // State
-    const [amount, setAmount] = useState(cart[sku]?.amount || 1);
-    const [inputDisabled, disableInput] = useState(true);
+    useEffect(() => {
+        const data = {};
+        locations.forEach((item) => {
+            data[item] = false;
+        });
 
-    // Methods
-    const handleInput = ({ target: { value } }) =>
-        /^[0-9]*$/.test(value) && setAmount(Math.min(+value, stock));
+        setLocationsData(data);
+    }, []);
+
+    const calculateLocationsHeight = () => `${locations.length * 4}rem`;
 
     return (
         <Transition
@@ -53,90 +60,77 @@ const ProductDetailsComponent = ({
             appear
             mountOnEnter
             unmountOnExit
-            timeout={bottomToTopSlideConfig(700).timeout}
+            timeout={opacityTransitionConfig(700).timeout}
         >
             {(state) => (
                 <section
-                    className={`${Styles.container} ${className}`}
+                    className={[Styles.container, className].filter(Boolean).join(' ')}
                     style={{
-                        ...bottomToTopSlideConfig(700).defaultStyles,
-                        ...bottomToTopSlideConfig(700).transitionStyles[state],
+                        ...opacityTransitionConfig(700).defaultStyles,
+                        ...opacityTransitionConfig(700).transitionStyles[state],
+                        transition: `all 0.3s`,
                     }}
                 >
-                    <div className={Styles.itemInfo}>
-                        <FavoritesButton className={Styles.favoritesButton} sku={sku} />
-                        <img src={mockApples} className={Styles.image} alt='' />
-                        <p className={Styles.itemName}>{nameUkr}</p>
-                        <p className={Styles.unit}>1 {unit}</p>
-
-                        <div className={Styles.amountContainer}>
-                            <span
-                                className={Styles.amountButton}
-                                onClick={() => setAmount(Math.max(amount - 1, 1))}
-                            >
-                                <Icon name='minus' color='black' />
-                            </span>
-                            {inputDisabled ? (
-                                <div
-                                    className={Styles.amountDisabled}
-                                    onClick={() => disableInput(false)}
-                                >
-                                    {amount}
-                                </div>
-                            ) : (
-                                <input
-                                    className={Styles.amountInput}
-                                    onChange={handleInput}
-                                    value={amount}
-                                    autoFocus
-                                />
-                            )}
-                            <span
-                                className={Styles.amountButton}
-                                onClick={() => setAmount(Math.min(amount + 1, stock))}
-                            >
-                                <Icon name='plus' color='black' />
-                            </span>
-                        </div>
-
-                        <p className={Styles.price}>
-                            {formattedPrice[0]}
-                            <span>.{formattedPrice[1]}₴</span>
-                        </p>
-                        <p className={Styles.descriptionTitle}>Про продукт</p>
-                        <p className={Styles.description}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua.
-                        </p>
+                    {/* Left side */}
+                    <img src={mockApples} className={Styles.image} alt='' />
+                    <p className={Styles.itemName}>{nameUkr}</p>
+                    <div className={Styles.price}>
+                        <span>{price} грн.</span>
+                        <span className={Styles.unit}>{unit}</span>
                     </div>
 
+                    {/* Devider */}
+                    <div className={Styles.devider} />
+
+                    {/* Right side */}
+                    <p className={Styles.supplierSubtitle}>Постачальник</p>
+                    <p className={Styles.supplierName}>Galychyna</p>
+                    <div className={Styles.ranking} />
+                    <div className={Styles.deliveryConditions}>
+                        <p className={Styles.title}>Умови поставки</p>
+                        <p className={Styles.item}>День в день</p>
+                        <p className={Styles.item}>Мін. замовлення 900₴</p>
+                    </div>
+
+                    {/* Locations list */}
                     <div
-                        className={Styles.backButton}
-                        onClick={() => {
-                            if (backButtonPath === 'openSearch') {
-                                showSearchOverlay();
-                            }
-                            history.goBack();
+                        className={Styles.locations}
+                        style={{
+                            height: expanded ? calculateLocationsHeight() : '0',
                         }}
                     >
-                        <Icon name='leftArrow' />
+                        {locations.map((item) => (
+                            <div className={Styles.location}>
+                                <p>{item}</p>
+                                <RadioButton
+                                    className={Styles.radio}
+                                    selected={locationsData[item]}
+                                    onChange={() => {
+                                        setLocationsAddedAmount(
+                                            !locationsData[item]
+                                                ? locationsAdded + 1
+                                                : locationsAdded - 1,
+                                        );
+                                        setLocationsData({
+                                            ...locationsData,
+                                            [item]: !locationsData[item],
+                                        });
+                                    }}
+                                />
+                            </div>
+                        ))}
                     </div>
 
-                    <div
-                        className={Styles.buyButton}
-                        onClick={() =>
-                            addItemToCartAsync({
-                                sku,
-                                amount,
-                                price,
-                                name: nameUkr,
-                                image: image || mockApples,
-                                unit,
-                            })
+                    <Button
+                        className={Styles.actionButton}
+                        onClick={() => setExpandedState(!expanded)}
+                        text={
+                            locationsAdded
+                                ? `Додано локацій - ${locationsAdded}`
+                                : 'Додати в список'
                         }
-                    >
-                        Купити <Icon name='cart' color='white' className={Styles.buyIcon} />
-                    </div>
+                        filled
+                    />
                 </section>
             )}
         </Transition>

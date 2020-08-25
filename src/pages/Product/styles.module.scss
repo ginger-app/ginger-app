@@ -1,15 +1,17 @@
 @import 'resources';
 
-.bg {
+.container {
     @include fullHeight;
 
     display: grid;
+    grid-template-rows: max-content 1fr;
     place-items: center;
+    gap: 0.5rem;
 
     width: 100vw;
-    padding: 1rem 0 0;
+    padding: 1rem 0.5rem 4rem;
 
-    background: $paletteDefaultGradient;
+    background: $paletteBg;
 
     overflow-y: hidden;
 }
