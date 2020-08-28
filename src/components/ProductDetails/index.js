@@ -13,6 +13,18 @@ import mockApples from 'theme/assets/images/apples-mock.png';
 
 // Actions
 
+// Mocks
+const locations = [
+    'Montgolfiere',
+    'Forma.coffee',
+    'Blur',
+    'Whitebeard Blackbird',
+    'Yellow Coffee',
+    'OH MY',
+    'Fair Finch',
+    'Veterano Coffee',
+];
+
 const mapStateToProps = (state) => ({
     productData: state.market.get('productData').toJS(),
     cart: state.profile.get('cart'),
@@ -27,17 +39,7 @@ const ProductDetailsComponent = ({
     productData,
 }) => {
     // const { nameUkr, stock, unit, price, image } = productData;
-    const locations = [
-        'Montgolfiere0',
-        'Montgolfiere1',
-        'Montgolfiere2',
-        'Montgolfiere3',
-        'Montgolfiere4',
-        'Montgolfiere5',
-        'Montgolfiere6',
-        'Montgolfiere7',
-        'Montgolfiere8',
-    ];
+
     const { nameUkr, price, unit } = productData;
     const [expanded, setExpandedState] = useState(false);
     const [locationsData, setLocationsData] = useState({});
@@ -50,7 +52,7 @@ const ProductDetailsComponent = ({
         });
 
         setLocationsData(data);
-    }, []);
+    }, [locations]);
 
     const calculateLocationsHeight = () => `${locations.length * 4}rem`;
 
@@ -99,12 +101,12 @@ const ProductDetailsComponent = ({
                             height: expanded ? calculateLocationsHeight() : '0',
                         }}
                     >
-                        {locations.map((item) => (
-                            <div className={Styles.location}>
+                        {locations.map((item, index) => (
+                            <div className={Styles.location} key={index}>
                                 <p>{item}</p>
                                 <RadioButton
                                     className={Styles.radio}
-                                    selected={locationsData[item]}
+                                    selected={!!locationsData[item]}
                                     onChange={() => {
                                         setLocationsAddedAmount(
                                             !locationsData[item]
