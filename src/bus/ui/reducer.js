@@ -12,6 +12,7 @@ const initialState = Map({
     codeConfirmationOverlay: false,
     signupOverlay: false,
     loginOverlay: false,
+    newLocationOverlay: false,
     backButtonPath: null,
     cartIconVisible: true,
     orderPlacedSuccesfully: false,
@@ -84,6 +85,12 @@ export const uiReducer = (state = initialState, action) => {
 
         case types.HIDE_SEARCH_OVERLAY:
             return state.set('searchOpened', false);
+
+        case types.SHOW_NEW_LOCATION_OVERLAY:
+            return state.set('newLocationOverlay', true);
+
+        case types.HIDE_NEW_LOCATION_OVERLAY:
+            return state.set('newLocationOverlay', false);
 
         case types.HIDE_ALL_OVERLAYS:
             return state.merge({

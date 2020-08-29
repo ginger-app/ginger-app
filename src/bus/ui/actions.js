@@ -65,6 +65,10 @@ export const uiActions = {
         type: types.SHOW_SEARCH_OVERLAY,
     }),
 
+    showNewLocationOverlay: () => ({
+        type: types.SHOW_NEW_LOCATION_OVERLAY,
+    }),
+
     hideLoginOverlay: () => ({
         type: types.HIDE_LOGIN_OVERLAY,
     }),
@@ -83,6 +87,10 @@ export const uiActions = {
 
     hideAllOverlays: () => ({
         type: types.HIDE_ALL_OVERLAYS,
+    }),
+
+    hideNewLocationOverlay: () => ({
+        type: types.HIDE_NEW_LOCATION_OVERLAY,
     }),
 
     // Error

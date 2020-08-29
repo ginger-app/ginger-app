@@ -28,8 +28,8 @@ export const opacityTransitionConfig = (duration) => ({
     },
 
     timeout: {
-        enter: duration || 0,
-        exit: 0,
+        enter: 0,
+        exit: duration || 0,
     },
 });
 

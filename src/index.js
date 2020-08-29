@@ -19,6 +19,7 @@ import {
     CodeConfirmationOverlay,
     SearchOverlay,
     FiltersOverlay,
+    NewLocationOverlay,
 } from 'components';
 import { store } from './bus/init/store';
 import { history } from './bus/init/middleware/core';
@@ -36,6 +37,7 @@ render(
             <CodeConfirmationOverlay />
             <SearchOverlay />
             <FiltersOverlay />
+            <NewLocationOverlay />
             <Cart />
         </Router>
     </Provider>,

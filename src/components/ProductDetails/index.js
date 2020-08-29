@@ -12,6 +12,7 @@ import { Button, RadioButton, Icon } from 'components';
 import mockApples from 'theme/assets/images/apples-mock.png';
 
 // Actions
+import { uiActions } from 'bus/ui/actions';
 
 // Mocks
 const locations = [
@@ -31,12 +32,15 @@ const mapStateToProps = (state) => ({
     backButtonPath: state.ui.get('backButtonPath'),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    showNewLocationOverlay: uiActions.showNewLocationOverlay,
+};
 
 const ProductDetailsComponent = ({
     className,
     // sku,
     productData,
+    showNewLocationOverlay,
 }) => {
     // const { nameUkr, stock, unit, price, image } = productData;
 
@@ -129,6 +133,7 @@ const ProductDetailsComponent = ({
                             <Button
                                 className={Styles.newLocationButton}
                                 content={<Icon name='plus' color='white' />}
+                                onClick={showNewLocationOverlay}
                                 filled
                             />
                         </div>

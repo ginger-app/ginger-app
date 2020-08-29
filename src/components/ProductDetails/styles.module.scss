@@ -125,9 +125,13 @@
             gap: 1rem;
 
             height: 4rem;
-            padding-right: 0.5rem;
 
             border-top: 1px solid $paletteGrey_3;
+
+            & .radio {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
         }
 
         & .newLocation {
@@ -139,15 +143,17 @@
             height: 4rem;
             width: 100%;
             padding: 0.5rem 0;
-            padding-right: 0.5rem;
 
             border-top: 1px solid $paletteGrey_3;
 
             font-size: 1.25rem;
 
             & .newLocationButton {
-                height: 3rem;
-                width: 3rem;
+                @include centerContent;
+
+                height: 2.5rem;
+                width: 2.5rem;
+                padding: 0;
             }
         }
     }

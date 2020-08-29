@@ -24,7 +24,7 @@ export const Button = ({
             {text || content}
         </button>
     ) : (
-        <GradientBorder className={`${Styles.container} ${className}`}>
+        <GradientBorder className={`${Styles.container} ${className}`} onClick={onClick}>
             {content || (
                 <button
                     className={`${Styles.button} ${
