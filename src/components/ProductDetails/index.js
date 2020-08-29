@@ -54,7 +54,7 @@ const ProductDetailsComponent = ({
         setLocationsData(data);
     }, [locations]);
 
-    const calculateLocationsHeight = () => `${locations.length * 4}rem`;
+    const calculateLocationsHeight = () => `${locations.length * 4 + 1}rem`;
 
     return (
         <Transition

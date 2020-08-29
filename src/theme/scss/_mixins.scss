@@ -20,6 +20,13 @@
     color: $paletteBlack;
 }
 
+@mixin subtitle {
+    font-size: 0.9rem;
+    text-align: center;
+
+    color: $paletteGrey_3;
+}
+
 @mixin gradientText($gradient: $paletteDefaultGradient) {
     background: $gradient;
     background-clip: text;

@@ -7,7 +7,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Components
-import { ProductDetails, Navigation } from 'components';
+import { ProductDetails, Navigation, Suppliers } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -47,7 +47,7 @@ const ProductComponent = ({ sku, productData, getProductDataAsync, clearProductD
                     }}
                 >
                     <ProductDetails productData={productData} />
-                    <div>ПОСТАЧАЛЬНИК</div>
+                    <Suppliers />
                     <Navigation search />
                 </section>
             )}
