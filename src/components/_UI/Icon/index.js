@@ -326,7 +326,7 @@ export function renderIcon({ name, color = '#000', size, width, height, onClick,
                 >
                     <path
                         d='M8.48146 0.333374V5.45268H13.6666V8.5474H8.48146V13.6667H5.5185V8.5474H0.333313V5.45268H5.5185V0.333374H8.48146Z'
-                        fill='black'
+                        fill={color}
                     />
                 </svg>
             );

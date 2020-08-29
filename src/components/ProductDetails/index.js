@@ -8,7 +8,7 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import { Button, RadioButton } from 'components';
+import { Button, RadioButton, Icon } from 'components';
 import mockApples from 'theme/assets/images/apples-mock.png';
 
 // Actions
@@ -52,7 +52,7 @@ const ProductDetailsComponent = ({
         });
 
         setLocationsData(data);
-    }, [locations]);
+    }, []);
 
     const calculateLocationsHeight = () => `${locations.length * 4 + 1}rem`;
 
@@ -99,6 +99,7 @@ const ProductDetailsComponent = ({
                         className={Styles.locations}
                         style={{
                             height: expanded ? calculateLocationsHeight() : '0',
+                            opacity: expanded ? '1' : '0',
                         }}
                     >
                         {locations.map((item, index) => (
@@ -121,6 +122,16 @@ const ProductDetailsComponent = ({
                                 />
                             </div>
                         ))}
+
+                        {/* Adding a new location button */}
+                        <div className={Styles.newLocation}>
+                            New location
+                            <Button
+                                className={Styles.newLocationButton}
+                                content={<Icon name='plus' color='white' />}
+                                filled
+                            />
+                        </div>
                     </div>
 
                     <Button
