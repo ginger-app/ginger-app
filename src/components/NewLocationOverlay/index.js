@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -23,6 +23,89 @@ const mapDispatchToProps = {
 };
 
 const NewLocationOverlayComponent = ({ newLocationOverlay, hideNewLocationOverlay }) => {
+    // Refs
+    const companyRef = useRef(null);
+    const addressRef = useRef(null);
+    const scheduleRef = useRef(null);
+    const contactNameRef = useRef(null);
+    const phoneNumberRef = useRef(null);
+
+    // Editing states
+    const [companyEditing, setCompanyEditingState] = useState(false);
+    const [addressEditing, setAddressEditingState] = useState(false);
+    const [scheduleEditing, setScheduleEditingState] = useState(false);
+    const [contactNameEditing, setContactNameEditingState] = useState(false);
+    const [phoneNumberEditing, setPhoneNumberEditingState] = useState(false);
+
+    // Values
+    const [company, setCompanyValue] = useState('');
+    const [address, setAddressValue] = useState('');
+    const [schedule, setScheduleValue] = useState('');
+    const [contactName, setContactNameValue] = useState('');
+    const [phoneNumber, setPhoneNumberValue] = useState('');
+
+    const inputs = useMemo(
+        () => [
+            {
+                ref: companyRef,
+                title: 'Company',
+                inputValue: company,
+                editingState: companyEditing,
+                setValue: setCompanyValue,
+                setEditingState: setCompanyEditingState,
+            },
+            {
+                ref: addressRef,
+                title: 'Address',
+                inputValue: address,
+                editingState: addressEditing,
+                setValue: setAddressValue,
+                setEditingState: setAddressEditingState,
+            },
+            {
+                ref: scheduleRef,
+                title: 'Schedule',
+                inputValue: schedule,
+                editingState: scheduleEditing,
+                setValue: setScheduleValue,
+                setEditingState: setScheduleEditingState,
+            },
+            {
+                ref: contactNameRef,
+                title: 'Contact Name',
+                inputValue: contactName,
+                editingState: contactNameEditing,
+                setValue: setContactNameValue,
+                setEditingState: setContactNameEditingState,
+            },
+            {
+                ref: phoneNumberRef,
+                title: 'Phone Number',
+                inputValue: phoneNumber,
+                editingState: phoneNumberEditing,
+                setValue: setPhoneNumberValue,
+                setEditingState: setPhoneNumberEditingState,
+            },
+        ],
+        [
+            companyRef,
+            addressRef,
+            scheduleRef,
+            contactNameRef,
+            phoneNumberRef,
+            companyEditing,
+            addressEditing,
+            scheduleEditing,
+            contactNameEditing,
+            phoneNumberEditing,
+            company,
+            address,
+            schedule,
+            contactName,
+            phoneNumber,
+        ],
+    );
+
     return (
         <Transition
             in={newLocationOverlay}
@@ -42,38 +125,35 @@ const NewLocationOverlayComponent = ({ newLocationOverlay, hideNewLocationOverla
                     <div className={Styles.container}>
                         {/* Image */}
                         <img src={img} className={Styles.img} alt='' />
-                        <Button className={Styles.imgButton} content={<Icon name='edit' />} />
 
                         {/* Input fields */}
-                        <div className={Styles.inputFieldBlock}>
-                            <p className={Styles.subtitle}>Company</p>
-                            <p className={Styles.value}>Company</p>
-                            <Button className={Styles.button} content={<Icon name='edit' />} />
-                        </div>
-
-                        <div className={Styles.inputFieldBlock}>
-                            <p className={Styles.subtitle}>Address</p>
-                            <p className={Styles.value}>Company</p>
-                            <Button className={Styles.button} content={<Icon name='edit' />} />
-                        </div>
-
-                        <div className={Styles.inputFieldBlock}>
-                            <p className={Styles.subtitle}>Schedule</p>
-                            <p className={Styles.value}>Company</p>
-                            <Button className={Styles.button} content={<Icon name='edit' />} />
-                        </div>
-
-                        <div className={Styles.inputFieldBlock}>
-                            <p className={Styles.subtitle}>Contact name</p>
-                            <p className={Styles.value}>Company</p>
-                            <Button className={Styles.button} content={<Icon name='edit' />} />
-                        </div>
-
-                        <div className={Styles.inputFieldBlock}>
-                            <p className={Styles.subtitle}>Phone number</p>
-                            <p className={Styles.value}>Company</p>
-                            <Button className={Styles.button} content={<Icon name='edit' />} />
-                        </div>
+                        {inputs.map(
+                            (
+                                { title, inputValue, editingState, setValue, setEditingState, ref },
+                                index,
+                            ) => (
+                                <div className={Styles.inputFieldBlock} key={index}>
+                                    <p className={Styles.subtitle}>{title}</p>
+                                    <input
+                                        className={Styles.value}
+                                        value={inputValue}
+                                        ref={ref}
+                                        onChange={({ target: { value } }) => setValue(value)}
+                                        onClick={() => setEditingState(true)}
+                                    />
+                                    <Button
+                                        className={Styles.button}
+                                        content={<Icon name={editingState ? 'check' : 'edit'} />}
+                                        onClick={() => {
+                                            setEditingState(!editingState);
+                                            return editingState
+                                                ? ref.current.blur()
+                                                : ref.current.focus();
+                                        }}
+                                    />
+                                </div>
+                            ),
+                        )}
                     </div>
 
                     <Button

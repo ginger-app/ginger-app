@@ -20,6 +20,8 @@
     margin: 0;
     padding: 0;
 
+    font-family: 'Montserrat', sans-serif;
+
     box-sizing: border-box;
     scroll-behavior: smooth;
     user-select: none;
@@ -58,8 +60,6 @@ body {
     width: 100vw;
 
     background: $paletteBg;
-
-    font-family: 'Montserrat', sans-serif;
 }
 
 #app {
@@ -76,74 +76,3 @@ a {
 
     color: $paletteBlack;
 }
-
-//  /* notifications */
-//  .toast-container {
-//      z-index: 100;
-//  }
-//  .toast-progress-line {
-//      background: $lightGrey;
-//      height: 1px;
-//  }
-
-//  .toast-error {
-//      background: $paletteErrorRed;
-
-//      & .error-body {
-//          display: flex;
-//          align-items: center;
-//          color: white;
-//          &::before {
-//              content: url('../theme/assets/icons/error.svg');
-//              margin-right: 1rem;
-//              filter: invert(1);
-//          }
-//      }
-//  }
-
-//  .toast-success {
-//      background: $secondaryGreen;
-
-//      & .success-body {
-//          display: flex;
-//          align-items: center;
-//          color: white;
-//          &::before {
-//              content: url('../theme/assets/icons/success.svg');
-//              margin-right: 1rem;
-//              filter: invert(1);
-//          }
-//      }
-//  }
-
-//  .toast-bonus {
-//      background: #000;
-//      border: 1px solid $secondaryGreen;
-
-//      & .bonus-body {
-//          display: flex;
-//          align-items: center;
-//          color: white;
-//          &::before {
-//              content: url('../theme/assets/icons/warn.svg');
-//              margin-right: 1rem;
-//              filter: invert(1);
-//          }
-//      }
-//  }
-
-//  .toast-info {
-//      background: #000;
-//      border: 1px solid $secondaryGreen;
-
-//      & .info-body {
-//          display: flex;
-//          align-items: center;
-//          color: white;
-//          &::before {
-//              content: url('../theme/assets/icons/info.svg');
-//              margin-right: 1rem;
-//              filter: invert(1);
-//          }
-//      }
-//  }
