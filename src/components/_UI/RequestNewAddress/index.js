@@ -45,12 +45,7 @@ export const RequestNewAddress = ({
                         placesholder='Type in your address'
                         onChange={({ target: { value } }) => setRequestedAddress(value)}
                     />
-                    <div
-                        className={Styles.requestButton}
-                        onClick={() => {
-                            console.log('Sending address request -> ', requestedAddress);
-                        }}
-                    >
+                    <div className={Styles.requestButton} onClick={() => requestedAddress}>
                         Send request
                     </div>
                 </section>

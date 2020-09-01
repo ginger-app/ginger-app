@@ -93,7 +93,7 @@ const CategoryComponent = ({
                     <Carousel
                         itemsToShow={2}
                         className={Styles.tags}
-                        carouseleClassName={Styles.carousele}
+                        carouselClassName={Styles.carousele}
                         items={subcategories.map((item, index) => (
                             <NavLink
                                 to={`${window.location.pathname}/${item}`}

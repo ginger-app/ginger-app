@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 // Styles
 import Styles from './styles.module.scss';
 
-export const Carousel = ({ className, carouseleClassName, items, children }) => {
+export const Carousel = ({ className, carouselClassName, items, children }) => {
     const [translateValue, setTranslateValue] = useState(0);
     const contentRef = useRef(null);
     const containerRef = useRef(null);
@@ -44,7 +44,7 @@ export const Carousel = ({ className, carouseleClassName, items, children }) => 
     return (
         <section className={`${Styles.container} ${className}`}>
             <div
-                className={`${Styles.carousele} ${carouseleClassName}`}
+                className={`${Styles.carousele} ${carouselClassName}`}
                 onWheel={_handleScroll}
                 ref={containerRef}
             >

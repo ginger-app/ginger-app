@@ -25,7 +25,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     getMarketSubcategoryDataAsync: marketActions.getMarketSubcategoryDataAsync,
     clearMarketSubcategoryData: marketActions.clearMarketSubcategoryData,
-    showFilters: uiActions.showFilters,
+    showMarketFiltersOverlay: uiActions.showMarketFiltersOverlay,
 };
 
 const SubcategoryComponent = ({
@@ -34,7 +34,7 @@ const SubcategoryComponent = ({
     getMarketSubcategoryDataAsync,
     clearMarketSubcategoryData,
     subcategoryData,
-    showFilters,
+    showMarketFiltersOverlay,
     sortingOption,
 }) => {
     useEffect(() => {
@@ -91,7 +91,7 @@ const SubcategoryComponent = ({
                     <Navigation className={Styles.title} title={name} rightButton='search' />
                     <Carousel
                         className={Styles.tags}
-                        carouseleClassName={Styles.carousele}
+                        carouselClassName={Styles.carousele}
                         itemsToShow={3}
                         items={tags.map((item, index) => (
                             <div className={Styles.tag} key={index}>
@@ -99,7 +99,7 @@ const SubcategoryComponent = ({
                             </div>
                         ))}
                     />
-                    <div className={Styles.filterButton} onClick={showFilters}>
+                    <div className={Styles.filterButton} onClick={showMarketFiltersOverlay}>
                         <Icon name='filters' color='black' />
                     </div>
                     <MarketShowcase className={Styles.showcase} items={sortedItems} marketType />

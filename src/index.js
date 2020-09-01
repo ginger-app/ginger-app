@@ -18,7 +18,7 @@ import {
     LoginOverlay,
     CodeConfirmationOverlay,
     SearchOverlay,
-    FiltersOverlay,
+    MarketFiltersOverlay,
     NewLocationOverlay,
 } from 'components';
 import { store } from './bus/init/store';
@@ -36,7 +36,7 @@ render(
             <LoginOverlay />
             <CodeConfirmationOverlay />
             <SearchOverlay />
-            <FiltersOverlay />
+            <MarketFiltersOverlay />
             <NewLocationOverlay />
             <Cart />
         </Router>

@@ -4,6 +4,7 @@ export * from './OrderStatusLabel';
 export * from './FavoritesButton';
 export * from './GradientBorder';
 export * from './CategoryItem';
+export * from './FilterOption';
 export * from './RadioButton';
 export * from './SearchItem';
 export * from './MarketItem';

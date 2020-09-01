@@ -16,20 +16,12 @@ export const uiActions = {
         type: types.SHOW_CART,
     }),
 
-    showFilters: () => ({
-        type: types.SHOW_FILTERS,
-    }),
-
     showCartIcon: () => ({
         type: types.SHOW_CART_ICON,
     }),
 
     hideCart: () => ({
         type: types.HIDE_CART,
-    }),
-
-    hideFilters: () => ({
-        type: types.HIDE_FILTERS,
     }),
 
     hideCartIcon: () => ({
@@ -65,12 +57,20 @@ export const uiActions = {
         type: types.SHOW_SEARCH_OVERLAY,
     }),
 
+    showMarketFiltersOverlay: () => ({
+        type: types.SHOW_MARKET_FILTERS,
+    }),
+
     showNewLocationOverlay: () => ({
         type: types.SHOW_NEW_LOCATION_OVERLAY,
     }),
 
     hideLoginOverlay: () => ({
         type: types.HIDE_LOGIN_OVERLAY,
+    }),
+
+    hideMarketFiltersOverlay: () => ({
+        type: types.HIDE_MARKET_FILTERS,
     }),
 
     hideSignupOverlay: () => ({

@@ -27,17 +27,14 @@ const CreateNewOrderComponent = ({ className }) => {
         >
             <div
                 className={`${Styles.newOrderButton} ${unfinishedOrder && Styles.minified}`}
-                onClick={() => console.log('Create new order')}
+                onClick={() => null}
             >
                 <p className={Styles.newOrderText}>Create new order</p>
                 <img src={button} alt='' />
             </div>
             {unfinishedOrder && (
                 <GradientBorder>
-                    <div
-                        className={Styles.backToOrderButton}
-                        onClick={() => console.log('Contiinue ordering')}
-                    >
+                    <div className={Styles.backToOrderButton} onClick={() => null}>
                         <p className={Styles.backToOrdertext}>Continue ordering</p>
                         <img src={button} alt='' />
                     </div>
