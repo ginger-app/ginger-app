@@ -126,7 +126,12 @@ const MarketFiltersOverlayComponent = ({
 
                     {/* Minimum order price */}
                     <p className={Styles.subtitle}>Min. order quantity</p>
-                    <p className={Styles.clear}>Очистити</p>
+                    <p
+                        className={Styles.clear}
+                        onClick={() => handleMinOrderValueChange({ target: { value: 0 } })}
+                    >
+                        Очистити
+                    </p>
                     <input
                         className={Styles.priceInput}
                         value={minOrderValue}

@@ -14,6 +14,7 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
+import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     productData: state.market.get('productData').toJS(),
@@ -22,9 +23,16 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     getProductDataAsync: marketActions.getProductDataAsync,
     clearProductData: marketActions.clearProductData,
+    showMarketFiltersOverlay: uiActions.showMarketFiltersOverlay,
 };
 
-const ProductComponent = ({ sku, productData, getProductDataAsync, clearProductData }) => {
+const ProductComponent = ({
+    sku,
+    productData,
+    getProductDataAsync,
+    clearProductData,
+    showMarketFiltersOverlay,
+}) => {
     useEffect(() => {
         getProductDataAsync(sku);
 
@@ -48,7 +56,13 @@ const ProductComponent = ({ sku, productData, getProductDataAsync, clearProductD
                 >
                     <ProductDetails productData={productData} />
                     <Suppliers />
-                    <Navigation search />
+                    <Navigation
+                        search
+                        rightButtonData={{
+                            onClick: showMarketFiltersOverlay,
+                            icon: 'filters',
+                        }}
+                    />
                 </section>
             )}
         </Transition>

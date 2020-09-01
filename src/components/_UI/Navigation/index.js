@@ -29,6 +29,7 @@ const NavigationComponent = ({
     backButtonPath,
     setBackButtonPath,
     showSearchOverlay,
+    rightButtonData,
     title,
     leftButton,
     rightButton,
@@ -73,6 +74,14 @@ const NavigationComponent = ({
                     <Icon name='search' color={searchOpened ? 'white' : 'black'} />
                 </div>
             )}
+            {rightButtonData && (
+                <div
+                    className={`${Styles.searchButton} ${Styles.rightButton}`}
+                    onClick={rightButtonData.onClick}
+                >
+                    <Icon name={rightButtonData.icon} color='black' />
+                </div>
+            )}
         </section>
     );
 };
@@ -83,6 +92,10 @@ NavigationComponent.propTypes = {
     leftButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
     rightButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
     centerButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+    rightButtonData: PropTypes.shape({
+        icon: PropTypes.string.isRequired,
+        onClick: PropTypes.func.isRequired,
+    }),
     search: PropTypes.bool,
 };
 

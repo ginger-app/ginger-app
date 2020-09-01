@@ -8,7 +8,7 @@ const initialState = Map({
     isFetching: false,
     cartIsOpened: false,
     searchOpened: false,
-    marketFiltersOverlay: true,
+    marketFiltersOverlay: false,
     codeConfirmationOverlay: false,
     signupOverlay: false,
     loginOverlay: false,
