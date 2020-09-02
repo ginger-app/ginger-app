@@ -45,7 +45,7 @@ const SignupOverlayComponent = ({
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
 
-    const handlePhoneNumberChange = ({ target: { value } }) => {
+    const handlePhoneNumberChange = (value) => {
         if (!/^[0-9+ ]*$/.test(value)) return null;
         if (value.length < 4 || value.length > 17) return null;
 
@@ -84,7 +84,7 @@ const SignupOverlayComponent = ({
                                 className={Styles.input}
                                 title={"Ім'я"}
                                 value={name}
-                                onChange={({ target: { value } }) => setName(value)}
+                                onChange={setName}
                             />
 
                             <img className={Styles.icon} src={company} alt='' />
@@ -92,7 +92,7 @@ const SignupOverlayComponent = ({
                                 className={Styles.input}
                                 title='Назва компанії'
                                 value={companyName}
-                                onChange={({ target: { value } }) => setCompanyName(value)}
+                                onChange={setCompanyName}
                             />
 
                             <img className={Styles.icon} src={phone} alt='' />
@@ -108,7 +108,7 @@ const SignupOverlayComponent = ({
                                 className={Styles.input}
                                 title='Електронна пошта'
                                 value={email}
-                                onChange={({ target: { value } }) => setEmail(value)}
+                                onChange={setEmail}
                             />
                             <div
                                 className={Styles.button}

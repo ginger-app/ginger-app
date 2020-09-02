@@ -38,7 +38,7 @@ const LoginOverlayComponent = ({
 }) => {
     const [phoneNumber, setPhoneNumber] = useState('+380639999999');
 
-    const _handlePhoneNumberChange = ({ target: { value } }) => {
+    const _handlePhoneNumberChange = (value) => {
         if (!/^[0-9+ ]*$/.test(value)) return null;
         if (value.length < 4 || value.length > 18) return null;
 

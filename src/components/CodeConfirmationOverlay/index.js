@@ -77,7 +77,7 @@ const CodeConfirmationOverlayComponent = ({
                                 className={Styles.input}
                                 title='Number'
                                 value={code}
-                                onChange={({ target: { value } }) => setCodeValue(value)}
+                                onChange={setCodeValue}
                                 autoFocus
                             />
                             <div
