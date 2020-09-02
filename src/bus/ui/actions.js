@@ -61,6 +61,10 @@ export const uiActions = {
         type: types.SHOW_MARKET_FILTERS,
     }),
 
+    showOrdersFiltersOverlay: () => ({
+        type: types.SHOW_ORDERS_FILTERS,
+    }),
+
     showNewLocationOverlay: () => ({
         type: types.SHOW_NEW_LOCATION_OVERLAY,
     }),
@@ -71,6 +75,10 @@ export const uiActions = {
 
     hideMarketFiltersOverlay: () => ({
         type: types.HIDE_MARKET_FILTERS,
+    }),
+
+    hideOrdersFiltersOverlay: () => ({
+        type: types.HIDE_ORDERS_FILTERS,
     }),
 
     hideSignupOverlay: () => ({

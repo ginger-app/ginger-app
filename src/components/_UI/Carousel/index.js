@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // Styles
 import Styles from './styles.module.scss';
 
-export const Carousel = ({ className, carouselClassName, items, children }) => {
+export const Carousel = ({ className, carouselClassName, items, children, style }) => {
     const [translateValue, setTranslateValue] = useState(0);
     const contentRef = useRef(null);
     const containerRef = useRef(null);
@@ -43,7 +43,7 @@ export const Carousel = ({ className, carouselClassName, items, children }) => {
     };
 
     return (
-        <section className={`${Styles.container} ${className}`}>
+        <section className={`${Styles.container} ${className}`} style={style}>
             <div
                 className={`${Styles.carousele} ${carouselClassName}`}
                 onWheel={_handleScroll}

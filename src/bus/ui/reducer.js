@@ -9,6 +9,7 @@ const initialState = Map({
     cartIsOpened: false,
     searchOpened: false,
     marketFiltersOverlay: false,
+    ordersFiltersOverlay: false,
     codeConfirmationOverlay: false,
     signupOverlay: false,
     loginOverlay: false,
@@ -36,6 +37,9 @@ export const uiReducer = (state = initialState, action) => {
         case types.SHOW_MARKET_FILTERS:
             return state.set('marketFiltersOverlay', true);
 
+        case types.SHOW_ORDERS_FILTERS:
+            return state.set('ordersFiltersOverlay', true);
+
         case types.SHOW_CART_ICON:
             return state.set('cartIconVisible', true);
 
@@ -44,6 +48,9 @@ export const uiReducer = (state = initialState, action) => {
 
         case types.HIDE_MARKET_FILTERS:
             return state.set('marketFiltersOverlay', false);
+
+        case types.HIDE_ORDERS_FILTERS:
+            return state.set('ordersFiltersOverlay', false);
 
         case types.HIDE_CART_ICON:
             return state.set('cartIconVisible', false);

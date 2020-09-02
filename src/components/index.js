@@ -2,6 +2,7 @@ export * from './_UI';
 export * from './CodeConfirmationOverlay';
 export * from './MarketFiltersOverlay';
 export * from './CategoriesCatalogue';
+export * from './OrderFiltersOverlay';
 export * from './NewLocationOverlay';
 export * from './OrderSuccessModal';
 export * from './DeliveryTimeModal';

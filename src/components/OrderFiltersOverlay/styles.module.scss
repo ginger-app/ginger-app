@@ -1,5 +1,88 @@
 @import 'resources';
 
 .container {
-    //...
+    @include fullHeight;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: max-content;
+    gap: 0.5rem 0;
+
+    height: 100vh;
+    width: 100vw;
+    padding: 3rem 1rem 5rem;
+
+    background: $paletteBg;
+
+    & .title {
+        @include boldTitle;
+        grid-column: 1 / 4;
+    }
+
+    & .select {
+        @include lightButton;
+        place-self: center;
+
+        grid-column: 1 / 4;
+
+        width: 85%;
+        margin: 1rem 0 0;
+        padding: 0.75rem;
+    }
+
+    & .subtitle {
+        grid-column: 1 / 3;
+
+        margin: 1rem 0 0.5rem;
+
+        font-weight: bold;
+
+        color: $paletteGrey_2;
+    }
+
+    & .clear {
+        cursor: pointer;
+        place-self: center end;
+
+        grid-column: 3;
+
+        margin: 1rem 0 0.5rem;
+
+        font-size: 0.9rem;
+
+        color: $paletteGrey_3;
+
+        transition: color 0.3s;
+
+        &:hover {
+            color: $paletteGrey_1;
+        }
+    }
+
+    & .slider {
+        grid-column: 1 / 4;
+
+        padding: 0;
+    }
+
+    & .applyButton {
+        cursor: pointer;
+
+        position: fixed;
+        bottom: 1rem;
+        left: 50%;
+
+        height: 3rem;
+        width: 3rem;
+
+        transform: translate(-50%, 0);
+
+        & .icon {
+            position: relative;
+            left: -3px;
+        }
+    }
 }

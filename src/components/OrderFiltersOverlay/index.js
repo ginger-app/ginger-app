@@ -7,17 +7,41 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
+import { DoubleRowCarousel, Button, Icon } from 'components';
 import { topToBottomSlideConfig } from 'utils/transitionConfig';
+import randomWords from 'random-words';
+
+// Actions
+import { uiActions } from 'bus/ui/actions';
+
+// Mocks
+const suppliers = randomWords({
+    exactly: 15,
+    wordsPerString: 3,
+    formatter: (word) => (Math.random() > 0.5 ? word : ''),
+}).map((item) => (item.trim().length === 0 ? 'Galychyna' : item));
 
 const mapStateToProps = (state) => ({
-    ...state,
+    ordersFiltersOverlay: state.ui.get('ordersFiltersOverlay'),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    hideOrdersFiltersOverlay: uiActions.hideOrdersFiltersOverlay,
+};
 
-const OrderFiltersOverlayComponent = ({ className }) => {
+const OrderFiltersOverlayComponent = ({
+    className,
+    ordersFiltersOverlay,
+    hideOrdersFiltersOverlay,
+}) => {
     return (
-        <Transition in appear mountOnEnter unmountOnExit timeout={topToBottomSlideConfig().timeout}>
+        <Transition
+            in={ordersFiltersOverlay}
+            appear
+            mountOnEnter
+            unmountOnExit
+            timeout={topToBottomSlideConfig().timeout}
+        >
             {(state) => (
                 <section
                     className={[Styles.container, className].filter(Boolean).join(' ')}
@@ -25,7 +49,34 @@ const OrderFiltersOverlayComponent = ({ className }) => {
                         ...topToBottomSlideConfig().defaultStyles,
                         ...topToBottomSlideConfig().transitionStyles[state],
                     }}
-                />
+                >
+                    {/* Title */}
+                    <p className={Styles.title}>Filters</p>
+
+                    {/* Date range select */}
+                    <div className={Styles.select}>Select</div>
+
+                    {/* Filters */}
+                    <p className={Styles.subtitle}>Supplier</p>
+                    <p className={Styles.clear}>Очистити</p>
+                    <DoubleRowCarousel items={['All', ...suppliers]} className={Styles.slider} />
+
+                    <p className={Styles.subtitle}>Location</p>
+                    <p className={Styles.clear}>Очистити</p>
+                    <DoubleRowCarousel items={['All', ...suppliers]} className={Styles.slider} />
+
+                    <p className={Styles.subtitle}>Category</p>
+                    <p className={Styles.clear}>Очистити</p>
+                    <DoubleRowCarousel items={['All', ...suppliers]} className={Styles.slider} />
+
+                    {/* Apply button */}
+                    <Button
+                        className={Styles.applyButton}
+                        content={<Icon name='check' color='white' className={Styles.icon} />}
+                        onClick={hideOrdersFiltersOverlay}
+                        filled
+                    />
+                </section>
             )}
         </Transition>
     );

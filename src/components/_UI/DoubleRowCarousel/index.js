@@ -31,34 +31,31 @@ export const DoubleRowCarousel = ({ className, items }) => {
             timeout={opacityTransitionConfig().timeout}
         >
             {(state) => (
-                <section
-                    className={[Styles.container, className].filter(Boolean).join(' ')}
+                <Carousel
+                    className={[Styles.carouselContainer, className].filter(Boolean).join(' ')}
                     style={{
                         ...opacityTransitionConfig().defaultStyles,
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
-                >
-                    <Carousel
-                        items={
-                            <div className={Styles.carousel}>
-                                <div className={Styles.topLine}>
-                                    {topLine.map((item, index) => (
-                                        <div key={index} className={Styles.item}>
-                                            {item}
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className={Styles.bottomLine}>
-                                    {bottomLine.map((item, index) => (
-                                        <div key={index} className={Styles.item}>
-                                            {item}
-                                        </div>
-                                    ))}
-                                </div>
+                    items={
+                        <div className={Styles.carousel}>
+                            <div className={Styles.topLine}>
+                                {topLine.map((item, index) => (
+                                    <div key={index} className={Styles.item}>
+                                        {item}
+                                    </div>
+                                ))}
                             </div>
-                        }
-                    />
-                </section>
+                            <div className={Styles.bottomLine}>
+                                {bottomLine.map((item, index) => (
+                                    <div key={index} className={Styles.item}>
+                                        {item}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    }
+                />
             )}
         </Transition>
     );
