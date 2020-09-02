@@ -1,5 +1,6 @@
 // Core
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -60,4 +61,11 @@ export const Carousel = ({ className, carouselClassName, items, children }) => {
             </div>
         </section>
     );
+};
+
+Carousel.propTypes = {
+    className: PropTypes.string,
+    carouselClassName: PropTypes.string,
+    items: PropTypes.node,
+    children: PropTypes.node,
 };

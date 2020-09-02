@@ -1,5 +1,6 @@
 export * from './RequestNewAddress';
 export * from './MarketItemOverlay';
+export * from './DoubleRowCarousel';
 export * from './OrderStatusLabel';
 export * from './FavoritesButton';
 export * from './GradientBorder';
