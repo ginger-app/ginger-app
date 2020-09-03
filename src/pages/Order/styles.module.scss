@@ -1,22 +1,165 @@
 @import 'resources';
 
-.bg {
+.container {
     @include fullHeight;
 
     display: grid;
-    grid-template-rows: min-content 1fr;
-    place-items: center;
-    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(6, max-content) 1fr;
 
-    width: 100vw;
-    padding: 1rem 0 0;
-
-    background: $paletteDefaultGradient;
-
-    overflow-y: hidden;
+    height: 100vh;
+    padding: 2rem 0.5rem 5rem;
 
     & .title {
         @include boldTitle;
-        @include centerContent;
+        place-self: start;
+
+        grid-column: 1 / 3;
+
+        margin-bottom: 1.5rem;
+    }
+
+    & .date {
+        place-self: start;
+
+        margin-bottom: 0.5rem;
+
+        font-weight: bold;
+    }
+
+    & .orderStatusLabel {
+        place-self: end;
+
+        width: 75%;
+        margin-bottom: 0.5rem;
+    }
+
+    & .locationSubtitle {
+        @include subtitle;
+        place-self: start;
+
+        grid-column: 1;
+        grid-row: 3;
+
+        margin-top: 0.2rem;
+    }
+
+    & .location {
+        @include boldTitle;
+        place-self: start;
+
+        grid-column: 1;
+    }
+
+    & .supplierSubtitle {
+        @include subtitle;
+        place-self: start;
+
+        grid-column: 1;
+        grid-row: 5;
+
+        margin-top: 0.2rem;
+    }
+
+    & .supplier {
+        place-self: start;
+
+        display: grid;
+        grid-column: 1;
+        grid-template-columns: repeat(2, max-content);
+        gap: 0.5rem;
+
+        & span {
+            @include boldTitle;
+        }
+
+        & .detailsButton {
+            @include centerContent;
+            place-self: center;
+
+            height: 1.5rem;
+            width: 1.5rem;
+            padding: 0;
+
+            & img {
+                width: 75%;
+            }
+        }
+    }
+
+    & .orderIdSubtitle {
+        @include subtitle;
+        place-self: start end;
+
+        grid-column: 2;
+        grid-row: 3;
+
+        margin-top: 0.2rem;
+    }
+
+    & .orderId {
+        @include boldTitle;
+        place-self: start end;
+
+        grid-column: 2;
+        grid-row: 4;
+
+        margin-top: 0.1rem;
+
+        font-size: 0.95rem;
+    }
+
+    & .sumSubtitle {
+        @include subtitle;
+        place-self: start end;
+
+        grid-column: 2;
+        grid-row: 5;
+
+        margin-top: 0.2rem;
+    }
+
+    & .sum {
+        @include boldTitle;
+        place-self: start end;
+
+        grid-column: 2;
+        grid-row: 6;
+    }
+
+    & .products {
+        grid-column: 1 / 3;
+        display: grid;
+        grid-auto-rows: max-content;
+
+        height: 100%;
+        margin-top: 1rem;
+
+        overflow: scroll;
+
+        & .productItem {
+            display: grid;
+            grid-template-columns: 20% 1fr 20% 20%;
+            place-items: center;
+            gap: 0.5rem;
+
+            width: 100%;
+            padding: 0.5rem 0;
+
+            border-top: 2px solid $paletteGrey_4;
+
+            & img {
+                height: 3rem;
+                width: 3rem;
+
+                background: $paletteWhite;
+
+                border-radius: 100%;
+            }
+
+            & .price {
+                @include boldTitle;
+            }
+        }
     }
 }
