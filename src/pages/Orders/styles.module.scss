@@ -4,19 +4,35 @@
     @include fullHeight;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 3rem 1fr;
+    grid-template-rows: 3rem 1fr 3rem;
 
-    padding: 1rem 0.25rem;
+    height: 100vh;
+    padding: 2rem 0.5rem 4.5rem;
 
     & .title {
-        grid-column: 1 / 3;
+        @include boldTitle;
+
+        text-align: left;
+    }
+
+    & .ordersSection {
+        display: grid;
+        grid-auto-rows: max-content;
+        gap: 0.5rem;
+
+        height: 100%;
+
+        overflow: scroll;
     }
 
     & .tags {
-        grid-column: 1 / 3;
-
         padding: 0;
+
+        border-radius: 10rem;
+
+        & :last-of-type {
+            margin-right: 0.5rem;
+        }
 
         & .tag {
             @include lightButton;
@@ -38,9 +54,5 @@
                 color: $paletteWhite;
             }
         }
-    }
-
-    & .showcase {
-        grid-column: 1 / 3;
     }
 }

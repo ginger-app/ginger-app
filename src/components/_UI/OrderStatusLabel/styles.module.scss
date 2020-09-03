@@ -1,11 +1,14 @@
 @import 'resources';
 
 .container {
-    padding: 0.5rem 1rem;
+    @include centerContent;
+
+    padding: 0.25rem 0.75rem;
 
     border-radius: 1rem;
 
     text-align: center;
+    font-size: 0.8rem;
 
     &.completedStatus {
         background: #00c43848;

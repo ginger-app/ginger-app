@@ -4,16 +4,14 @@ import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
-
-// Components
-import { Navigation, MarketShowcase } from 'components';
+import Styles from './styles.module.scss';
 
 // Instruments
+import { Navigation, OrderItem, Carousel } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
-import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     orders: state.profile.get('orders'),
@@ -22,9 +20,15 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     showLoginOverlay: uiActions.showLoginOverlay,
+    showOrdersFiltersOverlay: uiActions.showOrdersFiltersOverlay,
 };
 
-const OrdersComponent = ({ orders, isAuthenticated, showLoginOverlay }) => {
+const OrdersComponent = ({
+    orders,
+    isAuthenticated,
+    showLoginOverlay,
+    showOrdersFiltersOverlay,
+}) => {
     useEffect(() => {
         if (!isAuthenticated) {
             showLoginOverlay('/');
@@ -61,11 +65,33 @@ const OrdersComponent = ({ orders, isAuthenticated, showLoginOverlay }) => {
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <Navigation className={Styles.title} title='Orders' />
-                    <MarketShowcase
-                        className={Styles.showcase}
-                        items={getSortedOrders()}
-                        orderType
+                    {/* Title */}
+                    <p className={Styles.title}>Orders</p>
+
+                    {/* Orders */}
+                    <div className={Styles.ordersSection}>
+                        {orders.map((item, index) => (
+                            <OrderItem {...item} key={index} index={index} />
+                        ))}
+                    </div>
+
+                    {/* Fast sorting options */}
+                    <Carousel
+                        className={Styles.tags}
+                        carouselClassName={Styles.carousele}
+                        items={Object.keys(statusesImportance).map((item, index) => (
+                            <div className={Styles.tag} key={index}>
+                                {item}
+                            </div>
+                        ))}
+                    />
+
+                    {/* Footer nav */}
+                    <Navigation
+                        rightButtonData={{
+                            icon: 'filters',
+                            onClick: showOrdersFiltersOverlay,
+                        }}
                     />
                 </section>
             )}

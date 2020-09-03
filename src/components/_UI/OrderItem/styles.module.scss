@@ -2,17 +2,13 @@
 
 .container {
     @include shadow;
-    @include centerContent;
     cursor: pointer;
 
     display: grid;
-    grid-template-rows: 1fr 2fr 1fr 1fr 1fr 4fr;
-    place-items: center;
+    grid-template-columns: 2fr 3fr;
     gap: 0.5rem;
 
-    height: 100%;
-    min-height: 15rem;
-    padding: 1rem 0.75rem;
+    padding: 0.5rem;
 
     background: $paletteWhite;
 
@@ -20,37 +16,66 @@
 
     font-size: 0.9rem;
 
-    & .orderId {
-        display: grid;
-
-        text-align: center;
-
-        & span {
-            font-weight: bold;
-        }
-    }
-
     & .date {
+        place-self: center start;
+
         font-weight: bold;
     }
 
-    & .address {
-        text-align: center;
+    & .orderStatusLabel {
+        place-self: center end;
+
+        max-width: 75%;
     }
 
-    & .deliveryTime {
+    & .subtitle {
+        grid-row: 2;
+
+        width: 100%;
+
+        font-size: 0.8rem;
+        text-align: left;
+
+        color: $paletteGrey_3;
+    }
+
+    & .alignRight {
+        text-align: right;
+    }
+
+    & .location {
+        font-weight: bold;
+    }
+
+    & .supplier {
         font-weight: bold;
     }
 
     & .price {
-        font-size: 1.5rem;
-        font-weight: bold;
+        @include boldTitle;
+        place-self: center start;
+    }
 
-        color: $paletteBlue_1;
+    & .cart {
+        display: grid;
+        grid-auto-columns: 2rem;
+        grid-auto-flow: column;
+        gap: 0 -1rem;
 
-        & span {
-            font-size: 1rem;
-            font-weight: normal;
+        width: 100%;
+        padding: 0.25rem;
+
+        overflow: hidden;
+
+        & .cartItem {
+            height: 2.5rem;
+            width: 2.5rem;
+
+            background: $paletteWhite;
+
+            border-radius: 100%;
+
+            box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
         }
     }
 }

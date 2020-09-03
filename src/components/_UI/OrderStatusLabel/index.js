@@ -15,7 +15,9 @@ export const OrderStatusLabel = ({ className, status }) => {
     };
 
     return (
-        <section className={`${Styles.container} ${classNames[status]} ${className}`}>
+        <section
+            className={[Styles.container, classNames[status], className].filter(Boolean).join(' ')}
+        >
             {status}
         </section>
     );
