@@ -10,17 +10,19 @@ import Styles from './styles.module.scss';
 import { Navigation, LocationsSelect, LocationItem } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
+const supplierDataMock = {
+    supplierName: 'Galychyna',
+    ranking: 5,
+    deliveryConditions: ['Мін. замовлення 900 грн', 'Доставка на наступний день'],
+};
+
 const itemData = {
     sku: '76210-75623-8936',
     nameUkr: 'What an item omg',
     price: 49.99,
     unit: 'kg',
-    suppliers: new Array(10).fill(1),
-    supplierData: {
-        supplierName: 'Galychyna',
-        ranking: 5,
-        deliveryConditions: ['Мін. замовлення 900 грн', 'Доставка на наступний день'],
-    },
+    suppliers: new Array(10).fill(supplierDataMock),
+    supplierData: supplierDataMock,
 };
 
 const mapStateToProps = (state) => ({
