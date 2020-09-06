@@ -5,6 +5,7 @@ export * from './OrderStatusLabel';
 export * from './FavoritesButton';
 export * from './LocationsSelect';
 export * from './GradientBorder';
+export * from './LocationItem';
 export * from './CategoryItem';
 export * from './FilterOption';
 export * from './RadioButton';

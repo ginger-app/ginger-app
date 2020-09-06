@@ -1,0 +1,157 @@
+@import 'resources';
+
+.container {
+    @include centerContent;
+    @include shadow;
+
+    display: grid;
+    grid-template-columns: 1fr 1px 1fr;
+    grid-template-rows: repeat(6, max-content) max-content max-content;
+    gap: 0.25rem;
+
+    width: 100%;
+    padding: 1rem;
+
+    border-radius: 1rem;
+
+    // Product data
+    & .image {
+        grid-row: 1 / 5;
+
+        width: 100%;
+    }
+
+    & .itemName {
+        grid-column: 1;
+        display: -webkit-box;
+
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    & .price {
+        grid-column: 1;
+        display: flex;
+        justify-content: space-between;
+
+        width: 100%;
+
+        & .unit {
+            color: $paletteGrey_3;
+        }
+    }
+
+    // Devider
+    & .devider {
+        grid-row: 1 / 7;
+        grid-column: 2;
+
+        width: 100%;
+        height: 90%;
+
+        background: $paletteGrey_4;
+    }
+
+    // Supplier data
+    & .supplierSubtitle {
+        place-self: center end;
+
+        grid-column: 3;
+        grid-row: 1;
+
+        color: $paletteGrey_3;
+    }
+
+    & .notChosen {
+        grid-row: 2 / 7;
+
+        height: 100%;
+        width: 100%;
+
+        font-weight: bold;
+        text-align: end;
+    }
+
+    & .supplierName {
+        place-self: center end;
+
+        grid-column: 3;
+        grid-row: 2;
+
+        font-weight: bold;
+    }
+
+    & .ranking {
+        place-self: center end;
+
+        grid-column: 3;
+        grid-row: 3;
+
+        height: 100%;
+        width: 100%;
+
+        background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/1077px-Star_icon_stylized.svg.png');
+        background-size: contain;
+    }
+
+    & .deliveryConditions {
+        place-self: start end;
+
+        grid-column: 3;
+        grid-row: 4 / 7;
+
+        width: 100%;
+
+        & .title {
+            text-align: right;
+
+            color: $paletteGrey_3;
+        }
+
+        & .item {
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-align: right;
+        }
+    }
+
+    & .suppliersAmount {
+        place-self: end;
+
+        grid-column: 1 / 4;
+
+        margin: 0.25rem 0;
+
+        font-size: 0.8rem;
+
+        & span {
+            position: relative;
+            top: 1px;
+
+            font-size: 1rem;
+            font-weight: bold;
+
+            color: $paletteGreen_2;
+        }
+    }
+
+    // Action buttons
+    & .deleteButton {
+        @include centerContent;
+        cursor: pointer;
+        place-self: center start;
+
+        height: 3rem;
+        width: 3rem;
+
+        border: 1px solid $paletteGrey_3;
+        border-radius: 100%;
+    }
+
+    & .button {
+        grid-column: 3;
+
+        width: 100%;
+    }
+}

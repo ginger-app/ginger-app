@@ -7,8 +7,21 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Navigation, LocationsSelect } from 'components';
+import { Navigation, LocationsSelect, LocationItem } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
+
+const itemData = {
+    sku: '76210-75623-8936',
+    nameUkr: 'What an item omg',
+    price: 49.99,
+    unit: 'kg',
+    suppliers: new Array(10).fill(1),
+    supplierData: {
+        supplierName: 'Galychyna',
+        ranking: 5,
+        deliveryConditions: ['Мін. замовлення 900 грн', 'Доставка на наступний день'],
+    },
+};
 
 const mapStateToProps = (state) => ({
     favorites: state.profile.get('favorites'),
@@ -16,9 +29,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-const ListsComponent = ({ className, favorites }) => {
-    const items = Object.keys(favorites).map((item) => favorites[item]);
-    console.log(items);
+const ListsComponent = ({ className }) => {
+    const items = new Array(15).fill(itemData);
 
     return (
         <Transition
@@ -36,6 +48,11 @@ const ListsComponent = ({ className, favorites }) => {
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
+                    <div className={Styles.list}>
+                        {items.map((item, index) => (
+                            <LocationItem key={index} index={index} {...item} />
+                        ))}
+                    </div>
                     <LocationsSelect />
                     <Navigation title='Favorites' />
                 </section>
