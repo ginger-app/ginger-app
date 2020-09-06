@@ -3,6 +3,7 @@ export * from './MarketItemOverlay';
 export * from './DoubleRowCarousel';
 export * from './OrderStatusLabel';
 export * from './FavoritesButton';
+export * from './LocationsSelect';
 export * from './GradientBorder';
 export * from './CategoryItem';
 export * from './FilterOption';

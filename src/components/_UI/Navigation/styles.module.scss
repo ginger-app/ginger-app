@@ -20,6 +20,10 @@
 
     transition: all 0.25s;
 
+    &.transparent {
+        background: transparent;
+    }
+
     &.searchOpened {
         min-height: 100vh;
     }

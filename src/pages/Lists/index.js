@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
+import Styles from './styles.module.scss';
 
 // Instruments
-import { Navigation, MarketShowcase } from 'components';
+import { Navigation, LocationsSelect } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     favorites: state.profile.get('favorites'),
@@ -16,8 +16,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-const FavoritesComponent = ({ className, favorites }) => {
+const ListsComponent = ({ className, favorites }) => {
     const items = Object.keys(favorites).map((item) => favorites[item]);
+    console.log(items);
 
     return (
         <Transition
@@ -35,12 +36,12 @@ const FavoritesComponent = ({ className, favorites }) => {
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <Navigation className={Styles.title} title='Favorites' />
-                    <MarketShowcase className={Styles.showcase} items={items} marketType />
+                    <LocationsSelect />
+                    <Navigation title='Favorites' />
                 </section>
             )}
         </Transition>
     );
 };
 
-export const FavoritesPage = connect(mapStateToProps, mapDispatchToProps)(FavoritesComponent);
+export const ListsPage = connect(mapStateToProps, mapDispatchToProps)(ListsComponent);

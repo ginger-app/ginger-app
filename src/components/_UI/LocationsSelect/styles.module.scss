@@ -1,0 +1,82 @@
+@import 'resources';
+
+.container {
+    @include blur;
+
+    position: fixed;
+    bottom: 0;
+
+    display: grid;
+    grid-template-columns: 1fr 3rem;
+    gap: 1rem;
+
+    min-height: 8rem;
+    width: 100vw;
+    padding: 0.5rem;
+    padding-bottom: 5rem;
+
+    border-radius: 1rem;
+
+    & .locations {
+        display: grid;
+        place-items: center;
+
+        width: 100%;
+        max-height: 3rem;
+        padding: 0 0.5rem;
+
+        background: $paletteWhite;
+
+        border-radius: 10rem;
+
+        overflow: hidden;
+
+        transition: border-radius 0.75s, max-height 0.3s;
+
+        &.shit {
+            max-height: 15rem;
+
+            border-radius: 1rem;
+
+            overflow: scroll;
+
+            transition: border-radius 0s, max-height 0.3s;
+        }
+
+        & .location {
+            display: grid;
+            grid-template-columns: 1fr 2rem;
+            place-items: center start;
+            gap: 1rem;
+
+            height: 3rem;
+            width: 90%;
+            padding: 0.5rem 0;
+
+            font-weight: bold;
+
+            & .radio {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    & .expandButton {
+        @include lightButton;
+        @include centerContent;
+        place-self: start center;
+
+        height: 3rem;
+        width: 3rem;
+        padding: 0;
+
+        transform: rotate(-90deg);
+
+        transition: all 0.3s;
+
+        &.expanded {
+            transform: rotate(90deg);
+        }
+    }
+}
