@@ -71,5 +71,6 @@
 
     & .title {
         @include boldTitle;
+        place-self: center;
     }
 }
