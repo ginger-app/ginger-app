@@ -13,7 +13,7 @@ import { Icon, Button } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import mockApples from 'theme/assets/images/apples-mock.png';
 
-export const LocationItem = ({
+export const ListItem = ({
     className,
     index = 0,
     sku,
@@ -91,7 +91,7 @@ export const LocationItem = ({
     );
 };
 // index, name, price, unit, suppliers, supplierData
-LocationItem.propTypes = {
+ListItem.propTypes = {
     className: PropTypes.string,
     index: PropTypes.number,
     sku: PropTypes.string.isRequired,

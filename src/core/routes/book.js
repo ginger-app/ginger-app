@@ -7,5 +7,6 @@ export const book = Object.freeze({
     // private routes
     profile: '/profile',
     orders: '/orders',
-    favorites: '/favorites',
+    lists: '/lists',
+    newOrder: '/new-order',
 });

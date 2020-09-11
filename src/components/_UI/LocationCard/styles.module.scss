@@ -1,0 +1,51 @@
+@import 'resources';
+
+.container {
+    @include shadow;
+    cursor: pointer;
+
+    display: grid;
+    grid-template-rows: 1fr repeat(4, 1.5rem);
+
+    height: 100%;
+    width: 100%;
+    padding: 0 0.5rem 0.5rem;
+
+    background: $paletteWhite;
+
+    border-radius: 1rem;
+
+    &:hover {
+        @include shadow($paletteBlue_1);
+    }
+
+    & .logo {
+        place-self: center;
+
+        height: 7rem;
+        width: 7rem;
+
+        border-radius: 100%;
+    }
+
+    & .subtitle {
+        place-self: end start;
+
+        font-size: 0.8rem;
+
+        color: $paletteGrey_3;
+    }
+
+    & .locationData {
+        place-self: start;
+
+        width: 100%;
+
+        font-size: 1.2rem;
+        font-weight: 600;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        overflow: hidden;
+    }
+}

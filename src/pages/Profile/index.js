@@ -84,7 +84,7 @@ const ProfileComponent = ({ profile, logoutAsync, getUserDataAsync }) => {
                     </div>
                     <img className={Styles.avatar} src={userpic} alt='avatar' />
                     <p className={Styles.name}>{name}</p>
-                    <NavLink className={Styles.listsBlock} to='/favorites'>
+                    <NavLink className={Styles.listsBlock} to='/lists'>
                         {Object.keys(favorites).length} <span>Favorites</span>
                     </NavLink>
                     <NavLink className={Styles.ordersBlock} to='/orders'>

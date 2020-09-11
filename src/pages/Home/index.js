@@ -107,7 +107,7 @@ const HomeComponent = ({
                         }
                         rightButton={
                             isAuthenticated ? (
-                                <NavLink className={Styles.favoritesButton} to={book.favorites}>
+                                <NavLink className={Styles.favoritesButton} to={book.lists}>
                                     <Icon name='heart' color='black' />
                                 </NavLink>
                             ) : (

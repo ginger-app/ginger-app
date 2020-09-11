@@ -1,6 +1,7 @@
 // Core
 import React from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -8,6 +9,7 @@ import Styles from './styles.module.scss';
 // Instruments
 import { GradientBorder } from 'components';
 import button from 'theme/assets/svg/plus-button.svg';
+import { book } from 'core/routes';
 
 const mapStateToProps = (state) => ({
     ...state,
@@ -25,19 +27,22 @@ const CreateNewOrderComponent = ({ className }) => {
                 unfinishedOrder && Styles.unfinishedOrder
             } ${className}`}
         >
-            <div
+            <NavLink
                 className={`${Styles.newOrderButton} ${unfinishedOrder && Styles.minified}`}
-                onClick={() => null}
+                to={book.newOrder}
             >
                 <p className={Styles.newOrderText}>Create new order</p>
                 <img src={button} alt='' />
-            </div>
+            </NavLink>
             {unfinishedOrder && (
                 <GradientBorder>
-                    <div className={Styles.backToOrderButton} onClick={() => null}>
+                    <NavLink
+                        className={Styles.backToOrderButton}
+                        to={`${book.newOrder}?unfinished`}
+                    >
                         <p className={Styles.backToOrdertext}>Continue ordering</p>
                         <img src={button} alt='' />
-                    </div>
+                    </NavLink>
                 </GradientBorder>
             )}
         </section>

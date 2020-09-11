@@ -71,12 +71,12 @@
         width: 3rem;
         padding: 0;
 
-        transform: rotate(-90deg);
+        transform: rotate(90deg);
 
         transition: all 0.3s;
 
         &.expanded {
-            transform: rotate(90deg);
+            transform: rotate(-90deg);
         }
     }
 }

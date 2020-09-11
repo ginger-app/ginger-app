@@ -7,7 +7,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Navigation, LocationsSelect, LocationItem } from 'components';
+import { Navigation, LocationsSelect, ListItem } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 const supplierDataMock = {
@@ -52,7 +52,7 @@ const ListsComponent = ({ className }) => {
                 >
                     <div className={Styles.list}>
                         {items.map((item, index) => (
-                            <LocationItem key={index} index={index} {...item} />
+                            <ListItem key={index} index={index} {...item} />
                         ))}
                     </div>
                     <LocationsSelect />
