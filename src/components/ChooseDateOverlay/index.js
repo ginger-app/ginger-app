@@ -13,8 +13,22 @@ import { months } from 'utils/months';
 import moment from 'moment';
 
 export const ChooseDateOverlay = ({ className, setDate, inProp, close }) => {
-    const [month, setMonth] = useState(new Date(Date.now()).getMonth());
-    const [day, setDay] = useState(1);
+    // If user opens tab after 11:59AM of the last day in the month,
+    // he will be suggested to order for the next month
+    // If before 11:59AM - current day / month is suggested
+    const [month, setMonth] = useState(
+        moment().isAfter(moment().endOf('month').subtract(12, 'hours'))
+            ? moment().get('month')
+            : moment().add(1, 'month').get('month') - 1,
+    );
+
+    // If user opens tab after 11:59AM, he will be suggested to order for the next day
+    // If before 11:59AM - current day is suggested
+    const [day, setDay] = useState(
+        moment().isAfter(moment().endOf('day').subtract(12, 'hours'))
+            ? moment().get('date')
+            : moment().add(1, 'day').get('date'),
+    );
 
     const handleMonthChange = () => {
         setDay(1);
@@ -23,10 +37,10 @@ export const ChooseDateOverlay = ({ className, setDate, inProp, close }) => {
     };
 
     const handleDateSelection = () => {
-        const now = moment.now();
+        const now = moment();
         const currentYear = moment().get('year');
 
-        const targetDate = moment(new Date(`${currentYear}-${month + 1}-${day}`));
+        const targetDate = moment(new Date(`${currentYear}-${month + 1}-${day}`)).add(12, 'hours');
 
         if (targetDate.isBefore(now)) {
             return setDate(moment(new Date(`${currentYear + 1}-${month + 1}-${day}`)));
