@@ -1,6 +1,7 @@
 // Core
 import React from 'react';
 import { Transition } from 'react-transition-group';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 // Styles
@@ -8,6 +9,7 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
+import { book } from 'core/routes';
 
 export const LocationCard = ({ className, index }) => {
     return (
@@ -19,13 +21,14 @@ export const LocationCard = ({ className, index }) => {
             timeout={{ ...opacityTransitionConfig().timeout, enter: 100 * index }}
         >
             {(state) => (
-                <section
+                <NavLink
                     className={[Styles.container, className].filter(Boolean).join(' ')}
                     style={{
                         ...opacityTransitionConfig().defaultStyles,
                         ...opacityTransitionConfig().transitionStyles[state],
                         transition: 'all 0.3s',
                     }}
+                    to={`${book.newOrder}/${index}`}
                 >
                     <img
                         className={Styles.logo}
@@ -38,7 +41,7 @@ export const LocationCard = ({ className, index }) => {
 
                     <p className={Styles.subtitle}>Address:</p>
                     <p className={Styles.locationData}>вул. Хрещатик, 1</p>
-                </section>
+                </NavLink>
             )}
         </Transition>
     );

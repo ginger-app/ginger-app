@@ -5,6 +5,7 @@ export * from './Subcategory';
 export * from './Product';
 export * from './Market';
 export * from './NewOrder';
+export * from './Cart';
 export * from './Orders';
 export * from './Order';
 export * from './Home';

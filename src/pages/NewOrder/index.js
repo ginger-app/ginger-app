@@ -68,4 +68,4 @@ const NewOrderComponent = ({ className, showNewLocationOverlay }) => {
     );
 };
 
-export const NewOrder = connect(mapStateToProps, mapDispatchToProps)(NewOrderComponent);
+export const NewOrderPage = connect(mapStateToProps, mapDispatchToProps)(NewOrderComponent);

@@ -11595,6 +11595,13 @@ react-error-overlay@^6.0.7:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.7.tgz#1dcfb459ab671d53f660a991513cb2f0a0553108"
   integrity sha512-TAv1KJFh3RhqxNvhzxj6LeT5NWklP6rDr2a0jaTfsZ5wSZWHOGeqQyejUp3xxLfPt2UpyJEcVQB/zyPcmonNFA==
 
+react-flip-numbers@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/react-flip-numbers/-/react-flip-numbers-3.0.5.tgz#37fc3f9416575bfb9e9b7af44a7d64aaf922c712"
+  integrity sha512-iOzLaRZbqU7G7A+uE/ySBVzEHr+vZTPMJNP20o1dFUUZ3kkrpTFxpay3+kEVSSzeOXJWQWYDUQOFbv7g/PSf1g==
+  dependencies:
+    react-simple-animate "3.0.2"
+
 react-horizontal-scrolling-menu@^0.7.7:
   version "0.7.7"
   resolved "https://registry.yarnpkg.com/react-horizontal-scrolling-menu/-/react-horizontal-scrolling-menu-0.7.7.tgz#3c74c877b414fe4418d81a0cfe07eecf34b23657"
@@ -11731,6 +11738,11 @@ react-scripts@3.4.1:
     workbox-webpack-plugin "4.3.1"
   optionalDependencies:
     fsevents "2.1.2"
+
+react-simple-animate@3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-3.0.2.tgz#67f29b0c64155d2dfd540c1c74f634ef521536a8"
+  integrity sha512-GDpznDMpIHHdH6L6AZo9nNry6Xsq7forKmd6rwigMSuxe4FS9ihK0HSC1odB4WWKbA87S8VL7EVR9JeTRVkbQA==
 
 react-spinners-kit@^1.9.1:
   version "1.9.1"
