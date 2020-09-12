@@ -8,7 +8,9 @@
     top: 0;
     left: 0;
 
-    gap: 1rem;
+    display: grid;
+    grid-template-rows: 30% 3rem 5rem max-content 3rem;
+    gap: 2rem;
 
     width: 100vw;
     padding: 1.5rem;
@@ -21,7 +23,7 @@
         place-self: end center;
     }
 
-    & .note {
+    & .title {
         place-self: start center;
 
         font-size: 1.75rem;
@@ -29,5 +31,39 @@
         text-align: center;
 
         color: $paletteWhite;
+    }
+
+    & .note {
+        font-size: 0.9rem;
+        text-align: center;
+
+        color: $paletteGrey_3;
+    }
+
+    & .homeButtonContainer {
+        width: 95%;
+
+        border-radius: 2.2rem;
+
+        & .homeButton {
+            @include centerContent;
+            @include shadow(transparent);
+            height: 100%;
+            width: 100%;
+
+            background: $paletteDarkGrey_1;
+
+            border-radius: 2rem;
+
+            font-weight: bold;
+
+            color: $paletteWhite;
+
+            transition: box-shadow 0.3s;
+
+            &:hover {
+                @include shadow($paletteBlue_1);
+            }
+        }
     }
 }

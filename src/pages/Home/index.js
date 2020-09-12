@@ -83,7 +83,7 @@ const HomeComponent = ({
                     }}
                 >
                     <LastOrder className={Styles.lastOrder} />
-                    <CreateNewOrder className={Styles.dailyBonus} />
+                    <CreateNewOrder className={Styles.dailyBonus} unfinishedOrder />
                     <CategoriesCatalogue
                         className={Styles.catalogue}
                         buttonStyle={{ width: '90%' }}

@@ -8,7 +8,14 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import { Navigation, Button, GradientBorder, CartItem, ChooseDateOverlay } from 'components';
+import {
+    Navigation,
+    Button,
+    GradientBorder,
+    CartItem,
+    ChooseDateOverlay,
+    OrderSuccessModal,
+} from 'components';
 import mockImage from 'theme/assets/images/apples-mock.png';
 
 const mapStateToProps = (state) => ({
@@ -20,6 +27,7 @@ const mapDispatchToProps = {};
 const CartComponent = ({ className }) => {
     const [showDateOverlay, setDateOverlayState] = useState(false);
     const [deliveryDate, setDeliveryDate] = useState(null);
+    const [orderSuccessModal, setOrderSuccessModalState] = useState(false);
 
     return (
         <Transition
@@ -81,8 +89,21 @@ const CartComponent = ({ className }) => {
 
                     {/* Footer navigation */}
                     <Navigation
-                        centerButton={<Button text='Payment' filled />}
-                        rightButtonData={{ icon: 'trash', onClick: () => null }}
+                        centerButton={
+                            <Button
+                                text={deliveryDate ? 'Payment' : 'Choose date'}
+                                onClick={() =>
+                                    deliveryDate
+                                        ? setOrderSuccessModalState(true)
+                                        : setDateOverlayState(true)
+                                }
+                                filled
+                            />
+                        }
+                        rightButtonData={{
+                            icon: 'trash',
+                            onClick: () => null,
+                        }}
                         dark
                     />
 
@@ -92,6 +113,7 @@ const CartComponent = ({ className }) => {
                         close={() => setDateOverlayState(false)}
                         setDate={setDeliveryDate}
                     />
+                    <OrderSuccessModal inProp={orderSuccessModal} />
                 </section>
             )}
         </Transition>

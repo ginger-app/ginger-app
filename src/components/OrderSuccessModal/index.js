@@ -1,13 +1,15 @@
 // Core
 import React from 'react';
 import { Transition } from 'react-transition-group';
+import { NavLink } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
 
 // Instruments
+import { CreateNewOrder, GradientBorder } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import succesIcon from 'theme/assets/svg/succes-circle.svg';
+import succesIcon from 'theme/assets/svg/payment-success.svg';
 
 export const OrderSuccessModal = ({ className, inProp }) => {
     return (
@@ -27,7 +29,19 @@ export const OrderSuccessModal = ({ className, inProp }) => {
                     }}
                 >
                     <img src={succesIcon} className={Styles.image} alt='' />
-                    <p className={Styles.note}>Замовлення прийняте!</p>
+
+                    <p className={Styles.title}>Замовлення відправлене!</p>
+                    <p className={Styles.note}>
+                        Очікуйте на підтвердження замовлення від постачальника
+                    </p>
+
+                    <CreateNewOrder unfinishedOrder={false} />
+
+                    <GradientBorder className={Styles.homeButtonContainer}>
+                        <NavLink to='/' className={Styles.homeButton}>
+                            На головну
+                        </NavLink>
+                    </GradientBorder>
                 </section>
             )}
         </Transition>

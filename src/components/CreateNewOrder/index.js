@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -17,10 +18,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-const CreateNewOrderComponent = ({ className }) => {
-    // TEMP
-    const unfinishedOrder = true;
-
+const CreateNewOrderComponent = ({ className, unfinishedOrder = true }) => {
     return (
         <section
             className={`${Styles.container} ${
@@ -47,6 +45,10 @@ const CreateNewOrderComponent = ({ className }) => {
             )}
         </section>
     );
+};
+
+CreateNewOrderComponent.propTypes = {
+    unfinishedOrder: PropTypes.bool.isRequired,
 };
 
 export const CreateNewOrder = connect(mapStateToProps, mapDispatchToProps)(CreateNewOrderComponent);
