@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -8,7 +8,7 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import { Navigation, Button, GradientBorder, CartItem } from 'components';
+import { Navigation, Button, GradientBorder, CartItem, ChooseDateOverlay } from 'components';
 import mockImage from 'theme/assets/images/apples-mock.png';
 
 const mapStateToProps = (state) => ({
@@ -18,6 +18,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {};
 
 const CartComponent = ({ className }) => {
+    const [showDateOverlay, setDateOverlayState] = useState(false);
+    const [deliveryDate, setDeliveryDate] = useState(null);
+
     return (
         <Transition
             in
@@ -44,7 +47,14 @@ const CartComponent = ({ className }) => {
                             <p className={Styles.data}>вул. Хрещатик, 1</p>
                         </div>
                     </GradientBorder>
-                    <div className={Styles.deliveryDate}>Choose delivery date</div>
+                    <div className={Styles.deliveryDate} onClick={() => setDateOverlayState(true)}>
+                        {deliveryDate
+                            ? deliveryDate
+                                  .format(`dddd, DD MMMM YYYY`)
+                                  .split(',')
+                                  .map((item, index) => <p key={index}>{item}</p>)
+                            : 'Choose delivery date'}
+                    </div>
 
                     {/* Order details */}
                     <GradientBorder className={Styles.orderSumContainer}>
@@ -74,6 +84,13 @@ const CartComponent = ({ className }) => {
                         centerButton={<Button text='Payment' filled />}
                         rightButtonData={{ icon: 'trash', onClick: () => null }}
                         dark
+                    />
+
+                    {/* Overlay */}
+                    <ChooseDateOverlay
+                        inProp={showDateOverlay}
+                        close={() => setDateOverlayState(false)}
+                        setDate={setDeliveryDate}
                     />
                 </section>
             )}

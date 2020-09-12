@@ -1,0 +1,51 @@
+@import 'resources';
+
+.container {
+    @include overlay;
+    @include blur(20px);
+
+    display: grid;
+    grid-template-rows: 55% 45%;
+
+    & .datePicker {
+        place-self: end center;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 3rem);
+        place-items: center;
+
+        width: 75%;
+
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 2rem;
+
+        & .arrow {
+            @include centerContent;
+            cursor: pointer;
+
+            grid-row: 1;
+
+            height: 100%;
+
+            transform: rotate(180deg);
+
+            &.rotated {
+                grid-row: 3;
+
+                transform: rotate(0);
+            }
+        }
+    }
+
+    & .button {
+        @include lightButton;
+        @include centerContent;
+        place-self: center;
+
+        height: 3rem;
+        width: 3rem;
+        padding: 0;
+    }
+}

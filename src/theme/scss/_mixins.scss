@@ -132,10 +132,10 @@
     user-select: none;
 }
 
-@mixin blur {
+@mixin blur($blurStrength: 10px) {
     background-color: rgba(150, 150, 150, 0.15);
 
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur($blurStrength);
 }
 
 @mixin shadow($shadowColor: #0000001a) {

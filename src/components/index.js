@@ -6,6 +6,7 @@ export * from './OrderFiltersOverlay';
 export * from './NewLocationOverlay';
 export * from './OrderSuccessModal';
 export * from './DeliveryTimeModal';
+export * from './ChooseDateOverlay';
 export * from './PromotionsGrid';
 export * from './CreateNewOrder';
 export * from './ItemsCatalogue';
