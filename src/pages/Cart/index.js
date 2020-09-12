@@ -57,15 +57,16 @@ const CartComponent = ({ className }) => {
                         {new Array(10).fill(1).map((item, index) => (
                             <CartItem
                                 key={index}
-                                name='Test item'
+                                name='Test item with some very long name that doesnt fitw'
                                 image={mockImage}
                                 price={43.99}
-                                amount={102}
+                                amount={10000}
                                 unit='kg'
                                 removeItem={() => null}
                                 orderDetails
                             />
                         ))}
+                        <div className={Styles.dummy} />
                     </div>
 
                     {/* Footer navigation */}

@@ -1,11 +1,10 @@
 // Core
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
 
-// Components
+// Instruments
 import { Icon } from 'components';
 
 export const CartItem = ({
@@ -17,21 +16,26 @@ export const CartItem = ({
     unit,
     removeItem,
     orderDetails,
-    sku,
+    // sku,
 }) => {
     return orderDetails ? (
         <section className={`${Styles.orderDetailsContainer} ${className}`}>
             <img className={Styles.image} src={image} alt='' />
             <p className={Styles.name}>{name}</p>
+            <p className={Styles.unit}>1 {unit}</p>
             <div className={Styles.price}>
-                <span>{price}₴</span>
+                <span className={Styles.sum}>{price}</span>
+                <span>hrn.</span>
             </div>
-            <p className={Styles.amount}>
-                {amount} {unit}
-            </p>
-            <NavLink className={Styles.button} to={`/products/${sku}`}>
-                <Icon name='cart' color='black' />
-            </NavLink>
+            <div className={Styles.amountContainer}>
+                <div className={Styles.amountButton}>
+                    <Icon name='minus' />
+                </div>
+                <p className={Styles.amount}>{amount}</p>
+                <div className={Styles.amountButton}>
+                    <Icon name='plus' />
+                </div>
+            </div>
         </section>
     ) : (
         <section className={`${Styles.container} ${className}`}>

@@ -106,5 +106,9 @@
         height: 100%;
 
         overflow: scroll;
+
+        & .dummy {
+            height: 4rem;
+        }
     }
 }
