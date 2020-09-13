@@ -8,5 +8,6 @@ export const book = Object.freeze({
     profile: '/profile',
     orders: '/orders',
     lists: '/lists',
+    locationsList: '/locations',
     newOrder: '/new-order',
 });

@@ -21,7 +21,7 @@ const mapDispatchToProps = {
     showNewLocationOverlay: uiActions.showNewLocationOverlay,
 };
 
-const NewOrderComponent = ({ className, showNewLocationOverlay }) => {
+const LocationsListComponent = ({ className, showNewLocationOverlay }) => {
     return (
         <Transition
             in
@@ -39,12 +39,16 @@ const NewOrderComponent = ({ className, showNewLocationOverlay }) => {
                     }}
                 >
                     {/* Page title */}
-                    <p className={Styles.title}>Choose a location to&nbsp;make an order</p>
+                    <p className={Styles.title}>Locations</p>
 
                     {/* Locations list */}
                     <div className={Styles.locations}>
                         {new Array(15).fill(1).map((item, index) => (
-                            <LocationCard index={index} key={index} newOrder />
+                            <LocationCard
+                                index={index}
+                                key={index}
+                                onClick={showNewLocationOverlay}
+                            />
                         ))}
 
                         {/* Dummy div to create spacing after last elem */}
@@ -68,4 +72,7 @@ const NewOrderComponent = ({ className, showNewLocationOverlay }) => {
     );
 };
 
-export const NewOrderPage = connect(mapStateToProps, mapDispatchToProps)(NewOrderComponent);
+export const LocationsListPage = connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(LocationsListComponent);

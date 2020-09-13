@@ -11,7 +11,7 @@ import Styles from './styles.module.scss';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core/routes';
 
-export const LocationCard = ({ className, index }) => {
+export const LocationCard = ({ className, index, newOrder, onClick }) => {
     return (
         <Transition
             in
@@ -20,29 +20,53 @@ export const LocationCard = ({ className, index }) => {
             unmountOnExit
             timeout={{ ...opacityTransitionConfig().timeout, enter: 100 * index }}
         >
-            {(state) => (
-                <NavLink
-                    className={[Styles.container, className].filter(Boolean).join(' ')}
-                    style={{
-                        ...opacityTransitionConfig().defaultStyles,
-                        ...opacityTransitionConfig().transitionStyles[state],
-                        transition: 'all 0.3s',
-                    }}
-                    to={`${book.newOrder}/${index}`}
-                >
-                    <img
-                        className={Styles.logo}
-                        src='https://cdn130.picsart.com/243537935029212.png?type=webp&to=min&r=640'
-                        alt=''
-                    />
+            {(state) =>
+                newOrder ? (
+                    <NavLink
+                        className={[Styles.container, className].filter(Boolean).join(' ')}
+                        style={{
+                            ...opacityTransitionConfig().defaultStyles,
+                            ...opacityTransitionConfig().transitionStyles[state],
+                            transition: 'all 0.3s',
+                        }}
+                        to={`${book.newOrder}/${index}`}
+                    >
+                        <img
+                            className={Styles.logo}
+                            src='https://cdn130.picsart.com/243537935029212.png?type=webp&to=min&r=640'
+                            alt=''
+                        />
 
-                    <p className={Styles.subtitle}>Location name:</p>
-                    <p className={Styles.locationData}>Forma.coffee</p>
+                        <p className={Styles.subtitle}>Location name:</p>
+                        <p className={Styles.locationData}>Forma.coffee</p>
 
-                    <p className={Styles.subtitle}>Address:</p>
-                    <p className={Styles.locationData}>вул. Хрещатик, 1</p>
-                </NavLink>
-            )}
+                        <p className={Styles.subtitle}>Address:</p>
+                        <p className={Styles.locationData}>вул. Хрещатик, 1</p>
+                    </NavLink>
+                ) : (
+                    <div
+                        className={[Styles.container, className].filter(Boolean).join(' ')}
+                        style={{
+                            ...opacityTransitionConfig().defaultStyles,
+                            ...opacityTransitionConfig().transitionStyles[state],
+                            transition: 'all 0.3s',
+                        }}
+                        onClick={onClick}
+                    >
+                        <img
+                            className={Styles.logo}
+                            src='https://cdn130.picsart.com/243537935029212.png?type=webp&to=min&r=640'
+                            alt=''
+                        />
+
+                        <p className={Styles.subtitle}>Location name:</p>
+                        <p className={Styles.locationData}>Forma.coffee</p>
+
+                        <p className={Styles.subtitle}>Address:</p>
+                        <p className={Styles.locationData}>вул. Хрещатик, 1</p>
+                    </div>
+                )
+            }
         </Transition>
     );
 };
@@ -50,4 +74,6 @@ export const LocationCard = ({ className, index }) => {
 LocationCard.propTypes = {
     className: PropTypes.string,
     index: PropTypes.number,
+    newOrder: PropTypes.bool,
+    onClick: PropTypes.func,
 };

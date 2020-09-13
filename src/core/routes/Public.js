@@ -15,6 +15,7 @@ import {
     ListsPage,
     NewOrderPage,
     CartPage,
+    LocationsListPage,
 } from 'pages';
 
 // Instruments
@@ -28,6 +29,7 @@ export const PublicRoutes = () => (
         <Route exact path={book.orders} component={OrdersPage} />
         <Route exact path={book.newOrder} component={NewOrderPage} />
         <Route exact path={book.lists} component={ListsPage} />
+        <Route exact path={book.locationsList} component={LocationsListPage} />
         <Route
             exact
             path={`${book.orders}/:id`}
