@@ -108,11 +108,11 @@ const HomeComponent = ({
                         rightButton={
                             isAuthenticated ? (
                                 <NavLink className={Styles.favoritesButton} to={book.lists}>
-                                    <Icon name='heart' color='black' />
+                                    <Icon name='lists' color='black' />
                                 </NavLink>
                             ) : (
                                 <div className={Styles.favoritesButton} onClick={showLoginOverlay}>
-                                    <Icon name='heart' color='black' />
+                                    <Icon name='lists' color='black' />
                                 </div>
                             )
                         }
