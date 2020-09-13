@@ -88,17 +88,12 @@ const LoginOverlayComponent = ({
                                 title='Номер телефону'
                                 value={phoneNumber}
                                 onChange={_handlePhoneNumberChange}
-                                autoFocus
-                            />
-                            <div
-                                className={Styles.button}
-                                onClick={() => {
+                                buttonAction={() => {
                                     setAuthData({ phoneNumber });
                                     getAuthConfirmationCodeAsync(phoneNumber);
                                 }}
-                            >
-                                <Icon name='rightArrow' color='white' />
-                            </div>
+                                autoFocus
+                            />
                         </div>
                     </section>
                 )}

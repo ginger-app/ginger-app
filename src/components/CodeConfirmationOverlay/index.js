@@ -78,11 +78,7 @@ const CodeConfirmationOverlayComponent = ({
                                 title='Number'
                                 value={code}
                                 onChange={setCodeValue}
-                                autoFocus
-                            />
-                            <div
-                                className={Styles.button}
-                                onClick={
+                                buttonAction={
                                     signup
                                         ? () =>
                                               sendSignupDataAsync({
@@ -96,9 +92,8 @@ const CodeConfirmationOverlayComponent = ({
                                               })
                                         : () => sendLoginDataAsync({ phoneNumber, code })
                                 }
-                            >
-                                <Icon name='rightArrow' color='white' />
-                            </div>
+                                autoFocus
+                            />
                         </div>
                         <div className={Styles.resendCode}>Resend code</div>
                     </section>

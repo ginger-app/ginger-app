@@ -3,10 +3,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Styles
-import arrow from 'theme/assets/svg/right-arrow.svg';
 import Styles from './styles.module.scss';
 
 // Instruments
+import { Button, Icon } from 'components';
 
 export const InputField = ({
     className,
@@ -30,9 +30,12 @@ export const InputField = ({
                 disabled={disabled}
             />
             {buttonAction && (
-                <div className={Styles.button} onClick={buttonAction}>
-                    <img src={arrow} alt='Phone number input' />
-                </div>
+                <Button
+                    className={Styles.button}
+                    onClick={buttonAction}
+                    content={<Icon name='rightArrow' color='white' />}
+                    filled
+                />
             )}
         </section>
     );
