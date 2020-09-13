@@ -5,18 +5,16 @@ import { NavLink } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 
 // Styles
+import Styles from './styles.module.scss';
 
 // Instruments
+import { Button, Icon, Navigation } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import { history } from 'bus/init/middleware/core';
 import userpic from 'theme/assets/images/ginger.jpg';
-import arrow from 'theme/assets/svg/left-arrow-dark.svg';
-import edit from 'theme/assets/svg/edit-dark.svg';
 
 // Actions
 import { authActions } from 'bus/auth/actions';
 import { profileActions } from 'bus/profile/actions';
-import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     profile: state.profile.toJS(),
@@ -30,9 +28,9 @@ const mapDispatchToProps = {
 const ProfileComponent = ({ profile, logoutAsync, getUserDataAsync }) => {
     const {
         name,
-        favorites,
-        orders,
-        bonuses,
+        // favorites,
+        // orders,
+        // bonuses,
         // userpic
     } = profile;
 
@@ -76,28 +74,39 @@ const ProfileComponent = ({ profile, logoutAsync, getUserDataAsync }) => {
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <div className={Styles.backButton} onClick={history.goBack}>
-                        <img src={arrow} alt='back button' />
-                    </div>
-                    <div className={Styles.editButton}>
-                        <img src={edit} alt='edit profile' />
-                    </div>
                     <img className={Styles.avatar} src={userpic} alt='avatar' />
                     <p className={Styles.name}>{name}</p>
-                    <NavLink className={Styles.listsBlock} to='/lists'>
-                        {Object.keys(favorites).length} <span>Favorites</span>
+
+                    <NavLink className={Styles.link} to='/lists'>
+                        <span>Lists</span>
                     </NavLink>
-                    <NavLink className={Styles.ordersBlock} to='/orders'>
-                        {orders.length} <span>Orders</span>
+                    <NavLink className={Styles.link} to='/orders'>
+                        <span>Orders</span>
                     </NavLink>
-                    <p className={Styles.bonuses}>
-                        Your bonuses: <span>{bonuses} $</span>
-                    </p>
-                    <div className={Styles.getBonusesButton}>Get bonuses</div>
+                    <NavLink className={[Styles.link, Styles.centered].join(' ')} to='/locations'>
+                        <span>Locations</span>
+                    </NavLink>
+
                     <div className={Styles.termsAndConditionsButton}>Terms & Conditions</div>
-                    <div className={Styles.logoutButton} onClick={logoutAsync}>
-                        Log out
-                    </div>
+
+                    {/* Footer nav */}
+                    <Navigation
+                        centerButton={
+                            <Button className={Styles.navButton} content={<Icon name='edit' />} />
+                        }
+                        rightButton={
+                            <Button
+                                className={Styles.navButton}
+                                content={
+                                    <Icon
+                                        name='logout'
+                                        onClick={logoutAsync}
+                                        className={Styles.logoutIcon}
+                                    />
+                                }
+                            />
+                        }
+                    />
                 </section>
             )}
         </Transition>
