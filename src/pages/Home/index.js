@@ -16,7 +16,7 @@ import {
     CreateNewOrder,
     CategoriesCatalogue,
     Toaster,
-    LastOrder,
+    NewsBlock,
     Navigation,
     Icon,
 } from 'components';
@@ -82,7 +82,7 @@ const HomeComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <LastOrder className={Styles.lastOrder} />
+                    <NewsBlock className={Styles.lastOrder} />
                     <CreateNewOrder className={Styles.dailyBonus} unfinishedOrder />
                     <CategoriesCatalogue
                         className={Styles.catalogue}
