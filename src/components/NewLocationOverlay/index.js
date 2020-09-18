@@ -9,6 +9,7 @@ import Styles from './styles.module.scss';
 // Instruments
 import { Button, Icon } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
+import logo from 'theme/assets/svg/logo.svg';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
@@ -123,11 +124,10 @@ const NewLocationOverlayComponent = ({ newLocationOverlay, hideNewLocationOverla
                 >
                     <div className={Styles.container}>
                         {/* Image */}
-                        <img
-                            src='https://cdn130.picsart.com/243537935029212.png?type=webp&to=min&r=640'
-                            className={Styles.img}
-                            alt=''
-                        />
+                        {/* Mock */}
+                        <div className={Styles.mock}>
+                            <img src={logo} alt='' className={Styles.img} />
+                        </div>
 
                         {/* Input fields */}
                         {inputs.map(

@@ -10,6 +10,7 @@ import Styles from './styles.module.scss';
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core/routes';
+import logo from 'theme/assets/svg/logo.svg';
 
 export const LocationCard = ({ className, index, newOrder, onClick }) => {
     return (
@@ -31,11 +32,11 @@ export const LocationCard = ({ className, index, newOrder, onClick }) => {
                         }}
                         to={`${book.newOrder}/${index}`}
                     >
-                        <img
-                            className={Styles.logo}
-                            src='https://cdn130.picsart.com/243537935029212.png?type=webp&to=min&r=640'
-                            alt=''
-                        />
+                        {/* Image */}
+                        {/* Mock */}
+                        <div className={Styles.mock}>
+                            <img src={logo} alt='' className={Styles.img} />
+                        </div>
 
                         <p className={Styles.subtitle}>Location name:</p>
                         <p className={Styles.locationData}>Forma.coffee</p>
@@ -53,11 +54,10 @@ export const LocationCard = ({ className, index, newOrder, onClick }) => {
                         }}
                         onClick={onClick}
                     >
-                        <img
-                            className={Styles.logo}
-                            src='https://cdn130.picsart.com/243537935029212.png?type=webp&to=min&r=640'
-                            alt=''
-                        />
+                        {/* Mock */}
+                        <div className={Styles.mock}>
+                            <img src={logo} alt='' className={Styles.img} />
+                        </div>
 
                         <p className={Styles.subtitle}>Location name:</p>
                         <p className={Styles.locationData}>Forma.coffee</p>

@@ -23,16 +23,23 @@
 
         border-radius: 1rem;
 
-        & .img {
-            @include shadow;
-            cursor: pointer;
+        & .mock {
+            @include centerContent;
+            place-self: center;
 
-            width: 50vw;
             height: 50vw;
+            width: 50vw;
+            padding: 0.5rem;
 
-            background: $paletteWhite;
+            background: $paletteDefaultGradient;
 
             border-radius: 100%;
+
+            & .img {
+                width: 100%;
+
+                filter: brightness(0) invert(1);
+            }
         }
 
         & .inputFieldBlock {
