@@ -3,6 +3,7 @@ export * from './Category';
 export * from './Lists';
 export * from './Subcategory';
 export * from './LocationsList';
+export * from './SupplierConditions';
 export * from './Product';
 export * from './Market';
 export * from './NewOrder';

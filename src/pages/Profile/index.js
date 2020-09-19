@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
@@ -10,7 +10,9 @@ import Styles from './styles.module.scss';
 // Instruments
 import { Button, Icon, Navigation } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
+import { book } from 'core/routes';
 import userpic from 'theme/assets/images/ginger.jpg';
+import logo from 'theme/assets/svg/logo.svg';
 
 // Actions
 import { authActions } from 'bus/auth/actions';
@@ -37,6 +39,9 @@ const ProfileComponent = ({ profile, logoutAsync, getUserDataAsync }) => {
     useEffect(() => {
         getUserDataAsync();
     }, [getUserDataAsync]);
+
+    //! FOR TESTING PURPOSES
+    const [isSupplier, setSupplierState] = useState(true);
 
     return name.length === 0 ? (
         <Transition
@@ -74,20 +79,34 @@ const ProfileComponent = ({ profile, logoutAsync, getUserDataAsync }) => {
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <img className={Styles.avatar} src={userpic} alt='avatar' />
-                    <p className={Styles.name}>{name}</p>
+                    <img
+                        className={Styles.avatar}
+                        src={isSupplier ? logo : userpic}
+                        alt='avatar'
+                        onClick={() => setSupplierState(!isSupplier)}
+                    />
+                    <p className={Styles.name}>{isSupplier ? 'Постачальник' : 'Покупець'}</p>
 
-                    <NavLink className={Styles.link} to='/lists'>
-                        <span>Lists</span>
+                    <NavLink
+                        className={Styles.link}
+                        to={isSupplier ? book.supplierLists : book.lists}
+                    >
+                        <span>{isSupplier ? 'Товарна база' : 'Списки'}</span>
                     </NavLink>
-                    <NavLink className={Styles.link} to='/orders'>
-                        <span>Orders</span>
+                    <NavLink
+                        className={Styles.link}
+                        to={isSupplier ? book.supplierOrders : book.orders}
+                    >
+                        <span>Замовлення</span>
                     </NavLink>
-                    <NavLink className={[Styles.link, Styles.centered].join(' ')} to='/locations'>
-                        <span>Locations</span>
+                    <NavLink
+                        className={[Styles.link, Styles.centered].join(' ')}
+                        to={isSupplier ? book.deliveryConditions : book.locationsList}
+                    >
+                        <span>{isSupplier ? 'Умови доставки' : 'Локації'}</span>
                     </NavLink>
 
-                    <div className={Styles.termsAndConditionsButton}>Terms & Conditions</div>
+                    <div className={Styles.termsAndConditionsButton}>Умови використання</div>
 
                     {/* Footer nav */}
                     <Navigation
