@@ -2,4 +2,68 @@
 
 .container {
     @include fullHeight;
+
+    display: grid;
+    grid-template-rows: 2rem repeat(2, 3rem 2rem);
+    grid-template-columns: 1fr 1fr;
+    place-items: center start;
+    gap: 0.5rem;
+
+    padding: 2rem 0.5rem 4.5rem;
+
+    & .title {
+        @include boldTitle;
+        grid-column: 1 / 3;
+
+        text-align: left;
+    }
+
+    & .subtitle {
+        grid-column: 1 / 3;
+    }
+
+    & .option {
+        @include lightButton;
+        padding: 0.5rem;
+
+        &:hover {
+            @include darkButton;
+            padding: 0.5rem;
+        }
+
+        &.selected {
+            @include darkButton;
+            padding: 0.5rem;
+        }
+    }
+
+    & .priceInput {
+        @include shadow;
+        place-self: center;
+
+        grid-column: 1 / 3;
+
+        width: 6rem;
+        margin: 0.5rem 0 1rem;
+        padding: 0.5rem 1rem;
+
+        border: none;
+        border-radius: 5rem;
+
+        font-weight: bolder;
+        text-align: center;
+    }
+
+    & .navigationButton {
+        @include centerContent;
+
+        width: 3rem;
+        height: 3rem;
+        padding: 0;
+
+        & .check {
+            position: relative;
+            left: 1px;
+        }
+    }
 }

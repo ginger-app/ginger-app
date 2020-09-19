@@ -7,7 +7,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Navigation } from 'components';
+import { Navigation, Icon, Button } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 const mapStateToProps = (state) => ({
@@ -47,7 +47,7 @@ const SupplierConditionsComponent = ({ className }) => {
                             .join(' ')}
                         onClick={() => setDeliveryTodayState(true)}
                     >
-                        В день замолення
+                        День в день
                     </div>
                     <div
                         className={[Styles.option, !deliveryToday && Styles.selected]
@@ -66,7 +66,17 @@ const SupplierConditionsComponent = ({ className }) => {
                     />
 
                     {/* Footer navigation */}
-                    <Navigation />
+                    <Navigation
+                        rightButton={
+                            <Button
+                                className={Styles.navigationButton}
+                                content={
+                                    <Icon className={Styles.check} name='check' color='white' />
+                                }
+                                filled
+                            />
+                        }
+                    />
                 </section>
             )}
         </Transition>
