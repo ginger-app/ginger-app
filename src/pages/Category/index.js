@@ -90,6 +90,8 @@ const CategoryComponent = ({
 
                     {/* Content + filters */}
                     <MarketShowcase className={Styles.showcase} items={sortedItems} marketType />
+
+                    {/* Footer navigation */}
                     <Carousel
                         itemsToShow={2}
                         className={Styles.tags}
@@ -104,8 +106,6 @@ const CategoryComponent = ({
                             </NavLink>
                         ))}
                     />
-
-                    {/* Footer */}
                     <Navigation search />
                 </section>
             )}

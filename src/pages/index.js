@@ -4,6 +4,7 @@ export * from './Lists';
 export * from './Subcategory';
 export * from './LocationsList';
 export * from './SupplierConditions';
+export * from './SupplierList';
 export * from './Product';
 export * from './Market';
 export * from './NewOrder';
