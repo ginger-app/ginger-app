@@ -135,9 +135,14 @@
 }
 
 @mixin blur($blurStrength: 10px) {
-    background-color: rgba(150, 150, 150, 0.15);
+    @supports (
+        (-webkit-backdrop-filter: blur($blurStrength)) or (backdrop-filter: blur($blurStrength))
+    ) {
+        background-color: rgba(150, 150, 150, 0.15);
 
-    backdrop-filter: blur($blurStrength);
+        backdrop-filter: blur($blurStrength);
+    }
+    background-color: rgba(246, 246, 246, 0.85);
 }
 
 @mixin shadow($shadowColor: #0000001a) {
