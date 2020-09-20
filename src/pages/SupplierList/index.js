@@ -7,7 +7,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Navigation, Icon, Button, Carousel, Dummy } from 'components';
+import { Navigation, Icon, Button, Carousel, Dummy, SupplierListItem } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { DateTime } from 'luxon';
 
@@ -79,7 +79,7 @@ const SupplierListComponent = ({ className, showSearchOverlay }) => {
                     {/* List items */}
                     <div className={Styles.list}>
                         {new Array(10).fill(1).map((item, index) => (
-                            <div className={Styles.item} key={index} />
+                            <SupplierListItem key={index} />
                         ))}
                         <Dummy className={Styles.dummy} />
                     </div>

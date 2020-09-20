@@ -1,6 +1,7 @@
 export * from './RequestNewAddress';
 export * from './MarketItemOverlay';
 export * from './DoubleRowCarousel';
+export * from './SupplierListItem';
 export * from './OrderStatusLabel';
 export * from './FavoritesButton';
 export * from './LocationsSelect';

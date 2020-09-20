@@ -1,0 +1,98 @@
+@import 'resources';
+
+.container {
+    @include shadow;
+
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: repeat(3, 2.5rem) 2.5rem 2.5rem;
+    place-items: start end;
+    gap: 0.25rem;
+
+    width: 100%;
+    height: 16.5rem;
+    padding: 1rem;
+
+    background: $paletteWhite;
+
+    border-radius: 1rem;
+
+    & .image {
+        grid-column: 1;
+        grid-row: 1 / 4;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    & .itemName {
+        display: -webkit-box;
+
+        width: 100%;
+
+        font-weight: bold;
+
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    & .infoBox {
+        grid-column: 2;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        place-items: end;
+
+        width: 100%;
+
+        text-align: right;
+
+        & .subtitle {
+            font-size: 0.9rem;
+
+            color: $paletteGrey_3;
+        }
+
+        & .value {
+            display: -webkit-box;
+
+            width: 100%;
+
+            font-weight: bold;
+
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+
+    & .deleteButton {
+        @include centerContent;
+        cursor: pointer;
+        place-self: start;
+
+        grid-column: 1;
+        grid-row: 5;
+
+        height: 3rem;
+        width: 3rem;
+        margin: 0.5rem 0;
+
+        background: $paletteWhite;
+
+        border: 1px solid $paletteGrey_3;
+        border-radius: 100%;
+    }
+
+    & .editButton {
+        @include lightButton;
+        @include centerContent;
+        grid-column: 2;
+        grid-row: 5;
+
+        height: 3rem;
+        width: 3rem;
+        margin: 0.5rem 0;
+        padding: 0;
+    }
+}
