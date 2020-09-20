@@ -6,12 +6,9 @@ import { Portal } from 'react-portal';
 import { Transition } from 'react-transition-group';
 
 // Styles
+import Styles from './styles.module.scss';
 
 // Instruments
-import { opacityTransitionConfig } from 'utils/transitionConfig';
-import { book } from 'core';
-
-// Components
 import {
     CreateNewOrder,
     CategoriesCatalogue,
@@ -19,12 +16,14 @@ import {
     NewsBlock,
     Navigation,
     Icon,
+    Dummy,
 } from 'components';
+import { opacityTransitionConfig } from 'utils/transitionConfig';
+import { book } from 'core';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
 import { uiActions } from 'bus/ui/actions';
-import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.get('isAuthenticated'),
@@ -90,6 +89,7 @@ const HomeComponent = ({
                         itemsToShow={3}
                         extended
                     />
+                    <Dummy />
 
                     {/* Footer navigation */}
                     <Navigation

@@ -7,7 +7,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Navigation, Icon, Button, Carousel } from 'components';
+import { Navigation, Icon, Button, Carousel, Dummy } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { DateTime } from 'luxon';
 
@@ -81,7 +81,7 @@ const SupplierListComponent = ({ className, showSearchOverlay }) => {
                         {new Array(10).fill(1).map((item, index) => (
                             <div className={Styles.item} key={index} />
                         ))}
-                        <div className={Styles.dummy} />
+                        <Dummy className={Styles.dummy} />
                     </div>
 
                     {/* Footer naviation */}

@@ -9,7 +9,9 @@
     grid-gap: 1rem;
     place-items: center;
 
-    padding: 1rem 0 5rem;
+    padding: 1rem 0;
+
+    overflow: scroll;
 
     & .header {
         grid-column: 1 / 3;

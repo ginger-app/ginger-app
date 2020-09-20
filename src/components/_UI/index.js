@@ -21,4 +21,5 @@ export * from './Toaster';
 export * from './Button';
 export * from './Link';
 export * from './Icon';
+export * from './Dummy';
 export * from './Map';

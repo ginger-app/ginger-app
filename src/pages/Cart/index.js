@@ -15,6 +15,7 @@ import {
     CartItem,
     ChooseDateOverlay,
     OrderSuccessModal,
+    Dummy,
 } from 'components';
 import mockImage from 'theme/assets/images/apples-mock.png';
 
@@ -84,7 +85,7 @@ const CartComponent = ({ className }) => {
                                 orderDetails
                             />
                         ))}
-                        <div className={Styles.dummy} />
+                        <Dummy className={Styles.dummy} />
                     </div>
 
                     {/* Footer navigation */}

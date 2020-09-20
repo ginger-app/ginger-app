@@ -8,7 +8,7 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import { Navigation, LocationCard, Button, Icon } from 'components';
+import { Navigation, LocationCard, Button, Icon, Dummy } from 'components';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
@@ -52,7 +52,7 @@ const LocationsListComponent = ({ className, showNewLocationOverlay }) => {
                         ))}
 
                         {/* Dummy div to create spacing after last elem */}
-                        <div className={Styles.dummy} />
+                        <Dummy className={Styles.dummy} />
                     </div>
 
                     {/* Navigation footer */}
