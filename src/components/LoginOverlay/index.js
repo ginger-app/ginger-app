@@ -54,12 +54,7 @@ const LoginOverlayComponent = ({
 
     return (
         <Portal>
-            <Transition
-                in={loginOverlay}
-                appear
-                mountOnEnter
-                timeout={leftToRightSlideConfig().timeout}
-            >
+            <Transition in={loginOverlay} appear timeout={leftToRightSlideConfig().timeout}>
                 {(state) => (
                     <section
                         className={Styles.container}
