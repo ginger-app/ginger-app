@@ -73,7 +73,6 @@ const SupplierConditionsComponent = ({ className }) => {
                                 content={
                                     <Icon className={Styles.check} name='check' color='white' />
                                 }
-                                filled
                             />
                         }
                     />
