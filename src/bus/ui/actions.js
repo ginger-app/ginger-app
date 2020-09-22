@@ -73,6 +73,10 @@ export const uiActions = {
         type: types.SHOW_NEW_LIST_ITEM_OVERLAY,
     }),
 
+    showSupplierUploadOverlay: () => ({
+        type: types.SHOW_SUPPLIER_UPLOAD_OVERLAY,
+    }),
+
     // Hiding overlays actions
     hideLoginOverlay: () => ({
         type: types.HIDE_LOGIN_OVERLAY,
@@ -108,6 +112,10 @@ export const uiActions = {
 
     hideNewListItemOverlay: () => ({
         type: types.HIDE_NEW_LIST_ITEM_OVERLAY,
+    }),
+
+    hideSupplierUploadOverlay: () => ({
+        type: types.HIDE_SUPPLIER_UPLOAD_OVERLAY,
     }),
 
     // Error

@@ -1,5 +1,6 @@
 export * from './_UI';
 export * from './CodeConfirmationOverlay';
+export * from './SupplierUploadOverlay';
 export * from './MarketFiltersOverlay';
 export * from './CategoriesCatalogue';
 export * from './OrderFiltersOverlay';
@@ -19,7 +20,6 @@ export * from './LoginOverlay';
 export * from './OrderDetails';
 export * from './CartToaster';
 export * from './NewsBlock';
-export * from './LastOrder';
 export * from './Preloader';
 export * from './Suppliers';
 export * from './MapModal';

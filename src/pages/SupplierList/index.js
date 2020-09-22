@@ -24,6 +24,7 @@ const mapDispatchToProps = {
     showSearchOverlay: uiActions.showSearchOverlay,
     showMarketFiltersOverlay: uiActions.showMarketFiltersOverlay,
     showNewListItemOverlay: uiActions.showNewListItemOverlay,
+    showSupplierUploadOverlay: uiActions.showSupplierUploadOverlay,
 };
 
 const SupplierListComponent = ({
@@ -31,6 +32,7 @@ const SupplierListComponent = ({
     showSearchOverlay,
     showMarketFiltersOverlay,
     showNewListItemOverlay,
+    showSupplierUploadOverlay,
 }) => {
     const lastUpdate = DateTime.local().minus({ days: 3 });
 
@@ -113,7 +115,7 @@ const SupplierListComponent = ({
                         }
                         rightButtonData={{
                             icon: 'upload',
-                            onClick: () => null,
+                            onClick: showSupplierUploadOverlay,
                         }}
                     />
                 </section>

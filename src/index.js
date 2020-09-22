@@ -22,6 +22,7 @@ import {
     NewLocationOverlay,
     OrderFiltersOverlay,
     NewListItemOverlay,
+    SupplierUploadOverlay,
 } from 'components';
 import { store } from './bus/init/store';
 import { history } from './bus/init/middleware/core';
@@ -42,6 +43,7 @@ render(
             <OrderFiltersOverlay />
             <NewLocationOverlay />
             <NewListItemOverlay />
+            <SupplierUploadOverlay />
             <Cart />
         </Router>
     </Provider>,

@@ -1,0 +1,142 @@
+@import 'resources';
+
+.container {
+    @include overlay;
+    @include centerContent;
+
+    padding: 3rem 2rem;
+
+    & .newItem,
+    .importTable {
+        @include centerContent;
+        cursor: pointer;
+        place-self: start;
+
+        position: relative;
+
+        height: 8rem;
+        width: 100%;
+        padding: 0 1.5rem;
+
+        background: $paletteWhite;
+
+        border-radius: 1rem;
+
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-align: center;
+
+        & .newItemButton,
+        .importTableButton {
+            @include deafultGradientButton;
+            cursor: pointer;
+
+            position: absolute;
+            top: 50%;
+            right: 0;
+
+            height: 3rem;
+            width: 3rem;
+
+            transform: translate(50%, -50%);
+            transition: box-shadow 0.3s;
+        }
+    }
+
+    & .newItem {
+        @include shadow;
+    }
+
+    & .importTable {
+        background: transparent;
+
+        border: 2px dashed $paletteGrey_3;
+        border-radius: 1rem;
+
+        & .importTableButton {
+            @include lightButton;
+            @include centerContent;
+            height: 3rem;
+            width: 3rem;
+            padding: 0;
+        }
+    }
+
+    & .intermediaryText {
+        margin: 2rem;
+
+        font-weight: bold;
+
+        color: $paletteBlack;
+    }
+
+    & .example {
+        display: grid;
+        grid-template-columns: repeat(2, max-content);
+        place-items: center;
+        gap: 0.5rem;
+
+        margin: 0.5rem 0;
+
+        font-size: 0.8rem;
+
+        color: $paletteGrey_3;
+
+        & .exampleButton {
+            @include lightButton;
+            @include centerContent;
+
+            height: 100%;
+            padding: 0.25rem 1rem;
+
+            font-weight: bold;
+        }
+    }
+
+    & .googleSheetsTitle {
+        margin-bottom: 0.5rem;
+
+        font-weight: bold;
+        font-size: 1.25rem;
+    }
+
+    & .googleSheetsInput {
+        display: grid;
+        grid-template-columns: 100% 1px;
+
+        width: 100%;
+
+        & input {
+            @include shadow;
+
+            padding: 1rem;
+
+            background: $paletteWhite;
+
+            border: none;
+            border-radius: 3rem;
+        }
+
+        & .inputButton {
+            @include deafultGradientButton;
+
+            width: 3rem;
+            height: 3rem;
+            padding: 0;
+
+            border-radius: 100%;
+
+            transform: translate(-75%);
+        }
+    }
+
+    & .closeButton {
+        @include lightButton;
+        @include centerContent;
+
+        width: 3rem;
+        height: 3rem;
+        padding: 0;
+        margin-bottom: 1rem;
+    }
+}

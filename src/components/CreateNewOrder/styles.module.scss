@@ -33,7 +33,7 @@
         transition: box-shadow 0.5s;
 
         & img {
-            @include shadow($paletteBlue_2);
+            @include shadow;
 
             position: absolute;
             top: 50%;
@@ -47,10 +47,6 @@
 
         &:hover {
             @include shadow($paletteBlue_1);
-
-            & img {
-                @include shadow($paletteBlue_1);
-            }
         }
     }
 

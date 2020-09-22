@@ -15,6 +15,7 @@ const initialState = Map({
     loginOverlay: false,
     newLocationOverlay: false,
     newListItemOverlay: false,
+    supplierUploadOverlay: false,
     backButtonPath: null,
     cartIconVisible: true,
     orderPlacedSuccesfully: false,
@@ -94,6 +95,9 @@ export const uiReducer = (state = initialState, action) => {
         case types.SHOW_NEW_LIST_ITEM_OVERLAY:
             return state.set('newListItemOverlay', true);
 
+        case types.SHOW_SUPPLIER_UPLOAD_OVERLAY:
+            return state.set('supplierUploadOverlay', true);
+
         // Hiding overlays
         case types.HIDE_SEARCH_OVERLAY:
             return state.set('searchOpened', false);
@@ -106,6 +110,9 @@ export const uiReducer = (state = initialState, action) => {
 
         case types.HIDE_NEW_LIST_ITEM_OVERLAY:
             return state.set('newListItemOverlay', false);
+
+        case types.HIDE_SUPPLIER_UPLOAD_OVERLAY:
+            return state.set('supplierUploadOverlay', false);
 
         case types.HIDE_ALL_OVERLAYS:
             return state.merge({
