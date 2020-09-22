@@ -17,20 +17,6 @@
 
     overflow: hidden;
 
-    & .mock {
-        @include centerContent;
-
-        height: 100%;
-        width: 100%;
-        padding: 0.5rem;
-
-        background: $paletteDefaultGradient;
-
-        & img {
-            filter: brightness(0) invert(1);
-        }
-    }
-
     & .img {
         height: 100%;
         width: 100%;

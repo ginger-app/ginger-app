@@ -8,7 +8,7 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import logo from 'theme/assets/svg/logo.svg';
+import logo from 'theme/assets/images/logo.png';
 
 const mapStateToProps = (state) => ({
     ...state,
@@ -33,12 +33,7 @@ const NewsBlockComponent = ({ className }) => {
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    {/* Mock */}
-                    <div className={Styles.mock}>
-                        <img src={logo} alt='' className={Styles.img} />
-                    </div>
-
-                    {/* <img src={logo} alt='' className={Styles.img} /> */}
+                    <img src={logo} alt='' className={Styles.img} />
 
                     <p className={Styles.text}>Іноваційне рішення для оптових закупівель</p>
                 </section>
