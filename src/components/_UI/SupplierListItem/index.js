@@ -10,13 +10,18 @@ import Styles from './styles.module.scss';
 import { Button, Icon } from 'components';
 import mockApples from 'theme/assets/images/apples-mock.png';
 
+// Actions
+import { uiActions } from 'bus/ui/actions';
+
 const mapStateToProps = (state) => ({
     ...state,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    showNewListItemOverlay: uiActions.showNewListItemOverlay,
+};
 
-const SupplierListItemComponent = ({ className }) => {
+const SupplierListItemComponent = ({ className, showNewListItemOverlay }) => {
     const itemData = {
         Категорія: 'Фрукти',
         Фасовка: 'Кг',
@@ -48,7 +53,11 @@ const SupplierListItemComponent = ({ className }) => {
                 </div>
             ))}
 
-            <Button className={Styles.editButton} content={<Icon name='edit' />} />
+            <Button
+                className={Styles.editButton}
+                content={<Icon name='edit' />}
+                onClick={showNewListItemOverlay}
+            />
         </section>
     );
 };
