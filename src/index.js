@@ -21,6 +21,7 @@ import {
     MarketFiltersOverlay,
     NewLocationOverlay,
     OrderFiltersOverlay,
+    NewListItemOverlay,
 } from 'components';
 import { store } from './bus/init/store';
 import { history } from './bus/init/middleware/core';
@@ -40,6 +41,7 @@ render(
             <MarketFiltersOverlay />
             <OrderFiltersOverlay />
             <NewLocationOverlay />
+            <NewListItemOverlay />
             <Cart />
         </Router>
     </Provider>,

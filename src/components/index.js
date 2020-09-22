@@ -3,6 +3,7 @@ export * from './CodeConfirmationOverlay';
 export * from './MarketFiltersOverlay';
 export * from './CategoriesCatalogue';
 export * from './OrderFiltersOverlay';
+export * from './NewListItemOverlay';
 export * from './NewLocationOverlay';
 export * from './OrderSuccessModal';
 export * from './DeliveryTimeModal';

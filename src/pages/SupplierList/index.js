@@ -22,9 +22,16 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     showSearchOverlay: uiActions.showSearchOverlay,
+    showMarketFiltersOverlay: uiActions.showMarketFiltersOverlay,
+    showNewListItemOverlay: uiActions.showNewListItemOverlay,
 };
 
-const SupplierListComponent = ({ className, showSearchOverlay }) => {
+const SupplierListComponent = ({
+    className,
+    showSearchOverlay,
+    showMarketFiltersOverlay,
+    showNewListItemOverlay,
+}) => {
     const lastUpdate = DateTime.local().minus({ days: 3 });
 
     return (
@@ -53,6 +60,7 @@ const SupplierListComponent = ({ className, showSearchOverlay }) => {
                     <Button
                         className={Styles.topButton}
                         content={<Icon name='filters' className={Styles.searchIcon} />}
+                        onClick={showMarketFiltersOverlay}
                     />
 
                     {/* 
@@ -100,6 +108,7 @@ const SupplierListComponent = ({ className, showSearchOverlay }) => {
                             <Button
                                 className={Styles.bottomButton}
                                 content={<Icon name='plus' color='white' />}
+                                onClick={showNewListItemOverlay}
                             />
                         }
                         rightButtonData={{

@@ -39,7 +39,7 @@ export const uiActions = {
         payload: { path },
     }),
 
-    // Overlays actions
+    // Showing overlays actions
     showLoginOverlay: (backButtonPath) => ({
         type: types.SHOW_LOGIN_OVERLAY,
         payload: { backButtonPath },
@@ -69,6 +69,11 @@ export const uiActions = {
         type: types.SHOW_NEW_LOCATION_OVERLAY,
     }),
 
+    showNewListItemOverlay: () => ({
+        type: types.SHOW_NEW_LIST_ITEM_OVERLAY,
+    }),
+
+    // Hiding overlays actions
     hideLoginOverlay: () => ({
         type: types.HIDE_LOGIN_OVERLAY,
     }),
@@ -99,6 +104,10 @@ export const uiActions = {
 
     hideNewLocationOverlay: () => ({
         type: types.HIDE_NEW_LOCATION_OVERLAY,
+    }),
+
+    hideNewListItemOverlay: () => ({
+        type: types.HIDE_NEW_LIST_ITEM_OVERLAY,
     }),
 
     // Error

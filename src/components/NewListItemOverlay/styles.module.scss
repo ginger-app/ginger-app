@@ -1,0 +1,110 @@
+@import 'resources';
+
+.bg {
+    @include overlay;
+    @include centerContent;
+
+    display: grid;
+    grid-template-columns: 4rem 1fr 4rem;
+    grid-auto-rows: max-content;
+    gap: 1rem;
+
+    & .container {
+        @include shadow;
+        grid-column: 1 / 4;
+        display: grid;
+        grid-template-rows: 60vw;
+        grid-auto-rows: 3rem;
+        place-items: center;
+        gap: 1.25rem;
+
+        width: 95vw;
+        padding: 1rem;
+
+        background: $paletteBg;
+
+        border-radius: 1rem;
+
+        & .img {
+            @include shadow;
+            height: 50vw;
+            width: 50vw;
+
+            background: $paletteWhite;
+
+            border-radius: 100%;
+        }
+
+        & .inputFieldBlock {
+            display: grid;
+            grid-template-columns: 1fr 3rem;
+            grid-template-rows: 1fr 2fr;
+            gap: 0.25rem 1rem;
+
+            width: 100%;
+
+            & .subtitle {
+                font-size: 0.8rem;
+
+                color: $paletteGrey_3;
+            }
+
+            & .value {
+                width: 100%;
+
+                background: none;
+
+                border: none;
+
+                font-size: 1.5rem;
+                text-align: left;
+
+                color: $paletteBlack;
+            }
+
+            & .button {
+                @include shadow;
+                cursor: pointer;
+                place-self: center;
+
+                grid-column: 2;
+                grid-row: 1 / 3;
+
+                height: 3rem;
+                width: 3rem;
+
+                background: $paletteWhite;
+            }
+        }
+    }
+
+    & .close {
+        @include shadow;
+        cursor: pointer;
+        place-self: start end;
+
+        grid-column: 1;
+
+        height: 3rem;
+        width: 3rem;
+        margin-bottom: 1rem;
+
+        background: $paletteWhite;
+    }
+
+    & .apply {
+        cursor: pointer;
+        place-self: start start;
+
+        grid-column: 3;
+
+        height: 3rem;
+        width: 3rem;
+        margin-bottom: 1rem;
+
+        & .icon {
+            position: relative;
+            left: -3px;
+        }
+    }
+}
