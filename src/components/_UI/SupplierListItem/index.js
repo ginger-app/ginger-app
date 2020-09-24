@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -8,6 +8,7 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { Button, Icon } from 'components';
+import gsap from 'gsap';
 import mockApples from 'theme/assets/images/apples-mock.png';
 
 // Actions
@@ -22,6 +23,9 @@ const mapDispatchToProps = {
 };
 
 const SupplierListItemComponent = ({ className, showNewListItemOverlay }) => {
+    const ref = useRef(null);
+    const [collapsed, setCollapsedState] = useState(true);
+
     const itemData = {
         Категорія: 'Фрукти',
         Фасовка: 'Кг',
@@ -29,35 +33,66 @@ const SupplierListItemComponent = ({ className, showNewListItemOverlay }) => {
         Залишок: 100,
     };
 
+    const toggleCollapsedState = () => {
+        gsap.set(ref.current, { opacity: 0 });
+
+        setCollapsedState(!collapsed);
+
+        setTimeout(() => {
+            gsap.fromTo(ref.current, { opacity: 0 }, { duration: 0.3, opacity: 1 });
+        }, 100);
+    };
+
     return (
-        <section className={[Styles.container, className].filter(Boolean).join(' ')}>
-            {/* Left side */}
-            <img className={Styles.image} src={mockApples} alt='' />
-            <p className={Styles.itemName}>Яблука чемпіон фреш уп. 1кг нетто +- 50гр.</p>
+        <section
+            className={[Styles.container, className, collapsed && Styles.collapsed]
+                .filter(Boolean)
+                .join(' ')}
+            onClick={() => collapsed && toggleCollapsedState()}
+            ref={ref}
+        >
+            {collapsed ? (
+                <>
+                    <img className={Styles.image} src={mockApples} alt='' />
+                    <p className={Styles.itemName}>Яблука чемпіон фреш уп. 1кг нетто +- 50гр.</p>
+                    <p className={Styles.collapsedInfoValue}>{parseFloat(itemData['Ціна'])}</p>
+                    <p className={Styles.collapsedInfoValue}>{itemData['Залишок']}</p>
+                </>
+            ) : (
+                <>
+                    {/* Left side */}
+                    <img className={Styles.image} src={mockApples} alt='' />
+                    <p className={Styles.itemName}>Яблука чемпіон фреш уп. 1кг нетто +- 50гр.</p>
 
-            <div className={Styles.deleteButton}>
-                <Icon name='close' color='grey' className={Styles.icon} />
-            </div>
+                    {/* Right side */}
+                    {Object.entries(itemData).map((item, index) => (
+                        <div
+                            key={index}
+                            className={Styles.infoBox}
+                            style={{
+                                gridRow: index + 1,
+                            }}
+                        >
+                            <p className={Styles.subtitle}>{item[0]}</p>
+                            <p className={Styles.value}>{item[1]}</p>
+                        </div>
+                    ))}
 
-            {/* Right side */}
-            {Object.entries(itemData).map((item, index) => (
-                <div
-                    key={index}
-                    className={Styles.infoBox}
-                    style={{
-                        gridRow: index + 1,
-                    }}
-                >
-                    <p className={Styles.subtitle}>{item[0]}</p>
-                    <p className={Styles.value}>{item[1]}</p>
-                </div>
-            ))}
+                    <div className={Styles.deleteButton}>
+                        <Icon name='close' color='grey' className={Styles.icon} />
+                    </div>
 
-            <Button
-                className={Styles.editButton}
-                content={<Icon name='edit' />}
-                onClick={showNewListItemOverlay}
-            />
+                    <p className={Styles.collapseButton} onClick={toggleCollapsedState}>
+                        Згорнути
+                    </p>
+
+                    <Button
+                        className={Styles.editButton}
+                        content={<Icon name='edit' />}
+                        onClick={showNewListItemOverlay}
+                    />
+                </>
+            )}
         </section>
     );
 };
