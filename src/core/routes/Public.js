@@ -18,6 +18,7 @@ import {
     LocationsListPage,
     SupplierConditions,
     SupplierListPage,
+    SupplierOrdersPage,
 } from 'pages';
 
 // Instruments
@@ -79,6 +80,7 @@ export const PublicRoutes = () => (
         {/* Supplier specific */}
         <Route exact path={book.deliveryConditions} component={SupplierConditions} />
         <Route exact path={book.supplierLists} component={SupplierListPage} />
+        <Route exact path={book.supplierOrders} component={SupplierOrdersPage} />
 
         <Redirect to={`${book.home}?404`} />
     </Switch>

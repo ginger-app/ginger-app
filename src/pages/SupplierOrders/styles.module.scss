@@ -1,0 +1,85 @@
+@import 'resources';
+
+.container {
+    @include fullHeight;
+
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    gap: 0.5rem;
+
+    padding-top: 2rem;
+
+    & .title {
+        @include boldTitle;
+
+        padding-left: 1rem;
+
+        text-align: left;
+    }
+
+    & .orders {
+        display: grid;
+        gap: 0.5rem;
+
+        height: 100%;
+        padding: 0.5rem;
+
+        overflow: scroll;
+
+        & .orderItem {
+            @include shadow;
+            @include centerContent;
+
+            height: 10rem;
+            width: 100%;
+
+            background: $paletteWhite;
+
+            border-radius: 1rem;
+
+            & img {
+                height: 100%;
+            }
+        }
+    }
+
+    & .carousele {
+        border-radius: 10rem;
+    }
+
+    & .tags {
+        @include blur;
+
+        position: fixed;
+        bottom: 4rem;
+        left: 0;
+
+        width: 100vw;
+        padding: 0;
+
+        & :last-of-type {
+            margin-right: 0.5rem;
+        }
+
+        & .tag {
+            @include lightButton;
+            @include centerContent;
+
+            grid-template-columns: max-content;
+
+            height: 2.5rem;
+            margin: 0.5rem 0.25rem;
+            padding: 0 1rem;
+
+            font-size: 0.75rem;
+
+            transition: 0.3s all;
+
+            &:hover {
+                background: $paletteGrey_1;
+
+                color: $paletteWhite;
+            }
+        }
+    }
+}
