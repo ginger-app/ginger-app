@@ -134,7 +134,7 @@
     user-select: none;
 }
 
-@mixin blur($blurStrength: 40px) {
+@mixin blur($blurStrength: 20px) {
     @supports (
         (-webkit-backdrop-filter: blur($blurStrength)) or (backdrop-filter: blur($blurStrength))
     ) {
