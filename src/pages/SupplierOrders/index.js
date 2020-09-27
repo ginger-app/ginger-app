@@ -7,9 +7,8 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Navigation, Carousel, Dummy } from 'components';
+import { Navigation, Carousel, SupplierOrderItem, Dummy } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import logo from 'theme/assets/images/logo.png';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
@@ -47,9 +46,7 @@ const SupplierOrdersComponent = ({ showMarketFiltersOverlay }) => {
                     {/* Content */}
                     <div className={Styles.orders}>
                         {new Array(20).fill(1).map((item, index) => (
-                            <div className={Styles.orderItem} key={index}>
-                                <img src={logo} alt='' />
-                            </div>
+                            <SupplierOrderItem className={Styles.orderItem} key={index} />
                         ))}
                         <Dummy />
                         <Dummy />

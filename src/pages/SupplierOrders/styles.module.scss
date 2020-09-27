@@ -25,22 +25,6 @@
         padding: 0.5rem;
 
         overflow: scroll;
-
-        & .orderItem {
-            @include shadow;
-            @include centerContent;
-
-            height: 10rem;
-            width: 100%;
-
-            background: $paletteWhite;
-
-            border-radius: 1rem;
-
-            & img {
-                height: 100%;
-            }
-        }
     }
 
     & .carousele {
