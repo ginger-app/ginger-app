@@ -1,10 +1,11 @@
 // Core
-import { Map } from 'immutable';
+import { fromJS, Map } from 'immutable';
 
 // Types
 import { types } from './types';
 
 const initialState = Map({
+    // Overlays
     isFetching: false,
     cartIsOpened: false,
     searchOpened: false,
@@ -16,10 +17,21 @@ const initialState = Map({
     newLocationOverlay: false,
     newListItemOverlay: false,
     supplierUploadOverlay: false,
-    backButtonPath: null,
     cartIconVisible: true,
     orderPlacedSuccesfully: false,
     orderPlacementError: false,
+
+    // Data
+    backButtonPath: null,
+    newListItemOverlayData: Map({
+        name: '',
+        category: '',
+        unit: '',
+        price: '',
+        amount: '',
+        img: '',
+        id: null,
+    }),
     logs: '',
 });
 
@@ -121,6 +133,13 @@ export const uiReducer = (state = initialState, action) => {
                 signupOverlay: false,
                 backButtonPath: null,
             });
+
+        // Data
+        case types.SET_NEW_LIST_ITEM_OVERLAY_DATA:
+            return state.set('newListItemOverlayData', fromJS(action.payload));
+
+        case types.CLEAR_NEW_LIST_ITEM_OVERLAY_DATA:
+            return state.set('newListItemOverlayData', initialState.get('newListItemOverlayData'));
 
         // Errors
         case types.EMIT_ERROR:

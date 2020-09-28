@@ -1,0 +1,7 @@
+@import 'resources';
+
+.container {
+    @include fullHeight;
+
+    padding: 0.5rem;
+}

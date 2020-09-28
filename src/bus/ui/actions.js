@@ -118,6 +118,16 @@ export const uiActions = {
         type: types.HIDE_SUPPLIER_UPLOAD_OVERLAY,
     }),
 
+    // Data
+    setNewListItemOverlayData: (payload) => ({
+        type: types.SET_NEW_LIST_ITEM_OVERLAY_DATA,
+        payload,
+    }),
+
+    clearNewListItemOverlayData: () => ({
+        type: types.CLEAR_NEW_LIST_ITEM_OVERLAY_DATA,
+    }),
+
     // Error
     emitError: (error, meta = null) => ({
         type: types.EMIT_ERROR,
