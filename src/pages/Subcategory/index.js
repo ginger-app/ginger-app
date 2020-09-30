@@ -2,11 +2,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
+import { NavLink } from 'react-router-dom';
 
 // Styles
+import Styles from './styles.module.scss';
 
 // Components
-import { Navigation, MarketShowcase, Carousel, Icon } from 'components';
+import { Navigation, MarketShowcase, Carousel } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -15,7 +17,6 @@ import { isEmpty } from 'lodash';
 // Actions
 import { marketActions } from 'bus/market/actions';
 import { uiActions } from 'bus/ui/actions';
-import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     subcategoryData: state.market.get('subcategoryData').toJS(),
@@ -29,7 +30,6 @@ const mapDispatchToProps = {
 };
 
 const SubcategoryComponent = ({
-    // className,
     sku,
     getMarketSubcategoryDataAsync,
     clearMarketSubcategoryData,
@@ -68,7 +68,7 @@ const SubcategoryComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    Loading subcategory...
+                    Loading...
                 </section>
             )}
         </Transition>
@@ -88,21 +88,34 @@ const SubcategoryComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <Navigation className={Styles.title} title={name} rightButton='search' />
+                    {/* Title */}
+                    <p className={Styles.title}>{name}</p>
+
+                    {/* Content + filters */}
+                    <MarketShowcase className={Styles.showcase} items={sortedItems} marketType />
+
+                    {/* Footer navigation */}
                     <Carousel
                         className={Styles.tags}
                         carouselClassName={Styles.carousele}
                         itemsToShow={3}
                         items={tags.map((item, index) => (
-                            <div className={Styles.tag} key={index}>
+                            <NavLink
+                                to={`${window.location.pathname}/${item}`}
+                                className={Styles.tag}
+                                key={index}
+                            >
                                 {item}
-                            </div>
+                            </NavLink>
                         ))}
                     />
-                    <div className={Styles.filterButton} onClick={showMarketFiltersOverlay}>
-                        <Icon name='filters' color='black' />
-                    </div>
-                    <MarketShowcase className={Styles.showcase} items={sortedItems} marketType />
+                    <Navigation
+                        search
+                        rightButtonData={{
+                            onClick: showMarketFiltersOverlay,
+                            icon: 'filters',
+                        }}
+                    />
                 </section>
             )}
         </Transition>

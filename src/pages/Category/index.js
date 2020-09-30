@@ -16,6 +16,7 @@ import { isEmpty } from 'lodash';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
+import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     categoryData: state.market.get('categoryData').toJS(),
@@ -25,11 +26,13 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     getMarketCategoryDataAsync: marketActions.getMarketCategoryDataAsync,
     clearMarketCategoryData: marketActions.clearMarketCategoryData,
+    showMarketFiltersOverlay: uiActions.showMarketFiltersOverlay,
 };
 
 const CategoryComponent = ({
     sku,
     getMarketCategoryDataAsync,
+    showMarketFiltersOverlay,
     clearMarketCategoryData,
     categoryData,
     sortingOption,
@@ -106,7 +109,13 @@ const CategoryComponent = ({
                             </NavLink>
                         ))}
                     />
-                    <Navigation search />
+                    <Navigation
+                        search
+                        rightButtonData={{
+                            onClick: showMarketFiltersOverlay,
+                            icon: 'filters',
+                        }}
+                    />
                 </section>
             )}
         </Transition>
