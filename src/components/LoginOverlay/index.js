@@ -23,14 +23,14 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getAuthConfirmationCodeAsync: authActions.getAuthConfirmationCodeAsync,
+    getSigninConfirmationCodeAsync: authActions.getSigninConfirmationCodeAsync,
     setAuthData: authActions.setAuthData,
     hideLoginOverlay: uiActions.hideLoginOverlay,
     showSignupOverlay: uiActions.showSignupOverlay,
 };
 
 const LoginOverlayComponent = ({
-    getAuthConfirmationCodeAsync,
+    getSigninConfirmationCodeAsync,
     loginOverlay,
     hideLoginOverlay,
     setAuthData,
@@ -48,7 +48,7 @@ const LoginOverlayComponent = ({
     const _handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             setAuthData({ phoneNumber });
-            getAuthConfirmationCodeAsync(phoneNumber);
+            getSigninConfirmationCodeAsync(phoneNumber);
         }
     };
 
@@ -85,7 +85,7 @@ const LoginOverlayComponent = ({
                                 onChange={_handlePhoneNumberChange}
                                 buttonAction={() => {
                                     setAuthData({ phoneNumber });
-                                    getAuthConfirmationCodeAsync(phoneNumber);
+                                    getSigninConfirmationCodeAsync(phoneNumber);
                                 }}
                                 autoFocus
                             />

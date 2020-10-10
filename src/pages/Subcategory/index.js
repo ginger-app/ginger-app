@@ -2,13 +2,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
 
 // Components
-import { Navigation, MarketShowcase, Carousel } from 'components';
+import { Navigation, MarketShowcase } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -43,7 +43,7 @@ const SubcategoryComponent = ({
         return clearMarketSubcategoryData;
     }, [sku, getMarketSubcategoryDataAsync, clearMarketSubcategoryData]);
 
-    const { name, tags, items } = subcategoryData;
+    const { name, items } = subcategoryData;
 
     const sortedItems =
         sortingOption === 'cheapest'
@@ -95,7 +95,7 @@ const SubcategoryComponent = ({
                     <MarketShowcase className={Styles.showcase} items={sortedItems} marketType />
 
                     {/* Footer navigation */}
-                    <Carousel
+                    {/* <Carousel
                         className={Styles.tags}
                         carouselClassName={Styles.carousele}
                         itemsToShow={3}
@@ -108,7 +108,7 @@ const SubcategoryComponent = ({
                                 {item}
                             </NavLink>
                         ))}
-                    />
+                    /> */}
                     <Navigation
                         search
                         rightButtonData={{

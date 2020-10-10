@@ -21,7 +21,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    sendLoginDataAsync: authActions.sendConfirmationCodeAsync,
+    sendLoginDataAsync: authActions.signinAsync,
     sendSignupDataAsync: authActions.sendSignupDataAsync,
     hideCodeConfirmationOverlay: uiActions.hideCodeConfirmationOverlay,
 };
@@ -32,7 +32,7 @@ const CodeConfirmationOverlayComponent = ({
     sendSignupDataAsync,
     hideCodeConfirmationOverlay,
     codeConfirmationOverlay,
-    authData: { name, email, phoneNumber, signup },
+    authData: { name, email, phoneNumber, signup, companyName },
 }) => {
     const [code, setCodeValue] = useState('');
 
@@ -44,6 +44,7 @@ const CodeConfirmationOverlayComponent = ({
                       code,
                       userData: {
                           phoneNumber,
+                          companyName,
                           email,
                           name,
                       },
@@ -86,6 +87,7 @@ const CodeConfirmationOverlayComponent = ({
                                                   code,
                                                   userData: {
                                                       phoneNumber,
+                                                      companyName,
                                                       email,
                                                       name,
                                                   },

@@ -1,5 +1,5 @@
 // Core
-import { Map } from 'immutable';
+import { fromJS, Map } from 'immutable';
 
 // Types
 import { authTypes as types } from './types';
@@ -7,6 +7,8 @@ import { authTypes as types } from './types';
 const initialState = Map({
     isAuthenticated: false,
     codeConfirmation: false,
+    accessToken: null,
+    expiresAt: null,
     gmapsKey: '',
     authData: {},
 });
@@ -23,7 +25,6 @@ export const authReducer = (state = initialState, action) => {
             return state.set('codeConfirmation', false);
 
         case types.SIGN_OUT:
-            localStorage.clear();
             return state.set('isAuthenticated', false);
 
         case types.SET_AUTH_DATA:
@@ -31,6 +32,12 @@ export const authReducer = (state = initialState, action) => {
 
         case types.FILL_GOOGLE_MAPS_KEY:
             return state.set('gmapsKey', action.payload.key);
+
+        case types.SET_ACCESS_TOKEN:
+            return state.merge(fromJS(action.payload));
+
+        case types.CLEAR_ACCESS_TOKEN:
+            return state.set('accessToken', initialState.get('accessToken'));
 
         default:
             return state;

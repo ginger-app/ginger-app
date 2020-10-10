@@ -18,7 +18,7 @@ import { profileActions } from 'bus/profile/actions';
 
 const mapStateToProps = (state) => ({
     cartIsOpened: state.ui.get('cartIsOpened'),
-    cart: state.profile.get('cart'),
+    // cart: state.profile.get('cart'),
     isAuthenticated: state.auth.get('isAuthenticated'),
     orderPlacedSuccesfully: state.ui.get('orderPlacedSuccesfully'),
 });
@@ -35,7 +35,7 @@ const CartComponent = ({
     cartIsOpened,
     orderPlacedSuccesfully,
     hideCart,
-    cart,
+    cart = {},
     createNewOrderAsync,
     removeItemFromCartAsync,
     isAuthenticated,

@@ -80,7 +80,7 @@ export const uiReducer = (state = initialState, action) => {
         case types.SHOW_LOGIN_OVERLAY:
             return state.merge({
                 loginOverlay: true,
-                backButtonPath: action.payload.backButtonPath || null,
+                backButtonPath: action?.payload?.backButtonPath,
             });
 
         case types.HIDE_LOGIN_OVERLAY:

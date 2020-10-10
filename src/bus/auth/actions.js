@@ -21,18 +21,27 @@ export const authActions = {
         payload: { key },
     }),
 
+    setAccessToken: (accessToken) => ({
+        type: types.SET_ACCESS_TOKEN,
+        payload: { ...accessToken },
+    }),
+
+    clearAccessToken: () => ({
+        type: types.CLEAR_ACCESS_TOKEN,
+    }),
+
     // Async
     logoutAsync: () => ({
         type: types.SIGN_OUT_ASYNC,
     }),
 
-    getAuthConfirmationCodeAsync: (phoneNumber) => ({
-        type: types.GET_AUTH_CONFIRMATION_CODE_ASYNC,
+    getSigninConfirmationCodeAsync: (phoneNumber) => ({
+        type: types.GET_SIGNIN_CONFIRMATION_CODE_ASYNC,
         payload: phoneNumber,
     }),
 
-    sendConfirmationCodeAsync: ({ phoneNumber, code }) => ({
-        type: types.SEND_CONFIRMATION_CODE_ASYNC,
+    signinAsync: ({ phoneNumber, code }) => ({
+        type: types.SIGNIN_ASYNC,
         payload: { phoneNumber, code },
     }),
 

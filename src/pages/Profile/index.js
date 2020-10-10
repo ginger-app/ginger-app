@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
@@ -11,7 +11,6 @@ import Styles from './styles.module.scss';
 import { Button, Icon, Navigation } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core/routes';
-import userpic from 'theme/assets/images/ginger.jpg';
 import logo from 'theme/assets/svg/logo.svg';
 
 // Actions
@@ -28,20 +27,13 @@ const mapDispatchToProps = {
 };
 
 const ProfileComponent = ({ profile, logoutAsync, getUserDataAsync }) => {
-    const {
-        name,
-        // favorites,
-        // orders,
-        // bonuses,
-        // userpic
-    } = profile;
+    const { name, role, userpic } = profile;
 
     useEffect(() => {
         getUserDataAsync();
     }, [getUserDataAsync]);
 
-    //! FOR TESTING PURPOSES
-    const [isSupplier, setSupplierState] = useState(true);
+    const isSupplier = role === 'supplier';
 
     return name.length === 0 ? (
         <Transition
@@ -79,13 +71,8 @@ const ProfileComponent = ({ profile, logoutAsync, getUserDataAsync }) => {
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <img
-                        className={Styles.avatar}
-                        src={isSupplier ? logo : userpic}
-                        alt='avatar'
-                        onClick={() => setSupplierState(!isSupplier)}
-                    />
-                    <p className={Styles.name}>{isSupplier ? 'Постачальник' : 'Покупець'}</p>
+                    <img className={Styles.avatar} src={userpic || logo} alt='avatar' />
+                    <p className={Styles.name}>{name}</p>
 
                     <NavLink
                         className={Styles.link}

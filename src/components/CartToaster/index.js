@@ -14,7 +14,6 @@ import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    cart: state.profile.get('cart'),
     cartIconVisible: state.ui.get('cartIconVisible'),
     cartIsOpened: state.ui.get('cartIsOpened'),
 });
@@ -24,7 +23,13 @@ const mapDispatchToProps = {
     hideCartIcon: uiActions.hideCartIcon,
 };
 
-const CartToasterComponent = ({ cart, showCart, cartIconVisible, cartIsOpened, hideCartIcon }) => {
+const CartToasterComponent = ({
+    cart = {},
+    showCart,
+    cartIconVisible,
+    cartIsOpened,
+    hideCartIcon,
+}) => {
     const cartLength = Object.keys(cart).length;
 
     return (

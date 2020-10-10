@@ -6,25 +6,25 @@ import { authTypes as types } from '../types';
 
 // Workers
 import {
-    signinWorker,
-    codeConfirmationWorker,
-    signupCodeWorker,
+    getSigninCodeWorker,
+    signin,
+    getSignupCode,
     signupWorker,
     getGmapsKeyWorker,
     logout,
 } from './workers';
 
 function* watchSignin() {
-    yield takeEvery(types.GET_AUTH_CONFIRMATION_CODE_ASYNC, signinWorker);
+    yield takeEvery(types.GET_SIGNIN_CONFIRMATION_CODE_ASYNC, getSigninCodeWorker);
 }
 function* watchSignout() {
     yield takeEvery(types.SIGN_OUT_ASYNC, logout);
 }
 function* watchCodeConfirmation() {
-    yield takeEvery(types.SEND_CONFIRMATION_CODE_ASYNC, codeConfirmationWorker);
+    yield takeEvery(types.SIGNIN_ASYNC, signin);
 }
 function* watchSignupCode() {
-    yield takeEvery(types.GET_SIGNUP_CONFIRMATION_CODE_ASYNC, signupCodeWorker);
+    yield takeEvery(types.GET_SIGNUP_CONFIRMATION_CODE_ASYNC, getSignupCode);
 }
 function* watchSignup() {
     yield takeEvery(types.SEND_SIGNUP_DATA_ASYNC, signupWorker);

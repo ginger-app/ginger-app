@@ -2,49 +2,27 @@
 import { Map } from 'immutable';
 
 // Types
-import userpic from 'theme/assets/images/ginger.jpg';
 import { profileTypes as types } from './types';
 
-// Temp
-
 const initialState = Map({
+    _id: '',
     name: '',
-    phoneNumber: '',
     email: '',
-
-    addresses: [],
-    orders: [],
-    cards: [],
-    lists: [],
-    favorites: {},
-    cart: {},
-    bonuses: 0,
-
-    registrationDate: '',
-    averageSessionDuration: 0,
+    phoneNumber: '',
+    companyName: '',
     lastVisit: '',
-
-    isAdmin: false,
-    isWorker: false,
-
-    dailyBonus: 5,
-    userpic,
+    role: '',
+    userpic: null,
+    paymentMethods: [],
+    lists: [],
+    locations: [],
+    analyticsData: [],
 });
 
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case types.FILL_PROFILE:
-            const offlineFavorites = state.get('favorites');
-            const offlineCart = state.get('cart');
-
-            return state.merge({
-                ...action.payload,
-                cart: offlineCart,
-                favorites: {
-                    ...action.payload.favorites,
-                    ...offlineFavorites,
-                },
-            });
+            return state.merge(action.payload);
 
         case types.CLEAR_PROFILE:
             return initialState;

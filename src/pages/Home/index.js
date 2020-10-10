@@ -100,7 +100,10 @@ const HomeComponent = ({
                                     <Icon name='profile' color='black' />
                                 </NavLink>
                             ) : (
-                                <div className={Styles.loginButton} onClick={showLoginOverlay}>
+                                <div
+                                    className={Styles.loginButton}
+                                    onClick={() => showLoginOverlay()}
+                                >
                                     <Icon name='login' color='black' />
                                 </div>
                             )
@@ -111,7 +114,10 @@ const HomeComponent = ({
                                     <Icon name='lists' color='black' />
                                 </NavLink>
                             ) : (
-                                <div className={Styles.favoritesButton} onClick={showLoginOverlay}>
+                                <div
+                                    className={Styles.favoritesButton}
+                                    onClick={() => showLoginOverlay()}
+                                >
                                     <Icon name='lists' color='black' />
                                 </div>
                             )

@@ -12,8 +12,8 @@ export const Api = {
     },
 
     auth: {
-        getAuthenticationCode: (phoneNumber) => {
-            return fetch(`${MAIN_URL}/auth/signin`, {
+        getSigninCode: (phoneNumber) => {
+            return fetch(`${MAIN_URL}/auth/get-signin-code`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -22,8 +22,8 @@ export const Api = {
             });
         },
 
-        confirmAuthenticationCode: ({ phoneNumber, code }) => {
-            return fetch(`${MAIN_URL}/auth/signin-confirmation`, {
+        signin: ({ phoneNumber, code }) => {
+            return fetch(`${MAIN_URL}/auth/signin`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -42,7 +42,7 @@ export const Api = {
             });
         },
 
-        confirmSignupCode: (data) => {
+        signup: (data) => {
             return fetch(`${MAIN_URL}/auth/signup`, {
                 method: 'POST',
                 headers: {
