@@ -44,15 +44,17 @@ const CatalogueComponent = ({ className, categories, extended }) => {
                         <CategoryItem
                             className={Styles.item}
                             name={item[0].name}
-                            sku={item[0].sku}
+                            _id={item[0]._id}
                             index={index}
                         />
-                        <CategoryItem
-                            className={Styles.item}
-                            name={item[1].name}
-                            sku={item[1].sku}
-                            index={index}
-                        />
+                        {item[1] && (
+                            <CategoryItem
+                                className={Styles.item}
+                                name={item[1].name}
+                                _id={item[1]._id}
+                                index={index}
+                            />
+                        )}
                     </div>
                 ))}
             </Carousel>

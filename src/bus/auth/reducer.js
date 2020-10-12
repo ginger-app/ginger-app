@@ -9,7 +9,6 @@ const initialState = Map({
     codeConfirmation: false,
     accessToken: null,
     expiresAt: null,
-    gmapsKey: '',
     authData: {},
 });
 
@@ -29,9 +28,6 @@ export const authReducer = (state = initialState, action) => {
 
         case types.SET_AUTH_DATA:
             return state.set('authData', action.payload);
-
-        case types.FILL_GOOGLE_MAPS_KEY:
-            return state.set('gmapsKey', action.payload.key);
 
         case types.SET_ACCESS_TOKEN:
             return state.merge(fromJS(action.payload));

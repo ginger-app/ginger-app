@@ -43,7 +43,7 @@ const CategoryComponent = ({
         return clearMarketCategoryData;
     }, [sku, getMarketCategoryDataAsync, clearMarketCategoryData]);
 
-    const { name, subcategories, items } = categoryData;
+    const { name, filteringOptions, items } = categoryData;
 
     const sortedItems =
         sortingOption === 'cheapest'
@@ -99,7 +99,7 @@ const CategoryComponent = ({
                         itemsToShow={2}
                         className={Styles.tags}
                         carouselClassName={Styles.carousele}
-                        items={subcategories.map((item, index) => (
+                        items={filteringOptions.map((item, index) => (
                             <NavLink
                                 to={`${window.location.pathname}/${item}`}
                                 className={Styles.tag}

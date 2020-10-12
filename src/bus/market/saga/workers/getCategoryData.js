@@ -13,16 +13,17 @@ import { Logger } from 'bus/utils';
 
 export function* getCategoryDataWorker({ payload: { sku } }) {
     try {
-        yield apply(Logger, Logger, ['log', 'Fetching category data', sku]);
-
         const response = yield apply(Api, Api.market.getCategoryData, [sku]);
-        const { data, message } = yield apply(response, response.json);
-
-        yield apply(Logger, Logger, ['log', 'Category data fetched']);
+        const { items, filteringOptions, image, _id, name, message } = yield apply(
+            response,
+            response.json,
+        );
 
         if (response.status >= 400) throw new Error(message);
 
-        yield put(marketActions.fillMarketCategoryData(data));
+        yield put(
+            marketActions.fillMarketCategoryData({ items, filteringOptions, image, _id, name }),
+        );
     } catch (err) {
         yield apply(Logger, Logger, ['err', 'Fetching category data err', sku, err]);
         yield put(uiActions.emitError(err, '-> getCategoryDataWorker'));

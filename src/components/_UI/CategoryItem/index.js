@@ -20,7 +20,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {};
 
 const CategoryItemComponent = (props) => {
-    const { className, sku, name, index } = props;
+    const { className, _id, name, index } = props;
 
     return (
         <Transition
@@ -36,7 +36,7 @@ const CategoryItemComponent = (props) => {
             {(state) => (
                 <NavLink
                     className={`${Styles.container} ${className}`}
-                    to={`/categories/${sku}`}
+                    to={`/categories/${_id}`}
                     style={{
                         ...opacityTransitionConfig().defaultStyles,
                         ...opacityTransitionConfig().transitionStyles[state],

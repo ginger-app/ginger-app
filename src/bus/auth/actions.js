@@ -16,11 +16,6 @@ export const authActions = {
         payload: data,
     }),
 
-    fillGoogleMapsKey: (key) => ({
-        type: types.FILL_GOOGLE_MAPS_KEY,
-        payload: { key },
-    }),
-
     setAccessToken: (accessToken) => ({
         type: types.SET_ACCESS_TOKEN,
         payload: { ...accessToken },
@@ -53,9 +48,5 @@ export const authActions = {
     sendSignupDataAsync: ({ phoneNumber, code, userData }) => ({
         type: types.SEND_SIGNUP_DATA_ASYNC,
         payload: { phoneNumber, code, userData },
-    }),
-
-    getGoogleMapsKeyAsync: () => ({
-        type: types.GET_GOOGLE_MAPS_KEY_ASYNC,
     }),
 };

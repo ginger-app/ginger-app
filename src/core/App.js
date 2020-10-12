@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 // Actions
 import { profileActions } from 'bus/profile/actions';
-import { authActions } from 'bus/auth/actions';
+// import { authActions } from 'bus/auth/actions';
 import { PublicRoutes } from './routes';
 
 const mapStateToProps = ({ auth }) => ({
@@ -15,10 +15,9 @@ const mapStateToProps = ({ auth }) => ({
 
 const mapDispatchToProps = {
     getUserDataAsync: profileActions.getUserDataAsync,
-    getGoogleMapsKeyAsync: authActions.getGoogleMapsKeyAsync,
 };
 
-const AppComponent = ({ getUserDataAsync, getGoogleMapsKeyAsync }) => {
+const AppComponent = ({ getUserDataAsync }) => {
     useEffect(() => {
         // not even trying to handle error
         try {
@@ -32,9 +31,7 @@ const AppComponent = ({ getUserDataAsync, getGoogleMapsKeyAsync }) => {
         const vh = window.innerHeight * 0.01;
         // Then we set the value in the --vh custom property to the root of the document
         document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-        getGoogleMapsKeyAsync();
-    }, [getGoogleMapsKeyAsync, getUserDataAsync]);
+    }, [getUserDataAsync]);
 
     return <PublicRoutes />;
 };
