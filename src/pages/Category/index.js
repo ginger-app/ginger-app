@@ -47,9 +47,9 @@ const CategoryComponent = ({
 
     const sortedItems =
         sortingOption === 'cheapest'
-            ? items.sort((a, b) => a.price - b.price)
+            ? items.sort((a, b) => a.minPrice - b.minPrice)
             : sortingOption === 'expensive'
-            ? items.sort((a, b) => b.price - a.price)
+            ? items.sort((a, b) => b.minPrice - a.minPrice)
             : items;
 
     return isEmpty(categoryData) ? (

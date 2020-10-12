@@ -10,7 +10,6 @@ import Styles from './styles.module.scss';
 // Instruments
 import { Button } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import apples from 'theme/assets/images/apples-mock.png';
 
 // Actions
 import { profileActions } from 'bus/profile/actions';
@@ -28,7 +27,16 @@ const mapDispatchToProps = {
     removeItemFromFavoritesAsync: profileActions.removeItemFromFavoritesAsync,
 };
 
-const MarketItemComponent = ({ className, itemIndex, style, to, name, priceFormatted }) => {
+const MarketItemComponent = ({
+    className,
+    itemIndex,
+    style,
+    to,
+    name,
+    priceFormatted,
+    image,
+    unit,
+}) => {
     return (
         <Transition
             in
@@ -48,16 +56,12 @@ const MarketItemComponent = ({ className, itemIndex, style, to, name, priceForma
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <img src={apples} alt='' className={Styles.itemImage} />
-                    <p className={Styles.itemName}>
-                        {itemIndex % 2 === 0
-                            ? 'Яблука Чемпіон дуже смачні і дуже довгигй текст на два рядки'
-                            : name}
-                    </p>
+                    <img src={image} alt='' className={Styles.itemImage} />
+                    <p className={Styles.itemName}>{name}</p>
 
                     {/* PRICE BLOCK */}
                     {/* Default price (no discount) */}
-                    <p className={Styles.unit}>1 kg</p>
+                    <p className={Styles.unit}>1 {unit}</p>
                     <p className={Styles.price}>
                         від{' '}
                         <span>

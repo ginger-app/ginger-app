@@ -41,22 +41,22 @@ const MarketShowcaseComponent = ({
         <section className={`${Styles.container} ${className}`} ref={ref}>
             <div className={Styles.infoBlock}>{infoBlock || 'info'}</div>
             {marketType &&
-                items.map(({ nameUkr, sku, price, unit }, index) => (
+                items.map(({ image, name, _id, unit, minPrice }, index) => (
                     <MarketItem
                         className={Styles.marketItem}
                         itemIndex={index}
+                        image={image}
                         style={{
                             gridRow: `${index + 1} / ${index + 3}`,
                         }}
                         key={index}
-                        to={`/products/${sku}`}
-                        name={nameUkr}
-                        priceFormatted={price.toFixed(2).split('.')}
-                        price={price}
+                        to={`/products/${_id}`}
+                        name={name}
+                        priceFormatted={minPrice.toFixed(2).split('.')}
+                        price={minPrice}
                         unit={unit}
                         discount={index % 2 === 0 ? 10 : null}
-                        xp={index + 1}
-                        sku={sku}
+                        sku={_id}
                     />
                 ))}
             {orderType &&
