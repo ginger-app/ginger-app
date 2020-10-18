@@ -13,7 +13,7 @@ export function* removeItemFromFavoritesWorker({ payload: { sku } }) {
         // Adding item locally to smooth UX
         yield put(profileActions.removeItemFromFavorites(sku));
 
-        const response = yield apply(Api, Api.profile.removeItemFromFavorites, [sku]);
+        const response = yield apply(Api, Api.users.removeItemFromFavorites, [sku]);
         const { message } = yield apply(response, response.json);
 
         if (response.status >= 400) throw new Error(message);

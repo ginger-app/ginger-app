@@ -17,6 +17,7 @@ const initialState = Map({
     lists: [],
     locations: [],
     analyticsData: [],
+    previewData: [],
 });
 
 export const profileReducer = (state = initialState, action) => {
@@ -27,6 +28,13 @@ export const profileReducer = (state = initialState, action) => {
         case types.CLEAR_PROFILE:
             return initialState;
 
+        case types.FILL_SUPPLIER_PREVIEW:
+            return state.set('previewData', action.payload);
+
+        case types.UPDATE_PREVIEW_DATA:
+            return state.set('previewData', action.payload);
+
+        // Deprecated
         case types.UPDATE_CART:
             return state.set('cart', action.payload);
 

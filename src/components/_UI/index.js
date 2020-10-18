@@ -1,5 +1,6 @@
+export * from './SupplierItemEditingPopup';
+export * from './SupplierPreviewItem';
 export * from './RequestNewAddress';
-export * from './MarketItemOverlay';
 export * from './SupplierOrderItem';
 export * from './DoubleRowCarousel';
 export * from './SupplierListItem';

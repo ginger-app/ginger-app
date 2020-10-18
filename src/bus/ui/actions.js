@@ -77,6 +77,10 @@ export const uiActions = {
         type: types.SHOW_SUPPLIER_UPLOAD_OVERLAY,
     }),
 
+    showSupplierUploadPreviewOverlay: () => ({
+        type: types.SHOW_SUPPLIER_UPLOAD_PREVIEW_OVERLAY,
+    }),
+
     // Hiding overlays actions
     hideLoginOverlay: () => ({
         type: types.HIDE_LOGIN_OVERLAY,
@@ -116,6 +120,10 @@ export const uiActions = {
 
     hideSupplierUploadOverlay: () => ({
         type: types.HIDE_SUPPLIER_UPLOAD_OVERLAY,
+    }),
+
+    hideSupplierUploadPreviewOverlay: () => ({
+        type: types.HIDE_SUPPLIER_UPLOAD_PREVIEW_OVERLAY,
     }),
 
     // Data

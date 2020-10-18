@@ -62,6 +62,12 @@
         }
     }
 
+    & .importTableHiddenInput {
+        height: 0;
+
+        opacity: 0;
+    }
+
     & .intermediaryText {
         margin: 2rem;
 

@@ -17,7 +17,7 @@ import { uiActions } from 'bus/ui/actions';
 const filters = ['Всі', 'В наявності', 'Закінчується', 'Немає в наявності'];
 
 const mapStateToProps = (state) => ({
-    ...state,
+    itemsList: state.profile.get('itemsList'),
 });
 
 const mapDispatchToProps = {
@@ -33,6 +33,7 @@ const SupplierListComponent = ({
     showMarketFiltersOverlay,
     showNewListItemOverlay,
     showSupplierUploadOverlay,
+    itemsList,
 }) => {
     const lastUpdate = DateTime.local().minus({ days: 3 });
 
@@ -88,8 +89,8 @@ const SupplierListComponent = ({
 
                     {/* List items */}
                     <div className={Styles.list}>
-                        {new Array(10).fill(1).map((item, index) => (
-                            <SupplierListItem key={index} />
+                        {itemsList.map((item, index) => (
+                            <SupplierListItem key={index} {...item} />
                         ))}
                         <Dummy className={Styles.dummy} />
                     </div>

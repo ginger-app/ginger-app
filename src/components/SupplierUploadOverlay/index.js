@@ -7,11 +7,12 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Button, Icon } from 'components';
+import { Button, Icon, SupplierUploadPreviewOverlay } from 'components';
 import { topToBottomSlideConfig } from 'utils/transitionConfig';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
+import { profileActions } from 'bus/profile/actions';
 
 const mapStateToProps = (state) => ({
     supplierUploadOverlay: state.ui.get('supplierUploadOverlay'),
@@ -19,14 +20,24 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     hideSupplierUploadOverlay: uiActions.hideSupplierUploadOverlay,
+    uploadSupplierExcelTableAsync: profileActions.uploadSupplierExcelTableAsync,
 };
 
 const SupplierUploadOverlayComponent = ({
     className,
     supplierUploadOverlay,
     hideSupplierUploadOverlay,
+    // showSupplierUploadPreviewOverlay,
+    uploadSupplierExcelTableAsync,
+    // fillSupplierPreview,
 }) => {
     const [sheetsUrl, setSheetsUrl] = useState('');
+
+    const handlefileUpload = async ({ target }) => {
+        if (target.files.length) {
+            return uploadSupplierExcelTableAsync(target.files[0]);
+        }
+    };
 
     return (
         <Transition
@@ -56,17 +67,27 @@ const SupplierUploadOverlayComponent = ({
                     <p className={Styles.intermediaryText}>або швидше</p>
 
                     {/* Button to import multiple items with file */}
-                    <div className={Styles.importTable}>
+                    {/* Button is shown for a user */}
+                    <label htmlFor='upload-button' className={Styles.importTable}>
                         Import items list as .csv, .xlsx
                         <Button
                             className={Styles.importTableButton}
                             content={<Icon name='export' />}
                         />
-                    </div>
+                    </label>
                     <div className={Styles.example}>
                         Приклад таблиці можна подивитися
                         <Button content='тут' className={Styles.exampleButton} />
                     </div>
+
+                    {/* hidden input overlapping the button */}
+                    <input
+                        id='upload-button'
+                        type='file'
+                        accept='.xlsx, .csv'
+                        className={Styles.importTableHiddenInput}
+                        onChange={handlefileUpload}
+                    />
 
                     <p className={Styles.intermediaryText}>або ще швидше</p>
 
@@ -95,6 +116,9 @@ const SupplierUploadOverlayComponent = ({
                         className={Styles.closeButton}
                         content={<Icon name='close' className={Styles.closeIcon} />}
                     />
+
+                    {/* Portals */}
+                    <SupplierUploadPreviewOverlay />
                 </section>
             )}
         </Transition>

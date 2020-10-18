@@ -1,0 +1,46 @@
+@import 'resources';
+
+.container {
+    @include overlay(false);
+
+    display: grid;
+    grid-template-rows: 2rem 1fr;
+    place-items: start;
+    gap: 0.5rem;
+
+    padding: 1rem 0.5rem;
+
+    & .title {
+        @include boldTitle;
+
+        text-align: left;
+    }
+
+    & .items {
+        display: grid;
+        grid-auto-rows: max-content;
+        place-items: start;
+        gap: 0.25rem;
+
+        height: 100%;
+        width: 100%;
+        padding: 0.5rem;
+
+        overflow: scroll;
+    }
+
+    & .apply {
+        cursor: pointer;
+        place-self: start start;
+
+        grid-column: 3;
+
+        height: 3rem;
+        width: 3rem;
+
+        & .icon {
+            position: relative;
+            left: -3px;
+        }
+    }
+}

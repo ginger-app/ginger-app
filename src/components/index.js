@@ -1,4 +1,5 @@
 export * from './_UI';
+export * from './SupplierUploadPreviewOverlay';
 export * from './CodeConfirmationOverlay';
 export * from './SupplierUploadOverlay';
 export * from './MarketFiltersOverlay';

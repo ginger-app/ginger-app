@@ -13,6 +13,7 @@ import logo from 'theme/assets/images/apples-mock.png';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
+import { profileActions } from 'bus/profile/actions';
 
 const mapStateToProps = (state) => ({
     newListItemOverlay: state.ui.get('newListItemOverlay'),
@@ -20,29 +21,34 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     hideNewListItemOverlay: uiActions.hideNewListItemOverlay,
+    addNewSupplierListItemAsync: profileActions.addNewSupplierItemAsync,
 };
 
-const NewListItemOverlayComponent = ({ newListItemOverlay, hideNewListItemOverlay }) => {
+const NewListItemOverlayComponent = ({
+    newListItemOverlay,
+    hideNewListItemOverlay,
+    addNewSupplierListItemAsync,
+}) => {
     // Refs
     const nameRef = useRef(null);
     const categoryRef = useRef(null);
     const unitRef = useRef(null);
     const priceRef = useRef(null);
-    const amountRef = useRef(null);
+    const stockRef = useRef(null);
 
     // Editing states
     const [nameEditing, setNameEditingState] = useState(false);
     const [categoryEditing, setCategoryEditingState] = useState(false);
     const [unitEditing, setUnitEditingState] = useState(false);
     const [priceEditing, setPriceEditingState] = useState(false);
-    const [amountEditing, setAmountEditingState] = useState(false);
+    const [stockEditing, setStockEditingState] = useState(false);
 
     // Values
     const [name, setNameValue] = useState('');
     const [category, setCategoryValue] = useState('');
     const [unit, setUnitValue] = useState('');
     const [price, setPriceValue] = useState('');
-    const [amount, setAmountValue] = useState('');
+    const [stock, setStockValue] = useState('');
 
     const inputs = useMemo(
         () => [
@@ -79,12 +85,12 @@ const NewListItemOverlayComponent = ({ newListItemOverlay, hideNewListItemOverla
                 setEditingState: setPriceEditingState,
             },
             {
-                ref: amountRef,
-                title: 'Amount left',
-                inputValue: amount,
-                editingState: amountEditing,
-                setValue: setAmountValue,
-                setEditingState: setAmountEditingState,
+                ref: stockRef,
+                title: 'Stock left',
+                inputValue: stock,
+                editingState: stockEditing,
+                setValue: setStockValue,
+                setEditingState: setStockEditingState,
             },
         ],
         [
@@ -92,17 +98,17 @@ const NewListItemOverlayComponent = ({ newListItemOverlay, hideNewListItemOverla
             categoryRef,
             unitRef,
             priceRef,
-            amountRef,
+            stockRef,
             nameEditing,
             categoryEditing,
             unitEditing,
             priceEditing,
-            amountEditing,
+            stockEditing,
             name,
             category,
             unit,
             price,
-            amount,
+            stock,
         ],
     );
 
@@ -164,7 +170,15 @@ const NewListItemOverlayComponent = ({ newListItemOverlay, hideNewListItemOverla
                     <Button
                         className={Styles.apply}
                         content={<Icon name='check' color='white' className={Styles.icon} />}
-                        onClick={hideNewListItemOverlay}
+                        onClick={() =>
+                            addNewSupplierListItemAsync({
+                                name,
+                                category,
+                                unit,
+                                price,
+                                stock,
+                            })
+                        }
                         filled
                     />
                 </section>

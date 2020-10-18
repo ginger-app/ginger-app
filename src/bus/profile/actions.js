@@ -32,6 +32,16 @@ export const profileActions = {
         payload: orderData,
     }),
 
+    fillSupplierPreview: (previewData) => ({
+        type: types.FILL_SUPPLIER_PREVIEW,
+        payload: previewData,
+    }),
+
+    updatePreviewData: (newPreviewData) => ({
+        type: types.UPDATE_PREVIEW_DATA,
+        payload: newPreviewData,
+    }),
+
     // Async
     addItemToCartAsync: (item) => ({
         type: types.ADD_ITEM_TO_CART_ASYNC,
@@ -56,5 +66,30 @@ export const profileActions = {
     getUserDataAsync: (tokens) => ({
         type: types.GET_USER_DATA_ASYNC,
         payload: tokens,
+    }),
+
+    uploadSupplierExcelTableAsync: (file) => ({
+        type: types.UPLOAD_SUPPLIER_EXCEL_TABLE_ASYNC,
+        payload: { file },
+    }),
+
+    removeItemFromPreviewAsync: (index) => ({
+        type: types.REMOVE_ITEM_FROM_PREVIEW_ASYNC,
+        payload: index,
+    }),
+
+    updateItemFromPreviewAsync: ({ index, data }) => ({
+        type: types.UPDATE_ITEM_FROM_PREVIEW_ASYNC,
+        payload: { index, data },
+    }),
+
+    updateSupplierItemsAsync: (items) => ({
+        type: types.UPDATE_SUPPLIER_ITEMS_ASYNC,
+        payload: items,
+    }),
+
+    addNewSupplierItemAsync: (item) => ({
+        type: types.ADD_NEW_SUPPLIER_ITEM_ASYNC,
+        payload: item,
     }),
 };

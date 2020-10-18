@@ -13,7 +13,7 @@ export function* addItemToFavoritesWorker({ payload: { sku } }) {
         // Adding item locally to smooth UX
         yield put(profileActions.addItemToFavorites(sku));
 
-        const response = yield apply(Api, Api.profile.addItemToFavorites, [sku]);
+        const response = yield apply(Api, Api.users.addItemToFavorites, [sku]);
         const { message } = yield apply(response, response.json);
 
         if (response.status >= 400) throw new Error(message);

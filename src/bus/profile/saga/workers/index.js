@@ -1,3 +1,7 @@
+// Dir
+export * from './supplier';
+
+// Workers
 export * from './addItemToCart';
 export * from './removeItemFromCart';
 export * from './addItemToFavorites';

@@ -1,15 +1,12 @@
 // Config
 import { MAIN_URL } from './config';
+import { withAuth } from './utils';
 
 // Instruments
 // import queryString from 'query-string';
 
 export const Api = {
-    app: {
-        getGoogleMapsKey: () => {
-            return fetch(`${MAIN_URL}/app/g-maps`);
-        },
-    },
+    app: {},
 
     auth: {
         getSigninCode: (phoneNumber) => {
@@ -71,22 +68,20 @@ export const Api = {
         },
 
         createNewOrder: (orderData) => {
-            return fetch(`${MAIN_URL}/market/orders`, {
+            return withAuth(`${MAIN_URL}/market/orders`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
-                    Authorization: localStorage.getItem('ginger-token'),
                 },
                 body: JSON.stringify(orderData),
             });
         },
 
         getOrderData: (id) => {
-            return fetch(`${MAIN_URL}/market/orders/${id}`, {
+            return withAuth(`${MAIN_URL}/market/orders/${id}`, {
                 method: 'GET',
                 headers: {
                     'content-type': 'application/json',
-                    Authorization: localStorage.getItem('ginger-token'),
                 },
             });
         },
@@ -96,36 +91,45 @@ export const Api = {
         },
     },
 
-    profile: {
+    users: {
         getCurrentUserData: () => {
-            return fetch(`${MAIN_URL}/profile/current`, {
+            return withAuth(`${MAIN_URL}/users/current`, {
                 method: 'GET',
                 headers: {
                     'content-type': 'application/json',
-                    Authorization: localStorage.getItem('ginger-token'),
                 },
             });
         },
+    },
 
-        addItemToFavorites: (sku) => {
-            return fetch(`${MAIN_URL}/profile/favorites`, {
+    supplier: {
+        uploadExcelSheet: (file) => {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            return withAuth(`${MAIN_URL}/suppliers/items-preview`, {
                 method: 'POST',
-                headers: {
-                    'content-type': 'application/json',
-                    Authorization: localStorage.getItem('ginger-token'),
-                },
-                body: JSON.stringify({ sku }),
+                body: formData,
             });
         },
 
-        removeItemFromFavorites: (sku) => {
-            return fetch(`${MAIN_URL}/profile/favorites/remove`, {
+        updateSupplierItems: (items) => {
+            return withAuth(`${MAIN_URL}/suppliers/items`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
-                    Authorization: localStorage.getItem('ginger-token'),
                 },
-                body: JSON.stringify({ sku }),
+                body: JSON.stringify({ items }),
+            });
+        },
+
+        addnewSupplierItem: (item) => {
+            return withAuth(`${MAIN_URL}/suppliers/items/new`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({ item }),
             });
         },
     },

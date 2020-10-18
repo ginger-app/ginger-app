@@ -12,7 +12,7 @@ import { getCart } from '../selectors';
 export function* addItemToCartWorker({ payload }) {
     try {
         // updating user cart data in db
-        // yield apply(Api, Api.profile.updateUserCart, [payload]);
+        // yield apply(Api, Api.users.updateUserCart, [payload]);
 
         const currentCart = yield select(getCart);
 

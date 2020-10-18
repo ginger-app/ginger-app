@@ -19,14 +19,6 @@ const mapDispatchToProps = {
 
 const AppComponent = ({ getUserDataAsync }) => {
     useEffect(() => {
-        // not even trying to handle error
-        try {
-            if (localStorage.getItem('ginger-token')) {
-                getUserDataAsync();
-            }
-            // eslint-disable-next-line
-        } catch (err) {}
-
         // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
         const vh = window.innerHeight * 0.01;
         // Then we set the value in the --vh custom property to the root of the document

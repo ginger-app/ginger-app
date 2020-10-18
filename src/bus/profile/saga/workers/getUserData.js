@@ -14,7 +14,7 @@ import { Api } from 'api';
 
 export function* getUserDataWorker() {
     try {
-        const response = yield apply(Api, Api.profile.getCurrentUserData);
+        const response = yield apply(Api, Api.users.getCurrentUserData);
         const { message, userData } = yield apply(response, response.json);
 
         if (response.status >= 400) {

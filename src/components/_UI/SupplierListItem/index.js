@@ -25,29 +25,26 @@ const SupplierListItemComponent = ({
     className,
     showNewListItemOverlay,
     setNewListItemOverlayData,
+    category = 'Фрукти',
+    unit = 'Кг',
+    price = '43.99 грн.',
+    stock = 100,
+    id = 'testId-123-123-123-123',
+    name = 'Яблука чемпіон фреш уп. 1кг нетто +- 50гр.',
+    img = mockApples,
 }) => {
-    const itemData = {
-        category: 'Фрукти',
-        unit: 'Кг',
-        price: '43.99 грн.',
-        amount: 100,
-        id: 'testId-123-123-123-123',
-        name: 'Яблука чемпіон фреш уп. 1кг нетто +- 50гр.',
-        img: mockApples,
-    };
-
     return (
         <section
             className={[Styles.container, className].filter(Boolean).join(' ')}
             onClick={() => {
-                setNewListItemOverlayData(itemData);
+                setNewListItemOverlayData({ category, unit, price, stock, id, name, img });
                 showNewListItemOverlay();
             }}
         >
-            <img className={Styles.image} src={itemData.img} alt='' />
-            <p className={Styles.itemName}>{itemData.name}</p>
-            <p className={Styles.infoValue}>{itemData.price}</p>
-            <p className={Styles.infoValue}>{itemData.amount}</p>
+            <img className={Styles.image} src={img} alt='' />
+            <p className={Styles.itemName}>{name}</p>
+            <p className={Styles.infoValue}>{price}</p>
+            <p className={Styles.infoValue}>{stock}</p>
         </section>
     );
 };
