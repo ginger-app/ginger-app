@@ -29,17 +29,17 @@ export const ItemsCatalogue = ({
             )}
 
             <Carousel className={Styles.carousele}>
-                {itemsToShow.map(({ nameUkr, sku, price, unit }, index) => (
+                {itemsToShow.map(({ name, _id, minPrice, unit, image }, index) => (
                     <MarketItem
                         className={Styles.item}
                         itemIndex={index}
-                        to={`/products/${sku}`}
-                        name={nameUkr}
-                        priceFormatted={price.toFixed(2).split('.')}
-                        price={price}
+                        to={`/products/${_id}`}
+                        name={name}
+                        price={minPrice}
                         unit={unit}
-                        sku={sku}
+                        sku={_id}
                         key={index}
+                        image={image}
                     />
                 ))}
             </Carousel>

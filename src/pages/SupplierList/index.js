@@ -89,7 +89,7 @@ const SupplierListComponent = ({
 
                     {/* List items */}
                     <div className={Styles.list}>
-                        {itemsList.map((item, index) => (
+                        {itemsList.reverse().map((item, index) => (
                             <SupplierListItem key={index} {...item} />
                         ))}
                         <Dummy className={Styles.dummy} />

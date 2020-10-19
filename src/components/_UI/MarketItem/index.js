@@ -27,16 +27,7 @@ const mapDispatchToProps = {
     removeItemFromFavoritesAsync: profileActions.removeItemFromFavoritesAsync,
 };
 
-const MarketItemComponent = ({
-    className,
-    itemIndex,
-    style,
-    to,
-    name,
-    priceFormatted,
-    image,
-    unit,
-}) => {
+const MarketItemComponent = ({ className, itemIndex, style, to, name, price, image, unit }) => {
     return (
         <Transition
             in
@@ -63,10 +54,7 @@ const MarketItemComponent = ({
                     {/* Default price (no discount) */}
                     <p className={Styles.unit}>1 {unit}</p>
                     <p className={Styles.price}>
-                        від{' '}
-                        <span>
-                            {priceFormatted[0]}.{priceFormatted[1]}₴
-                        </span>
+                        від <span>{price}₴</span>
                     </p>
 
                     <p className={Styles.sellersAmount}>3 постачальника</p>
