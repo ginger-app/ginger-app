@@ -27,7 +27,7 @@ export const withAuth = async (url, options = {}) => {
         ...options,
         headers: {
             ...options.headers,
-            Authorization: token,
+            Authorization: `Bearer ${token}`,
         },
         credentials: 'include',
     });

@@ -42,6 +42,11 @@ export const profileActions = {
         payload: newPreviewData,
     }),
 
+    fillClientLists: (data) => ({
+        type: types.UPDATE_PREVIEW_DATA,
+        payload: data,
+    }),
+
     // Async
     addItemToCartAsync: (item) => ({
         type: types.ADD_ITEM_TO_CART_ASYNC,
@@ -91,5 +96,9 @@ export const profileActions = {
     addNewSupplierItemAsync: (item) => ({
         type: types.ADD_NEW_SUPPLIER_ITEM_ASYNC,
         payload: item,
+    }),
+
+    getAllClientListsAsync: () => ({
+        type: types.GET_ALL_CLIENT_LISTS_ASYNC,
     }),
 };

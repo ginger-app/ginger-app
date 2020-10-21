@@ -12,4 +12,22 @@
 
         padding-bottom: 8rem; // place for navigation and location select
     }
+
+    & .noLists {
+        @include centerContent;
+
+        grid-template-rows: 3rem 1fr;
+
+        height: 100%;
+
+        & .title {
+            @include boldTitle;
+        }
+
+        & .link {
+            @include deafultGradientButton;
+
+            width: 50%;
+        }
+    }
 }

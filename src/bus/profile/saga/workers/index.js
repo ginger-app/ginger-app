@@ -1,5 +1,6 @@
 // Dir
 export * from './supplier';
+export * from './client';
 
 // Workers
 export * from './addItemToCart';

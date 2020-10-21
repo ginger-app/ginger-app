@@ -100,6 +100,7 @@ const SupplierItemEditingPopupComponent = ({
         [
             nameRef,
             categoryRef,
+            category,
             unitRef,
             priceRef,
             stockRef,

@@ -16,6 +16,7 @@ export const Api = {
                     'content-type': 'application/json',
                 },
                 body: JSON.stringify({ phoneNumber }),
+                credentials: 'include',
             });
         },
 
@@ -26,6 +27,7 @@ export const Api = {
                     'content-type': 'application/json',
                 },
                 body: JSON.stringify({ phoneNumber, code }),
+                credentials: 'include',
             });
         },
 
@@ -99,6 +101,12 @@ export const Api = {
                     'content-type': 'application/json',
                 },
             });
+        },
+    },
+
+    client: {
+        getClientLists: () => {
+            return withAuth(`${MAIN_URL}/clients/lists`);
         },
     },
 
