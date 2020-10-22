@@ -50,6 +50,13 @@ export const Api = {
                 body: JSON.stringify(data),
             });
         },
+
+        refreshToken: () => {
+            return fetch(`${MAIN_URL}/auth/refresh`, {
+                method: 'GET',
+                credentials: 'include',
+            });
+        },
     },
 
     market: {

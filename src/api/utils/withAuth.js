@@ -1,27 +1,21 @@
 // Core
-// import { MAIN_URL } from 'api';
+import { Api } from 'api';
 
 // Redux
 import { store } from 'bus/init/store';
-// import { authActions } from 'bus/auth/actions';
+import { authActions } from 'bus/auth/actions';
 
 export const withAuth = async (url, options = {}) => {
-    const token = store.getState().auth.get('accessToken');
+    const token = store.getState().auth.get('token');
 
-    // if (!token) {
-    //     const refreshResponse = await fetch(`${MAIN_URL}/auth/refresh`, {
-    //         method: 'GET',
-    //         headers: {
-    //             credentials: 'include',
-    //         },
-    //     });
+    if (!token) {
+        const refreshResponse = await Api.auth.refreshToken();
+        const tokens = await refreshResponse.json();
 
-    //     const tokens = await refreshResponse.json();
+        store.dispatch(authActions.setAccessToken(tokens));
 
-    //     // store.dispatch(authActions.setAccessToken())
-
-    //     return withAuth(url, options);
-    // }
+        return withAuth(url, options);
+    }
 
     return fetch(url, {
         ...options,

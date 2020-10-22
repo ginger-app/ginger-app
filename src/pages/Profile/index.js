@@ -17,8 +17,6 @@ import logo from 'theme/assets/svg/logo.svg';
 import { authActions } from 'bus/auth/actions';
 import { profileActions } from 'bus/profile/actions';
 
-import { MAIN_URL } from 'api';
-
 const mapStateToProps = (state) => ({
     profile: state.profile.toJS(),
 });
@@ -34,21 +32,6 @@ const ProfileComponent = ({ profile, logoutAsync, getUserDataAsync }) => {
     useEffect(() => {
         getUserDataAsync();
     }, [getUserDataAsync]);
-
-    useEffect(() => {
-        const refresh = async () => {
-            const response = await fetch(`${MAIN_URL}/auth/refresh`, {
-                method: 'GET',
-                credentials: 'include',
-            });
-
-            const result = await response.json();
-
-            console.log(result);
-        };
-
-        refresh();
-    }, []);
 
     const isSupplier = role === 'supplier';
 
