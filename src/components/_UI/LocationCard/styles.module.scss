@@ -19,23 +19,13 @@
         @include shadow($paletteBlue_1);
     }
 
-    & .mock {
-        @include centerContent;
+    & .img {
         place-self: center;
 
         height: 7rem;
         width: 7rem;
-        padding: 0.5rem;
-
-        background: $paletteDefaultGradient;
 
         border-radius: 100%;
-
-        & .img {
-            width: 100%;
-
-            filter: brightness(0) invert(1);
-        }
     }
 
     & .subtitle {

@@ -115,6 +115,20 @@ export const Api = {
         getClientLists: () => {
             return withAuth(`${MAIN_URL}/clients/lists`);
         },
+
+        getClientLocations: () => {
+            return withAuth(`${MAIN_URL}/clients/locations`);
+        },
+
+        createNewLocation: (locationData) => {
+            return withAuth(`${MAIN_URL}/clients/locations`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify(locationData),
+            });
+        },
     },
 
     supplier: {

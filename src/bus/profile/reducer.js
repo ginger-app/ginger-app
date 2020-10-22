@@ -37,6 +37,9 @@ export const profileReducer = (state = initialState, action) => {
         case types.FILL_CLIENT_LISTS:
             return state.set('lists', action.payload);
 
+        case types.FILL_CLIENT_LOCATIONS:
+            return state.set('locations', action.payload);
+
         // Deprecated
         case types.UPDATE_CART:
             return state.set('cart', action.payload);

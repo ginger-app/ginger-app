@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -12,16 +12,27 @@ import { Navigation, LocationCard, Button, Icon, Dummy } from 'components';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
+import { profileActions } from 'bus/profile/actions';
 
 const mapStateToProps = (state) => ({
-    ...state,
+    locations: state.profile.get('locations'),
 });
 
 const mapDispatchToProps = {
     showNewLocationOverlay: uiActions.showNewLocationOverlay,
+    getClientLocationsAsync: profileActions.getClientLocationsAsync,
 };
 
-const LocationsListComponent = ({ className, showNewLocationOverlay }) => {
+const LocationsListComponent = ({
+    className,
+    showNewLocationOverlay,
+    getClientLocationsAsync,
+    locations,
+}) => {
+    useEffect(() => {
+        getClientLocationsAsync();
+    }, []);
+
     return (
         <Transition
             in
@@ -43,13 +54,19 @@ const LocationsListComponent = ({ className, showNewLocationOverlay }) => {
 
                     {/* Locations list */}
                     <div className={Styles.locations}>
-                        {new Array(15).fill(1).map((item, index) => (
-                            <LocationCard
-                                index={index}
-                                key={index}
-                                onClick={showNewLocationOverlay}
-                            />
-                        ))}
+                        {locations
+                            .reverse()
+                            .map(
+                                (item, index) =>
+                                    typeof item === 'object' && (
+                                        <LocationCard
+                                            index={index}
+                                            key={index}
+                                            onClick={showNewLocationOverlay}
+                                            {...item}
+                                        />
+                                    ),
+                            )}
 
                         {/* Dummy div to create spacing after last elem */}
                         <Dummy className={Styles.dummy} />

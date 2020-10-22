@@ -12,7 +12,15 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core/routes';
 import logo from 'theme/assets/svg/logo.svg';
 
-export const LocationCard = ({ className, index, newOrder, onClick }) => {
+export const LocationCard = ({
+    className,
+    index,
+    newOrder,
+    onClick,
+    image,
+    locationName,
+    address,
+}) => {
     return (
         <Transition
             in
@@ -32,17 +40,13 @@ export const LocationCard = ({ className, index, newOrder, onClick }) => {
                         }}
                         to={`${book.newOrder}/${index}`}
                     >
-                        {/* Image */}
-                        {/* Mock */}
-                        <div className={Styles.mock}>
-                            <img src={logo} alt='' className={Styles.img} />
-                        </div>
+                        <img src={image || logo} alt='' className={Styles.img} />
 
                         <p className={Styles.subtitle}>Location name:</p>
-                        <p className={Styles.locationData}>Forma.coffee</p>
+                        <p className={Styles.locationData}>{locationName}</p>
 
                         <p className={Styles.subtitle}>Address:</p>
-                        <p className={Styles.locationData}>вул. Хрещатик, 1</p>
+                        <p className={Styles.locationData}>{address}</p>
                     </NavLink>
                 ) : (
                     <div
@@ -54,16 +58,13 @@ export const LocationCard = ({ className, index, newOrder, onClick }) => {
                         }}
                         onClick={onClick}
                     >
-                        {/* Mock */}
-                        <div className={Styles.mock}>
-                            <img src={logo} alt='' className={Styles.img} />
-                        </div>
+                        <img src={image || logo} alt='' className={Styles.img} />
 
                         <p className={Styles.subtitle}>Location name:</p>
-                        <p className={Styles.locationData}>Forma.coffee</p>
+                        <p className={Styles.locationData}>{locationName}</p>
 
                         <p className={Styles.subtitle}>Address:</p>
-                        <p className={Styles.locationData}>вул. Хрещатик, 1</p>
+                        <p className={Styles.locationData}>{address}</p>
                     </div>
                 )
             }

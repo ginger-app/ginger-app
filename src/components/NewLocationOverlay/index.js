@@ -13,6 +13,7 @@ import logo from 'theme/assets/svg/logo.svg';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
+import { profileActions } from 'bus/profile/actions';
 
 const mapStateToProps = (state) => ({
     newLocationOverlay: state.ui.get('newLocationOverlay'),
@@ -20,9 +21,14 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
     hideNewLocationOverlay: uiActions.hideNewLocationOverlay,
+    createNewLocationAsync: profileActions.createNewLocationAsync,
 };
 
-const NewLocationOverlayComponent = ({ newLocationOverlay, hideNewLocationOverlay }) => {
+const NewLocationOverlayComponent = ({
+    newLocationOverlay,
+    hideNewLocationOverlay,
+    createNewLocationAsync,
+}) => {
     // Refs
     const companyRef = useRef(null);
     const addressRef = useRef(null);
@@ -167,7 +173,18 @@ const NewLocationOverlayComponent = ({ newLocationOverlay, hideNewLocationOverla
                     <Button
                         className={Styles.apply}
                         content={<Icon name='check' color='white' className={Styles.icon} />}
-                        onClick={hideNewLocationOverlay}
+                        onClick={() =>
+                            createNewLocationAsync({
+                                locationName: company,
+                                address,
+                                schedule: {
+                                    start: schedule.split('-')[0] || 'Unknown',
+                                    end: schedule.split('-')[1] || 'Unknown',
+                                },
+                                managerName: contactName,
+                                phoneNumber,
+                            })
+                        }
                         filled
                     />
                 </section>

@@ -19,6 +19,8 @@ import {
     updateSupplierItemsWorker,
     addNewSupplierItemWorker,
     getClientListsWorker,
+    getClientLocationsWorker,
+    createNewLocationWorker,
 } from './workers';
 
 function* watchAddItemToCart() {
@@ -57,6 +59,12 @@ function* watchAddNewSupplierItem() {
 function* watchGetClientLists() {
     yield takeEvery(types.GET_ALL_CLIENT_LISTS_ASYNC, getClientListsWorker);
 }
+function* watchGetClientLocations() {
+    yield takeEvery(types.GET_CLIENT_LOCATIONS_ASYNC, getClientLocationsWorker);
+}
+function* watchCreateNewLocation() {
+    yield takeEvery(types.CREATE_NEW_LOCATION_ASYNC, createNewLocationWorker);
+}
 
 export function* watchProfile() {
     yield all([
@@ -72,5 +80,7 @@ export function* watchProfile() {
         call(watchUpdateSupplierItems),
         call(watchAddNewSupplierItem),
         call(watchGetClientLists),
+        call(watchGetClientLocations),
+        call(watchCreateNewLocation),
     ]);
 }

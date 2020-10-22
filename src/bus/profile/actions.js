@@ -47,6 +47,11 @@ export const profileActions = {
         payload: data,
     }),
 
+    fillClientLocations: (data) => ({
+        type: types.FILL_CLIENT_LOCATIONS,
+        payload: data,
+    }),
+
     // Async
     addItemToCartAsync: (item) => ({
         type: types.ADD_ITEM_TO_CART_ASYNC,
@@ -100,5 +105,14 @@ export const profileActions = {
 
     getAllClientListsAsync: () => ({
         type: types.GET_ALL_CLIENT_LISTS_ASYNC,
+    }),
+
+    getClientLocationsAsync: () => ({
+        type: types.GET_CLIENT_LOCATIONS_ASYNC,
+    }),
+
+    createNewLocationAsync: (data) => ({
+        type: types.CREATE_NEW_LOCATION_ASYNC,
+        payload: data,
     }),
 };
