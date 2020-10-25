@@ -8,38 +8,42 @@ import Styles from './styles.module.scss';
 // Instruments
 import { Icon, RadioButton } from 'components';
 
-const locationsData = {
-    'Forma.coffee': false,
-    'Forma.food': false,
-    Amazon: false,
-    Apple: false,
-};
+// Actions
+import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    ...state,
+    locations: state.profile.get('locations'),
+    clientSelectedLocation: state.ui.get('clientListsSelectedLocation'),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    setClientSelectedLocation: uiActions.setClientListsSelectedLocation,
+};
 
-const LocationsSelectComponent = ({ className }) => {
+const LocationsSelectComponent = ({
+    className,
+    locations,
+    setClientSelectedLocation,
+    clientSelectedLocation,
+}) => {
     const [expanded, setExpandedState] = useState(false);
-    const [locations, setLocationsData] = useState({});
 
-    // mock
     useEffect(() => {
-        setLocationsData({ ...locationsData, 'Forma.coffee': true });
-    }, []);
+        if (!clientSelectedLocation && locations.length) {
+            setClientSelectedLocation(locations[0]._id);
+        }
+    }, [locations]);
 
     return (
         <section className={[Styles.container, className].filter(Boolean).join(' ')}>
             <div className={[Styles.locations, expanded && Styles.shit].filter(Boolean).join(' ')}>
-                {Object.keys(locations).map((item, index) => (
+                {locations.map(({ locationName, _id }, index) => (
                     <div className={Styles.location} key={index}>
-                        <span>{item}</span>
+                        <span>{locationName}</span>
                         <RadioButton
                             className={Styles.radio}
-                            selected={locations[item]}
-                            onChange={() => setLocationsData({ ...locationsData, [item]: true })}
+                            selected={_id === clientSelectedLocation}
+                            onChange={() => setClientSelectedLocation(_id)}
                         />
                     </div>
                 ))}

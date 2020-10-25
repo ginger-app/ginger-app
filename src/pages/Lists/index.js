@@ -15,33 +15,28 @@ import { book } from 'core/routes';
 // Actions
 import { profileActions } from 'bus/profile/actions';
 
-// const supplierDataMock = {
-//     supplierName: 'Galychyna',
-//     ranking: 5,
-//     deliveryConditions: ['Мін. замовлення 900 грн', 'Доставка на наступний день'],
-// };
-
-// const itemData = {
-//     sku: '76210-75623-8936',
-//     nameUkr: 'What an item omg',
-//     price: 49.99,
-//     unit: 'kg',
-//     suppliers: new Array(10).fill(supplierDataMock),
-//     supplierData: supplierDataMock,
-// };
-
 const mapStateToProps = (state) => ({
-    lists: state.profile.get('lists'),
+    locations: state.profile.get('locations'),
+    clientSelectedLocation: state.ui.get('clientListsSelectedLocation'),
 });
 
 const mapDispatchToProps = {
-    getAllClientListsAsync: profileActions.getAllClientListsAsync,
+    getClientLocationsAsync: profileActions.getClientLocationsAsync,
 };
 
-const ListsComponent = ({ className, getAllClientListsAsync, lists }) => {
+const ListsComponent = ({
+    className,
+    getClientLocationsAsync,
+    locations,
+    clientSelectedLocation,
+}) => {
     useEffect(() => {
-        getAllClientListsAsync();
+        getClientLocationsAsync();
     }, []);
+
+    const selectedLocation = clientSelectedLocation
+        ? locations.filter(({ _id }) => clientSelectedLocation === _id)[0]
+        : locations[0];
 
     return (
         <Transition
@@ -59,9 +54,9 @@ const ListsComponent = ({ className, getAllClientListsAsync, lists }) => {
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    {lists.length ? (
+                    {locations.length && selectedLocation.itemsList.length ? (
                         <div className={Styles.list}>
-                            {lists.map((item, index) => (
+                            {selectedLocation.itemsList.map((item, index) => (
                                 <ListItem key={index} index={index} {...item} />
                             ))}
                         </div>

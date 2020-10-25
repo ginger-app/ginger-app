@@ -136,6 +136,11 @@ export const uiActions = {
         type: types.CLEAR_NEW_LIST_ITEM_OVERLAY_DATA,
     }),
 
+    setClientListsSelectedLocation: (payload) => ({
+        type: types.SET_CLIENT_LISTS_SELECTED_LOCATION,
+        payload,
+    }),
+
     // Error
     emitError: (error, meta = null) => ({
         type: types.EMIT_ERROR,

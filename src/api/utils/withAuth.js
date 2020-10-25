@@ -16,6 +16,8 @@ export const withAuth = async (url, options = {}) => {
         const refreshResponse = await Api.auth.refreshToken();
         const tokens = await refreshResponse.json();
 
+        if (refreshResponse.status >= 400) throw new Error();
+
         store.dispatch(authActions.setAccessToken(tokens));
 
         return withAuth(url, options);

@@ -11,23 +11,14 @@ import Styles from './styles.module.scss';
 import isEmpty from 'lodash/isEmpty';
 import { Icon, Button } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import mockApples from 'theme/assets/images/apples-mock.png';
 
-export const ListItem = ({
-    className,
-    index = 0,
-    sku,
-    nameUkr,
-    price,
-    unit,
-    suppliers,
-    supplierData,
-}) => {
-    const {
-        supplierName,
-        // ranking,
-        deliveryConditions,
-    } = supplierData;
+export const ListItem = ({ className, index = 0, image, name, unit, minPrice, suppliers, _id }) => {
+    const supplierData = {
+        supplierName: 'Галичина',
+        deliveryConditions: ['Доставка на наступний день', 'Від 10 ящ'],
+    };
+
+    const { supplierName, deliveryConditions } = supplierData;
 
     return (
         <Transition
@@ -46,10 +37,10 @@ export const ListItem = ({
                     }}
                 >
                     {/* Product data */}
-                    <img src={mockApples} className={Styles.image} alt='' />
-                    <p className={Styles.itemName}>{nameUkr}</p>
+                    <img src={image} className={Styles.image} alt='' />
+                    <p className={Styles.itemName}>{name}</p>
                     <div className={Styles.price}>
-                        <span>{price} грн.</span>
+                        <span>від {minPrice} грн.</span>
                         <span className={Styles.unit}>1{unit}</span>
                     </div>
 
@@ -82,7 +73,7 @@ export const ListItem = ({
                     <div className={Styles.deleteButton}>
                         <Icon name='close' color='grey' />
                     </div>
-                    <NavLink to={`/products/${sku}`} className={Styles.button}>
+                    <NavLink to={`/products/${_id}`} className={Styles.button}>
                         <Button text='Обрати' filled />
                     </NavLink>
                 </section>
@@ -94,9 +85,10 @@ export const ListItem = ({
 ListItem.propTypes = {
     className: PropTypes.string,
     index: PropTypes.number,
-    sku: PropTypes.string.isRequired,
-    nameUkr: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    minPrice: PropTypes.number.isRequired,
+    // maxPrice: PropTypes.number.isRequired,
     unit: PropTypes.string.isRequired,
     suppliers: PropTypes.arrayOf(
         PropTypes.oneOfType([
@@ -108,12 +100,12 @@ ListItem.propTypes = {
             }),
         ]),
     ).isRequired,
-    supplierData: PropTypes.oneOfType([
-        PropTypes.shape({}),
-        PropTypes.shape({
-            supplierName: PropTypes.string.isRequired,
-            ranking: PropTypes.number.isRequired,
-            deliveryConditions: PropTypes.arrayOf(PropTypes.string).isRequired,
-        }),
-    ]),
+    // supplierData: PropTypes.oneOfType([
+    //     PropTypes.shape({}),
+    //     PropTypes.shape({
+    //         supplierName: PropTypes.string.isRequired,
+    //         ranking: PropTypes.number.isRequired,
+    //         deliveryConditions: PropTypes.arrayOf(PropTypes.string).isRequired,
+    //     }),
+    // ]),
 };

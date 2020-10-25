@@ -112,10 +112,6 @@ export const Api = {
     },
 
     client: {
-        getClientLists: () => {
-            return withAuth(`${MAIN_URL}/clients/lists`);
-        },
-
         getClientLocations: () => {
             return withAuth(`${MAIN_URL}/clients/locations`);
         },

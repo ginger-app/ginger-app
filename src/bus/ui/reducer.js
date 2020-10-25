@@ -33,6 +33,7 @@ const initialState = Map({
         img: '',
         id: null,
     }),
+    clientListsSelectedLocation: null,
     logs: '',
 });
 
@@ -147,6 +148,9 @@ export const uiReducer = (state = initialState, action) => {
 
         case types.CLEAR_NEW_LIST_ITEM_OVERLAY_DATA:
             return state.set('newListItemOverlayData', initialState.get('newListItemOverlayData'));
+
+        case types.SET_CLIENT_LISTS_SELECTED_LOCATION:
+            return state.set('clientListsSelectedLocation', action.payload);
 
         // Errors
         case types.EMIT_ERROR:
