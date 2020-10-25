@@ -51,17 +51,19 @@ const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) =>
 
                     {/* Content section */}
                     <CategoriesCatalogue className={Styles.categories} />
-                    {categories.map(({ name, items, sku }, index) => (
-                        <ItemsCatalogue
-                            key={index}
-                            className={Styles.categoryItemsCarousel}
-                            categoryName={name}
-                            categorySku={sku}
-                            items={items}
-                            index={index}
-                            extended
-                        />
-                    ))}
+                    {categories
+                        .filter(({ items }) => items.length)
+                        .map(({ name, items, sku }, index) => (
+                            <ItemsCatalogue
+                                key={index}
+                                className={Styles.categoryItemsCarousel}
+                                categoryName={name}
+                                categorySku={sku}
+                                items={items}
+                                index={index}
+                                extended
+                            />
+                        ))}
 
                     <Navigation
                         leftButton={

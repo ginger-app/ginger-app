@@ -115,4 +115,9 @@ export const profileActions = {
         type: types.CREATE_NEW_LOCATION_ASYNC,
         payload: data,
     }),
+
+    addNewItemToLocationAsync: ({ locationId, itemId }) => ({
+        type: types.ADD_NEW_ITEM_TO_LOCATION_ASYNC,
+        payload: { locationId, itemId },
+    }),
 };

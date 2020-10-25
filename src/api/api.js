@@ -57,6 +57,10 @@ export const Api = {
                 credentials: 'include',
             });
         },
+
+        logout: () => {
+            return withAuth(`${MAIN_URL}/auth/logout`);
+        },
     },
 
     market: {
@@ -123,6 +127,16 @@ export const Api = {
                     'content-type': 'application/json',
                 },
                 body: JSON.stringify(locationData),
+            });
+        },
+
+        addNewItemToLocation: ({ locationId, itemId }) => {
+            return withAuth(`${MAIN_URL}/clients/locations/new-item`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({ locationId, itemId }),
             });
         },
     },

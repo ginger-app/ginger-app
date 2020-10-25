@@ -5,13 +5,13 @@ import { takeEvery, all, call } from 'redux-saga/effects';
 import { authTypes as types } from '../types';
 
 // Workers
-import { getSigninCodeWorker, signin, getSignupCode, signupWorker, logout } from './workers';
+import { getSigninCodeWorker, signin, getSignupCode, signupWorker, logoutWorker } from './workers';
 
 function* watchSignin() {
     yield takeEvery(types.GET_SIGNIN_CONFIRMATION_CODE_ASYNC, getSigninCodeWorker);
 }
 function* watchSignout() {
-    yield takeEvery(types.SIGN_OUT_ASYNC, logout);
+    yield takeEvery(types.LOG_OUT_ASYNC, logoutWorker);
 }
 function* watchCodeConfirmation() {
     yield takeEvery(types.SIGNIN_ASYNC, signin);

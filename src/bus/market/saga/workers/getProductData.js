@@ -13,12 +13,8 @@ import { Logger } from 'bus/utils';
 
 export function* getProductDataWorker({ payload: { sku } }) {
     try {
-        yield apply(Logger, Logger, ['log', 'Fetching product data', sku]);
-
         const response = yield apply(Api, Api.market.getProductData, [sku]);
         const { data, message } = yield apply(response, response.json);
-
-        yield apply(Logger, Logger, ['log', 'Product data fetched ']);
 
         if (response.status >= 400) throw new Error(message);
 

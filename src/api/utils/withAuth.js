@@ -9,10 +9,10 @@ import { authActions } from 'bus/auth/actions';
 import { DateTime } from 'luxon';
 
 export const withAuth = async (url, options = {}) => {
-    const token = store.getState().auth.get('token');
+    const accessToken = store.getState().auth.get('accessToken');
     const tokenExpirationDate = store.getState().auth.get('expiresAt');
 
-    if (!token || DateTime.local() > DateTime.fromISO(tokenExpirationDate)) {
+    if (!accessToken || DateTime.local() > DateTime.fromISO(tokenExpirationDate)) {
         const refreshResponse = await Api.auth.refreshToken();
         const tokens = await refreshResponse.json();
 
@@ -27,7 +27,7 @@ export const withAuth = async (url, options = {}) => {
         ...options,
         headers: {
             ...options.headers,
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${accessToken}`,
         },
         credentials: 'include',
     });

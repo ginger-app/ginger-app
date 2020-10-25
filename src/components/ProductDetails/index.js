@@ -1,5 +1,5 @@
 // Core
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -9,26 +9,13 @@ import Styles from './styles.module.scss';
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { Button, RadioButton, Icon } from 'components';
-import mockApples from 'theme/assets/images/apples-mock.png';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
 
-// Mocks
-const locations = [
-    'Montgolfiere',
-    'Forma.coffee',
-    'Blur',
-    'Whitebeard Blackbird',
-    'Yellow Coffee',
-    'OH MY',
-    'Fair Finch',
-    'Veterano Coffee',
-];
-
 const mapStateToProps = (state) => ({
     productData: state.market.get('productData').toJS(),
-    cart: state.profile.get('cart'),
+    locations: state.profile.get('locations'),
     backButtonPath: state.ui.get('backButtonPath'),
 });
 
@@ -36,29 +23,12 @@ const mapDispatchToProps = {
     showNewLocationOverlay: uiActions.showNewLocationOverlay,
 };
 
-const ProductDetailsComponent = ({
-    className,
-    // sku,
-    productData,
-    showNewLocationOverlay,
-}) => {
-    // const { nameUkr, stock, unit, price, image } = productData;
+const ProductDetailsComponent = ({ className, productData, showNewLocationOverlay, locations }) => {
+    const { name, image, minPrice, maxPrice, unit } = productData;
 
-    const { nameUkr, price, unit } = productData;
     const [expanded, setExpandedState] = useState(false);
-    const [locationsData, setLocationsData] = useState({});
-    const [locationsAdded, setLocationsAddedAmount] = useState(0);
 
-    useEffect(() => {
-        const data = {};
-        locations.forEach((item) => {
-            data[item] = false;
-        });
-
-        setLocationsData(data);
-    }, []);
-
-    const calculateLocationsHeight = () => `${locations.length * 4 + 1}rem`;
+    const calculateLocationsHeight = () => `${locations.length * 3 + 0.5}rem`;
 
     return (
         <Transition
@@ -78,10 +48,12 @@ const ProductDetailsComponent = ({
                     }}
                 >
                     {/* Left side */}
-                    <img src={mockApples} className={Styles.image} alt='' />
-                    <p className={Styles.itemName}>{nameUkr}</p>
+                    <img src={image} className={Styles.image} alt='' />
+                    <p className={Styles.itemName}>{name}</p>
                     <div className={Styles.price}>
-                        <span>{price} грн.</span>
+                        <span>
+                            {minPrice} - {maxPrice} грн.
+                        </span>
                         <span className={Styles.unit}>{unit}</span>
                     </div>
 
@@ -91,7 +63,7 @@ const ProductDetailsComponent = ({
                     {/* Right side */}
                     <p className={Styles.supplierSubtitle}>Постачальник</p>
                     <p className={Styles.supplierName}>Galychyna</p>
-                    <div className={Styles.ranking} />
+
                     <div className={Styles.deliveryConditions}>
                         <p className={Styles.title}>Умови поставки</p>
                         <p className={Styles.item}>День в день</p>
@@ -106,22 +78,14 @@ const ProductDetailsComponent = ({
                             opacity: expanded ? '1' : '0',
                         }}
                     >
-                        {locations.map((item, index) => (
+                        {locations.map(({ locationName, _id }, index) => (
                             <div className={Styles.location} key={index}>
-                                <p>{item}</p>
+                                <p>{locationName}</p>
                                 <RadioButton
                                     className={Styles.radio}
-                                    selected={!!locationsData[item]}
+                                    selected={false}
                                     onChange={() => {
-                                        setLocationsAddedAmount(
-                                            !locationsData[item]
-                                                ? locationsAdded + 1
-                                                : locationsAdded - 1,
-                                        );
-                                        setLocationsData({
-                                            ...locationsData,
-                                            [item]: !locationsData[item],
-                                        });
+                                        console.log(_id);
                                     }}
                                 />
                             </div>
@@ -142,11 +106,7 @@ const ProductDetailsComponent = ({
                     <Button
                         className={Styles.actionButton}
                         onClick={() => setExpandedState(!expanded)}
-                        text={
-                            locationsAdded
-                                ? `Додано локацій - ${locationsAdded}`
-                                : 'Додати в список'
-                        }
+                        text='Локації'
                         filled
                     />
                 </section>

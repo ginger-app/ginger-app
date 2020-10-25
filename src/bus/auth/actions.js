@@ -9,16 +9,16 @@ export const authActions = {
 
     closeCodeConfirmation: () => ({ type: types.CLOSE_CODE_CONFIRMATION }),
 
-    logout: () => ({ type: types.SIGN_OUT }),
+    logout: () => ({ type: types.LOG_OUT }),
 
     setAuthData: (data) => ({
         type: types.SET_AUTH_DATA,
         payload: data,
     }),
 
-    setAccessToken: (accessToken) => ({
+    setAccessToken: ({ token: accessToken, expiresAt }) => ({
         type: types.SET_ACCESS_TOKEN,
-        payload: { ...accessToken },
+        payload: { accessToken, expiresAt },
     }),
 
     clearAccessToken: () => ({
@@ -27,7 +27,7 @@ export const authActions = {
 
     // Async
     logoutAsync: () => ({
-        type: types.SIGN_OUT_ASYNC,
+        type: types.LOG_OUT_ASYNC,
     }),
 
     getSigninConfirmationCodeAsync: (phoneNumber) => ({

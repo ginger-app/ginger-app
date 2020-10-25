@@ -28,6 +28,9 @@ export const InputField = ({
                 placeholder={title || placeholder}
                 autoFocus={autoFocus}
                 disabled={disabled}
+                style={{
+                    gridColumn: buttonAction ? '1' : '1 / 3',
+                }}
             />
             {buttonAction && (
                 <Button

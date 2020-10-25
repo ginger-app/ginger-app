@@ -38,6 +38,9 @@ const ProductComponent = ({
 
         return clearProductData;
     }, [sku, getProductDataAsync, clearProductData]);
+
+    // console.log(productData);
+
     return (
         <Transition
             in
@@ -55,7 +58,7 @@ const ProductComponent = ({
                     }}
                 >
                     <ProductDetails productData={productData} />
-                    <Suppliers />
+                    <Suppliers suppliers={productData.suppliers} />
                     <Navigation
                         search
                         rightButtonData={{
