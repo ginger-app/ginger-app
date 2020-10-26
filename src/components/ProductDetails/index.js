@@ -7,8 +7,9 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { Button, RadioButton, Icon } from 'components';
+import { opacityTransitionConfig } from 'utils/transitionConfig';
+import isEmpty from 'lodash/isEmpty';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
@@ -17,16 +18,25 @@ const mapStateToProps = (state) => ({
     productData: state.market.get('productData').toJS(),
     locations: state.profile.get('locations'),
     backButtonPath: state.ui.get('backButtonPath'),
+    chosenSupplierData: state.profile.get('chosenSupplierData'),
 });
 
 const mapDispatchToProps = {
     showNewLocationOverlay: uiActions.showNewLocationOverlay,
 };
 
-const ProductDetailsComponent = ({ className, productData, showNewLocationOverlay, locations }) => {
+const ProductDetailsComponent = ({
+    className,
+    productData,
+    showNewLocationOverlay,
+    locations,
+    chosenSupplierData,
+}) => {
     const { name, image, minPrice, maxPrice, unit } = productData;
+    const { name: chosenSupplierName, conditions } = chosenSupplierData;
 
     const [expanded, setExpandedState] = useState(false);
+    const supplierChosen = !isEmpty(chosenSupplierData);
 
     const calculateLocationsHeight = () => `${locations.length * 3 + 0.5}rem`;
 
@@ -62,13 +72,25 @@ const ProductDetailsComponent = ({ className, productData, showNewLocationOverla
 
                     {/* Right side */}
                     <p className={Styles.supplierSubtitle}>Постачальник</p>
-                    <p className={Styles.supplierName}>Galychyna</p>
+                    <p className={Styles.supplierName}>
+                        {supplierChosen ? chosenSupplierName : 'Not chosen'}
+                    </p>
 
-                    <div className={Styles.deliveryConditions}>
-                        <p className={Styles.title}>Умови поставки</p>
-                        <p className={Styles.item}>День в день</p>
-                        <p className={Styles.item}>Мін. замовлення 900₴</p>
-                    </div>
+                    {supplierChosen ? (
+                        <div className={Styles.deliveryConditions}>
+                            <p className={Styles.title}>Умови поставки</p>
+                            {conditions.map((item, index) => (
+                                <p className={Styles.item} key={index}>
+                                    {item}
+                                </p>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className={Styles.supplierNotChosenHint}>
+                            Choose a supplier from the list below and then choose locations from a
+                            dropdown
+                        </div>
+                    )}
 
                     {/* Locations list */}
                     <div

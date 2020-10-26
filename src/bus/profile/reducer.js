@@ -17,6 +17,9 @@ const initialState = Map({
     locations: [],
     analyticsData: [],
     previewData: [],
+
+    // displaying stuff
+    chosenSupplierData: {},
 });
 
 export const profileReducer = (state = initialState, action) => {
@@ -35,6 +38,9 @@ export const profileReducer = (state = initialState, action) => {
 
         case types.FILL_CLIENT_LOCATIONS:
             return state.set('locations', action.payload);
+
+        case types.SET_CHOSEN_SUPPLIER_DATA:
+            return state.set('chosenSupplierData', action.payload);
 
         // Deprecated
         case types.UPDATE_CART:

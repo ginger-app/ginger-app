@@ -58,7 +58,7 @@ const ProductComponent = ({
                     }}
                 >
                     <ProductDetails productData={productData} />
-                    <Suppliers suppliers={productData.suppliers} />
+                    <Suppliers productData={productData} productId={sku} />
                     <Navigation
                         search
                         rightButtonData={{

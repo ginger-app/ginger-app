@@ -10,17 +10,30 @@ import Styles from './styles.module.scss';
 import { RadioButton } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
+// Actions
+import { profileActions } from 'bus/profile/actions';
+
 const mapStateToProps = (state) => ({
-    ...state,
+    chosenSupplierData: state.profile.get('chosenSupplierData'),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    setChosenSupplierData: profileActions.setChosenSupplierData,
+};
 
-const SuppliersComponent = ({ className, suppliers = [] }) => {
+const SuppliersComponent = ({
+    className,
+    chosenSupplierData,
+    setChosenSupplierData,
+    productData: { _id: productId, suppliers, unit },
+}) => {
     return (
         <section className={[Styles.container, className].filter(Boolean).join(' ')}>
-            {suppliers.length &&
-                suppliers.map(({ price, conditions, selected, unit, name }, index) => {
+            {suppliers &&
+                suppliers.map((supplierData, index) => {
+                    const { conditions, name, itemsList, _id } = supplierData;
+                    const { price } = itemsList.find(({ _id: id }) => productId === id);
+
                     return (
                         <Transition
                             in
@@ -58,9 +71,8 @@ const SuppliersComponent = ({ className, suppliers = [] }) => {
                                     {/* Radio selector */}
                                     <RadioButton
                                         className={Styles.radioButton}
-                                        selected={selected}
-                                        // Mock
-                                        onChange={() => {}}
+                                        selected={_id === chosenSupplierData._id}
+                                        onChange={() => setChosenSupplierData(supplierData)}
                                     />
                                 </div>
                             )}

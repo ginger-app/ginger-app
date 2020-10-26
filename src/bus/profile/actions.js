@@ -52,6 +52,11 @@ export const profileActions = {
         payload: data,
     }),
 
+    setChosenSupplierData: (data) => ({
+        type: types.SET_CHOSEN_SUPPLIER_DATA,
+        payload: data,
+    }),
+
     // Async
     addItemToCartAsync: (item) => ({
         type: types.ADD_ITEM_TO_CART_ASYNC,
