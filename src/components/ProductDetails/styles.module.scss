@@ -11,7 +11,6 @@
 
     width: 100%;
     padding: 1rem;
-    padding-top: 0.5rem;
 
     border-radius: 1rem;
 
@@ -71,19 +70,6 @@
         grid-row: 2;
 
         font-weight: bold;
-    }
-
-    & .ranking {
-        place-self: center end;
-
-        grid-column: 3;
-        grid-row: 3;
-
-        height: 100%;
-        width: 100%;
-
-        background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/1077px-Star_icon_stylized.svg.png');
-        background-size: contain;
     }
 
     & .deliveryConditions {

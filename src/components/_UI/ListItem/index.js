@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Transition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -12,13 +12,25 @@ import isEmpty from 'lodash/isEmpty';
 import { Icon, Button } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
-export const ListItem = ({ className, index = 0, image, name, unit, minPrice, suppliers, _id }) => {
-    const supplierData = {
-        supplierName: 'Галичина',
-        deliveryConditions: ['Доставка на наступний день', 'Від 10 ящ'],
-    };
+export const ListItem = ({
+    className,
+    index = 0,
+    image,
+    name,
+    unit,
+    suppliers,
+    _id,
+    chosenSupplierId,
+}) => {
+    const [supplierData, setSupplierData] = useState({});
+    const [itemPrice, setItemPrice] = useState(null);
 
-    const { supplierName, deliveryConditions } = supplierData;
+    useEffect(() => {
+        const supplier = suppliers.find(({ _id: supplierId }) => supplierId === chosenSupplierId);
+
+        setSupplierData(supplier);
+        setItemPrice(supplier.itemsList.find(({ _id: itemId }) => itemId === _id)?.price);
+    }, [chosenSupplierId]);
 
     return (
         <Transition
@@ -40,24 +52,23 @@ export const ListItem = ({ className, index = 0, image, name, unit, minPrice, su
                     <img src={image} className={Styles.image} alt='' />
                     <p className={Styles.itemName}>{name}</p>
                     <div className={Styles.price}>
-                        <span>від {minPrice} грн.</span>
-                        <span className={Styles.unit}>1{unit}</span>
+                        <span>{itemPrice} грн.</span>
+                        <span className={Styles.unit}>{unit}</span>
                     </div>
 
                     {/* Devider */}
                     <div className={Styles.devider} />
 
                     {/* Supplier data */}
-                    <p className={Styles.supplierSubtitle}>Почтачальник:</p>
+                    <p className={Styles.supplierSubtitle}>Поcтачальник:</p>
                     {isEmpty(supplierData) ? (
                         <p className={Styles.notChosen}>Не обраний</p>
                     ) : (
                         <>
-                            <p className={Styles.supplierName}>{supplierName}</p>
-                            <div className={Styles.ranking} />
+                            <p className={Styles.supplierName}>{supplierData.name}</p>
                             <div className={Styles.deliveryConditions}>
                                 <p className={Styles.title}>Умови поставки</p>
-                                {deliveryConditions.map((item, key) => (
+                                {supplierData.conditions.map((item, key) => (
                                     <p className={Styles.item} key={key}>
                                         {item}
                                     </p>
@@ -65,9 +76,6 @@ export const ListItem = ({ className, index = 0, image, name, unit, minPrice, su
                             </div>
                         </>
                     )}
-                    <p className={Styles.suppliersAmount}>
-                        Постачальників: <span>{suppliers.length}</span>
-                    </p>
 
                     {/* Action buttons */}
                     <div className={Styles.deleteButton}>
@@ -87,8 +95,6 @@ ListItem.propTypes = {
     index: PropTypes.number,
     _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    minPrice: PropTypes.number.isRequired,
-    // maxPrice: PropTypes.number.isRequired,
     unit: PropTypes.string.isRequired,
     suppliers: PropTypes.arrayOf(
         PropTypes.oneOfType([

@@ -56,9 +56,16 @@ const ListsComponent = ({
                 >
                     {locations.length && selectedLocation.itemsList.length ? (
                         <div className={Styles.list}>
-                            {selectedLocation.itemsList.map(({ itemId }, index) => (
-                                <ListItem key={index} index={index} {...itemId} />
-                            ))}
+                            {selectedLocation.itemsList.map(
+                                ({ itemId, chosenSupplierId }, index) => (
+                                    <ListItem
+                                        key={index}
+                                        index={index}
+                                        chosenSupplierId={chosenSupplierId}
+                                        {...itemId}
+                                    />
+                                ),
+                            )}
                         </div>
                     ) : (
                         <div className={Styles.noLists}>
@@ -70,7 +77,7 @@ const ListsComponent = ({
                     )}
 
                     <LocationsSelect />
-                    <Navigation title='Favorites' />
+                    <Navigation title='Lists' />
                 </section>
             )}
         </Transition>
