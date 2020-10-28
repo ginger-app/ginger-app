@@ -56,8 +56,8 @@ const ListsComponent = ({
                 >
                     {locations.length && selectedLocation.itemsList.length ? (
                         <div className={Styles.list}>
-                            {selectedLocation.itemsList.map((item, index) => (
-                                <ListItem key={index} index={index} {...item} />
+                            {selectedLocation.itemsList.map(({ itemId }, index) => (
+                                <ListItem key={index} index={index} {...itemId} />
                             ))}
                         </div>
                     ) : (

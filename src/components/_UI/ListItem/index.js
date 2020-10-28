@@ -100,12 +100,4 @@ ListItem.propTypes = {
             }),
         ]),
     ).isRequired,
-    // supplierData: PropTypes.oneOfType([
-    //     PropTypes.shape({}),
-    //     PropTypes.shape({
-    //         supplierName: PropTypes.string.isRequired,
-    //         ranking: PropTypes.number.isRequired,
-    //         deliveryConditions: PropTypes.arrayOf(PropTypes.string).isRequired,
-    //     }),
-    // ]),
 };

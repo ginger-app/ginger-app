@@ -27,6 +27,7 @@ const LocationsSelectComponent = ({
     clientSelectedLocation,
 }) => {
     const [expanded, setExpandedState] = useState(false);
+    const [sortingOption, setSortingOption] = useState(clientSelectedLocation);
 
     useEffect(() => {
         if (!clientSelectedLocation && locations.length) {
@@ -37,16 +38,22 @@ const LocationsSelectComponent = ({
     return (
         <section className={[Styles.container, className].filter(Boolean).join(' ')}>
             <div className={[Styles.locations, expanded && Styles.shit].filter(Boolean).join(' ')}>
-                {locations.map(({ locationName, _id }, index) => (
-                    <div className={Styles.location} key={index}>
-                        <span>{locationName}</span>
-                        <RadioButton
-                            className={Styles.radio}
-                            selected={_id === clientSelectedLocation}
-                            onChange={() => setClientSelectedLocation(_id)}
-                        />
-                    </div>
-                ))}
+                {locations
+                    .sort(({ _id }) => (sortingOption === _id ? -1 : 1))
+                    .map(({ locationName, _id }, index) => (
+                        <div className={Styles.location} key={index}>
+                            <span>{locationName}</span>
+                            <RadioButton
+                                className={Styles.radio}
+                                selected={_id === clientSelectedLocation}
+                                onChange={() => {
+                                    setClientSelectedLocation(_id);
+                                    setSortingOption(_id);
+                                    setExpandedState(false);
+                                }}
+                            />
+                        </div>
+                    ))}
             </div>
             <div
                 className={[Styles.expandButton, expanded && Styles.expanded]
