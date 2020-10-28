@@ -66,7 +66,7 @@ const OrderDetailsComponent = ({
                         <OrderStatusLabel status={status} className={Styles.statusLabel} />
                         <div className={Styles.cart}>
                             {Object.keys(userCart).map((item, index) => {
-                                const { amount, name, price, unit, sku } = userCart[item];
+                                const { amount, name, price, unit, id } = userCart[item];
 
                                 return (
                                     <CartItem
@@ -74,7 +74,7 @@ const OrderDetailsComponent = ({
                                         name={name}
                                         unit={unit}
                                         image={mock}
-                                        sku={sku}
+                                        id={id}
                                         price={price.toFixed(2).split('.')}
                                         orderDetails
                                         key={index}

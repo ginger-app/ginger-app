@@ -13,27 +13,32 @@ import isEmpty from 'lodash/isEmpty';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
+import { profileActions } from 'bus/profile/actions';
 
 const mapStateToProps = (state) => ({
     productData: state.market.get('productData').toJS(),
     locations: state.profile.get('locations'),
     backButtonPath: state.ui.get('backButtonPath'),
     chosenSupplierData: state.profile.get('chosenSupplierData'),
+    marketItemChosenLocations: state.profile.get('marketItemChosenLocations'),
 });
 
 const mapDispatchToProps = {
     showNewLocationOverlay: uiActions.showNewLocationOverlay,
+    addNewItemToLocationAsync: profileActions.addNewItemToLocationAsync,
 };
 
 const ProductDetailsComponent = ({
     className,
     productData,
     showNewLocationOverlay,
+    addNewItemToLocationAsync,
     locations,
     chosenSupplierData,
+    marketItemChosenLocations,
 }) => {
-    const { name, image, minPrice, maxPrice, unit } = productData;
-    const { name: chosenSupplierName, conditions } = chosenSupplierData;
+    const { name, image, minPrice, maxPrice, unit, _id: productId } = productData;
+    const { name: chosenSupplierName, _id: supplierId, conditions } = chosenSupplierData;
 
     const [expanded, setExpandedState] = useState(false);
     const supplierChosen = !isEmpty(chosenSupplierData);
@@ -100,15 +105,19 @@ const ProductDetailsComponent = ({
                             opacity: expanded ? '1' : '0',
                         }}
                     >
-                        {locations.map(({ locationName, _id }, index) => (
+                        {marketItemChosenLocations.map(({ locationName, _id, chosen }, index) => (
                             <div className={Styles.location} key={index}>
                                 <p>{locationName}</p>
                                 <RadioButton
                                     className={Styles.radio}
-                                    selected={false}
-                                    onChange={() => {
-                                        console.log(_id);
-                                    }}
+                                    selected={chosen}
+                                    onChange={() =>
+                                        addNewItemToLocationAsync({
+                                            locationId: _id,
+                                            itemId: productId,
+                                            supplierId,
+                                        })
+                                    }
                                 />
                             </div>
                         ))}

@@ -30,7 +30,7 @@ const mapDispatchToProps = {
 };
 
 const CategoryComponent = ({
-    sku,
+    id,
     getMarketCategoryDataAsync,
     showMarketFiltersOverlay,
     clearMarketCategoryData,
@@ -38,10 +38,10 @@ const CategoryComponent = ({
     sortingOption,
 }) => {
     useEffect(() => {
-        getMarketCategoryDataAsync(sku);
+        getMarketCategoryDataAsync(id);
 
         return clearMarketCategoryData;
-    }, [sku, getMarketCategoryDataAsync, clearMarketCategoryData]);
+    }, [id, getMarketCategoryDataAsync, clearMarketCategoryData]);
 
     const { name, filteringOptions, items } = categoryData;
 

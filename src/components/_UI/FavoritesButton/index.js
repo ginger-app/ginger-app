@@ -26,7 +26,7 @@ const mapDispatchToProps = {
 
 const FavoritesButtonComponent = ({
     className,
-    sku,
+    id,
     favorites,
     isAuthenticated,
     addItemToFavorites,
@@ -38,28 +38,28 @@ const FavoritesButtonComponent = ({
         <section
             className={`${Styles.container} ${className}`}
             onClick={
-                favorites[sku]
+                favorites[id]
                     ? (e) => {
                           e.preventDefault();
                           e.stopPropagation();
                           // if user is already logged in - updateing his favorites
-                          if (isAuthenticated) return removeItemFromFavoritesAsync(sku);
+                          if (isAuthenticated) return removeItemFromFavoritesAsync(id);
                           // otherwise - just locally
-                          removeItemFromFavorites(sku);
+                          removeItemFromFavorites(id);
                       }
                     : (e) => {
                           e.preventDefault();
                           e.stopPropagation();
                           // if user is already logged in - updateing his favorites
-                          if (isAuthenticated) return addItemToFavoritesAsync(sku);
+                          if (isAuthenticated) return addItemToFavoritesAsync(id);
                           // otherwise - just locally
-                          addItemToFavorites(sku);
+                          addItemToFavorites(id);
                       }
             }
         >
             <Icon
-                name={favorites[sku] ? 'heart-filled' : 'heart'}
-                color={favorites[sku] ? 'red' : 'black'}
+                name={favorites[id] ? 'heart-filled' : 'heart'}
+                color={favorites[id] ? 'red' : 'black'}
             />
         </section>
     );
@@ -67,7 +67,7 @@ const FavoritesButtonComponent = ({
 
 FavoritesButtonComponent.porpTypes = {
     className: PropTypes.string,
-    sku: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
 };
 
 export const FavoritesButton = connect(

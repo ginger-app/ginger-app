@@ -16,7 +16,7 @@ export const CartItem = ({
     unit,
     removeItem,
     orderDetails,
-    // sku,
+    // id,
 }) => {
     return orderDetails ? (
         <section className={`${Styles.orderDetailsContainer} ${className}`}>

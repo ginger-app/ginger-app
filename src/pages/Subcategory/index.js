@@ -30,7 +30,7 @@ const mapDispatchToProps = {
 };
 
 const SubcategoryComponent = ({
-    sku,
+    id,
     getMarketSubcategoryDataAsync,
     clearMarketSubcategoryData,
     subcategoryData,
@@ -38,10 +38,10 @@ const SubcategoryComponent = ({
     sortingOption,
 }) => {
     useEffect(() => {
-        getMarketSubcategoryDataAsync(sku);
+        getMarketSubcategoryDataAsync(id);
 
         return clearMarketSubcategoryData;
-    }, [sku, getMarketSubcategoryDataAsync, clearMarketSubcategoryData]);
+    }, [id, getMarketSubcategoryDataAsync, clearMarketSubcategoryData]);
 
     const { name, items } = subcategoryData;
 

@@ -56,7 +56,7 @@ const MarketShowcaseComponent = ({
                         price={minPrice}
                         unit={unit}
                         discount={index % 2 === 0 ? 10 : null}
-                        sku={_id}
+                        id={_id}
                     />
                 ))}
             {orderType &&

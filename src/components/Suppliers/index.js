@@ -18,13 +18,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    setChosenSupplierData: profileActions.setChosenSupplierData,
+    setChosenSupplierDataAsync: profileActions.setChosenSupplierDataAsync,
 };
 
 const SuppliersComponent = ({
     className,
     chosenSupplierData,
-    setChosenSupplierData,
+    setChosenSupplierDataAsync,
     productData: { _id: productId, suppliers, unit },
 }) => {
     return (
@@ -72,7 +72,12 @@ const SuppliersComponent = ({
                                     <RadioButton
                                         className={Styles.radioButton}
                                         selected={_id === chosenSupplierData._id}
-                                        onChange={() => setChosenSupplierData(supplierData)}
+                                        onChange={() =>
+                                            setChosenSupplierDataAsync({
+                                                supplierData,
+                                                itemId: productId,
+                                            })
+                                        }
                                     />
                                 </div>
                             )}

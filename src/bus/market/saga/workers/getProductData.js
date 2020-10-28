@@ -11,16 +11,16 @@ import { Api } from 'api';
 // Instruments
 import { Logger } from 'bus/utils';
 
-export function* getProductDataWorker({ payload: { sku } }) {
+export function* getProductDataWorker({ payload: { id } }) {
     try {
-        const response = yield apply(Api, Api.market.getProductData, [sku]);
+        const response = yield apply(Api, Api.market.getProductData, [id]);
         const { data, message } = yield apply(response, response.json);
 
         if (response.status >= 400) throw new Error(message);
 
         yield put(marketActions.fillProductData(data));
     } catch (err) {
-        yield apply(Logger, Logger, ['err', 'Fetching product data err', sku, err]);
+        yield apply(Logger, Logger, ['err', 'Fetching product data err', id, err]);
 
         yield put(uiActions.emitError(err, '-> getProductDataWorker'));
     }

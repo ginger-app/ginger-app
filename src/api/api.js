@@ -68,16 +68,16 @@ export const Api = {
             return fetch(`${MAIN_URL}/market/categories`);
         },
 
-        getCategoryData: (sku) => {
-            return fetch(`${MAIN_URL}/market/categories/${sku}`);
+        getCategoryData: (id) => {
+            return fetch(`${MAIN_URL}/market/categories/${id}`);
         },
 
-        getSubcategoryData: (sku) => {
-            return fetch(`${MAIN_URL}/market/subcategories/${sku}`);
+        getSubcategoryData: (id) => {
+            return fetch(`${MAIN_URL}/market/subcategories/${id}`);
         },
 
-        getProductData: (sku) => {
-            return fetch(`${MAIN_URL}/market/product/${sku}`);
+        getProductData: (id) => {
+            return fetch(`${MAIN_URL}/market/product/${id}`);
         },
 
         createNewOrder: (orderData) => {
@@ -130,13 +130,13 @@ export const Api = {
             });
         },
 
-        addNewItemToLocation: ({ locationId, itemId }) => {
+        addNewItemToLocation: ({ locationId, itemId, supplierId }) => {
             return withAuth(`${MAIN_URL}/clients/locations/new-item`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
                 },
-                body: JSON.stringify({ locationId, itemId }),
+                body: JSON.stringify({ locationId, itemId, supplierId }),
             });
         },
     },

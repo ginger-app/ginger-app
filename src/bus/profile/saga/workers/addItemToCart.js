@@ -19,7 +19,7 @@ export function* addItemToCartWorker({ payload }) {
         yield put(
             profileActions.updateCart({
                 ...currentCart,
-                [payload.sku]: payload,
+                [payload.id]: payload,
             }),
         );
         yield put(uiActions.showCartIcon());

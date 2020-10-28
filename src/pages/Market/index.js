@@ -53,12 +53,12 @@ const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) =>
                     <CategoriesCatalogue className={Styles.categories} />
                     {categories
                         .filter(({ items }) => items.length)
-                        .map(({ name, items, sku }, index) => (
+                        .map(({ name, items, id }, index) => (
                             <ItemsCatalogue
                                 key={index}
                                 className={Styles.categoryItemsCarousel}
                                 categoryName={name}
-                                categorySku={sku}
+                                categorySku={id}
                                 items={items}
                                 index={index}
                                 extended

@@ -37,7 +37,7 @@ export const ItemsCatalogue = ({
                         name={name}
                         price={minPrice}
                         unit={unit}
-                        sku={_id}
+                        id={_id}
                         key={index}
                         image={image}
                     />

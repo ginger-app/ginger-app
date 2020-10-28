@@ -33,7 +33,7 @@ const SearchItemComponent = ({
     nameUkr,
     // unit,
     price,
-    sku,
+    id,
 }) => {
     return (
         <Transition
@@ -50,7 +50,7 @@ const SearchItemComponent = ({
                 <NavLink
                     className={`${Styles.container} ${className}`}
                     to={{
-                        pathname: `/products/${sku}`,
+                        pathname: `/products/${id}`,
                     }}
                     onClick={() => {
                         setBackButtonPath('openSearch');

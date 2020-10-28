@@ -69,19 +69,19 @@ export const marketActions = {
         type: types.GET_MARKET_CATEGORIES_ASYNC,
     }),
 
-    getMarketCategoryDataAsync: (sku) => ({
+    getMarketCategoryDataAsync: (id) => ({
         type: types.GET_MARKET_CATEGORY_DATA_ASYNC,
-        payload: { sku },
+        payload: { id },
     }),
 
-    getMarketSubcategoryDataAsync: (sku) => ({
+    getMarketSubcategoryDataAsync: (id) => ({
         type: types.GET_MARKET_SUBCATEGORY_DATA_ASYNC,
-        payload: { sku },
+        payload: { id },
     }),
 
-    getProductDataAsync: (sku) => ({
+    getProductDataAsync: (id) => ({
         type: types.GET_PRODUCT_DATA_ASYNC,
-        payload: { sku },
+        payload: { id },
     }),
 
     getOrderDataAsync: (id) => ({

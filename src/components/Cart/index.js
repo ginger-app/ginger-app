@@ -99,7 +99,7 @@ const CartComponent = ({
                             </div>
                             <div className={Styles.itemList}>
                                 {Object.keys(cart).map((item, index) => {
-                                    const { name, price, amount, image, unit, sku } = cart[item];
+                                    const { name, price, amount, image, unit, id } = cart[item];
                                     return (
                                         <CartItem
                                             name={name}
@@ -108,7 +108,7 @@ const CartComponent = ({
                                             image={image}
                                             unit={unit}
                                             key={index}
-                                            removeItem={() => removeItemFromCartAsync(sku)}
+                                            removeItem={() => removeItemFromCartAsync(id)}
                                         />
                                     );
                                 })}

@@ -27,19 +27,17 @@ const mapDispatchToProps = {
 };
 
 const ProductComponent = ({
-    sku,
+    id,
     productData,
     getProductDataAsync,
     clearProductData,
     showMarketFiltersOverlay,
 }) => {
     useEffect(() => {
-        getProductDataAsync(sku);
+        getProductDataAsync(id);
 
         return clearProductData;
-    }, [sku, getProductDataAsync, clearProductData]);
-
-    // console.log(productData);
+    }, [id, getProductDataAsync, clearProductData]);
 
     return (
         <Transition
@@ -58,7 +56,7 @@ const ProductComponent = ({
                     }}
                 >
                     <ProductDetails productData={productData} />
-                    <Suppliers productData={productData} productId={sku} />
+                    <Suppliers productData={productData} productId={id} />
                     <Navigation
                         search
                         rightButtonData={{

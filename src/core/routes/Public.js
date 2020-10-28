@@ -39,28 +39,28 @@ export const PublicRoutes = () => (
 
         <Route
             exact
-            path={`${book.categories}/:sku`}
-            render={({ match }) => <CategoryPage sku={match.params.sku} />}
+            path={`${book.categories}/:id`}
+            render={({ match }) => <CategoryPage id={match.params.id} />}
         />
         <Route
             exact
-            path={`${book.categories}/:categorySku/:sku`}
-            render={({ match }) => <SubcategoryPage sku={match.params.sku} />}
+            path={`${book.categories}/:categorySku/:id`}
+            render={({ match }) => <SubcategoryPage id={match.params.id} />}
         />
         <Route
             exact
-            path={`${book.categories}/:categorySku/:sku`}
-            render={({ match }) => <SubcategoryPage sku={match.params.sku} />}
+            path={`${book.categories}/:categorySku/:id`}
+            render={({ match }) => <SubcategoryPage id={match.params.id} />}
         />
         <Route
             exact
-            path={`${book.categories}/:categorySku/:subcategorySku/:sku`}
-            render={({ match }) => <ProductPage sku={match.params.sku} />}
+            path={`${book.categories}/:categorySku/:subcategorySku/:id`}
+            render={({ match }) => <ProductPage id={match.params.id} />}
         />
         <Route
             exact
-            path='/products/:sku'
-            render={({ match }) => <ProductPage sku={match.params.sku} />}
+            path='/products/:id'
+            render={({ match }) => <ProductPage id={match.params.id} />}
         />
 
         {/* Profile */}

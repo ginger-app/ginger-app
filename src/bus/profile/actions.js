@@ -57,25 +57,30 @@ export const profileActions = {
         payload: data,
     }),
 
+    fillMarketItemChosenLocations: (data) => ({
+        type: types.FILL_MARKET_ITEM_CHOSEN_LOCATIONS,
+        payload: data,
+    }),
+
     // Async
     addItemToCartAsync: (item) => ({
         type: types.ADD_ITEM_TO_CART_ASYNC,
         payload: item,
     }),
 
-    removeItemFromCartAsync: (sku) => ({
+    removeItemFromCartAsync: (id) => ({
         type: types.REMOVE_ITEM_FROM_CART_ASYNC,
-        payload: sku,
+        payload: id,
     }),
 
-    addItemToFavoritesAsync: (sku) => ({
+    addItemToFavoritesAsync: (id) => ({
         type: types.ADD_ITEM_TO_FAVORITES_ASYNC,
-        payload: { sku },
+        payload: { id },
     }),
 
-    removeItemFromFavoritesAsync: (sku) => ({
+    removeItemFromFavoritesAsync: (id) => ({
         type: types.REMOVE_ITEM_FROM_FAVORITES_ASYNC,
-        payload: { sku },
+        payload: { id },
     }),
 
     getUserDataAsync: (tokens) => ({
@@ -121,8 +126,16 @@ export const profileActions = {
         payload: data,
     }),
 
-    addNewItemToLocationAsync: ({ locationId, itemId }) => ({
+    setChosenSupplierDataAsync: ({ supplierData, itemId }) => ({
+        type: types.SET_CHOSEN_SUPPLIER_DATA_ASYNC,
+        payload: {
+            supplierData,
+            itemId,
+        },
+    }),
+
+    addNewItemToLocationAsync: ({ locationId, itemId, supplierId }) => ({
         type: types.ADD_NEW_ITEM_TO_LOCATION_ASYNC,
-        payload: { locationId, itemId },
+        payload: { locationId, itemId, supplierId },
     }),
 };
