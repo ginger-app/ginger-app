@@ -20,7 +20,8 @@ export function* setChosenSupplierDataWorker({ payload: { supplierData, itemId }
                 locationName,
                 chosen: Boolean(
                     itemsList.filter(
-                        (item) => item.supplierId === supplierData._id && itemId === item.itemId,
+                        (item) =>
+                            item.chosenSupplierId === supplierData._id && itemId === item.itemId,
                     ).length,
                 ),
             }),
