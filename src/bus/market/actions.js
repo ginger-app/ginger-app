@@ -89,11 +89,6 @@ export const marketActions = {
         payload: { id },
     }),
 
-    createNewOrderAsync: (orderData) => ({
-        type: types.CREATE_NEW_ORDER_ASYNC,
-        payload: { orderData },
-    }),
-
     searchItemsByNameAsync: (itemName) => ({
         type: types.SEARCH_ITEMS_BY_NAME_ASYNC,
         payload: { itemName },

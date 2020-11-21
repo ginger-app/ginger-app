@@ -20,6 +20,7 @@ export const LocationCard = ({
     image,
     locationName,
     address,
+    _id,
 }) => {
     return (
         <Transition
@@ -38,7 +39,7 @@ export const LocationCard = ({
                             ...opacityTransitionConfig().transitionStyles[state],
                             transition: 'all 0.3s',
                         }}
-                        to={`${book.newOrder}/${index}`}
+                        to={`${book.newOrder}/${_id}`}
                     >
                         <img src={image || logo} alt='' className={Styles.img} />
 

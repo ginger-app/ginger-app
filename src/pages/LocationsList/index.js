@@ -31,7 +31,7 @@ const LocationsListComponent = ({
 }) => {
     useEffect(() => {
         getClientLocationsAsync();
-    }, []);
+    }, [getClientLocationsAsync]);
 
     return (
         <Transition

@@ -12,27 +12,30 @@ export const CartItem = ({
     name,
     image,
     price,
-    amount,
+    quantity,
     unit,
     removeItem,
     orderDetails,
-    // id,
+    incrementQty,
+    decrementQty,
 }) => {
     return orderDetails ? (
         <section className={`${Styles.orderDetailsContainer} ${className}`}>
             <img className={Styles.image} src={image} alt='' />
             <p className={Styles.name}>{name}</p>
-            <p className={Styles.unit}>1 {unit}</p>
+            <p className={Styles.unit}>
+                {price} грн/{unit}
+            </p>
             <div className={Styles.price}>
-                <span className={Styles.sum}>{price}</span>
-                <span>hrn.</span>
+                <span className={Styles.sum}>{+price * quantity}</span>
+                <span>грн.</span>
             </div>
             <div className={Styles.amountContainer}>
-                <div className={Styles.amountButton}>
+                <div className={Styles.amountButton} onClick={decrementQty}>
                     <Icon name='minus' />
                 </div>
-                <p className={Styles.amount}>{amount}</p>
-                <div className={Styles.amountButton}>
+                <p className={Styles.amount}>{quantity}</p>
+                <div className={Styles.amountButton} onClick={incrementQty}>
                     <Icon name='plus' />
                 </div>
             </div>
@@ -42,7 +45,7 @@ export const CartItem = ({
             <img className={Styles.image} src={image} alt='' />
             <p className={Styles.name}>{name}</p>
             <p className={Styles.amount}>
-                {amount} {unit}
+                {quantity} {unit}
             </p>
             <p className={Styles.price}>{price.toFixed(2)}</p>
             <Icon name='close' color='white' className={Styles.icon} onClick={removeItem} />

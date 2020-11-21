@@ -172,4 +172,32 @@ export const Api = {
             });
         },
     },
+
+    orders: {
+        getOrderData: (id) => {
+            return withAuth(`${MAIN_URL}/orders/${id}`);
+        },
+
+        createNewOrder: (orderData) => {
+            return withAuth(`${MAIN_URL}/orders/new`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify(orderData),
+            });
+        },
+
+        updateOrderStatus: ({ id, status }) => {
+            return withAuth(`${MAIN_URL}/orders/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({
+                    status,
+                }),
+            });
+        },
+    },
 };

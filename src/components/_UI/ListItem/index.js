@@ -19,6 +19,7 @@ export const ListItem = ({
     name,
     unit,
     suppliers,
+    prices,
     _id,
     chosenSupplierId,
 }) => {
@@ -29,8 +30,8 @@ export const ListItem = ({
         const supplier = suppliers.find(({ _id: supplierId }) => supplierId === chosenSupplierId);
 
         setSupplierData(supplier);
-        setItemPrice(supplier.itemsList.find(({ _id: itemId }) => itemId === _id)?.price);
-    }, [chosenSupplierId]);
+        setItemPrice(prices[chosenSupplierId]);
+    }, [chosenSupplierId, _id, suppliers]);
 
     return (
         <Transition

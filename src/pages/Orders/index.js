@@ -70,7 +70,7 @@ const OrdersComponent = ({
 
                     {/* Orders */}
                     <div className={Styles.ordersSection}>
-                        {orders.map((item, index) => (
+                        {orders.data.map((item, index) => (
                             <OrderItem {...item} key={index} index={index} />
                         ))}
                     </div>

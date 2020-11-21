@@ -33,7 +33,7 @@ const LocationsSelectComponent = ({
         if (!clientSelectedLocation && locations.length) {
             setClientSelectedLocation(locations[0]._id);
         }
-    }, [locations]);
+    }, [locations, clientSelectedLocation, setClientSelectedLocation]);
 
     return (
         <section className={[Styles.container, className].filter(Boolean).join(' ')}>

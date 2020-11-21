@@ -17,6 +17,11 @@ const initialState = Map({
     locations: [],
     analyticsData: [],
     previewData: [],
+    orders: {
+        suppliers: [],
+        locations: [],
+        data: [],
+    },
 
     // displaying stuff
     chosenSupplierData: {},

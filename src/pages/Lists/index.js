@@ -32,7 +32,7 @@ const ListsComponent = ({
 }) => {
     useEffect(() => {
         getClientLocationsAsync();
-    }, []);
+    }, [getClientLocationsAsync]);
 
     const selectedLocation = clientSelectedLocation
         ? locations.filter(({ _id }) => clientSelectedLocation === _id)[0]
@@ -56,16 +56,14 @@ const ListsComponent = ({
                 >
                     {locations.length && selectedLocation.itemsList.length ? (
                         <div className={Styles.list}>
-                            {selectedLocation.itemsList.map(
-                                ({ itemId, chosenSupplierId }, index) => (
-                                    <ListItem
-                                        key={index}
-                                        index={index}
-                                        chosenSupplierId={chosenSupplierId}
-                                        {...itemId}
-                                    />
-                                ),
-                            )}
+                            {selectedLocation.itemsList.map(({ item, chosenSupplierId }, index) => (
+                                <ListItem
+                                    key={index}
+                                    index={index}
+                                    chosenSupplierId={chosenSupplierId}
+                                    {...item}
+                                />
+                            ))}
                         </div>
                     ) : (
                         <div className={Styles.noLists}>

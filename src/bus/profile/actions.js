@@ -138,4 +138,9 @@ export const profileActions = {
         type: types.ADD_NEW_ITEM_TO_LOCATION_ASYNC,
         payload: { locationId, itemId, supplierId },
     }),
+
+    createNewOrderAsync: ({ items, sum, location, deliveryDate }) => ({
+        type: types.CREATE_NEW_ORDER_ASYNC,
+        payload: { items, sum, location, deliveryDate },
+    }),
 };

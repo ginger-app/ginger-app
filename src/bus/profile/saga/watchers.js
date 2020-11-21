@@ -23,6 +23,7 @@ import {
     createNewLocationWorker,
     setChosenSupplierDataWorker,
     addNewItemToLocationWorker,
+    createNewOrderWorker,
 } from './workers';
 
 function* watchAddItemToCart() {
@@ -73,6 +74,9 @@ function* watchSetChosenSupplierData() {
 function* watchAddNewItemToLocation() {
     yield takeEvery(types.ADD_NEW_ITEM_TO_LOCATION_ASYNC, addNewItemToLocationWorker);
 }
+function* watchCreateNewOrder() {
+    yield takeEvery(types.CREATE_NEW_ORDER_ASYNC, createNewOrderWorker);
+}
 
 export function* watchProfile() {
     yield all([
@@ -92,5 +96,6 @@ export function* watchProfile() {
         call(watchCreateNewLocation),
         call(watchSetChosenSupplierData),
         call(watchAddNewItemToLocation),
+        call(watchCreateNewOrder),
     ]);
 }
