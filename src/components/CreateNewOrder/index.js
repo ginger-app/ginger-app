@@ -9,30 +9,38 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { GradientBorder } from 'components';
-import button from 'theme/assets/svg/plus-button.svg';
 import { book } from 'core/routes';
+import isEmpty from 'lodash/isEmpty';
+import button from 'theme/assets/svg/plus-button.svg';
 
 const mapStateToProps = (state) => ({
-    ...state,
+    isAuthenticated: state.auth.get('isAuthenticated'),
+    unfinishedOrder: state.profile.get('unfinishedOrder'),
+    role: state.profile.get('role'),
 });
 
 const mapDispatchToProps = {};
 
-const CreateNewOrderComponent = ({ className, unfinishedOrder = true }) => {
+const CreateNewOrderComponent = ({ className, unfinishedOrder, isAuthenticated, role }) => {
+    const showUnfinishedOrderButton =
+        isAuthenticated && role === 'client' && !isEmpty(unfinishedOrder);
+
     return (
         <section
             className={`${Styles.container} ${
-                unfinishedOrder && Styles.unfinishedOrder
+                showUnfinishedOrderButton && Styles.unfinishedOrder
             } ${className}`}
         >
             <NavLink
-                className={`${Styles.newOrderButton} ${unfinishedOrder && Styles.minified}`}
+                className={`${Styles.newOrderButton} ${
+                    showUnfinishedOrderButton && Styles.minified
+                }`}
                 to={book.newOrder}
             >
                 <p className={Styles.newOrderText}>Create new order</p>
                 <img src={button} alt='' />
             </NavLink>
-            {unfinishedOrder && (
+            {showUnfinishedOrderButton && (
                 <GradientBorder>
                     <NavLink
                         className={Styles.backToOrderButton}
