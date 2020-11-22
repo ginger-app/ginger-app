@@ -31,7 +31,7 @@ export const ListItem = ({
 
         setSupplierData(supplier);
         setItemPrice(prices[chosenSupplierId]);
-    }, [chosenSupplierId, _id, suppliers]);
+    }, [chosenSupplierId, _id, suppliers, prices]);
 
     return (
         <Transition

@@ -11,20 +11,25 @@ export const Carousel = ({ className, carouselClassName, items, children, style 
     const containerRef = useRef(null);
 
     useEffect(() => {
+        /**
+           The ref value 'containerRef.current' will likely have changed by the time this      effect cleanup function runs. If this ref points to a node rendered by React, copy 'containerRef.current' to a variable inside the effect, and use that variable in the cleanup function.  react-hooks/exhaustive-deps
+         */
+        const container = containerRef.current;
+
         // declaring handler to removeListener on unmount
         const handler = (e) => {
-            if (contentRef.current.scrollWidth - contentRef.current.clientWidth > 0) {
+            if (container.scrollWidth - container.clientWidth > 0) {
                 e.preventDefault();
             }
         };
 
         // setting listener
-        containerRef.current.addEventListener('wheel', handler);
+        container.addEventListener('wheel', handler);
 
         // removing listener
         return () => {
-            if (containerRef.current) {
-                containerRef.current.removeEventListener('wheel', handler);
+            if (container) {
+                container.removeEventListener('wheel', handler);
             }
         };
     }, []);

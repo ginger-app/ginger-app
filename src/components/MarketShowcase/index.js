@@ -1,15 +1,12 @@
 // Core
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 // Styles
 import Styles from './styles.module.scss';
 
-// Components
-import { MarketItem, OrderItem } from 'components';
-
 // Instruments
-import { addToggleCartIconListener, removeToggleCartIconListener } from 'utils/toggleCartIcon';
+import { MarketItem, OrderItem } from 'components';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
@@ -19,26 +16,9 @@ const mapDispatchToProps = {
     hideCartIcon: uiActions.hideCartIcon,
 };
 
-const MarketShowcaseComponent = ({
-    className,
-    items,
-    orderType,
-    marketType,
-    inProp,
-    showCartIcon,
-    hideCartIcon,
-    infoBlock,
-}) => {
-    const ref = useRef(null);
-
-    useEffect(() => {
-        addToggleCartIconListener(ref, showCartIcon, hideCartIcon);
-
-        return removeToggleCartIconListener;
-    }, [ref, inProp, showCartIcon, hideCartIcon]);
-
+const MarketShowcaseComponent = ({ className, items, orderType, marketType, infoBlock }) => {
     return (
-        <section className={`${Styles.container} ${className}`} ref={ref}>
+        <section className={`${Styles.container} ${className}`}>
             <div className={Styles.infoBlock}>{infoBlock || 'info'}</div>
             {marketType &&
                 items.map(({ image, name, _id, unit, minPrice }, index) => (
