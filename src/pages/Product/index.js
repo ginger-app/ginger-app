@@ -9,6 +9,7 @@ import Styles from './styles.module.scss';
 // Instruments
 import { Button, Icon } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
+import { history } from 'bus/init/middleware/core';
 import isEmpty from 'lodash/isEmpty';
 
 // Actions
@@ -64,7 +65,11 @@ const ProductComponent = ({ id, productData, getProductDataAsync, clearProductDa
                             {minPrice.toFixed(2)}-{maxPrice.toFixed(2)}
                         </p>
 
-                        <Button content={<Icon name='leftArrow' />} className={Styles.backButton} />
+                        <Button
+                            content={<Icon name='leftArrow' />}
+                            className={Styles.backButton}
+                            onClick={history.goBack}
+                        />
                         <Button
                             text='Додати до локації'
                             className={Styles.addToLocationButton}
