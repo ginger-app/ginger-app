@@ -24,6 +24,6 @@ $paletteWarningYellow: #dbbc51;
 $paletteErrorRed: #c63838;
 $paletteSuccessGreen: #38c646;
 
-$paletteBgGradient: linear-gradient(90deg, #f6f6f6 0%, #f6f6f6 100%);
-$paletteWhiteGradient: linear-gradient(90deg, #fff 0%, #fff 100%);
-$paletteDefaultGradient: linear-gradient(90deg, #4284db 0%, #29eac4 100%);
+$paletteBgGradient: linear-gradient(90deg, $paletteBg 0%, $paletteBg 100%);
+$paletteWhiteGradient: linear-gradient(90deg, $paletteWhite 0%, $paletteWhite 100%);
+$paletteDefaultGradient: linear-gradient(90deg, $paletteBlue_1 0%, $paletteBlue_2 100%);

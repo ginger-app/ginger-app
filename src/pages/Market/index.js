@@ -8,7 +8,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Components
-import { Icon, CategoriesCatalogue, ItemsCatalogue, Navigation } from 'components';
+import { Icon, CategoriesCatalogue, ItemsCatalogue, Navigation, Dummy } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -64,6 +64,7 @@ const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) =>
                                 extended
                             />
                         ))}
+                    <Dummy />
 
                     <Navigation
                         leftButton={

@@ -6,11 +6,10 @@ import { Transition } from 'react-transition-group';
 // Styles
 import Styles from './styles.module.scss';
 
-// Components
-import { ProductDetails, Navigation, Suppliers } from 'components';
-
 // Instruments
+import { Button, Icon } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
+import isEmpty from 'lodash/isEmpty';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
@@ -26,47 +25,55 @@ const mapDispatchToProps = {
     showMarketFiltersOverlay: uiActions.showMarketFiltersOverlay,
 };
 
-const ProductComponent = ({
-    id,
-    productData,
-    getProductDataAsync,
-    clearProductData,
-    showMarketFiltersOverlay,
-}) => {
+const ProductComponent = ({ id, productData, getProductDataAsync, clearProductData }) => {
     useEffect(() => {
         getProductDataAsync(id);
 
         return clearProductData;
     }, [id, getProductDataAsync, clearProductData]);
 
+    const { image, name, unit, maxPrice, minPrice } = productData;
+
     return (
-        <Transition
-            in
-            appear
-            mountOnEnter
-            unmountOnExit
-            timeout={opacityTransitionConfig().timeout}
-        >
-            {(state) => (
-                <section
-                    className={Styles.container}
-                    style={{
-                        ...opacityTransitionConfig().defaultStyles,
-                        ...opacityTransitionConfig().transitionStyles[state],
-                    }}
-                >
-                    <ProductDetails productData={productData} />
-                    <Suppliers productData={productData} productId={id} />
-                    <Navigation
-                        search
-                        rightButtonData={{
-                            onClick: showMarketFiltersOverlay,
-                            icon: 'filters',
+        <section className={Styles.container}>
+            <Transition
+                in={!isEmpty(productData)}
+                appear
+                mountOnEnter
+                unmountOnExit
+                timeout={opacityTransitionConfig().timeout}
+            >
+                {(state) => (
+                    <div
+                        className={Styles.card}
+                        style={{
+                            ...opacityTransitionConfig().defaultStyles,
+                            ...opacityTransitionConfig().transitionStyles[state],
                         }}
-                    />
-                </section>
-            )}
-        </Transition>
+                    >
+                        <img src={image} alt='' className={Styles.itemImage} />
+
+                        <p className={Styles.subtitle}>Найменування</p>
+                        <p className={Styles.itemName}>{name}</p>
+
+                        <p className={Styles.subtitle}>Фасовка</p>
+                        <p className={Styles.unit}>{unit}</p>
+
+                        <p className={Styles.subtitle}>Ціна, грн</p>
+                        <p className={Styles.price}>
+                            {minPrice.toFixed(2)}-{maxPrice.toFixed(2)}
+                        </p>
+
+                        <Button content={<Icon name='leftArrow' />} className={Styles.backButton} />
+                        <Button
+                            text='Додати до локації'
+                            className={Styles.addToLocationButton}
+                            filled
+                        />
+                    </div>
+                )}
+            </Transition>
+        </section>
     );
 };
 

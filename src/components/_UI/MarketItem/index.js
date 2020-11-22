@@ -8,7 +8,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Button } from 'components';
+import { Button, Icon } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
@@ -54,18 +54,17 @@ const MarketItemComponent = ({ className, itemIndex, style, to, name, price, ima
                     {/* Default price (no discount) */}
                     <p className={Styles.unit}>1 {unit}</p>
                     <p className={Styles.price}>
-                        від <span>{price}₴</span>
+                        від <span>{price.toFixed(2)} ₴</span>
                     </p>
 
-                    <p className={Styles.sellersAmount}>3 постачальника</p>
                     <Button
                         className={Styles.button}
-                        contentClassName={Styles.buttonContent}
-                        text='Обрати'
-                        onClick={() => null}
-                        fontWeight='bold'
-                        gradientText
-                        whiteBackground
+                        content={<Icon name='plus' color='white' />}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            console.log('Opening choose location shit');
+                        }}
+                        filled
                     />
                 </NavLink>
             )}

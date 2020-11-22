@@ -11,22 +11,21 @@ export const Carousel = ({ className, carouselClassName, items, children, style 
     const containerRef = useRef(null);
 
     useEffect(() => {
-        const content = contentRef;
-        const container = containerRef;
-
         // declaring handler to removeListener on unmount
         const handler = (e) => {
-            if (content.current.scrollWidth - content.current.clientWidth > 0) {
+            if (contentRef.current.scrollWidth - contentRef.current.clientWidth > 0) {
                 e.preventDefault();
             }
         };
 
         // setting listener
-        container.current.addEventListener('wheel', handler);
+        containerRef.current.addEventListener('wheel', handler);
 
         // removing listener
         return () => {
-            container.current.removeEventListener('wheel', handler);
+            if (containerRef.current) {
+                containerRef.current.removeEventListener('wheel', handler);
+            }
         };
     }, []);
 
@@ -43,7 +42,7 @@ export const Carousel = ({ className, carouselClassName, items, children, style 
     };
 
     return (
-        <section className={`${Styles.container} ${className}`} style={style}>
+        <section className={[Styles.container, className].filter(Boolean).join(' ')} style={style}>
             <div
                 className={`${Styles.carousele} ${carouselClassName}`}
                 onWheel={_handleScroll}

@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -56,7 +56,7 @@ const CreateNewOrderComponent = ({ className, unfinishedOrder, isAuthenticated, 
 };
 
 CreateNewOrderComponent.propTypes = {
-    unfinishedOrder: PropTypes.bool.isRequired,
+    // unfinishedOrder: PropTypes.bool.isRequired,
 };
 
 export const CreateNewOrder = connect(mapStateToProps, mapDispatchToProps)(CreateNewOrderComponent);

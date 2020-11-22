@@ -37,7 +37,11 @@ const LocationsSelectComponent = ({
 
     return (
         <section className={[Styles.container, className].filter(Boolean).join(' ')}>
-            <div className={[Styles.locations, expanded && Styles.shit].filter(Boolean).join(' ')}>
+            <div
+                className={[Styles.locations, locations.length > 1 && expanded && Styles.shit]
+                    .filter(Boolean)
+                    .join(' ')}
+            >
                 {locations
                     .sort(({ _id }) => (sortingOption === _id ? -1 : 1))
                     .map(({ locationName, _id }, index) => (
