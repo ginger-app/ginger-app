@@ -130,13 +130,23 @@ export const Api = {
             });
         },
 
-        addNewItemToLocation: ({ locationId, itemId, supplierId }) => {
+        addNewItemToLocation: ({ locationId, itemId }) => {
             return withAuth(`${MAIN_URL}/clients/locations/new-item`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
                 },
-                body: JSON.stringify({ locationId, itemId, supplierId }),
+                body: JSON.stringify({ locationId, itemId }),
+            });
+        },
+
+        removeItemFromLocation: ({ locationId, itemId }) => {
+            return withAuth(`${MAIN_URL}/clients/locations/remove-item`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({ locationId, itemId }),
             });
         },
     },

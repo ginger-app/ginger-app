@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -7,7 +7,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Button, Icon } from 'components';
+import { Button, Icon, AddItemToLocation } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { history } from 'bus/init/middleware/core';
 import isEmpty from 'lodash/isEmpty';
@@ -27,6 +27,8 @@ const mapDispatchToProps = {
 };
 
 const ProductComponent = ({ id, productData, getProductDataAsync, clearProductData }) => {
+    const [locationsPopup, setLocationsPopupState] = useState(false);
+
     useEffect(() => {
         getProductDataAsync(id);
 
@@ -73,7 +75,15 @@ const ProductComponent = ({ id, productData, getProductDataAsync, clearProductDa
                         <Button
                             text='Додати до локації'
                             className={Styles.addToLocationButton}
+                            onClick={() => setLocationsPopupState(true)}
                             filled
+                        />
+
+                        {/* Overlays */}
+                        <AddItemToLocation
+                            productId={id}
+                            inProp={locationsPopup}
+                            hidePopup={() => setLocationsPopupState(false)}
                         />
                     </div>
                 )}

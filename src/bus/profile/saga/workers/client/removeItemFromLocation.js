@@ -12,11 +12,11 @@ import { getLocationsData } from '../../selectors';
 import { Api } from 'api';
 import { profileActions } from 'bus/profile/actions';
 
-export function* addNewItemToLocationWorker({ payload }) {
+export function* removeItemFromLocation({ payload }) {
     try {
         const locationsData = yield select(getLocationsData);
 
-        const response = yield apply(Api, Api.client.addNewItemToLocation, [payload]);
+        const response = yield apply(Api, Api.client.removeItemFromLocation, [payload]);
         const { data, message } = yield apply(response, response.json);
 
         if (response.status >= 400) {
@@ -29,6 +29,6 @@ export function* addNewItemToLocationWorker({ payload }) {
 
         yield put(profileActions.fillClientLocations(updatedLocations));
     } catch (err) {
-        yield put(uiActions.emitError(err, '-> addNewItemToLocationWorker'));
+        yield put(uiActions.emitError(err, '-> removeItemFromLocation'));
     }
 }

@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
@@ -8,7 +8,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Button, Icon } from 'components';
+import { Button, Icon, AddItemToLocation } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
@@ -27,7 +27,9 @@ const mapDispatchToProps = {
     removeItemFromFavoritesAsync: profileActions.removeItemFromFavoritesAsync,
 };
 
-const MarketItemComponent = ({ className, itemIndex, style, to, name, price, image, unit }) => {
+const MarketItemComponent = ({ className, itemIndex, style, to, name, price, image, unit, id }) => {
+    const [locationsPopup, setLocationsPopupState] = useState(false);
+
     return (
         <Transition
             in
@@ -62,9 +64,19 @@ const MarketItemComponent = ({ className, itemIndex, style, to, name, price, ima
                         content={<Icon name='plus' color='white' />}
                         onClick={(e) => {
                             e.preventDefault();
-                            console.log('Opening choose location shit');
+                            setLocationsPopupState(true);
                         }}
                         filled
+                    />
+
+                    {/* Overlays */}
+                    <AddItemToLocation
+                        productId={id}
+                        inProp={locationsPopup}
+                        hidePopup={(e) => {
+                            e.preventDefault();
+                            setLocationsPopupState(false);
+                        }}
                     />
                 </NavLink>
             )}

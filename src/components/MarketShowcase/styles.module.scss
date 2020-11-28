@@ -24,7 +24,12 @@
 
         width: 100%;
 
-        background: $paletteBg;
+        background: linear-gradient(
+            138.78deg,
+            rgba(255, 250, 203, 0.7) -3.54%,
+            rgba(170, 236, 173, 0.7) 60.8%,
+            rgba(173, 213, 225, 0.7) 127.88%
+        );
 
         border-radius: 1rem;
     }

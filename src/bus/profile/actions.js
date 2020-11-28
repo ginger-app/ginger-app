@@ -52,11 +52,6 @@ export const profileActions = {
         payload: data,
     }),
 
-    setChosenSupplierData: (data) => ({
-        type: types.SET_CHOSEN_SUPPLIER_DATA,
-        payload: data,
-    }),
-
     fillMarketItemChosenLocations: (data) => ({
         type: types.FILL_MARKET_ITEM_CHOSEN_LOCATIONS,
         payload: data,
@@ -126,17 +121,14 @@ export const profileActions = {
         payload: data,
     }),
 
-    setChosenSupplierDataAsync: ({ supplierData, itemId }) => ({
-        type: types.SET_CHOSEN_SUPPLIER_DATA_ASYNC,
-        payload: {
-            supplierData,
-            itemId,
-        },
+    addNewItemToLocationAsync: ({ locationId, itemId }) => ({
+        type: types.ADD_NEW_ITEM_TO_LOCATION_ASYNC,
+        payload: { locationId, itemId },
     }),
 
-    addNewItemToLocationAsync: ({ locationId, itemId, supplierId }) => ({
-        type: types.ADD_NEW_ITEM_TO_LOCATION_ASYNC,
-        payload: { locationId, itemId, supplierId },
+    removeItemFromLocationAsync: ({ locationId, itemId }) => ({
+        type: types.REMOVE_ITEM_FROM_LOCATION_ASYNC,
+        payload: { locationId, itemId },
     }),
 
     createNewOrderAsync: ({ items, sum, location, deliveryDate }) => ({
