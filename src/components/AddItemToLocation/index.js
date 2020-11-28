@@ -62,7 +62,9 @@ const AddItemToLocationComponent = ({
                                 <p className={Styles.locationName}>{locationName}</p>
                                 <RadioButton
                                     className={Styles.radioButton}
-                                    selected={itemsList.includes(productId)}
+                                    selected={itemsList.some(
+                                        ({ _id: itemId }) => itemId === productId,
+                                    )}
                                     onSelect={() =>
                                         addNewItemToLocationAsync({
                                             locationId: _id,

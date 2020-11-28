@@ -11,7 +11,7 @@ export const CartItem = ({
     className,
     name,
     image,
-    price,
+    minPrice,
     quantity,
     unit,
     removeItem,
@@ -24,12 +24,8 @@ export const CartItem = ({
             <img className={Styles.image} src={image} alt='' />
             <p className={Styles.name}>{name}</p>
             <p className={Styles.unit}>
-                {price} грн/{unit}
+                від {minPrice} грн/{unit}
             </p>
-            <div className={Styles.price}>
-                <span className={Styles.sum}>{+price * quantity}</span>
-                <span>грн.</span>
-            </div>
             <div className={Styles.amountContainer}>
                 <div className={Styles.amountButton} onClick={decrementQty}>
                     <Icon name='minus' />
@@ -47,7 +43,6 @@ export const CartItem = ({
             <p className={Styles.amount}>
                 {quantity} {unit}
             </p>
-            <p className={Styles.price}>{price.toFixed(2)}</p>
             <Icon name='close' color='white' className={Styles.icon} onClick={removeItem} />
         </section>
     );

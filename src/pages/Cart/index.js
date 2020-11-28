@@ -21,14 +21,18 @@ const mapDispatchToProps = {
     createNewOrderAsync: profileActions.createNewOrderAsync,
 };
 
-const CartComponent = ({ className, locationId, locations, createNewOrderAsync }) => {
+const CartComponent = ({
+    className,
+    locationId,
+    locations,
+    // createNewOrderAsync
+}) => {
     const [showDateOverlay, setDateOverlayState] = useState(false);
     const [deliveryDate, setDeliveryDate] = useState(null);
 
     const [locationData, setLocationData] = useState({});
     const [orderData, setOrderData] = useState([]);
     const [itemQuantities, setItemQuantities] = useState({});
-    const [orderTotal, setOrderTotal] = useState(0);
 
     useEffect(() => {
         const filteredLocation = locations.find(({ _id }) => _id === locationId);
@@ -36,18 +40,13 @@ const CartComponent = ({ className, locationId, locations, createNewOrderAsync }
         if (filteredLocation) {
             const initialItemQuantities = {};
 
-            const initialOrderData = filteredLocation.itemsList.map(
-                ({ chosenSupplierId, item }) => {
-                    initialItemQuantities[item._id] = 0;
+            const initialOrderData = filteredLocation.itemsList.map((item) => {
+                initialItemQuantities[item._id] = 0;
 
-                    return {
-                        chosenSupplierId,
-                        ...item,
-                    };
-                },
-            );
+                return item;
+            });
 
-            setLocationData(locations.find(({ _id }) => _id === locationId));
+            setLocationData(filteredLocation);
             setOrderData(initialOrderData);
             setItemQuantities(initialItemQuantities);
         }
@@ -89,42 +88,32 @@ const CartComponent = ({ className, locationId, locations, createNewOrderAsync }
                     </div>
 
                     {/* Order details */}
-                    <GradientBorder className={Styles.orderSumContainer}>
-                        <div className={Styles.orderSum}>
-                            <span>Order total:</span>
-                            <span className={Styles.price}>{orderTotal} грн.</span>
-                        </div>
-                    </GradientBorder>
                     <div className={Styles.itemsList}>
-                        {orderData.map(
-                            ({ name, image, prices, chosenSupplierId, unit, _id }, index) => (
-                                <CartItem
-                                    key={index}
-                                    name={name}
-                                    image={image}
-                                    price={prices[chosenSupplierId]}
-                                    quantity={itemQuantities[_id]}
-                                    unit={unit}
-                                    incrementQty={() => {
+                        {orderData.map(({ name, image, minPrice, unit, _id }, index) => (
+                            <CartItem
+                                key={index}
+                                name={name}
+                                image={image}
+                                minPrice={minPrice}
+                                quantity={itemQuantities[_id]}
+                                unit={unit}
+                                incrementQty={() => {
+                                    setItemQuantities({
+                                        ...itemQuantities,
+                                        [_id]: itemQuantities[_id] + 1,
+                                    });
+                                }}
+                                decrementQty={() => {
+                                    if (itemQuantities[_id] > 0) {
                                         setItemQuantities({
                                             ...itemQuantities,
-                                            [_id]: itemQuantities[_id] + 1,
+                                            [_id]: itemQuantities[_id] - 1,
                                         });
-                                        setOrderTotal(orderTotal + +prices[chosenSupplierId]);
-                                    }}
-                                    decrementQty={() => {
-                                        if (itemQuantities[_id] > 0) {
-                                            setItemQuantities({
-                                                ...itemQuantities,
-                                                [_id]: itemQuantities[_id] - 1,
-                                            });
-                                            setOrderTotal(orderTotal - +prices[chosenSupplierId]);
-                                        }
-                                    }}
-                                    orderDetails
-                                />
-                            ),
-                        )}
+                                    }
+                                }}
+                                orderDetails
+                            />
+                        ))}
                         <Dummy className={Styles.dummy} />
                     </div>
 
@@ -133,29 +122,30 @@ const CartComponent = ({ className, locationId, locations, createNewOrderAsync }
                         centerButton={
                             <Button
                                 text={
-                                    deliveryDate && orderTotal
-                                        ? 'To payment'
+                                    deliveryDate
+                                        ? 'Показати варіанти'
                                         : deliveryDate
                                         ? 'Choose items'
                                         : 'Choose delivery date'
                                 }
                                 onClick={() =>
-                                    deliveryDate && orderTotal
-                                        ? createNewOrderAsync({
-                                              items: orderData
-                                                  .map(
-                                                      (item) =>
-                                                          itemQuantities[item._id] && {
-                                                              ...item,
-                                                              amount: itemQuantities[item._id],
-                                                          },
-                                                  )
-                                                  .filter(Boolean),
-                                              sum: orderTotal,
-                                              location: locationId,
-                                              deliveryDate: deliveryDate.utc().format(),
-                                          })
-                                        : deliveryDate
+                                    deliveryDate
+                                        ? null
+                                        : // ? createNewOrderAsync({
+                                        //       items: orderData
+                                        //           .map(
+                                        //               (item) =>
+                                        //                   itemQuantities[item._id] && {
+                                        //                       ...item,
+                                        //                       amount: itemQuantities[item._id],
+                                        //                   },
+                                        //           )
+                                        //           .filter(Boolean),
+                                        //       sum: orderTotal,
+                                        //       location: locationId,
+                                        //       deliveryDate: deliveryDate.utc().format(),
+                                        //   })
+                                        deliveryDate
                                         ? null
                                         : setDateOverlayState(true)
                                 }
