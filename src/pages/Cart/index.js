@@ -13,6 +13,9 @@ import { Navigation, Button, GradientBorder, CartItem, ChooseDateOverlay, Dummy 
 // Actions
 import { profileActions } from 'bus/profile/actions';
 
+// Test
+import { Api } from 'api';
+
 const mapStateToProps = (state) => ({
     locations: state.profile.get('locations'),
 });
@@ -51,6 +54,28 @@ const CartComponent = ({
             setItemQuantities(initialItemQuantities);
         }
     }, [locationId, locations]);
+
+    const cartIsEmpty = !orderData.some((item) => itemQuantities[item._id]);
+
+    const testGetOrdersOffers = async () => {
+        const order = {
+            items: orderData.filter(
+                (item) =>
+                    itemQuantities[item._id] && {
+                        ...item,
+                        amount: itemQuantities[item._id],
+                    },
+            ),
+            location: locationId,
+            deliveryDate: deliveryDate.utc().format(),
+        };
+
+        const response = await Api.orders.getOrdersOffers(order);
+        const result = await response.json();
+
+        // console.log(order);
+        console.log(result);
+    };
 
     return (
         <Transition
@@ -122,30 +147,16 @@ const CartComponent = ({
                         centerButton={
                             <Button
                                 text={
-                                    deliveryDate
+                                    deliveryDate && !cartIsEmpty
                                         ? 'Показати варіанти'
-                                        : deliveryDate
+                                        : cartIsEmpty
                                         ? 'Choose items'
                                         : 'Choose delivery date'
                                 }
                                 onClick={() =>
-                                    deliveryDate
-                                        ? null
-                                        : // ? createNewOrderAsync({
-                                        //       items: orderData
-                                        //           .map(
-                                        //               (item) =>
-                                        //                   itemQuantities[item._id] && {
-                                        //                       ...item,
-                                        //                       amount: itemQuantities[item._id],
-                                        //                   },
-                                        //           )
-                                        //           .filter(Boolean),
-                                        //       sum: orderTotal,
-                                        //       location: locationId,
-                                        //       deliveryDate: deliveryDate.utc().format(),
-                                        //   })
-                                        deliveryDate
+                                    deliveryDate && !cartIsEmpty
+                                        ? testGetOrdersOffers()
+                                        : cartIsEmpty
                                         ? null
                                         : setDateOverlayState(true)
                                 }

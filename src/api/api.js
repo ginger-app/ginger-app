@@ -188,6 +188,16 @@ export const Api = {
             return withAuth(`${MAIN_URL}/orders/${id}`);
         },
 
+        getOrdersOffers: ({ deliveryDate, location, items }) => {
+            return withAuth(`${MAIN_URL}/orders/get-offers`, {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({ deliveryDate, location, items }),
+            });
+        },
+
         createNewOrder: (orderData) => {
             return withAuth(`${MAIN_URL}/orders/new`, {
                 method: 'POST',

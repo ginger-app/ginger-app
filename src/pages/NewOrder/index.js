@@ -54,20 +54,18 @@ const NewOrderComponent = ({
 
                     {/* Locations list */}
                     <div className={Styles.locations}>
-                        {locations
-                            .reverse()
-                            .map(
-                                (item, index) =>
-                                    typeof item === 'object' && (
-                                        <LocationCard
-                                            index={index}
-                                            key={index}
-                                            onClick={showNewLocationOverlay}
-                                            newOrder
-                                            {...item}
-                                        />
-                                    ),
-                            )}
+                        {locations.map(
+                            (item, index) =>
+                                typeof item === 'object' && (
+                                    <LocationCard
+                                        index={index}
+                                        key={index}
+                                        onClick={showNewLocationOverlay}
+                                        newOrder
+                                        {...item}
+                                    />
+                                ),
+                        )}
 
                         {/* Dummy div to create spacing after last elem */}
                         <Dummy className={Styles.dummy} />

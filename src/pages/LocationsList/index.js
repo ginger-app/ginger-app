@@ -54,19 +54,17 @@ const LocationsListComponent = ({
 
                     {/* Locations list */}
                     <div className={Styles.locations}>
-                        {locations
-                            .reverse()
-                            .map(
-                                (item, index) =>
-                                    typeof item === 'object' && (
-                                        <LocationCard
-                                            index={index}
-                                            key={index}
-                                            onClick={showNewLocationOverlay}
-                                            {...item}
-                                        />
-                                    ),
-                            )}
+                        {locations.map(
+                            (item, index) =>
+                                typeof item === 'object' && (
+                                    <LocationCard
+                                        index={index}
+                                        key={index}
+                                        onClick={showNewLocationOverlay}
+                                        {...item}
+                                    />
+                                ),
+                        )}
 
                         {/* Dummy div to create spacing after last elem */}
                         <Dummy className={Styles.dummy} />
