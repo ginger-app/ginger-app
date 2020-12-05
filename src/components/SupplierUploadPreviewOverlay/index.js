@@ -27,7 +27,7 @@ const mapDispatchToProps = {
 
 const SupplierUploadPreviewOverlayComponent = ({
     supplierUploadPreviewOverlay,
-    // hideSupplierUploadPreviewOverlay,
+    hideSupplierUploadPreviewOverlay,
     updateSupplierItemsAsync,
     previewData,
 }) => {
@@ -56,6 +56,7 @@ const SupplierUploadPreviewOverlayComponent = ({
                             <Dummy />
                         </div>
                         <Navigation
+                            backButtonAction={hideSupplierUploadPreviewOverlay}
                             rightButton={
                                 <Button
                                     className={Styles.apply}

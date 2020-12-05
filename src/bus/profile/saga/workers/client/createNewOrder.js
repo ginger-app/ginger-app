@@ -15,14 +15,12 @@ export function* createNewOrderWorker({ payload: { deliveryDate, items, location
         const response = yield apply(Api, Api.orders.createNewOrder, [
             { deliveryDate, items, location, sum },
         ]);
-        const { data, message } = yield apply(response, response.json);
+        const { message } = yield apply(response, response.json);
 
         if (response.status >= 400) {
             yield apply(ErrorHandler, ErrorHandler, [response]);
             throw new Error(message);
         }
-
-        console.log('Success data -> ', data);
     } catch (err) {
         yield put(uiActions.emitError(err, '-> createNewOrderWorker'));
     }

@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import Styles from './styles.module.scss';
 
 // Instruments
-import mockApples from 'theme/assets/images/apples-mock.png';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
@@ -25,26 +24,28 @@ const SupplierListItemComponent = ({
     className,
     showNewListItemOverlay,
     setNewListItemOverlayData,
-    category = 'Фрукти',
-    unit = 'Кг',
-    price = '43.99 грн.',
-    stock = 100,
-    id = 'testId-123-123-123-123',
-    name = 'Яблука чемпіон фреш уп. 1кг нетто +- 50гр.',
-    img = mockApples,
+    category,
+    unit,
+    price,
+    stock,
+    id,
+    name,
+    image,
 }) => {
     return (
         <section
             className={[Styles.container, className].filter(Boolean).join(' ')}
             onClick={() => {
-                setNewListItemOverlayData({ category, unit, price, stock, id, name, img });
+                setNewListItemOverlayData({ category, unit, price, stock, id, name, img: image });
                 showNewListItemOverlay();
             }}
         >
-            <img className={Styles.image} src={img} alt='' />
+            <img className={Styles.image} src={image} alt='' />
             <p className={Styles.itemName}>{name}</p>
-            <p className={Styles.infoValue}>{price}</p>
-            <p className={Styles.infoValue}>{stock}</p>
+            <p className={Styles.infoValue}>
+                {stock} {unit}
+            </p>
+            <p className={Styles.infoValue}>{price.toFixed(2)}</p>
         </section>
     );
 };

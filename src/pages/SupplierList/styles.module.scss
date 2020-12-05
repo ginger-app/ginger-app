@@ -4,7 +4,7 @@
     @include fullHeight;
 
     display: grid;
-    grid-template-rows: 3rem max-content 1fr 3rem;
+    grid-template-rows: 3rem repeat(2, max-content) 1fr 3rem;
     grid-template-columns: 1fr 3rem 1fr;
     gap: 0.5rem;
 
@@ -71,12 +71,32 @@
         }
     }
 
+    & .listHeader {
+        place-self: center;
+
+        grid-column: 1 / 4;
+        grid-row: 3;
+        display: grid;
+        grid-template-columns: 2.75rem 1fr 4rem 3rem;
+        place-items: center;
+        gap: 0.5rem;
+
+        width: 100%;
+        padding: 0 0.5rem;
+
+        font-size: 0.8rem;
+
+        & .headerName {
+            place-self: start;
+        }
+    }
+
     & .list {
         place-self: center;
 
-        display: grid;
         grid-column: 1 / 4;
-        grid-row: 3;
+        grid-row: 4;
+        display: grid;
         gap: 0.5rem;
 
         height: 100%;
@@ -106,7 +126,7 @@
 
     & .tags {
         grid-column: 1 / 4;
-        grid-row: 4;
+        grid-row: 5;
 
         padding: 0;
 

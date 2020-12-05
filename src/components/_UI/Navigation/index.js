@@ -30,6 +30,7 @@ const NavigationComponent = ({
     setBackButtonPath,
     showSearchOverlay,
     rightButtonData,
+    backButtonAction,
     title,
     leftButton,
     rightButton,
@@ -50,7 +51,10 @@ const NavigationComponent = ({
             {leftButton
                 ? !searchOpened && leftButton
                 : !searchOpened && (
-                      <div className={Styles.backButton} onClick={history.goBack}>
+                      <div
+                          className={Styles.backButton}
+                          onClick={backButtonAction || history.goBack}
+                      >
                           <Icon name='leftArrow' />
                       </div>
                   )}
@@ -89,6 +93,7 @@ const NavigationComponent = ({
 NavigationComponent.propTypes = {
     className: PropTypes.string,
     title: PropTypes.string,
+    backButtonAction: PropTypes.func,
     leftButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
     rightButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
     centerButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),

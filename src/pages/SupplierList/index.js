@@ -33,7 +33,7 @@ const SupplierListComponent = ({
     showMarketFiltersOverlay,
     showNewListItemOverlay,
     showSupplierUploadOverlay,
-    itemsList,
+    itemsList = [],
 }) => {
     const lastUpdate = DateTime.local().minus({ days: 3 });
 
@@ -88,10 +88,22 @@ const SupplierListComponent = ({
                     )}
 
                     {/* List items */}
+                    <div className={Styles.listHeader}>
+                        <p>Image</p>
+                        <p className={Styles.headerName}>Name</p>
+                        <p>Stock</p>
+                        <p>Price</p>
+                    </div>
                     <div className={Styles.list}>
-                        {itemsList.reverse().map((item, index) => (
-                            <SupplierListItem key={index} {...item} />
-                        ))}
+                        {itemsList.reverse().map(({ _id, stock, price }, index) => {
+                            const data = {
+                                ..._id,
+                                price,
+                                stock,
+                            };
+
+                            return <SupplierListItem key={index} {...data} />;
+                        })}
                         <Dummy className={Styles.dummy} />
                     </div>
 
