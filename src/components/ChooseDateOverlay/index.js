@@ -9,45 +9,26 @@ import Styles from './styles.module.scss';
 // Instruments
 import { topToBottomSlideConfig } from 'utils/transitionConfig';
 import { Icon } from 'components';
-import { months } from 'utils/months';
-import moment from 'moment';
+import { DateTime } from 'luxon';
 
 export const ChooseDateOverlay = ({ className, setDate, inProp, close }) => {
-    // If user opens tab after 11:59AM of the last day in the month,
-    // he will be suggested to order for the next month
-    // If before 11:59AM - current day / month is suggested
-    const [month, setMonth] = useState(
-        moment().isAfter(moment().endOf('month').subtract(12, 'hours'))
-            ? moment().get('month')
-            : moment().add(1, 'month').get('month') - 1,
+    const [date, setLocalDate] = useState(
+        DateTime.local().hour < 12
+            ? DateTime.local().toObject()
+            : DateTime.local().plus({ day: 1 }).toObject(),
     );
 
-    // If user opens tab after 11:59AM, he will be suggested to order for the next day
-    // If before 11:59AM - current day is suggested
-    const [day, setDay] = useState(
-        moment().isAfter(moment().endOf('day').subtract(12, 'hours'))
-            ? moment().get('date')
-            : moment().add(1, 'day').get('date'),
-    );
+    const nextMonth = () => setLocalDate(DateTime.fromObject(date).plus({ month: 1 }).toObject());
+    const prevMonth = () =>
+        DateTime.local() > DateTime.fromObject(date).minus({ month: 1 })
+            ? setLocalDate(DateTime.local().toObject())
+            : setLocalDate(DateTime.fromObject(date).minus({ month: 1 }).toObject());
 
-    const handleMonthChange = () => {
-        setDay(1);
-
-        return setMonth(month === months.length - 1 ? 0 : month + 1);
-    };
-
-    const handleDateSelection = () => {
-        const now = moment();
-        const currentYear = moment().get('year');
-
-        const targetDate = moment(new Date(`${currentYear}-${month + 1}-${day}`)).add(12, 'hours');
-
-        if (targetDate.isBefore(now)) {
-            return setDate(moment(new Date(`${currentYear + 1}-${month + 1}-${day}`)));
-        }
-
-        return setDate(targetDate);
-    };
+    const nextDay = () => setLocalDate(DateTime.fromObject(date).plus({ day: 1 }).toObject());
+    const prevDay = () =>
+        DateTime.local() > DateTime.fromObject(date).minus({ day: 1 })
+            ? setLocalDate(DateTime.local().toObject())
+            : setLocalDate(DateTime.fromObject(date).minus({ day: 1 }).toObject());
 
     return (
         <Transition
@@ -67,29 +48,23 @@ export const ChooseDateOverlay = ({ className, setDate, inProp, close }) => {
                 >
                     <div className={Styles.datePicker}>
                         {/* Month */}
-                        <div className={Styles.arrow} onClick={handleMonthChange}>
+                        <div className={Styles.arrow} onClick={nextMonth}>
                             <Icon name='slideDownArrow' color='white' />
                         </div>
-                        <p>{months[month].name}</p>
+                        <p>{DateTime.fromObject({ month: date.month }).monthShort}</p>
                         <div
                             className={[Styles.arrow, Styles.rotated].join(' ')}
-                            onClick={() => setMonth(month === 0 ? 11 : month - 1)}
+                            onClick={prevMonth}
                         >
                             <Icon name='slideDownArrow' color='white' />
                         </div>
 
                         {/* Day */}
-                        <div
-                            className={Styles.arrow}
-                            onClick={() => setDay(day === months[month].days ? 1 : day + 1)}
-                        >
+                        <div className={Styles.arrow} onClick={nextDay}>
                             <Icon name='slideDownArrow' color='white' className={Styles.rotated} />
                         </div>
-                        <p>{day}</p>
-                        <div
-                            className={[Styles.arrow, Styles.rotated].join(' ')}
-                            onClick={() => setDay(day === 1 ? months[month].days : day - 1)}
-                        >
+                        <p>{date.day}</p>
+                        <div className={[Styles.arrow, Styles.rotated].join(' ')} onClick={prevDay}>
                             <Icon name='slideDownArrow' color='white' className={Styles.rotated} />
                         </div>
                     </div>
@@ -98,7 +73,7 @@ export const ChooseDateOverlay = ({ className, setDate, inProp, close }) => {
                     <div
                         className={Styles.button}
                         onClick={() => {
-                            handleDateSelection();
+                            setDate(DateTime.fromObject(date).toLocaleString(DateTime.DATE_MED));
                             close();
                         }}
                     >

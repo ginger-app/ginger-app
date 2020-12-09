@@ -104,12 +104,7 @@ const CartComponent = ({
                         </div>
                     </GradientBorder>
                     <div className={Styles.deliveryDate} onClick={() => setDateOverlayState(true)}>
-                        {deliveryDate
-                            ? deliveryDate
-                                  .format(`dddd, DD MMMM YYYY`)
-                                  .split(',')
-                                  .map((item, index) => <p key={index}>{item}</p>)
-                            : 'Choose delivery date'}
+                        {deliveryDate || 'Choose delivery date'}
                     </div>
 
                     {/* Order details */}

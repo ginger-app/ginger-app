@@ -26,6 +26,10 @@ import {
 } from 'components';
 import { store } from './bus/init/store';
 import { history } from './bus/init/middleware/core';
+import { Settings } from 'luxon';
+
+// Setting luxon default localization
+Settings.defaultLocale = 'uk-ua';
 
 render(
     <Provider store={store}>
