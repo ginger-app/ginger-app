@@ -81,6 +81,10 @@ export const uiActions = {
         type: types.SHOW_SUPPLIER_UPLOAD_PREVIEW_OVERLAY,
     }),
 
+    showOrderCombinationsOverlay: () => ({
+        type: types.SHOW_ORDER_COMBINATIONS_OVERLAY,
+    }),
+
     // Hiding overlays actions
     hideLoginOverlay: () => ({
         type: types.HIDE_LOGIN_OVERLAY,
@@ -126,6 +130,10 @@ export const uiActions = {
         type: types.HIDE_SUPPLIER_UPLOAD_PREVIEW_OVERLAY,
     }),
 
+    hideOrderCombinationsOverlay: () => ({
+        type: types.HIDE_ORDER_COMBINATIONS_OVERLAY,
+    }),
+
     // Data
     setNewListItemOverlayData: (payload) => ({
         type: types.SET_NEW_LIST_ITEM_OVERLAY_DATA,
@@ -138,6 +146,11 @@ export const uiActions = {
 
     setClientListsSelectedLocation: (payload) => ({
         type: types.SET_CLIENT_LISTS_SELECTED_LOCATION,
+        payload,
+    }),
+
+    setOrderCombinations: (payload) => ({
+        type: types.SET_ORDER_COMBINATIONS,
         payload,
     }),
 

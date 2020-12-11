@@ -21,6 +21,7 @@ const initialState = Map({
     orderPlacedSuccesfully: false,
     orderPlacementError: false,
     supplierUploadPreviewOverlay: false,
+    orderCombinationsOverlay: false,
 
     // Data
     backButtonPath: null,
@@ -33,6 +34,7 @@ const initialState = Map({
         img: '',
         id: null,
     }),
+    orderCombinations: [],
     clientListsSelectedLocation: null,
     logs: '',
 });
@@ -115,6 +117,9 @@ export const uiReducer = (state = initialState, action) => {
         case types.SHOW_SUPPLIER_UPLOAD_PREVIEW_OVERLAY:
             return state.set('supplierUploadPreviewOverlay', true);
 
+        case types.SHOW_ORDER_COMBINATIONS_OVERLAY:
+            return state.set('orderCombinationsOverlay', true);
+
         // Hiding overlays
         case types.HIDE_SEARCH_OVERLAY:
             return state.set('searchOpened', false);
@@ -134,6 +139,9 @@ export const uiReducer = (state = initialState, action) => {
         case types.HIDE_SUPPLIER_UPLOAD_PREVIEW_OVERLAY:
             return state.set('supplierUploadPreviewOverlay', false);
 
+        case types.HIDE_ORDER_COMBINATIONS_OVERLAY:
+            return state.set('orderCombinationsOverlay', false);
+
         case types.HIDE_ALL_OVERLAYS:
             return state.merge({
                 codeConfirmationOverlay: false,
@@ -151,6 +159,9 @@ export const uiReducer = (state = initialState, action) => {
 
         case types.SET_CLIENT_LISTS_SELECTED_LOCATION:
             return state.set('clientListsSelectedLocation', action.payload);
+
+        case types.SET_ORDER_COMBINATIONS:
+            return state.set('orderCombinations', action.payload);
 
         // Errors
         case types.EMIT_ERROR:

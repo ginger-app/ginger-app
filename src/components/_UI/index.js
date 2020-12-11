@@ -4,6 +4,7 @@ export * from './RequestNewAddress';
 export * from './SupplierOrderItem';
 export * from './DoubleRowCarousel';
 export * from './SupplierListItem';
+export * from './OrderCombination';
 export * from './OrderStatusLabel';
 export * from './FavoritesButton';
 export * from './LocationsSelect';

@@ -20,7 +20,8 @@ export function* getOrdersCombinationsWorker({ payload }) {
             throw new Error(message);
         }
 
-        console.log(data);
+        yield put(uiActions.setOrderCombinations(data));
+        yield put(uiActions.showOrderCombinationsOverlay());
     } catch (err) {
         yield put(uiActions.emitError(err, '-> getOrdersCombinationsWorker'));
     }

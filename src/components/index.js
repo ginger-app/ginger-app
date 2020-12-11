@@ -10,6 +10,7 @@ export * from './NewLocationOverlay';
 export * from './OrderSuccessModal';
 export * from './DeliveryTimeModal';
 export * from './AddItemToLocation';
+export * from './OrderCombinations';
 export * from './ChooseDateOverlay';
 export * from './PromotionsGrid';
 export * from './CreateNewOrder';

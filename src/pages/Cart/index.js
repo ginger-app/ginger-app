@@ -8,7 +8,15 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import { Navigation, Button, GradientBorder, CartItem, ChooseDateOverlay, Dummy } from 'components';
+import {
+    Navigation,
+    Button,
+    GradientBorder,
+    CartItem,
+    ChooseDateOverlay,
+    OrderCombinations,
+    Dummy,
+} from 'components';
 
 // Actions
 import { profileActions } from 'bus/profile/actions';
@@ -168,6 +176,7 @@ const CartComponent = ({
                         close={() => setDateOverlayState(false)}
                         setDate={setDeliveryDate}
                     />
+                    <OrderCombinations />
                 </section>
             )}
         </Transition>

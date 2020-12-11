@@ -1,0 +1,78 @@
+@import 'resources';
+
+.container {
+    @include shadow;
+    cursor: pointer;
+
+    display: grid;
+    grid-template-rows: repeat(3, max-content);
+    grid-template-columns: 5rem max-content 1fr 3rem;
+    gap: 0.25rem;
+
+    width: 100%;
+    padding: 0.75rem 0.5rem;
+
+    background: $paletteWhite;
+
+    border-radius: 1rem;
+
+    &:hover {
+        @include shadow($paletteBlue_1);
+    }
+
+    & .image {
+        place-self: center;
+
+        grid-column: 1;
+        grid-row: 1 / 4;
+
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    & .devider {
+        grid-row: 1 / 4;
+        grid-column: 2;
+
+        width: 1px;
+        margin-right: 0.5rem;
+
+        background: $paletteGrey_3;
+    }
+
+    & .sumTitle {
+        place-self: start;
+
+        grid-row: 1;
+
+        font-size: 0.75rem;
+
+        color: $paletteGrey_2;
+    }
+
+    & .sum {
+        place-self: start;
+
+        grid-row: 2;
+
+        font-size: 1.75rem;
+        font-weight: 600;
+    }
+
+    & .suppliers {
+        place-self: start;
+
+        grid-row: 3;
+
+        font-size: 0.75rem;
+
+        color: $paletteBlue_1;
+    }
+
+    & .arrowButton {
+        place-self: center;
+
+        grid-column: 4;
+        grid-row: 1 / 4;
+    }
+}
