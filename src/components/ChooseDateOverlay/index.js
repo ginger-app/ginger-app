@@ -73,7 +73,10 @@ export const ChooseDateOverlay = ({ className, setDate, inProp, close }) => {
                     <div
                         className={Styles.button}
                         onClick={() => {
-                            setDate(DateTime.fromObject(date).toLocaleString(DateTime.DATE_MED));
+                            setDate({
+                                string: DateTime.fromObject(date).toLocaleString(DateTime.DATE_MED),
+                                utc: DateTime.fromObject(date).toUTC().toString(),
+                            });
                             close();
                         }}
                     >

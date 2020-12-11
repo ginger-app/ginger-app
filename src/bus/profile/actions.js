@@ -57,6 +57,11 @@ export const profileActions = {
         payload: data,
     }),
 
+    fillOrdersCombinations: (data) => ({
+        type: types.FILL_ORDERS_COMBINATIONS,
+        payload: data,
+    }),
+
     // Async
     addItemToCartAsync: (item) => ({
         type: types.ADD_ITEM_TO_CART_ASYNC,
@@ -134,5 +139,10 @@ export const profileActions = {
     createNewOrderAsync: ({ items, sum, location, deliveryDate }) => ({
         type: types.CREATE_NEW_ORDER_ASYNC,
         payload: { items, sum, location, deliveryDate },
+    }),
+
+    getOrdersCombinationsAsync: ({ items, location, deliveryDate }) => ({
+        type: types.GET_ORDERS_COMBINATIONS_ASYNC,
+        payload: { items, location, deliveryDate },
     }),
 };

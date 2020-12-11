@@ -25,6 +25,7 @@ const initialState = Map({
 
     // displaying stuff
     marketItemChosenLocations: [],
+    ordersCombinations: [],
 });
 
 export const profileReducer = (state = initialState, action) => {
@@ -47,18 +48,8 @@ export const profileReducer = (state = initialState, action) => {
         case types.FILL_MARKET_ITEM_CHOSEN_LOCATIONS:
             return state.set('marketItemChosenLocations', action.payload);
 
-        // Deprecated
-        case types.UPDATE_CART:
-            return state.set('cart', action.payload);
-
-        case types.ADD_ITEM_TO_FAVORITES:
-            return state.set('favorites', { ...state.get('favorites'), [action.payload]: true });
-
-        case types.REMOVE_ITEM_FROM_FAVORITES:
-            const newFavorites = { ...state.get('favorites') };
-            delete newFavorites[action.payload];
-
-            return state.set('favorites', newFavorites);
+        case types.FILL_ORDERS_COMBINATIONS:
+            return state.set('ordersCombinations', action.payload);
 
         default:
             return state;

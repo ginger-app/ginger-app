@@ -13,29 +13,29 @@ import { Navigation, Button, GradientBorder, CartItem, ChooseDateOverlay, Dummy 
 // Actions
 import { profileActions } from 'bus/profile/actions';
 
-// Test
-import { Api } from 'api';
-
 const mapStateToProps = (state) => ({
     locations: state.profile.get('locations'),
 });
 
 const mapDispatchToProps = {
     createNewOrderAsync: profileActions.createNewOrderAsync,
+    getOrdersCombinationsAsync: profileActions.getOrdersCombinationsAsync,
 };
 
 const CartComponent = ({
     className,
     locationId,
     locations,
+    getOrdersCombinationsAsync,
     // createNewOrderAsync
 }) => {
     const [showDateOverlay, setDateOverlayState] = useState(false);
-    const [deliveryDate, setDeliveryDate] = useState(null);
+    const [deliveryDate, setDeliveryDate] = useState({});
 
     const [locationData, setLocationData] = useState({});
     const [orderData, setOrderData] = useState([]);
     const [itemQuantities, setItemQuantities] = useState({});
+    const [initialData, setInitialData] = useState(null);
 
     useEffect(() => {
         const filteredLocation = locations.find(({ _id }) => _id === locationId);
@@ -52,29 +52,32 @@ const CartComponent = ({
             setLocationData(filteredLocation);
             setOrderData(initialOrderData);
             setItemQuantities(initialItemQuantities);
+            setInitialData(initialItemQuantities);
         }
     }, [locationId, locations]);
 
     const cartIsEmpty = !orderData.some((item) => itemQuantities[item._id]);
 
-    const testGetOrdersOffers = async () => {
-        const order = {
-            items: orderData.filter(
-                (item) =>
-                    itemQuantities[item._id] && {
-                        ...item,
-                        amount: itemQuantities[item._id],
-                    },
-            ),
+    const handleSubmit = () => {
+        if (!deliveryDate.string) return setDateOverlayState(true);
+        if (cartIsEmpty) return null;
+
+        const itemsObj = {};
+
+        orderData.forEach((item) => {
+            if (itemQuantities[item._id]) {
+                itemsObj[item._id] = {
+                    ...item,
+                    requestedAmount: itemQuantities[item._id],
+                };
+            }
+        });
+
+        getOrdersCombinationsAsync({
+            items: itemsObj,
             location: locationId,
-            deliveryDate: deliveryDate.utc().format(),
-        };
-
-        const response = await Api.orders.getOrdersOffers(order);
-        const result = await response.json();
-
-        // console.log(order);
-        console.log(result);
+            deliveryDate: deliveryDate.utc,
+        });
     };
 
     return (
@@ -104,7 +107,7 @@ const CartComponent = ({
                         </div>
                     </GradientBorder>
                     <div className={Styles.deliveryDate} onClick={() => setDateOverlayState(true)}>
-                        {deliveryDate || 'Choose delivery date'}
+                        {deliveryDate.string || 'Choose delivery date'}
                     </div>
 
                     {/* Order details */}
@@ -142,25 +145,19 @@ const CartComponent = ({
                         centerButton={
                             <Button
                                 text={
-                                    deliveryDate && !cartIsEmpty
+                                    deliveryDate.string && !cartIsEmpty
                                         ? 'Показати варіанти'
                                         : cartIsEmpty
                                         ? 'Choose items'
                                         : 'Choose delivery date'
                                 }
-                                onClick={() =>
-                                    deliveryDate && !cartIsEmpty
-                                        ? testGetOrdersOffers()
-                                        : cartIsEmpty
-                                        ? null
-                                        : setDateOverlayState(true)
-                                }
+                                onClick={handleSubmit}
                                 filled
                             />
                         }
                         rightButtonData={{
                             icon: 'trash',
-                            onClick: () => null,
+                            onClick: () => setItemQuantities(initialData),
                         }}
                         dark
                     />
