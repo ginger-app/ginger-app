@@ -32,7 +32,6 @@ const OrderCombinationsComponent = ({
     return (
         <Transition
             in={orderCombinationsOverlay}
-            // in
             appear
             mountOnEnter
             unmountOnExit
