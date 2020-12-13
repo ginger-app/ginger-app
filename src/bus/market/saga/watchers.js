@@ -12,6 +12,7 @@ import {
     getProductDataWorker,
     getOrderDataWorker,
     searchItemsByNameWorker,
+    sendOrdersWorker,
 } from './workers';
 
 function* watchGetCategories() {
@@ -32,6 +33,9 @@ function* watchGetOrderData() {
 function* watchSearchItemsByName() {
     yield takeEvery(types.SEARCH_ITEMS_BY_NAME_ASYNC, searchItemsByNameWorker);
 }
+function* watchSendOrders() {
+    yield takeEvery(types.SEND_ORDERS_ASYNC, sendOrdersWorker);
+}
 
 export function* watchMarket() {
     yield all([
@@ -41,5 +45,6 @@ export function* watchMarket() {
         call(watchGetSubcategoryData),
         call(watchGetOrderData),
         call(watchSearchItemsByName),
+        call(watchSendOrders),
     ]);
 }

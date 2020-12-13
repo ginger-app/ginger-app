@@ -93,4 +93,9 @@ export const marketActions = {
         type: types.SEARCH_ITEMS_BY_NAME_ASYNC,
         payload: { itemName },
     }),
+
+    sendOrdersAsync: (orders) => ({
+        type: types.SEND_ORDERS_ASYNC,
+        payload: { orders },
+    }),
 };

@@ -58,6 +58,7 @@ const NavigationComponent = ({
                           <Icon name='leftArrow' />
                       </div>
                   )}
+
             {search && (
                 <div
                     className={`${Styles.searchButton} ${searchOpened && Styles.active}`}
@@ -66,8 +67,11 @@ const NavigationComponent = ({
                     <Icon name='search' color={searchOpened ? 'white' : 'black'} />
                 </div>
             )}
+
             {centerButton || (!search && !searchOpened && <p className={Styles.title}>{title}</p>)}
+
             {!searchOpened && rightButton !== 'search' && rightButton}
+
             {rightButton === 'search' && (
                 <div
                     className={`${Styles.searchButton} ${Styles.rightButton} ${
@@ -78,6 +82,7 @@ const NavigationComponent = ({
                     <Icon name='search' color={searchOpened ? 'white' : 'black'} />
                 </div>
             )}
+
             {rightButtonData && (
                 <div
                     className={`${Styles.searchButton} ${Styles.rightButton}`}
