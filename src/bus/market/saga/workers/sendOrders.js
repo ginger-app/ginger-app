@@ -6,6 +6,7 @@ import { uiActions } from 'bus/ui/actions';
 
 // Instruments
 import { ErrorHandler } from 'bus/utils';
+import { history } from 'bus/init/middleware/core';
 
 // Api
 import { Api } from 'api';
@@ -13,6 +14,7 @@ import { Api } from 'api';
 export function* sendOrdersWorker({ payload: { orders } }) {
     try {
         const response = yield apply(Api, Api.orders.createNewOrder, [orders]);
+        // eslint-disable-next-line
         const { data, message } = yield apply(response, response.json);
 
         if (response.status >= 400) {
@@ -20,7 +22,7 @@ export function* sendOrdersWorker({ payload: { orders } }) {
             throw new Error(message);
         }
 
-        console.log(data);
+        yield apply(history, history.push, ['/orders']);
     } catch (err) {
         yield put(uiActions.emitError(err, '-> sendOrdersWorker'));
     }
