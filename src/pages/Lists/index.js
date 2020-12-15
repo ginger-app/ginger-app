@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Navigation, LocationsSelect, ListItem } from 'components';
+import { Navigation, LocationsSelect, ListItem, Dummy } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core/routes';
 
@@ -54,11 +54,13 @@ const ListsComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
+                    <p className={Styles.title}>Товарний лист</p>
                     {locations.length && selectedLocation.itemsList.length ? (
                         <div className={Styles.list}>
                             {selectedLocation.itemsList.map((item, index) => (
                                 <ListItem key={index} index={index} {...item} />
                             ))}
+                            <Dummy className={Styles.dummy} />
                         </div>
                     ) : (
                         <div className={Styles.noLists}>

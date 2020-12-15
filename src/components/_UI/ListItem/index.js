@@ -8,12 +8,9 @@ import PropTypes from 'prop-types';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Icon, Button } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
-export const ListItem = (props) => {
-    const { className, index = 0, image, name, unit, minPrice, _id } = props;
-
+export const ListItem = ({ className, index = 0, image, name, unit, minPrice, _id }) => {
     return (
         <Transition
             in
@@ -23,42 +20,25 @@ export const ListItem = (props) => {
             timeout={opacityTransitionConfig(index * 100).timeout}
         >
             {(state) => (
-                <section
+                <NavLink
+                    to={`/products/${_id}`}
                     className={[Styles.container, className].filter(Boolean).join(' ')}
                     style={{
                         ...opacityTransitionConfig().defaultStyles,
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    {/* Product data */}
                     <img src={image} className={Styles.image} alt='' />
                     <p className={Styles.itemName}>{name}</p>
                     <div className={Styles.price}>
-                        <span>від {minPrice} грн.</span>
-                        <span className={Styles.unit}>{unit}</span>
+                        від {minPrice} грн/{unit}
                     </div>
-
-                    {/* Devider */}
-                    <div className={Styles.devider} />
-
-                    {/* Supplier data */}
-                    <div className={Styles.deliveryConditions}>
-                        <p className={Styles.title}>Умови поставки</p>
-                    </div>
-
-                    {/* Action buttons */}
-                    <div className={Styles.deleteButton}>
-                        <Icon name='close' color='grey' />
-                    </div>
-                    <NavLink to={`/products/${_id}`} className={Styles.button}>
-                        <Button text='Обрати' filled />
-                    </NavLink>
-                </section>
+                </NavLink>
             )}
         </Transition>
     );
 };
-// index, name, price, unit, suppliers, supplierData
+
 ListItem.propTypes = {
     className: PropTypes.string,
     index: PropTypes.number,

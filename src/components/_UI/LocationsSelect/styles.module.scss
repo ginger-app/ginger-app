@@ -27,7 +27,7 @@
 
         background: $paletteWhite;
 
-        border-radius: 10rem;
+        border-radius: 1rem;
 
         overflow: hidden;
 
@@ -35,8 +35,6 @@
 
         &.shit {
             max-height: 15rem;
-
-            border-radius: 1rem;
 
             overflow: scroll;
 
