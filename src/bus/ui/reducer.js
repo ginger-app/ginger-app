@@ -36,6 +36,7 @@ const initialState = Map({
     }),
     orderCombinations: [],
     clientListsSelectedLocation: null,
+    deliveryDate: {},
     logs: '',
 });
 
@@ -75,6 +76,9 @@ export const uiReducer = (state = initialState, action) => {
 
         case types.SET_ORDER_PLACED_STATE:
             return state.set('orderPlacedSuccesfully', action.payload.state);
+
+        case types.SET_DELIVERY_DATE:
+            return state.set('deliveryDate', action.payload.date);
 
         // Routing
         case types.SET_BACK_BUTTON_PATH:

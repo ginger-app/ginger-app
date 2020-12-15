@@ -1,19 +1,22 @@
 // Core
-import { put, apply } from 'redux-saga/effects';
+import { put, apply, select } from 'redux-saga/effects';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
 
 // Instruments
 import { ErrorHandler } from 'bus/utils';
+import { getDeliveryDate } from 'bus/profile/saga/selectors';
 
 // Api
 import { Api } from 'api';
 
-export function* createNewOrderWorker({ payload: { deliveryDate, items, location, sum } }) {
+export function* createNewOrderWorker({ payload: { items, location, sum } }) {
     try {
+        const deliveryDate = yield select(getDeliveryDate);
+
         const response = yield apply(Api, Api.orders.createNewOrder, [
-            { deliveryDate, items, location, sum },
+            { deliveryDate: deliveryDate.utc, items, location, sum },
         ]);
         const { message } = yield apply(response, response.json);
 

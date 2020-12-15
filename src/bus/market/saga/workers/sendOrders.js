@@ -1,5 +1,5 @@
 // Core
-import { put, apply } from 'redux-saga/effects';
+import { put, apply, select } from 'redux-saga/effects';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
@@ -7,13 +7,18 @@ import { uiActions } from 'bus/ui/actions';
 // Instruments
 import { ErrorHandler } from 'bus/utils';
 import { history } from 'bus/init/middleware/core';
+import { getDeliveryDate } from 'bus/market/saga/selectors';
 
 // Api
 import { Api } from 'api';
 
 export function* sendOrdersWorker({ payload: { orders } }) {
     try {
-        const response = yield apply(Api, Api.orders.createNewOrder, [orders]);
+        const deliveryDate = yield select(getDeliveryDate);
+
+        const response = yield apply(Api, Api.orders.createNewOrder, [
+            orders.map((item) => ({ ...item, deliveryDate: deliveryDate.utc })),
+        ]);
         // eslint-disable-next-line
         const { data, message } = yield apply(response, response.json);
 

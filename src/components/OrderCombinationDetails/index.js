@@ -110,7 +110,6 @@ const OrderCombinationDetailsComponent = ({
                                         sendOrdersAsync(
                                             orders.map((order) => ({
                                                 supplier: order.supplier._id,
-                                                deliveryDate: '2020-12-12T18:59:52.558Z',
                                                 location: locationId,
                                                 items: order.items.map((item) => ({
                                                     item: item._id,

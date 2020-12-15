@@ -154,13 +154,13 @@ export const profileActions = {
         payload: { locationId, itemId },
     }),
 
-    createNewOrderAsync: ({ items, sum, location, deliveryDate }) => ({
+    createNewOrderAsync: ({ items, sum, location }) => ({
         type: types.CREATE_NEW_ORDER_ASYNC,
-        payload: { items, sum, location, deliveryDate },
+        payload: { items, sum, location },
     }),
 
-    getOrdersCombinationsAsync: ({ items, location, deliveryDate }) => ({
+    getOrdersCombinationsAsync: ({ items, location }) => ({
         type: types.GET_ORDERS_COMBINATIONS_ASYNC,
-        payload: { items, location, deliveryDate },
+        payload: { items, location },
     }),
 };

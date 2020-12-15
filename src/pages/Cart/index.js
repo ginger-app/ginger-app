@@ -20,14 +20,17 @@ import {
 
 // Actions
 import { profileActions } from 'bus/profile/actions';
+import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     locations: state.profile.get('locations'),
+    deliveryDate: state.ui.get('deliveryDate'),
 });
 
 const mapDispatchToProps = {
     createNewOrderAsync: profileActions.createNewOrderAsync,
     getOrdersCombinationsAsync: profileActions.getOrdersCombinationsAsync,
+    setDeliveryDate: uiActions.setDeliveryDate,
 };
 
 const CartComponent = ({
@@ -35,10 +38,11 @@ const CartComponent = ({
     locationId,
     locations,
     getOrdersCombinationsAsync,
+    setDeliveryDate,
+    deliveryDate,
     // createNewOrderAsync
 }) => {
     const [showDateOverlay, setDateOverlayState] = useState(false);
-    const [deliveryDate, setDeliveryDate] = useState({});
 
     const [locationData, setLocationData] = useState({});
     const [orderData, setOrderData] = useState([]);

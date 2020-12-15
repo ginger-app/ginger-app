@@ -33,6 +33,11 @@ export const uiActions = {
         payload: { state },
     }),
 
+    setDeliveryDate: (date) => ({
+        type: types.SET_DELIVERY_DATE,
+        payload: { date },
+    }),
+
     // Routing
     setBackButtonPath: (path) => ({
         type: types.SET_BACK_BUTTON_PATH,
