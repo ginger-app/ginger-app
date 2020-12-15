@@ -52,6 +52,11 @@ export const profileActions = {
         payload: data,
     }),
 
+    fillClientOrders: (data) => ({
+        type: types.FILL_CLIENT_ORDERS,
+        payload: data,
+    }),
+
     fillMarketItemChosenLocations: (data) => ({
         type: types.FILL_MARKET_ITEM_CHOSEN_LOCATIONS,
         payload: data,
@@ -119,6 +124,10 @@ export const profileActions = {
 
     getClientLocationsAsync: () => ({
         type: types.GET_CLIENT_LOCATIONS_ASYNC,
+    }),
+
+    getClientOrdersAsync: () => ({
+        type: types.GET_CLIENT_ORDERS_ASYNC,
     }),
 
     createNewLocationAsync: (data) => ({

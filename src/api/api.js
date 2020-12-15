@@ -80,25 +80,6 @@ export const Api = {
             return fetch(`${MAIN_URL}/market/product/${id}`);
         },
 
-        createNewOrder: (orderData) => {
-            return withAuth(`${MAIN_URL}/market/orders`, {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json',
-                },
-                body: JSON.stringify(orderData),
-            });
-        },
-
-        getOrderData: (id) => {
-            return withAuth(`${MAIN_URL}/market/orders/${id}`, {
-                method: 'GET',
-                headers: {
-                    'content-type': 'application/json',
-                },
-            });
-        },
-
         searchProductsByName: (itemName) => {
             return fetch(`${MAIN_URL}/market/product?name=${itemName}`);
         },
@@ -147,6 +128,12 @@ export const Api = {
                     'content-type': 'application/json',
                 },
                 body: JSON.stringify({ locationId, itemId }),
+            });
+        },
+
+        getClientOrders: () => {
+            return withAuth(`${MAIN_URL}/clients/orders`, {
+                method: 'GET',
             });
         },
     },

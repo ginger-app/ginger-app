@@ -17,11 +17,7 @@ const initialState = Map({
     locations: [],
     analyticsData: [],
     previewData: [],
-    orders: {
-        suppliers: [],
-        locations: [],
-        data: [],
-    },
+    orders: [],
 
     // displaying stuff
     marketItemChosenLocations: [],
@@ -44,6 +40,9 @@ export const profileReducer = (state = initialState, action) => {
 
         case types.FILL_CLIENT_LOCATIONS:
             return state.set('locations', action.payload);
+
+        case types.FILL_CLIENT_ORDERS:
+            return state.set('orders', action.payload);
 
         case types.FILL_MARKET_ITEM_CHOSEN_LOCATIONS:
             return state.set('marketItemChosenLocations', action.payload);

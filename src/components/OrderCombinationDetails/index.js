@@ -118,7 +118,7 @@ const OrderCombinationDetailsComponent = ({
                                                     price: item.prices[order.supplier._id],
                                                     amount: item.requestedAmount,
                                                 })),
-                                                sum,
+                                                sum: order.sum.toFixed(2),
                                             })),
                                         )
                                     }

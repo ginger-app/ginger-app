@@ -5,3 +5,4 @@ export * from './addNewItemToLocation';
 export * from './removeItemFromLocation';
 export * from './getOrdersCombinations';
 export * from './createNewOrder';
+export * from './getClientOrders';

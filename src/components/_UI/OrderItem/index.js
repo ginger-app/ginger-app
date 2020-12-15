@@ -9,10 +9,10 @@ import PropTypes from 'prop-types';
 import Styles from './styles.module.scss';
 
 // Instruments
+import stylePropType from 'react-style-proptype';
 import { OrderStatusLabel } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import stylePropType from 'react-style-proptype';
-import tomato from 'theme/assets/images/tomato-mock.png';
+import { DateTime } from 'luxon';
 
 const mapStateToProps = (state) => ({
     ...state,
@@ -20,31 +20,18 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {};
 
-const OrderItemComponent = ({ className, style, status, id, date, sum, index }) => {
-    const cart = [
-        {
-            img: tomato,
-        },
-        {
-            img: tomato,
-        },
-        {
-            img: tomato,
-        },
-        {
-            img: tomato,
-        },
-        {
-            img: tomato,
-        },
-        {
-            img: tomato,
-        },
-        {
-            img: tomato,
-        },
-    ];
-
+const OrderItemComponent = ({
+    className,
+    style,
+    status,
+    _id,
+    deliveryDate,
+    sum,
+    items,
+    index,
+    location,
+    supplier,
+}) => {
     return (
         <Transition
             in
@@ -63,21 +50,23 @@ const OrderItemComponent = ({ className, style, status, id, date, sum, index }) 
                         ...opacityTransitionConfig().defaultStyles,
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
-                    to={`/orders/${id}`}
+                    to={`/orders/${_id}`}
                 >
-                    <p className={Styles.date}>{new Date(date).toLocaleDateString()}</p>
+                    <p className={Styles.date}>{DateTime.fromISO(deliveryDate).toLocaleString()}</p>
                     <OrderStatusLabel status={status} className={Styles.orderStatusLabel} />
 
                     <p className={Styles.subtitle}>Location:</p>
-                    <p className={Styles.location}>Forma.coffee</p>
+                    <p className={Styles.location}>{location.locationName}</p>
 
                     <p className={[Styles.subtitle, Styles.alignRight].join(' ')}>Supplier:</p>
-                    <p className={[Styles.supplier, Styles.alignRight].join(' ')}>Galychyna</p>
+                    <p className={[Styles.supplier, Styles.alignRight].join(' ')}>
+                        {supplier.companyName}
+                    </p>
 
                     <p className={Styles.price}>{sum}</p>
                     <div className={Styles.cart}>
-                        {cart.map(({ img }, key) => (
-                            <img src={img} alt='' className={Styles.cartItem} key={key} />
+                        {items.map(({ item }, key) => (
+                            <img src={item.image} alt='' className={Styles.cartItem} key={key} />
                         ))}
                     </div>
                 </NavLink>
@@ -90,9 +79,7 @@ OrderItemComponent.propTypes = {
     className: PropTypes.string,
     style: stylePropType,
     status: PropTypes.string,
-    id: PropTypes.string,
-    date: PropTypes.string,
-    sum: PropTypes.number,
+    sum: PropTypes.string,
     index: PropTypes.number,
 };
 

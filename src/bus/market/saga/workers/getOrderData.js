@@ -10,7 +10,7 @@ import { Api } from 'api';
 
 export function* getOrderDataWorker({ payload: { id } }) {
     try {
-        const response = yield apply(Api, Api.market.getOrderData, [id]);
+        const response = yield apply(Api, Api.orders.getOrderData, [id]);
         const { message, data } = yield apply(response, response.json);
         if (response.status >= 400) throw new Error(message);
 

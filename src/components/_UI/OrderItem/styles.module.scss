@@ -57,12 +57,14 @@
     }
 
     & .cart {
+        place-self: center end;
+
         display: grid;
         grid-auto-columns: 2rem;
         grid-auto-flow: column;
         gap: 0 -1rem;
 
-        width: 100%;
+        max-width: 100%;
         padding: 0.25rem;
 
         overflow: hidden;

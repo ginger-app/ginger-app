@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Transition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -8,30 +8,11 @@ import PropTypes from 'prop-types';
 import Styles from './styles.module.scss';
 
 // Instruments
-import isEmpty from 'lodash/isEmpty';
 import { Icon, Button } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
-export const ListItem = ({
-    className,
-    index = 0,
-    image,
-    name,
-    unit,
-    suppliers,
-    prices,
-    _id,
-    chosenSupplierId,
-}) => {
-    const [supplierData, setSupplierData] = useState({});
-    const [itemPrice, setItemPrice] = useState(null);
-
-    useEffect(() => {
-        const supplier = suppliers.find(({ _id: supplierId }) => supplierId === chosenSupplierId);
-
-        setSupplierData(supplier);
-        setItemPrice(prices[chosenSupplierId]);
-    }, [chosenSupplierId, _id, suppliers, prices]);
+export const ListItem = (props) => {
+    const { className, index = 0, image, name, unit, minPrice, _id } = props;
 
     return (
         <Transition
@@ -53,7 +34,7 @@ export const ListItem = ({
                     <img src={image} className={Styles.image} alt='' />
                     <p className={Styles.itemName}>{name}</p>
                     <div className={Styles.price}>
-                        <span>{itemPrice} грн.</span>
+                        <span>від {minPrice} грн.</span>
                         <span className={Styles.unit}>{unit}</span>
                     </div>
 
@@ -61,22 +42,9 @@ export const ListItem = ({
                     <div className={Styles.devider} />
 
                     {/* Supplier data */}
-                    <p className={Styles.supplierSubtitle}>Поcтачальник:</p>
-                    {isEmpty(supplierData) ? (
-                        <p className={Styles.notChosen}>Не обраний</p>
-                    ) : (
-                        <>
-                            <p className={Styles.supplierName}>{supplierData.name}</p>
-                            <div className={Styles.deliveryConditions}>
-                                <p className={Styles.title}>Умови поставки</p>
-                                {supplierData.conditions.map((item, key) => (
-                                    <p className={Styles.item} key={key}>
-                                        {item}
-                                    </p>
-                                ))}
-                            </div>
-                        </>
-                    )}
+                    <div className={Styles.deliveryConditions}>
+                        <p className={Styles.title}>Умови поставки</p>
+                    </div>
 
                     {/* Action buttons */}
                     <div className={Styles.deleteButton}>
@@ -97,14 +65,4 @@ ListItem.propTypes = {
     _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     unit: PropTypes.string.isRequired,
-    suppliers: PropTypes.arrayOf(
-        PropTypes.oneOfType([
-            PropTypes.shape({}),
-            PropTypes.shape({
-                supplierName: PropTypes.string.isRequired,
-                ranking: PropTypes.number.isRequired,
-                deliveryConditions: PropTypes.arrayOf(PropTypes.string).isRequired,
-            }),
-        ]),
-    ).isRequired,
 };

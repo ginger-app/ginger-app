@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -12,6 +12,7 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
+import { profileActions } from 'bus/profile/actions';
 
 const mapStateToProps = (state) => ({
     orders: state.profile.get('orders'),
@@ -21,6 +22,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     showLoginOverlay: uiActions.showLoginOverlay,
     showOrdersFiltersOverlay: uiActions.showOrdersFiltersOverlay,
+    getClientOrdersAsync: profileActions.getClientOrdersAsync,
 };
 
 const OrdersComponent = ({
@@ -28,12 +30,15 @@ const OrdersComponent = ({
     isAuthenticated,
     showLoginOverlay,
     showOrdersFiltersOverlay,
+    getClientOrdersAsync,
 }) => {
     useEffect(() => {
         if (!isAuthenticated) {
             showLoginOverlay('/');
+        } else {
+            getClientOrdersAsync();
         }
-    }, [isAuthenticated, showLoginOverlay]);
+    }, [isAuthenticated, showLoginOverlay, getClientOrdersAsync]);
 
     const statusesImportance = {
         Pending: 1,
@@ -43,11 +48,6 @@ const OrdersComponent = ({
         Completed: 5,
         Cancelled: 6,
     };
-
-    const inProgressFirst = (a, b) => statusesImportance[a.status] - statusesImportance[b.status];
-
-    // eslint-disable-next-line
-    const getSortedOrders = useCallback(() => orders.sort(inProgressFirst), [orders]);
 
     return (
         <Transition
@@ -70,9 +70,16 @@ const OrdersComponent = ({
 
                     {/* Orders */}
                     <div className={Styles.ordersSection}>
-                        {orders.data.map((item, index) => (
-                            <OrderItem {...item} key={index} index={index} />
-                        ))}
+                        {orders.map(
+                            (item, index) =>
+                                /**
+                                 * On first load, all items are ObjectID strings and
+                                 * we don't want to display those untill they get populated
+                                 */
+                                typeof item !== 'string' && (
+                                    <OrderItem {...item} key={index} index={index} />
+                                ),
+                        )}
                     </div>
 
                     {/* Fast sorting options */}

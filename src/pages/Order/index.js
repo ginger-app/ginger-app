@@ -9,12 +9,12 @@ import Styles from './styles.module.scss';
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { OrderStatusLabel, Button, Navigation } from 'components';
+import { DateTime } from 'luxon';
 import eye from 'theme/assets/svg/eye.svg';
+import isEmpty from 'lodash/isEmpty';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
-
-const products = new Array(15).fill(eye);
 
 const mapStateToProps = (state) => ({
     orderData: state.market.get('orderData').toJS(),
@@ -25,16 +25,18 @@ const mapDispatchToProps = {
     clearOrderData: marketActions.clearOrderData,
 };
 
-const OrderComponent = ({ id, getOrderDataAsync, clearOrderData }) => {
+const OrderComponent = ({ id, getOrderDataAsync, clearOrderData, orderData }) => {
     useEffect(() => {
         getOrderDataAsync(id);
 
         return clearOrderData;
     }, [id, getOrderDataAsync, clearOrderData]);
 
+    const { location, supplier, items, status, deliveryDate, sum } = orderData;
+
     return (
         <Transition
-            in
+            in={!isEmpty(orderData)}
             appear
             mountOnEnter
             unmountOnExit
@@ -52,17 +54,17 @@ const OrderComponent = ({ id, getOrderDataAsync, clearOrderData }) => {
                     <p className={Styles.title}>Order info</p>
 
                     {/* Order info */}
-                    <p className={Styles.date}>12.34.5678</p>
-                    <OrderStatusLabel status='Completed' className={Styles.orderStatusLabel} />
+                    <p className={Styles.date}>{DateTime.fromISO(deliveryDate).toLocaleString()}</p>
+                    <OrderStatusLabel status={status} className={Styles.orderStatusLabel} />
 
                     {/* Location */}
                     <p className={Styles.locationSubtitle}>Location:</p>
-                    <p className={Styles.location}>Forma.coffee</p>
+                    <p className={Styles.location}>{location.locationName}</p>
 
                     {/* Supplier */}
                     <p className={Styles.supplierSubtitle}>Supplier:</p>
                     <div className={Styles.supplier}>
-                        <span>Galychyna</span>
+                        <span>{supplier.companyName}</span>
                         <Button
                             className={Styles.detailsButton}
                             content={<img src={eye} alt='' />}
@@ -77,16 +79,18 @@ const OrderComponent = ({ id, getOrderDataAsync, clearOrderData }) => {
 
                     {/* Sum */}
                     <p className={Styles.sumSubtitle}>Sum:</p>
-                    <p className={Styles.sum}>{100.23}</p>
+                    <p className={Styles.sum}>{sum}</p>
 
                     {/* Orders */}
                     <div className={Styles.products}>
-                        {products.map((item, index) => (
+                        {items.map(({ item, price, amount }, index) => (
                             <div className={Styles.productItem} key={index}>
-                                <img src={item} alt='' />
-                                <p className={Styles.name}>Champion apples</p>
-                                <p className={Styles.amount}>2 kg</p>
-                                <p className={Styles.price}>87.98</p>
+                                <img src={item.image} alt='' />
+                                <p className={Styles.name}>{item.name}</p>
+                                <p className={Styles.amount}>
+                                    {item.price} {item.unit}
+                                </p>
+                                <p className={Styles.price}>{price * amount}</p>
                             </div>
                         ))}
                     </div>
