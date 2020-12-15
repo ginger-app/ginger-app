@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -7,23 +7,48 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Navigation, Carousel, SupplierOrderItem, Dummy } from 'components';
+import { Navigation, SupplierOrderItem, Carousel } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
-
-const filters = ['All', 'New', 'In Progress', 'Finished', 'Cancelled'];
+import { profileActions } from 'bus/profile/actions';
 
 const mapStateToProps = (state) => ({
-    ...state,
+    orders: state.profile.get('orders'),
+    isAuthenticated: state.auth.get('isAuthenticated'),
 });
 
 const mapDispatchToProps = {
-    showMarketFiltersOverlay: uiActions.showMarketFiltersOverlay,
+    showLoginOverlay: uiActions.showLoginOverlay,
+    showOrdersFiltersOverlay: uiActions.showOrdersFiltersOverlay,
+    getSupplierOrdersAsync: profileActions.getSupplierOrdersAsync,
 };
 
-const SupplierOrdersComponent = ({ showMarketFiltersOverlay }) => {
+const OrdersComponent = ({
+    orders,
+    isAuthenticated,
+    showLoginOverlay,
+    showOrdersFiltersOverlay,
+    getSupplierOrdersAsync,
+}) => {
+    useEffect(() => {
+        if (!isAuthenticated) {
+            showLoginOverlay('/');
+        } else {
+            getSupplierOrdersAsync();
+        }
+    }, [isAuthenticated, showLoginOverlay, getSupplierOrdersAsync]);
+
+    const statusesImportance = {
+        Pending: 1,
+        Shipping: 2,
+        'Awaiting shipment': 3,
+        'Awaiting collection': 4,
+        Completed: 5,
+        Cancelled: 6,
+    };
+
     return (
         <Transition
             in
@@ -34,39 +59,45 @@ const SupplierOrdersComponent = ({ showMarketFiltersOverlay }) => {
         >
             {(state) => (
                 <section
-                    className={Styles.container}
+                    className={`${Styles.container}`}
                     style={{
                         ...opacityTransitionConfig().defaultStyles,
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
                     {/* Title */}
-                    <p className={Styles.title}>Supplier orders</p>
+                    <p className={Styles.title}>Orders</p>
 
-                    {/* Content */}
-                    <div className={Styles.orders}>
-                        {new Array(20).fill(1).map((item, index) => (
-                            <SupplierOrderItem className={Styles.orderItem} key={index} />
-                        ))}
-                        <Dummy />
-                        <Dummy />
+                    {/* Orders */}
+                    <div className={Styles.ordersSection}>
+                        {orders.map(
+                            (item, index) =>
+                                /**
+                                 * On first load, all items are ObjectID strings and
+                                 * we don't want to display those untill they get populated
+                                 */
+                                typeof item !== 'string' && (
+                                    <SupplierOrderItem {...item} key={index} index={index} />
+                                ),
+                        )}
                     </div>
 
-                    {/* Footer navigation */}
+                    {/* Fast sorting options */}
                     <Carousel
-                        itemsToShow={2}
                         className={Styles.tags}
                         carouselClassName={Styles.carousele}
-                        items={filters.map((item, index) => (
+                        items={Object.keys(statusesImportance).map((item, index) => (
                             <div className={Styles.tag} key={index}>
                                 {item}
                             </div>
                         ))}
                     />
+
+                    {/* Footer nav */}
                     <Navigation
                         rightButtonData={{
                             icon: 'filters',
-                            onClick: showMarketFiltersOverlay,
+                            onClick: showOrdersFiltersOverlay,
                         }}
                     />
                 </section>
@@ -75,7 +106,4 @@ const SupplierOrdersComponent = ({ showMarketFiltersOverlay }) => {
     );
 };
 
-export const SupplierOrdersPage = connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(SupplierOrdersComponent);
+export const SupplierOrdersPage = connect(mapStateToProps, mapDispatchToProps)(OrdersComponent);

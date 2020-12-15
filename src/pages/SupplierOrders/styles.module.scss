@@ -4,21 +4,20 @@
     @include fullHeight;
 
     display: grid;
-    grid-template-rows: max-content 1fr;
-    gap: 0.5rem;
+    grid-template-rows: 3rem 1fr 3rem;
 
-    padding-top: 2rem;
+    height: 100vh;
+    padding: 2rem 0.5rem 4.5rem;
 
     & .title {
         @include boldTitle;
 
-        padding-left: 1rem;
-
         text-align: left;
     }
 
-    & .orders {
+    & .ordersSection {
         display: grid;
+        grid-auto-rows: max-content;
         gap: 0.5rem;
 
         height: 100%;
@@ -27,19 +26,10 @@
         overflow: scroll;
     }
 
-    & .carousele {
-        border-radius: 10rem;
-    }
-
     & .tags {
-        @include blur;
-
-        position: fixed;
-        bottom: 4rem;
-        left: 0;
-
-        width: 100vw;
         padding: 0;
+
+        border-radius: 10rem;
 
         & :last-of-type {
             margin-right: 0.5rem;

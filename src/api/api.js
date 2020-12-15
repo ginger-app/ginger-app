@@ -168,6 +168,12 @@ export const Api = {
                 body: JSON.stringify({ item }),
             });
         },
+
+        getSupplierOrders: () => {
+            return withAuth(`${MAIN_URL}/suppliers/orders`, {
+                method: 'GET',
+            });
+        },
     },
 
     orders: {

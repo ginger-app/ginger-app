@@ -44,6 +44,9 @@ export const profileReducer = (state = initialState, action) => {
         case types.FILL_CLIENT_ORDERS:
             return state.set('orders', action.payload);
 
+        case types.FILL_SUPPLIER_ORDERS:
+            return state.set('orders', action.payload);
+
         case types.FILL_MARKET_ITEM_CHOSEN_LOCATIONS:
             return state.set('marketItemChosenLocations', action.payload);
 

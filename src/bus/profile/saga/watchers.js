@@ -26,6 +26,7 @@ import {
     createNewOrderWorker,
     getOrdersCombinationsWorker,
     getClientOrdersWorker,
+    getSupplierOrdersWorker,
 } from './workers';
 
 function* watchAddItemToCart() {
@@ -85,6 +86,9 @@ function* watchGetOrdersCombinations() {
 function* watchGetClientOrders() {
     yield takeEvery(types.GET_CLIENT_ORDERS_ASYNC, getClientOrdersWorker);
 }
+function* watchGetSupplierOrders() {
+    yield takeEvery(types.GET_SUPPLIER_ORDERS_ASYNC, getSupplierOrdersWorker);
+}
 
 export function* watchProfile() {
     yield all([
@@ -107,5 +111,6 @@ export function* watchProfile() {
         call(watchCreateNewOrder),
         call(watchGetOrdersCombinations),
         call(watchGetClientOrders),
+        call(watchGetSupplierOrders),
     ]);
 }
