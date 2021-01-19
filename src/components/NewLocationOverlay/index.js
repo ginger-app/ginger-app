@@ -115,6 +115,7 @@ const NewLocationOverlayComponent = ({
     return (
         <Transition
             in={newLocationOverlay}
+            // in
             appear
             mountOnEnter
             unmountOnExit
@@ -148,7 +149,10 @@ const NewLocationOverlayComponent = ({
                                         value={inputValue}
                                         ref={ref}
                                         onChange={({ target: { value } }) => setValue(value)}
-                                        onClick={() => setEditingState(true)}
+                                        onClick={() => {
+                                            // window.scrollTo(0, ref.current.offsetTop + 30);
+                                            setEditingState(true);
+                                        }}
                                     />
                                     <Button
                                         className={Styles.button}

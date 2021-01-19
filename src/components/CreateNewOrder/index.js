@@ -13,15 +13,26 @@ import { book } from 'core/routes';
 import isEmpty from 'lodash/isEmpty';
 import button from 'theme/assets/svg/plus-button.svg';
 
+// Actions
+import { uiActions } from 'bus/ui/actions';
+
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.get('isAuthenticated'),
     unfinishedOrder: state.profile.get('unfinishedOrder'),
     role: state.profile.get('role'),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+    showLoginOverlay: uiActions.showLoginOverlay,
+};
 
-const CreateNewOrderComponent = ({ className, unfinishedOrder, isAuthenticated, role }) => {
+const CreateNewOrderComponent = ({
+    className,
+    unfinishedOrder,
+    isAuthenticated,
+    role,
+    showLoginOverlay,
+}) => {
     const showUnfinishedOrderButton =
         isAuthenticated && role === 'client' && !isEmpty(unfinishedOrder);
 
@@ -36,6 +47,12 @@ const CreateNewOrderComponent = ({ className, unfinishedOrder, isAuthenticated, 
                     showUnfinishedOrderButton && Styles.minified
                 }`}
                 to={book.newOrder}
+                onClick={(e) => {
+                    if (!isAuthenticated) {
+                        e.preventDefault();
+                        showLoginOverlay();
+                    }
+                }}
             >
                 <p className={Styles.newOrderText}>Create new order</p>
                 <img src={button} alt='' />

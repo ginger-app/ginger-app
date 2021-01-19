@@ -18,15 +18,24 @@ import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     productData: state.market.get('productData').toJS(),
+    isAuthenticated: state.auth.get('isAuthenticated'),
 });
 
 const mapDispatchToProps = {
     getProductDataAsync: marketActions.getProductDataAsync,
     clearProductData: marketActions.clearProductData,
     showMarketFiltersOverlay: uiActions.showMarketFiltersOverlay,
+    showLoginOverlay: uiActions.showLoginOverlay,
 };
 
-const ProductComponent = ({ id, productData, getProductDataAsync, clearProductData }) => {
+const ProductComponent = ({
+    id,
+    productData,
+    getProductDataAsync,
+    clearProductData,
+    showLoginOverlay,
+    isAuthenticated,
+}) => {
     const [locationsPopup, setLocationsPopupState] = useState(false);
 
     useEffect(() => {
@@ -75,7 +84,9 @@ const ProductComponent = ({ id, productData, getProductDataAsync, clearProductDa
                         <Button
                             text='Додати до локації'
                             className={Styles.addToLocationButton}
-                            onClick={() => setLocationsPopupState(true)}
+                            onClick={() =>
+                                isAuthenticated ? setLocationsPopupState(true) : showLoginOverlay()
+                            }
                             filled
                         />
 

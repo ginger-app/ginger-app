@@ -66,7 +66,7 @@ const SearchOverlayComponent = ({
 
         if (searchResults.length > 0) {
             searchResults.forEach((item) => {
-                occurencies[item.categories[0]] = occurencies[item.categories[0]] + 1 || 1;
+                occurencies[item.category] = occurencies[item.category] + 1 || 1;
             });
 
             const mostRepetitive = Object.keys(occurencies).sort((key) => occurencies[key])[0];
@@ -114,7 +114,7 @@ const SearchOverlayComponent = ({
                         </div>
                         <MarketShowcase
                             className={Styles.searchResults}
-                            items={searchResults.slice(0, 10)}
+                            items={searchResults}
                             inProp={showItems && searchResults.length > 0}
                             infoBlock={
                                 displayCategory && (

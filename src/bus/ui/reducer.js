@@ -148,9 +148,16 @@ export const uiReducer = (state = initialState, action) => {
 
         case types.HIDE_ALL_OVERLAYS:
             return state.merge({
+                cartIsOpened: false,
+                searchOpened: false,
+                marketFiltersOverlay: false,
+                ordersFiltersOverlay: false,
                 codeConfirmationOverlay: false,
-                loginOverlay: false,
                 signupOverlay: false,
+                loginOverlay: false,
+                newLocationOverlay: false,
+                newListItemOverlay: false,
+                supplierUploadOverlay: false,
                 backButtonPath: null,
             });
 
