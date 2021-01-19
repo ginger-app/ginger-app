@@ -40,15 +40,13 @@ const NewLocationOverlayComponent = ({
     const [companyEditing, setCompanyEditingState] = useState(false);
     const [addressEditing, setAddressEditingState] = useState(false);
     const [scheduleEditing, setScheduleEditingState] = useState(false);
-    const [contactNameEditing, setContactNameEditingState] = useState(false);
     const [phoneNumberEditing, setPhoneNumberEditingState] = useState(false);
 
     // Values
     const [company, setCompanyValue] = useState('');
     const [address, setAddressValue] = useState('');
     const [schedule, setScheduleValue] = useState('');
-    const [contactName, setContactNameValue] = useState('');
-    const [phoneNumber, setPhoneNumberValue] = useState('');
+    const [phoneNumber, setPhoneNumberValue] = useState('+380');
 
     const inputs = useMemo(
         () => [
@@ -71,18 +69,11 @@ const NewLocationOverlayComponent = ({
             {
                 ref: scheduleRef,
                 title: 'Schedule',
+                placeholder: '09:00 - 21:00',
                 inputValue: schedule,
                 editingState: scheduleEditing,
                 setValue: setScheduleValue,
                 setEditingState: setScheduleEditingState,
-            },
-            {
-                ref: contactNameRef,
-                title: 'Contact Name',
-                inputValue: contactName,
-                editingState: contactNameEditing,
-                setValue: setContactNameValue,
-                setEditingState: setContactNameEditingState,
             },
             {
                 ref: phoneNumberRef,
@@ -102,12 +93,10 @@ const NewLocationOverlayComponent = ({
             companyEditing,
             addressEditing,
             scheduleEditing,
-            contactNameEditing,
             phoneNumberEditing,
             company,
             address,
             schedule,
-            contactName,
             phoneNumber,
         ],
     );
@@ -139,7 +128,15 @@ const NewLocationOverlayComponent = ({
                         {/* Input fields */}
                         {inputs.map(
                             (
-                                { title, inputValue, editingState, setValue, setEditingState, ref },
+                                {
+                                    title,
+                                    placeholder,
+                                    inputValue,
+                                    editingState,
+                                    setValue,
+                                    setEditingState,
+                                    ref,
+                                },
                                 index,
                             ) => (
                                 <div className={Styles.inputFieldBlock} key={index}>
@@ -149,19 +146,22 @@ const NewLocationOverlayComponent = ({
                                         value={inputValue}
                                         ref={ref}
                                         onChange={({ target: { value } }) => setValue(value)}
-                                        onClick={() => {
-                                            // window.scrollTo(0, ref.current.offsetTop + 30);
-                                            setEditingState(true);
-                                        }}
+                                        placeholder={placeholder}
+                                        disabled={!editingState}
                                     />
                                     <Button
                                         className={Styles.button}
                                         content={<Icon name={editingState ? 'check' : 'edit'} />}
                                         onClick={() => {
                                             setEditingState(!editingState);
+
+                                            // Setting state is asynchronous operation,
+                                            // therefore we want to wait untill state changes
+                                            // and updates `disabled` attribute for input
+                                            // before we actually `focus()` or `blur()`
                                             return editingState
-                                                ? ref.current.blur()
-                                                : ref.current.focus();
+                                                ? setImmediate(() => ref.current.blur())
+                                                : setImmediate(() => ref.current.focus());
                                         }}
                                     />
                                 </div>
@@ -185,7 +185,7 @@ const NewLocationOverlayComponent = ({
                                     start: schedule.split('-')[0] || 'Unknown',
                                     end: schedule.split('-')[1] || 'Unknown',
                                 },
-                                managerName: contactName,
+                                managerName: '',
                                 phoneNumber,
                             })
                         }
