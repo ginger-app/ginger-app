@@ -89,6 +89,13 @@ const ProductComponent = ({
                             }
                             filled
                         />
+                        <Button
+                            content={<Icon name='trash' />}
+                            className={Styles.deleteButton}
+                            onClick={() =>
+                                isAuthenticated ? setLocationsPopupState(true) : showLoginOverlay()
+                            }
+                        />
 
                         {/* Overlays */}
                         <AddItemToLocation

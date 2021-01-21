@@ -33,7 +33,6 @@ const NewLocationOverlayComponent = ({
     const companyRef = useRef(null);
     const addressRef = useRef(null);
     const scheduleRef = useRef(null);
-    const contactNameRef = useRef(null);
     const phoneNumberRef = useRef(null);
 
     // Editing states
@@ -88,7 +87,6 @@ const NewLocationOverlayComponent = ({
             companyRef,
             addressRef,
             scheduleRef,
-            contactNameRef,
             phoneNumberRef,
             companyEditing,
             addressEditing,

@@ -55,6 +55,13 @@ const ListsComponent = ({
                     }}
                 >
                     <p className={Styles.title}>Товарний лист</p>
+                    {!!locations.length && !!selectedLocation.itemsList.length && (
+                        <div className={Styles.columnTitles}>
+                            <div />
+                            <p>Назва</p>
+                            <p>Ціна</p>
+                        </div>
+                    )}
                     {locations.length && selectedLocation.itemsList.length ? (
                         <div className={Styles.list}>
                             {selectedLocation.itemsList.map((item, index) => (
@@ -72,7 +79,13 @@ const ListsComponent = ({
                     )}
 
                     <LocationsSelect />
-                    <Navigation title='Lists' />
+                    <Navigation
+                        search
+                        rightButtonData={{
+                            icon: 'list',
+                            onClick: () => {},
+                        }}
+                    />
                 </section>
             )}
         </Transition>

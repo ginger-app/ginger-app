@@ -29,6 +29,27 @@ export function renderIcon({ name, color = '#000', size, width, height, onClick,
                 </svg>
             );
 
+        case 'list':
+            return (
+                <svg
+                    className={className}
+                    onClick={onClick}
+                    width={width || size || 20}
+                    height={height || size || 14}
+                    viewBox={`0 0 ${width || size || 20} ${height || size || 14}`}
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                >
+                    <path
+                        d='M6 1H19M6 7H19M6 13H19M1 1H1.01M1 7H1.01M1 13H1.01'
+                        stroke={color}
+                        strokeWidth='2'
+                        strokeLinecap='round'
+                        strokeLinejoin='round'
+                    />
+                </svg>
+            );
+
         case 'check':
             return (
                 <svg

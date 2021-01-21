@@ -97,6 +97,7 @@
         grid-column: 1 / 4;
         grid-row: 4;
         display: grid;
+        align-content: start;
         gap: 0.5rem;
 
         height: 100%;

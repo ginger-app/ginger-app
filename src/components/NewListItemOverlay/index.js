@@ -145,7 +145,7 @@ const NewListItemOverlayComponent = ({
                                         value={inputValue}
                                         ref={ref}
                                         onChange={({ target: { value } }) => setValue(value)}
-                                        onClick={() => setEditingState(true)}
+                                        disabled={!editingState}
                                     />
                                     <Button
                                         className={Styles.button}
@@ -153,8 +153,8 @@ const NewListItemOverlayComponent = ({
                                         onClick={() => {
                                             setEditingState(!editingState);
                                             return editingState
-                                                ? ref.current.blur()
-                                                : ref.current.focus();
+                                                ? setImmediate(() => ref.current.blur())
+                                                : setImmediate(() => ref.current.focus());
                                         }}
                                     />
                                 </div>
