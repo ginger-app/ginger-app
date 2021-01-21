@@ -134,7 +134,8 @@ const MarketFiltersOverlayComponent = ({
                     </p>
                     <input
                         className={Styles.priceInput}
-                        value={minOrderValue}
+                        value={minOrderValue || ''}
+                        placeholder='Не визначено'
                         onChange={handleMinOrderValueChange}
                     />
                     <input
