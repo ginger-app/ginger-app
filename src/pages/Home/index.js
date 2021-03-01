@@ -1,7 +1,7 @@
 // Core
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { Portal } from 'react-portal';
 import { Transition } from 'react-transition-group';
 
@@ -43,6 +43,7 @@ const HomeComponent = ({
     // orders,
     // logs,
 }) => {
+    const history = useHistory();
     const [showToaster, setToasterVisibility] = useState(false);
     const [toasterMessage, setToasterMessage] = useState('');
 
@@ -53,14 +54,11 @@ const HomeComponent = ({
 
     // showing toaster message (currently only for 404)
     useEffect(() => {
-        const toasterVisibility = window.location.search.substring(1) === '404';
-        setToasterMessage('Page not found');
-        setToasterVisibility(toasterVisibility);
-
-        setTimeout(() => {
-            setToasterVisibility(false);
-        }, 5000);
-    }, []);
+        if (history.location.state?.is404) {
+            setToasterMessage('Page not found');
+            setToasterVisibility(true);
+        }
+    }, [history.location.state]);
 
     return (
         <Transition

@@ -82,6 +82,13 @@ export const PublicRoutes = () => (
         <Route exact path={book.supplierLists} component={SupplierListPage} />
         <Route exact path={book.supplierOrders} component={SupplierOrdersPage} />
 
-        <Redirect to={`${book.home}?404`} />
+        <Redirect
+            to={{
+                pathname: book.home,
+                state: {
+                    is404: true,
+                },
+            }}
+        />
     </Switch>
 );

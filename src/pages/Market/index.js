@@ -8,7 +8,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Components
-import { Icon, CategoriesCatalogue, ItemsCatalogue, Navigation, Dummy } from 'components';
+import { Icon, CategoriesCatalogue, ItemsCatalogue, Navigation, Dummy, Button } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -16,16 +16,25 @@ import { book } from 'core/routes';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
+import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     categories: state.market.get('categories').toJS(),
+    isAuthenticated: state.auth.get('isAuthenticated'),
 });
 
 const mapDispatchToProps = {
     getMarketCategoriesAsync: marketActions.getMarketCategoriesAsync,
+    showLoginOverlay: uiActions.showLoginOverlay,
 };
 
-const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) => {
+const MarketComponent = ({
+    className,
+    getMarketCategoriesAsync,
+    categories,
+    isAuthenticated,
+    showLoginOverlay,
+}) => {
     useEffect(() => {
         getMarketCategoriesAsync();
     }, [getMarketCategoriesAsync]);
@@ -70,6 +79,29 @@ const MarketComponent = ({ className, getMarketCategoriesAsync, categories }) =>
                         leftButton={
                             <NavLink className={Styles.homeButton} to={book.home}>
                                 <Icon name='home' />
+                            </NavLink>
+                        }
+                        rightButton={
+                            <NavLink
+                                to={book.newOrder}
+                                onClick={(e) => {
+                                    if (!isAuthenticated) {
+                                        e.preventDefault();
+                                        showLoginOverlay();
+                                    }
+                                }}
+                            >
+                                <Button
+                                    filled
+                                    className={Styles.cartButton}
+                                    content={
+                                        <Icon
+                                            className={Styles.cartIcon}
+                                            name='cart'
+                                            color='white'
+                                        />
+                                    }
+                                />
                             </NavLink>
                         }
                         title='Market'
