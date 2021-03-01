@@ -6,7 +6,7 @@
  *
  * @param {number} [duration] Duration in ms
  */
-export const opacityTransitionConfig = (duration) => ({
+export const opacityTransitionConfig = (duration = 0) => ({
     defaultStyles: {
         opacity: 0,
         transition: `opacity ${duration || 300}ms ease-in-out`,
@@ -25,6 +25,9 @@ export const opacityTransitionConfig = (duration) => ({
         exited: {
             opacity: 0,
         },
+        unmounted: {
+            opacity: 0,
+        },
     },
 
     timeout: {
@@ -37,7 +40,7 @@ export const opacityTransitionConfig = (duration) => ({
  *
  * @param {number} [duration = 300] Duration in ms
  */
-export const leftToRightSlideConfig = (duration) => ({
+export const leftToRightSlideConfig = (duration = 0) => ({
     defaultStyles: {
         transform: 'translateX(-100vw)',
         transition: `transform ${duration || 300}ms ease-in-out`,
@@ -56,6 +59,9 @@ export const leftToRightSlideConfig = (duration) => ({
         exited: {
             transform: 'translateX(-100vw)',
         },
+        unmounted: {
+            transform: 'translateX(-100vw)',
+        },
     },
 
     timeout: {
@@ -68,7 +74,7 @@ export const leftToRightSlideConfig = (duration) => ({
  *
  * @param {number} [duration = 300] Duration in ms
  */
-export const rightToLeftSlideConfig = (duration) => ({
+export const rightToLeftSlideConfig = (duration = 0) => ({
     defaultStyles: {
         transform: 'translateX(100vw)',
         transition: `transform ${duration || 300}ms ease-in-out`,
@@ -87,6 +93,9 @@ export const rightToLeftSlideConfig = (duration) => ({
         exited: {
             transform: 'translateX(100vw)',
         },
+        unmounted: {
+            transform: 'translateX(100vw)',
+        },
     },
 
     timeout: {
@@ -99,7 +108,7 @@ export const rightToLeftSlideConfig = (duration) => ({
  *
  * @param {number} [duration = 300] Duration in ms
  */
-export const bottomToTopSlideConfig = (duration, enter) => ({
+export const bottomToTopSlideConfig = (duration = 0) => ({
     defaultStyles: {
         transform: 'translateY(100vh)',
         transition: `transform ${duration || 300}ms ease-in-out`,
@@ -113,15 +122,18 @@ export const bottomToTopSlideConfig = (duration, enter) => ({
             transform: 'translateY(0)',
         },
         exiting: {
-            transform: 'translateY(100vh)',
+            transform: 'translateY(0)',
         },
         exited: {
+            transform: 'translateY(100vh)',
+        },
+        unmounted: {
             transform: 'translateY(100vh)',
         },
     },
 
     timeout: {
-        enter: enter || 0,
+        enter: duration || 0,
         exit: duration || 300,
     },
 });
@@ -130,7 +142,7 @@ export const bottomToTopSlideConfig = (duration, enter) => ({
  *
  * @param {number} [duration = 300] Duration in ms
  */
-export const topToBottomSlideConfig = (duration) => ({
+export const topToBottomSlideConfig = (duration = 0) => ({
     defaultStyles: {
         transform: 'translateY(-100vh)',
         transition: `transform ${duration || 300}ms ease-in-out`,
@@ -147,6 +159,9 @@ export const topToBottomSlideConfig = (duration) => ({
             transform: 'translateY(-100vh)',
         },
         exited: {
+            transform: 'translateY(-100vh)',
+        },
+        unmounted: {
             transform: 'translateY(-100vh)',
         },
     },
@@ -184,6 +199,10 @@ export const cartTransitionConfig = (duration = 300) => ({
             opacity: 1,
         },
         exited: {
+            transform: 'translateX(100vw)',
+            opacity: 1,
+        },
+        unmounted: {
             transform: 'translateX(100vw)',
             opacity: 1,
         },

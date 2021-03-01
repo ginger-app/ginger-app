@@ -62,12 +62,12 @@ const MarketComponent = ({
                     <CategoriesCatalogue className={Styles.categories} />
                     {categories
                         .filter(({ items }) => items.length)
-                        .map(({ name, items, id }, index) => (
+                        .map(({ name, items, _id }, index) => (
                             <ItemsCatalogue
                                 key={index}
                                 className={Styles.categoryItemsCarousel}
                                 categoryName={name}
-                                categorySku={id}
+                                categorySku={_id}
                                 items={items}
                                 index={index}
                                 extended

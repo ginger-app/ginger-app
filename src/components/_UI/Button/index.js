@@ -16,7 +16,6 @@ export const Button = ({
     content,
     gradientText,
     fontWeight,
-    whiteBackground,
     contentClassName,
 }) => {
     return filled ? (
@@ -26,11 +25,7 @@ export const Button = ({
     ) : (
         <GradientBorder className={`${Styles.container} ${className}`} onClick={onClick}>
             {content || (
-                <button
-                    className={`${Styles.button} ${
-                        whiteBackground && Styles.whiteBackground
-                    } ${contentClassName}`}
-                >
+                <button className={`${Styles.button}  ${contentClassName}`}>
                     <span
                         className={gradientText && Styles.gradientText}
                         style={{

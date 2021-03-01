@@ -1,0 +1,60 @@
+@import 'resources';
+
+.container {
+    @include shadow;
+    @include centerContent;
+
+    position: absolute;
+    right: 0rem;
+    bottom: 0rem;
+
+    display: grid;
+    gap: 0.5rem;
+
+    min-width: 4.5rem;
+    padding: 1rem 0.25rem 0.5rem;
+
+    background: $paletteWhite;
+
+    border-radius: 1rem;
+
+    & .filterButton {
+        @include shadow;
+        @include centerContent;
+
+        grid-auto-flow: column;
+        justify-content: center;
+
+        height: 3rem;
+        width: 3rem;
+        padding: 0;
+
+        background: $paletteWhite;
+
+        & .icon {
+            transform: scale(0.8);
+        }
+
+        & .rotated {
+            transform: rotate(-90deg);
+        }
+    }
+
+    & p {
+        position: relative;
+        top: -0.15rem;
+
+        font-size: 0.8rem;
+    }
+}
+
+.button {
+    @include shadow;
+    @include centerContent;
+
+    height: 3rem;
+    width: 3rem;
+    padding: 0;
+
+    background: $paletteWhite;
+}

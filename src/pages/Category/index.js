@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 import Styles from './styles.module.scss';
 
 // Components
-import { Navigation, MarketShowcase, Carousel } from 'components';
+import { Navigation, MarketShowcase, Carousel, MarketFilters } from 'components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -32,7 +32,6 @@ const mapDispatchToProps = {
 const CategoryComponent = ({
     id,
     getMarketCategoryDataAsync,
-    showMarketFiltersOverlay,
     clearMarketCategoryData,
     categoryData,
     sortingOption,
@@ -109,13 +108,7 @@ const CategoryComponent = ({
                             </NavLink>
                         ))}
                     />
-                    <Navigation
-                        search
-                        rightButtonData={{
-                            onClick: showMarketFiltersOverlay,
-                            icon: 'filters',
-                        }}
-                    />
+                    <Navigation search rightButton={<MarketFilters />} />
                 </section>
             )}
         </Transition>

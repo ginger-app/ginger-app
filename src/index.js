@@ -18,7 +18,6 @@ import {
     LoginOverlay,
     CodeConfirmationOverlay,
     SearchOverlay,
-    MarketFiltersOverlay,
     NewLocationOverlay,
     OrderFiltersOverlay,
     NewListItemOverlay,
@@ -43,7 +42,6 @@ render(
             <LoginOverlay />
             <CodeConfirmationOverlay />
             <SearchOverlay />
-            <MarketFiltersOverlay />
             <OrderFiltersOverlay />
             <NewLocationOverlay />
             <NewListItemOverlay />

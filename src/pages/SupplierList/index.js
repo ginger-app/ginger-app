@@ -37,8 +37,6 @@ const SupplierListComponent = ({
 }) => {
     const lastUpdate = DateTime.local().minus({ days: 3 });
 
-    console.log(itemsList);
-
     return (
         <Transition
             in

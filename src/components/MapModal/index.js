@@ -57,7 +57,7 @@ export const MapModal = ({
                     <input
                         value={addressDetails}
                         className={Styles.input}
-                        placeholder={`Під'їзд, поверх, квартира тощо`}
+                        placeholder={"Під'їзд, поверх, квартира тощо"}
                         onChange={({ target: { value } }) => setAddressDetails(value)}
                     />
                     <button className={Styles.button} onClick={closeMap}>

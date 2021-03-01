@@ -13,12 +13,14 @@
     gap: 1rem;
 
     width: 100%;
-    min-height: 4rem;
+    height: 4rem;
     padding: 0.5rem;
 
     border-radius: 2rem 2rem 0 0;
 
     transition: all 0.25s;
+
+    overflow-y: visible;
 
     &.transparent {
         background: transparent;

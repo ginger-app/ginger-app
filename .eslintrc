@@ -1,10 +1,17 @@
 {
-    "extends": ["airbnb", "prettier", "prettier/react"],
+    "extends": ["airbnb-typescript", "prettier", "prettier/react"],
     "settings": {
         "import/resolver": {
             "node": {
                 "moduleDirectory": ["node_modules", "src/"]
             }
+        },
+        "import/parsers": {
+            "@typescript-eslint/parser": [".ts", ".tsx"]
+        },
+        "import/extensions": [".ts", ".tsx", ".js", ".jsx"],
+        "react": {
+            "version": "detect"
         }
     },
     "plugins": ["prettier"],
@@ -12,7 +19,7 @@
         "react/jsx-filename-extension": [
             1,
             {
-                "extensions": [".js", ".jsx"]
+                "extensions": [".ts", ".tsx", ".js", ".jsx"]
             }
         ],
         "react/prop-types": 0,
@@ -21,6 +28,7 @@
         "react/no-unescaped-entities": 0,
         "react/jsx-props-no-spreading": 0,
         "react/button-has-type": 0,
+        "react/self-closing-comp": 0,
         "import/prefer-default-export": 0,
         "import/no-cycle": 0,
         "import/no-unresolved": 0,
@@ -31,27 +39,29 @@
         "consistent-return": 0,
         "no-param-reassign": 1,
         "camelcase": 1,
+        "arrow-body-style": 0,
+        "@typescript-eslint/indent": 0,
+        "@typescript-eslint/no-unused-vars": 1,
+        "@typescript-eslint/naming-convention": 0,
 
         // these should be reviewed later, probably
+        "@typescript-eslint/no-throw-literal": 0,
         "jsx-a11y/label-has-associated-control": 0,
         "jsx-a11y/no-static-element-interactions": 0,
         "jsx-a11y/click-events-have-key-events": 0,
         "jsx-a11y/no-autofocus": 0,
         "jsx-a11y/no-noninteractive-element-interactions": 0,
+        "no-return-await": 0,
         "import/order": 0
     },
-    "globals": {
-        "window": true,
-        "document": true,
-        "localStorage": true,
-        "FormData": true,
-        "FileReader": true,
-        "Blob": true,
-        "navigator": true,
-        "fetch": true
-    },
+    "globals": {},
     "env": {
-        "jest": true
+        "jest": true,
+        "browser": true,
+        "node": true
     },
-    "parser": "babel-eslint"
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "parser": "@typescript-eslint/parser"
 }
