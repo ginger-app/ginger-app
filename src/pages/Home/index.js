@@ -17,6 +17,7 @@ import {
     Navigation,
     Icon,
     Dummy,
+    Button,
 } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core';
@@ -107,18 +108,27 @@ const HomeComponent = ({
                             )
                         }
                         rightButton={
-                            isAuthenticated ? (
-                                <NavLink className={Styles.favoritesButton} to={book.lists}>
-                                    <Icon name='lists' color='black' />
-                                </NavLink>
-                            ) : (
-                                <div
-                                    className={Styles.favoritesButton}
-                                    onClick={() => showLoginOverlay()}
-                                >
-                                    <Icon name='lists' color='black' />
-                                </div>
-                            )
+                            <NavLink
+                                to={book.newOrder}
+                                onClick={(e) => {
+                                    if (!isAuthenticated) {
+                                        e.preventDefault();
+                                        showLoginOverlay();
+                                    }
+                                }}
+                            >
+                                <Button
+                                    filled
+                                    className={Styles.cartButton}
+                                    content={
+                                        <Icon
+                                            className={Styles.cartIcon}
+                                            name='cart'
+                                            color='white'
+                                        />
+                                    }
+                                />
+                            </NavLink>
                         }
                         search
                     />

@@ -38,6 +38,24 @@
         padding-right: 2px;
     }
 
+    & .cartButton {
+        @include centerContent;
+        cursor: pointer;
+        place-self: center start; // only for homeButton
+
+        height: 3rem;
+        width: 3rem;
+        margin: 0 1rem;
+        padding: 0;
+
+        & .cartIcon {
+            position: relative;
+            right: 1px;
+
+            transform: scale(0.9);
+        }
+    }
+
     & .favoritesButton {
         place-self: center end;
     }
