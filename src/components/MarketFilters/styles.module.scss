@@ -31,6 +31,12 @@
 
         background: $paletteWhite;
 
+        transition: filter 0.3s;
+
+        &.inverted {
+            filter: invert(1);
+        }
+
         & .icon {
             transform: scale(0.8);
         }

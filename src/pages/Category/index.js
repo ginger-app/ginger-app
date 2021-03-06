@@ -45,9 +45,9 @@ const CategoryComponent = ({
     const { name, filteringOptions, items } = categoryData;
 
     const sortedItems =
-        sortingOption === 'cheapest'
+        sortingOption === 'price-low'
             ? items.sort((a, b) => a.minPrice - b.minPrice)
-            : sortingOption === 'expensive'
+            : sortingOption === 'price-high'
             ? items.sort((a, b) => b.minPrice - a.minPrice)
             : items;
 

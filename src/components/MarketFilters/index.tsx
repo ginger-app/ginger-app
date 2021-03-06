@@ -8,14 +8,17 @@ import Styles from './styles.module.scss';
 // Instruments
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import { Button, Icon } from 'components/_UI';
+import { useMarket } from 'domains/market/hooks';
 
 type MarketFiltersProps = {
     className?: string;
 };
 
 export const MarketFilters: FC<MarketFiltersProps> = ({ className }): ReactElement => {
-    const [opened, setOpenedState] = useState(false);
     const nodeRef = useRef(null);
+    const [opened, setOpenedState] = useState(false);
+
+    const { setMarketSortingOption, sortingOption } = useMarket();
 
     return (
         <>
@@ -39,8 +42,13 @@ export const MarketFilters: FC<MarketFiltersProps> = ({ className }): ReactEleme
                         <Button
                             // @ts-ignore
                             content={<Icon name='star' />}
-                            className={Styles.filterButton}
-                            onClick={() => null}
+                            className={[
+                                Styles.filterButton,
+                                sortingOption === 'top' && Styles.inverted,
+                            ]
+                                .filter(Boolean)
+                                .join(' ')}
+                            onClick={() => setMarketSortingOption('top')}
                             filled
                         />
                         <p>Топ</p>
@@ -55,8 +63,13 @@ export const MarketFilters: FC<MarketFiltersProps> = ({ className }): ReactEleme
                                     <Icon className={Styles.icon} name='currency' />
                                 </>
                             }
-                            className={Styles.filterButton}
-                            onClick={() => null}
+                            className={[
+                                Styles.filterButton,
+                                sortingOption === 'price-high' && Styles.inverted,
+                            ]
+                                .filter(Boolean)
+                                .join(' ')}
+                            onClick={() => setMarketSortingOption('price-high')}
                             filled
                         />
                         <p>Дорожчі</p>
@@ -64,8 +77,13 @@ export const MarketFilters: FC<MarketFiltersProps> = ({ className }): ReactEleme
                         <Button
                             // @ts-ignore
                             content={<Icon className={Styles.icon} name='currency' />}
-                            className={Styles.filterButton}
-                            onClick={() => null}
+                            className={[
+                                Styles.filterButton,
+                                sortingOption === 'price-low' && Styles.inverted,
+                            ]
+                                .filter(Boolean)
+                                .join(' ')}
+                            onClick={() => setMarketSortingOption('price-low')}
                             filled
                         />
                         <p>Недорогі</p>
@@ -74,7 +92,7 @@ export const MarketFilters: FC<MarketFiltersProps> = ({ className }): ReactEleme
                             // @ts-ignore
                             content={<Icon name='trash' />}
                             className={Styles.filterButton}
-                            onClick={() => null}
+                            onClick={() => setMarketSortingOption(null)}
                             filled
                         />
                         <p>Очистити</p>
