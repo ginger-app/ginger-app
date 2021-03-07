@@ -2,16 +2,16 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 
 // Styles
+import Styles from './styles.module.scss';
 
 // Instruments
-import { history } from 'bus/init/middleware/core';
 import { Icon } from 'components';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
-import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     searchOpened: state.ui.get('searchOpened'),
@@ -37,6 +37,8 @@ const NavigationComponent = ({
     centerButton,
     search,
 }) => {
+    const history = useHistory();
+
     useEffect(() => {
         if (backButtonPath === 'openSearch') {
             showSearchOverlay();

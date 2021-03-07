@@ -2,10 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { Portal } from 'react-portal';
 
 // Styles
+import Styles from './styles.module.scss';
 
 // Instruments
 import { Icon, MarketShowcase } from 'components';
@@ -15,7 +16,6 @@ import { useDebounce } from 'utils/customHooks';
 // Actions
 import { uiActions } from 'bus/ui/actions';
 import { marketActions } from 'bus/market/actions';
-import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({
     searchOpened: state.ui.get('searchOpened'),
@@ -40,6 +40,25 @@ const SearchOverlayComponent = ({
     const [showItems, setShowItems] = useState(true);
     const [displayCategory, setDisplayCategory] = useState('');
     const debouncedValue = useDebounce(inputValue, 500);
+
+    const history = useHistory();
+    const [historyListener, setRemoveListener] = useState();
+
+    useEffect(() => {
+        if (searchOpened) {
+            const handler = () => {
+                hideSearchOverlay();
+                history.go(1);
+            };
+
+            window.addEventListener('popstate', handler);
+
+            setRemoveListener(() => handler);
+        } else {
+            window.removeEventListener('popstate', historyListener);
+        }
+        // eslint-disable-next-line
+    }, [searchOpened]);
 
     useEffect(() => {
         // only search if there's a value for it

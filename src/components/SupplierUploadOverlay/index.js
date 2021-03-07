@@ -1,7 +1,8 @@
 // Core
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
+import { useHistory } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -32,6 +33,25 @@ const SupplierUploadOverlayComponent = ({
     // fillSupplierPreview,
 }) => {
     const [sheetsUrl, setSheetsUrl] = useState('');
+
+    const history = useHistory();
+    const [historyListener, setRemoveListener] = useState();
+
+    useEffect(() => {
+        if (supplierUploadOverlay) {
+            const handler = () => {
+                hideSupplierUploadOverlay();
+                history.go(1);
+            };
+
+            window.addEventListener('popstate', handler);
+
+            setRemoveListener(() => handler);
+        } else {
+            window.removeEventListener('popstate', historyListener);
+        }
+        // eslint-disable-next-line
+    }, [supplierUploadOverlay]);
 
     const handlefileUpload = async ({ target }) => {
         if (target.files.length) {

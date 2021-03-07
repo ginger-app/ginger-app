@@ -1,14 +1,15 @@
 // Core
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
+
+import { useHistory } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
 
 // Instruments
-import { history } from 'bus/init/middleware/core';
 import { Icon, InputField } from 'components';
 import { leftToRightSlideConfig } from 'utils/transitionConfig';
 import { AsYouType } from 'libphonenumber-js';
@@ -37,6 +38,25 @@ const LoginOverlayComponent = ({
     backButtonPath,
 }) => {
     const [phoneNumber, setPhoneNumber] = useState('+380639999999');
+
+    const history = useHistory();
+    const [historyListener, setRemoveListener] = useState();
+
+    useEffect(() => {
+        if (loginOverlay) {
+            const handler = () => {
+                hideLoginOverlay();
+                history.go(1);
+            };
+
+            window.addEventListener('popstate', handler);
+
+            setRemoveListener(() => handler);
+        } else {
+            window.removeEventListener('popstate', historyListener);
+        }
+        // eslint-disable-next-line
+    }, [loginOverlay]);
 
     const _handlePhoneNumberChange = (value) => {
         if (!/^[0-9+ ]*$/.test(value)) return null;

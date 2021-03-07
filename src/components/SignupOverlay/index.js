@@ -1,7 +1,8 @@
 // Core
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
+import { useHistory } from 'react-router-dom';
 import { Portal } from 'react-portal';
 
 // Styles
@@ -44,6 +45,25 @@ const SignupOverlayComponent = ({
     const [companyName, setCompanyName] = useState('');
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+
+    const history = useHistory();
+    const [historyListener, setRemoveListener] = useState();
+
+    useEffect(() => {
+        if (signupOverlay) {
+            const handler = () => {
+                hideSignupOverlay();
+                history.go(1);
+            };
+
+            window.addEventListener('popstate', handler);
+
+            setRemoveListener(() => handler);
+        } else {
+            window.removeEventListener('popstate', historyListener);
+        }
+        // eslint-disable-next-line
+    }, [signupOverlay]);
 
     const handlePhoneNumberChange = (value) => {
         if (!/^[0-9+ ]*$/.test(value)) return null;

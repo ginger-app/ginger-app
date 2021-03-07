@@ -1,7 +1,8 @@
 // Core
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
+import { useHistory } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -29,6 +30,25 @@ const NewLocationOverlayComponent = ({
     hideNewLocationOverlay,
     createNewLocationAsync,
 }) => {
+    const history = useHistory();
+    const [historyListener, setRemoveListener] = useState();
+
+    useEffect(() => {
+        if (newLocationOverlay) {
+            const handler = () => {
+                hideNewLocationOverlay();
+                history.go(1);
+            };
+
+            window.addEventListener('popstate', handler);
+
+            setRemoveListener(() => handler);
+        } else {
+            window.removeEventListener('popstate', historyListener);
+        }
+        // eslint-disable-next-line
+    }, [newLocationOverlay]);
+
     // Refs
     const companyRef = useRef(null);
     const addressRef = useRef(null);

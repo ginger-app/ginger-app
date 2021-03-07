@@ -42,7 +42,7 @@ const CategoryComponent = ({
         return clearMarketCategoryData;
     }, [id, getMarketCategoryDataAsync, clearMarketCategoryData]);
 
-    const { name, filteringOptions, items } = categoryData;
+    const { name, filteringOptions, items = [] } = categoryData;
 
     const sortedItems =
         sortingOption === 'price-low'

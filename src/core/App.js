@@ -21,9 +21,5 @@ export const App = () => {
         dispatch(profileActions.getUserDataAsync());
     }, [dispatch]);
 
-    useEffect(() => {
-        history.listen(() => history.action === 'POP' && dispatch(uiActions.hideAllOverlays()));
-    }, [dispatch, history]);
-
     return <PublicRoutes />;
 };
