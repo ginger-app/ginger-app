@@ -9,12 +9,13 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { Button, Icon } from 'components';
-import { opacityTransitionConfig } from 'utils/transitionConfig';
+import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import logo from 'theme/assets/svg/logo.svg';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
 import { profileActions } from 'bus/profile/actions';
+import { Dummy } from 'components/_UI';
 
 const mapStateToProps = (state) => ({
     newLocationOverlay: state.ui.get('newLocationOverlay'),
@@ -125,15 +126,14 @@ const NewLocationOverlayComponent = ({
             // in
             appear
             mountOnEnter
-            unmountOnExit
-            timeout={opacityTransitionConfig(300).timeout}
+            timeout={bottomToTopSlideConfig().timeout}
         >
             {(state) => (
                 <section
                     className={Styles.bg}
                     style={{
-                        ...opacityTransitionConfig().defaultStyles,
-                        ...opacityTransitionConfig().transitionStyles[state],
+                        ...bottomToTopSlideConfig().defaultStyles,
+                        ...bottomToTopSlideConfig().transitionStyles[state],
                     }}
                 >
                     <div className={Styles.container}>

@@ -6,22 +6,31 @@
 
     display: grid;
     grid-template-columns: 4rem 1fr 4rem;
+    grid-template-rows: 1fr 3rem;
+    place-items: center;
+    gap: 1rem;
+
+    padding: 0.5rem;
 
     & .container {
         @include shadow;
         grid-column: 1 / 4;
+        grid-row: 1;
         display: grid;
         grid-template-rows: 60vw;
         grid-auto-rows: 3rem;
         place-items: center;
         gap: 1.25rem;
 
+        height: 100%;
         width: 95vw;
         padding: 1rem;
 
-        background: $paletteBg;
+        background: $paletteWhite;
 
         border-radius: 1rem;
+
+        overflow: scroll;
 
         & .mock {
             @include centerContent;
@@ -88,26 +97,24 @@
     & .close {
         @include shadow;
         cursor: pointer;
-        place-self: start end;
 
         grid-column: 1;
+        grid-row: 2;
 
         height: 3rem;
         width: 3rem;
-        margin: 1rem 0;
 
         background: $paletteWhite;
     }
 
     & .apply {
         cursor: pointer;
-        place-self: start start;
 
         grid-column: 3;
+        grid-row: 2;
 
         height: 3rem;
         width: 3rem;
-        margin: 1rem 0;
 
         & .icon {
             position: relative;
