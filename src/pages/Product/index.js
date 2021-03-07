@@ -7,9 +7,8 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Button, Icon, AddItemToLocation } from 'components';
+import { Button, AddItemToLocation, Navigation } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import { history } from 'bus/init/middleware/core';
 import isEmpty from 'lodash/isEmpty';
 
 // Actions
@@ -76,27 +75,6 @@ const ProductComponent = ({
                             {minPrice.toFixed(2)}-{maxPrice.toFixed(2)}
                         </p>
 
-                        <Button
-                            content={<Icon name='leftArrow' />}
-                            className={Styles.backButton}
-                            onClick={history.goBack}
-                        />
-                        <Button
-                            text='Додати до локації'
-                            className={Styles.addToLocationButton}
-                            onClick={() =>
-                                isAuthenticated ? setLocationsPopupState(true) : showLoginOverlay()
-                            }
-                            filled
-                        />
-                        <Button
-                            content={<Icon name='trash' />}
-                            className={Styles.deleteButton}
-                            onClick={() =>
-                                isAuthenticated ? setLocationsPopupState(true) : showLoginOverlay()
-                            }
-                        />
-
                         {/* Overlays */}
                         <AddItemToLocation
                             productId={id}
@@ -106,6 +84,24 @@ const ProductComponent = ({
                     </div>
                 )}
             </Transition>
+
+            <Navigation
+                centerButton={
+                    <Button
+                        text='Додати до локації'
+                        className={Styles.addToLocationButton}
+                        onClick={() =>
+                            isAuthenticated ? setLocationsPopupState(true) : showLoginOverlay()
+                        }
+                        filled
+                    />
+                }
+                rightButtonData={{
+                    icon: 'trash',
+                    onClick: () =>
+                        isAuthenticated ? setLocationsPopupState(true) : showLoginOverlay(),
+                }}
+            />
         </section>
     );
 };
