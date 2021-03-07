@@ -8,20 +8,23 @@ import { NavLink } from 'react-router-dom';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Navigation, LocationsSelect, ListItem, Dummy } from 'components';
+import { Navigation, LocationsSelect, ListItem, Dummy, Button, Icon } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core/routes';
 
 // Actions
 import { profileActions } from 'bus/profile/actions';
+import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     locations: state.profile.get('locations'),
     clientSelectedLocation: state.ui.get('clientListsSelectedLocation'),
+    isAuthenticated: state.auth.get('isAuthenticated'),
 });
 
 const mapDispatchToProps = {
     getClientLocationsAsync: profileActions.getClientLocationsAsync,
+    showLoginOverlay: uiActions.showLoginOverlay,
 };
 
 const ListsComponent = ({
@@ -29,6 +32,8 @@ const ListsComponent = ({
     getClientLocationsAsync,
     locations,
     clientSelectedLocation,
+    isAuthenticated,
+    showLoginOverlay,
 }) => {
     useEffect(() => {
         getClientLocationsAsync();
@@ -81,10 +86,29 @@ const ListsComponent = ({
                     <LocationsSelect />
                     <Navigation
                         search
-                        rightButtonData={{
-                            icon: 'list',
-                            onClick: () => {},
-                        }}
+                        rightButton={
+                            <NavLink
+                                to={book.newOrder}
+                                onClick={(e) => {
+                                    if (!isAuthenticated) {
+                                        e.preventDefault();
+                                        showLoginOverlay();
+                                    }
+                                }}
+                            >
+                                <Button
+                                    filled
+                                    className={Styles.cartButton}
+                                    content={
+                                        <Icon
+                                            className={Styles.cartIcon}
+                                            name='cart'
+                                            color='white'
+                                        />
+                                    }
+                                />
+                            </NavLink>
+                        }
                     />
                 </section>
             )}
