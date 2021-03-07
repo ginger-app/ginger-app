@@ -19,8 +19,7 @@
 
     & .locations {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-auto-rows: 15rem;
+        grid-auto-rows: max-content;
         gap: 0.5rem;
 
         height: 100%;
@@ -29,8 +28,6 @@
         overflow: scroll;
 
         & .dummy {
-            grid-column: 1 / 3;
-
             height: 4rem;
 
             background: transparent;

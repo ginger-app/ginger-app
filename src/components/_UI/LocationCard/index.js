@@ -11,6 +11,7 @@ import Styles from './styles.module.scss';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core/routes';
 import logo from 'theme/assets/svg/logo.svg';
+import arrow from 'theme/assets/svg/right-full-arrow.svg';
 
 export const LocationCard = ({
     className,
@@ -43,11 +44,10 @@ export const LocationCard = ({
                     >
                         <img src={image || logo} alt='' className={Styles.img} />
 
-                        <p className={Styles.subtitle}>Location name:</p>
-                        <p className={Styles.locationData}>{locationName}</p>
+                        <p className={Styles.locationName}>{locationName}</p>
+                        <p className={Styles.locationAddress}>{address}</p>
 
-                        <p className={Styles.subtitle}>Address:</p>
-                        <p className={Styles.locationData}>{address}</p>
+                        <img src={arrow} alt='' className={Styles.arrow} />
                     </NavLink>
                 ) : (
                     <div
@@ -61,11 +61,10 @@ export const LocationCard = ({
                     >
                         <img src={image || logo} alt='' className={Styles.img} />
 
-                        <p className={Styles.subtitle}>Location name:</p>
-                        <p className={Styles.locationData}>{locationName}</p>
+                        <p className={Styles.locationName}>{locationName}</p>
+                        <p className={Styles.locationAddress}>{address}</p>
 
-                        <p className={Styles.subtitle}>Address:</p>
-                        <p className={Styles.locationData}>{address}</p>
+                        <img src={arrow} alt='' className={Styles.arrow} />
                     </div>
                 )
             }
