@@ -15,7 +15,6 @@ import logo from 'theme/assets/svg/logo.svg';
 // Actions
 import { uiActions } from 'bus/ui/actions';
 import { profileActions } from 'bus/profile/actions';
-import { Dummy } from 'components/_UI';
 
 const mapStateToProps = (state) => ({
     newLocationOverlay: state.ui.get('newLocationOverlay'),
@@ -33,6 +32,8 @@ const NewLocationOverlayComponent = ({
 }) => {
     const history = useHistory();
     const [historyListener, setRemoveListener] = useState();
+
+    const [deleteDialog, setDeleteDialogState] = useState(false);
 
     useEffect(() => {
         if (newLocationOverlay) {
@@ -72,7 +73,8 @@ const NewLocationOverlayComponent = ({
         () => [
             {
                 ref: companyRef,
-                title: 'Company',
+                title: 'Location',
+                placeholder: 'Назва локації',
                 inputValue: company,
                 editingState: companyEditing,
                 setValue: setCompanyValue,
@@ -81,6 +83,7 @@ const NewLocationOverlayComponent = ({
             {
                 ref: addressRef,
                 title: 'Address',
+                placeholder: 'Вул. Хрещатик, 1',
                 inputValue: address,
                 editingState: addressEditing,
                 setValue: setAddressValue,
@@ -190,22 +193,35 @@ const NewLocationOverlayComponent = ({
                     <Button
                         className={Styles.close}
                         content={<Icon name='close' />}
-                        onClick={hideNewLocationOverlay}
+                        onClick={() =>
+                            deleteDialog ? setDeleteDialogState(false) : hideNewLocationOverlay()
+                        }
                     />
+                    {deleteDialog ? (
+                        <p className={Styles.deleteDialogText}>Видалити локацію?</p>
+                    ) : (
+                        <Button
+                            className={Styles.delete}
+                            content={<Icon name='trash' />}
+                            onClick={() => setDeleteDialogState(true)}
+                        />
+                    )}
                     <Button
                         className={Styles.apply}
                         content={<Icon name='check' color='white' className={Styles.icon} />}
                         onClick={() =>
-                            createNewLocationAsync({
-                                locationName: company,
-                                address,
-                                schedule: {
-                                    start: schedule.split('-')[0] || 'Unknown',
-                                    end: schedule.split('-')[1] || 'Unknown',
-                                },
-                                managerName: '',
-                                phoneNumber,
-                            })
+                            deleteDialog
+                                ? console.log('Deleting...')
+                                : createNewLocationAsync({
+                                      locationName: company,
+                                      address,
+                                      schedule: {
+                                          start: schedule.split('-')[0] || 'Unknown',
+                                          end: schedule.split('-')[1] || 'Unknown',
+                                      },
+                                      managerName: '',
+                                      phoneNumber,
+                                  })
                         }
                         filled
                     />

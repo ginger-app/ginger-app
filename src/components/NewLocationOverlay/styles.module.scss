@@ -107,6 +107,27 @@
         background: $paletteWhite;
     }
 
+    & .delete {
+        @include shadow;
+        cursor: pointer;
+
+        grid-column: 2;
+        grid-row: 2;
+
+        height: 3rem;
+        width: 3rem;
+
+        background: $paletteWhite;
+    }
+
+    & .deleteDialogText {
+        grid-column: 2;
+        grid-row: 2;
+
+        font-size: 1.2rem;
+        white-space: nowrap;
+    }
+
     & .apply {
         cursor: pointer;
 
