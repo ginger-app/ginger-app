@@ -11,26 +11,16 @@
     grid-auto-rows: max-content;
     gap: 0.5rem 0;
 
-    height: 100vh;
     width: 100vw;
-    padding: 3rem 1rem 5rem;
+    padding: 1rem;
 
     background: $paletteBg;
+
+    overflow-y: scroll;
 
     & .title {
         @include boldTitle;
         grid-column: 1 / 4;
-    }
-
-    & .select {
-        @include lightButton;
-        place-self: center;
-
-        grid-column: 1 / 4;
-
-        width: 85%;
-        margin: 1rem 0 0;
-        padding: 0.75rem;
     }
 
     & .subtitle {
@@ -70,19 +60,20 @@
 
     & .applyButton {
         cursor: pointer;
+        place-self: center;
 
-        position: fixed;
-        bottom: 1rem;
-        left: 50%;
+        grid-column: 1 / 4;
 
         height: 3rem;
         width: 3rem;
-
-        transform: translate(-50%, 0);
 
         & .icon {
             position: relative;
             left: -3px;
         }
+    }
+
+    & .dummy {
+        height: 1rem;
     }
 }

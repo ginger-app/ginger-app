@@ -3,34 +3,28 @@
 .container {
     @include centerContent;
 
-    padding: 0.25rem 0.75rem;
+    padding: 0.15rem 0.75rem;
 
-    border-radius: 1rem;
+    border-radius: 0 0 0.35rem 0.35rem;
 
     text-align: center;
     font-size: 0.8rem;
 
-    &.completedStatus {
-        background: #00c43848;
+    color: $paletteWhite;
 
-        color: #008f28;
+    &.completedStatus {
+        background: $paletteGreen_1;
     }
 
     &.pendingStatus {
-        background: #0071c41c;
-
-        color: #006278e3;
+        background: $paletteBlue_1;
     }
 
     &.preparingStatus {
-        background: #c4b0003b;
-
-        color: #d8a007;
+        background: $paletteYellow_1;
     }
 
     &.cancelledStatus {
-        background: #c400003b;
-
-        color: #d80707;
+        background: $paletteErrorRed;
     }
 }

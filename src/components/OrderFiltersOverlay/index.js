@@ -13,6 +13,7 @@ import randomWords from 'random-words';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
+import { Dummy } from 'components/_UI';
 
 // Mocks
 const suppliers = randomWords({
@@ -53,9 +54,6 @@ const OrderFiltersOverlayComponent = ({
                     {/* Title */}
                     <p className={Styles.title}>Filters</p>
 
-                    {/* Date range select */}
-                    <div className={Styles.select}>Select</div>
-
                     {/* Filters */}
                     <p className={Styles.subtitle}>Supplier</p>
                     <p className={Styles.clear}>Очистити</p>
@@ -76,6 +74,7 @@ const OrderFiltersOverlayComponent = ({
                         onClick={hideOrdersFiltersOverlay}
                         filled
                     />
+                    <Dummy className={Styles.dummy} />
                 </section>
             )}
         </Transition>

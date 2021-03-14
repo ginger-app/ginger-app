@@ -13,6 +13,7 @@ import stylePropType from 'react-style-proptype';
 import { OrderStatusLabel } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { DateTime } from 'luxon';
+import arrow from 'theme/assets/svg/right-full-arrow.svg';
 
 const mapStateToProps = (state) => ({
     ...state,
@@ -52,20 +53,25 @@ const SupplierOrderItemComponent = ({
                     }}
                     to={`/orders/${_id}`}
                 >
-                    <p className={Styles.date}>{DateTime.fromISO(deliveryDate).toLocaleString()}</p>
                     <OrderStatusLabel status={status} className={Styles.orderStatusLabel} />
 
-                    <p className={Styles.subtitle}>Location:</p>
-                    <p className={Styles.location}>{location.locationName}</p>
+                    <p className={Styles.date}>
+                        {DateTime.fromISO(deliveryDate).toLocaleString({
+                            month: 'long',
+                            day: '2-digit',
+                            year: 'numeric',
+                        })}
+                    </p>
+                    <p className={Styles.price}>{sum} грн.</p>
 
-                    <p className={[Styles.subtitle, Styles.alignRight].join(' ')}>Client:</p>
-                    <p className={[Styles.supplier, Styles.alignRight].join(' ')}>{client.name}</p>
+                    {/* <p className={Styles.location}>{location.locationName}</p> */}
 
-                    <p className={Styles.price}>{sum}</p>
+                    <p className={Styles.supplier}>{client.name}</p>
+
                     <div className={Styles.cart}>
-                        {items.map(({ item }, key) => (
-                            <img src={item.image} alt='' className={Styles.cartItem} key={key} />
-                        ))}
+                        <span>Товарів:</span>
+                        <span>{items.length}</span>
+                        <img src={arrow} alt='' />
                     </div>
                 </NavLink>
             )}

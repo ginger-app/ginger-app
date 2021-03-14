@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -32,6 +32,8 @@ const OrdersComponent = ({
     showOrdersFiltersOverlay,
     getClientOrdersAsync,
 }) => {
+    const [filteringOption, setFilteringOption] = useState('');
+
     useEffect(() => {
         if (!isAuthenticated) {
             showLoginOverlay('/');
@@ -40,13 +42,13 @@ const OrdersComponent = ({
         }
     }, [isAuthenticated, showLoginOverlay, getClientOrdersAsync]);
 
-    const statusesImportance = {
-        Pending: 1,
-        Shipping: 2,
-        'Awaiting shipment': 3,
-        'Awaiting collection': 4,
-        Completed: 5,
-        Cancelled: 6,
+    const statuses = {
+        Pending: 'Очікує підтвердження',
+        Shipping: 'В дорозі',
+        'Awaiting shipment': 'Очікує на доставку',
+        'Awaiting collection': 'Збирається',
+        Completed: 'Завершений',
+        Cancelled: 'Відмінений',
     };
 
     return (
@@ -70,27 +72,49 @@ const OrdersComponent = ({
 
                     {/* Orders */}
                     <div className={Styles.ordersSection}>
-                        {orders.map(
-                            (item, index) =>
-                                /**
-                                 * On first load, all items are ObjectID strings and
-                                 * we don't want to display those untill they get populated
-                                 */
-                                typeof item !== 'string' && (
-                                    <OrderItem {...item} key={index} index={index} />
-                                ),
-                        )}
+                        {orders
+                            .filter((item) => item.status.includes(filteringOption))
+                            .map(
+                                (item, index) =>
+                                    /**
+                                     * On first load, all items are ObjectID strings and
+                                     * we don't want to display those untill they get populated
+                                     */
+                                    typeof item !== 'string' && (
+                                        <OrderItem {...item} key={index} index={index} />
+                                    ),
+                            )}
                     </div>
 
                     {/* Fast sorting options */}
                     <Carousel
                         className={Styles.tags}
                         carouselClassName={Styles.carousele}
-                        items={Object.keys(statusesImportance).map((item, index) => (
-                            <div className={Styles.tag} key={index}>
-                                {item}
-                            </div>
-                        ))}
+                        items={[
+                            <div
+                                className={[Styles.tag, filteringOption === '' && Styles.chosen]
+                                    .filter(Boolean)
+                                    .join(' ')}
+                                key='zero'
+                                onClick={() => setFilteringOption('')}
+                            >
+                                Всі
+                            </div>,
+                            ...Object.entries(statuses).map(([key, value], index) => (
+                                <div
+                                    className={[
+                                        Styles.tag,
+                                        filteringOption === key && Styles.chosen,
+                                    ]
+                                        .filter(Boolean)
+                                        .join(' ')}
+                                    key={index}
+                                    onClick={() => setFilteringOption(key)}
+                                >
+                                    {value}
+                                </div>
+                            )),
+                        ]}
                     />
 
                     {/* Footer nav */}
