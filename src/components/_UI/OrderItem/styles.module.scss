@@ -38,6 +38,11 @@
         font-weight: bold;
     }
 
+    & .showUserInfo {
+        font-weight: bold;
+        text-align: end;
+    }
+
     & .cart {
         place-self: start end;
 

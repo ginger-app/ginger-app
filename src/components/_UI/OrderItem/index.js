@@ -32,6 +32,7 @@ const OrderItemComponent = ({
     index,
     // location,
     supplier,
+    orderDetails,
 }) => {
     return (
         <Transition
@@ -52,6 +53,11 @@ const OrderItemComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                     to={`/orders/${_id}`}
+                    onClick={(e) => {
+                        if (orderDetails) {
+                            e.preventDefault();
+                        }
+                    }}
                 >
                     <OrderStatusLabel status={status} className={Styles.orderStatusLabel} />
 
@@ -70,11 +76,15 @@ const OrderItemComponent = ({
                         {supplier.companyName}
                     </p>
 
-                    <div className={Styles.cart}>
-                        <span>Товарів:</span>
-                        <span>{items.length}</span>
-                        <img src={arrow} alt='' />
-                    </div>
+                    {orderDetails ? (
+                        <p className={Styles.showUserInfo}>• • •</p>
+                    ) : (
+                        <div className={Styles.cart}>
+                            <span>Товарів:</span>
+                            <span>{items.length}</span>
+                            <img src={arrow} alt='' />
+                        </div>
+                    )}
                 </NavLink>
             )}
         </Transition>
@@ -87,6 +97,7 @@ OrderItemComponent.propTypes = {
     status: PropTypes.string,
     sum: PropTypes.string,
     index: PropTypes.number,
+    orderDetails: PropTypes.bool,
 };
 
 export const OrderItem = connect(mapStateToProps, mapDispatchToProps)(OrderItemComponent);

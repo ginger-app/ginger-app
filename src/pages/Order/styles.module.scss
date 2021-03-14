@@ -5,10 +5,11 @@
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(6, max-content) 1fr;
+    grid-template-rows: repeat(3, max-content) 1fr;
+    gap: 0.5rem;
 
     height: 100vh;
-    padding: 2rem 0.5rem 5rem;
+    padding: 1rem 0.5rem 5rem;
 
     & .title {
         @include boldTitle;
@@ -16,137 +17,56 @@
 
         grid-column: 1 / 3;
 
-        margin-bottom: 1.5rem;
+        font-size: 1.75rem;
+        text-align: left;
     }
 
-    & .date {
-        place-self: start;
-
-        margin-bottom: 0.5rem;
-
-        font-weight: bold;
+    & .orderItem {
+        grid-column: 1 / 3;
     }
 
-    & .orderStatusLabel {
-        place-self: end;
-
-        width: 75%;
-        margin-bottom: 0.5rem;
-    }
-
-    & .locationSubtitle {
-        @include subtitle;
-        place-self: start;
-
-        grid-column: 1;
-        grid-row: 3;
-
-        margin-top: 0.2rem;
-    }
-
-    & .location {
-        @include boldTitle;
-        place-self: start;
-
-        grid-column: 1;
-    }
-
-    & .supplierSubtitle {
-        @include subtitle;
-        place-self: start;
-
-        grid-column: 1;
-        grid-row: 5;
-
-        margin-top: 0.2rem;
-    }
-
-    & .supplier {
-        place-self: start;
-
+    & .productsHeader {
+        @include shadow;
+        grid-column: 1 / 3;
         display: grid;
-        grid-column: 1;
-        grid-template-columns: repeat(2, max-content);
+        grid-template-columns: 3rem 1fr 15% calc(15% + 0.5rem);
+        place-items: center start;
         gap: 0.5rem;
 
-        & span {
-            @include boldTitle;
-        }
+        padding: 0.25rem 0.25rem 0.25rem 0.25rem;
 
-        & .detailsButton {
-            @include centerContent;
-            place-self: center;
+        background: $paletteWhite;
 
-            height: 1.5rem;
-            width: 1.5rem;
-            padding: 0;
-
-            & img {
-                width: 75%;
-            }
-        }
-    }
-
-    & .orderIdSubtitle {
-        @include subtitle;
-        place-self: start end;
-
-        grid-column: 2;
-        grid-row: 3;
-
-        margin-top: 0.2rem;
-    }
-
-    & .orderId {
-        @include boldTitle;
-        place-self: start end;
-
-        grid-column: 2;
-        grid-row: 4;
-
-        margin-top: 0.1rem;
-
-        font-size: 0.95rem;
-    }
-
-    & .sumSubtitle {
-        @include subtitle;
-        place-self: start end;
-
-        grid-column: 2;
-        grid-row: 5;
-
-        margin-top: 0.2rem;
-    }
-
-    & .sum {
-        @include boldTitle;
-        place-self: start end;
-
-        grid-column: 2;
-        grid-row: 6;
+        font-size: 0.8rem;
     }
 
     & .products {
         grid-column: 1 / 3;
         display: grid;
         grid-auto-rows: max-content;
+        gap: 0.5rem;
 
         height: 100%;
-        margin-top: 1rem;
+        padding: 0.25rem 0;
 
-        overflow: scroll;
+        overflow-y: scroll;
 
         & .productItem {
+            @include shadow;
+
             display: grid;
-            grid-template-columns: 20% 1fr 20% 20%;
-            place-items: center;
+            grid-template-columns: 3rem 1fr 15% 15%;
+            place-items: center start;
             gap: 0.5rem;
 
             width: 100%;
-            padding: 0.5rem 0;
+            padding: 0.25rem 1rem 0.25rem 0.25rem;
 
-            border-top: 2px solid $paletteGrey_4;
+            background: $paletteWhite;
+
+            border-radius: 0.5rem;
+
+            font-size: 0.8rem;
 
             & img {
                 height: 3rem;
@@ -157,8 +77,14 @@
                 border-radius: 100%;
             }
 
+            & .name {
+                text-align: start;
+            }
+
             & .price {
-                @include boldTitle;
+                place-self: center end;
+
+                font-weight: bold;
             }
         }
     }
