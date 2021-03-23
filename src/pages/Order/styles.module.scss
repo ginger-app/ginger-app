@@ -3,6 +3,8 @@
 .container {
     @include fullHeight;
 
+    position: relative;
+
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(3, max-content) 1fr;
@@ -19,6 +21,19 @@
 
         font-size: 1.75rem;
         text-align: left;
+    }
+
+    & .disputeButton {
+        @include shadow;
+
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+
+        height: 2.5rem;
+        width: 2.5rem;
+
+        background: $paletteWhite;
     }
 
     & .orderItem {

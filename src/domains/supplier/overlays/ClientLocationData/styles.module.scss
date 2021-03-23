@@ -1,0 +1,65 @@
+@import 'resources';
+
+.container {
+    @include fullHeight;
+    @include overlay(false);
+
+    display: grid;
+    grid-template-rows: 3rem 12rem repeat(4, 3.5rem) 1fr;
+
+    padding: 0;
+
+    background: $paletteWhite;
+
+    & .title {
+        @include shadow;
+
+        padding: 0.5rem;
+
+        font-size: 2.25rem;
+        font-weight: bold;
+    }
+
+    & .img {
+        place-self: center;
+
+        height: 8rem;
+        width: 8rem;
+        margin: 2rem 0;
+
+        border-radius: 1rem;
+    }
+
+    & .item {
+        @include boldTitle;
+
+        display: grid;
+        place-items: center start;
+
+        padding: 0 1rem;
+
+        border-bottom: 1px solid $paletteGrey_3;
+
+        text-align: start;
+
+        & span {
+            place-self: end start;
+
+            font-size: 0.9rem;
+            font-weight: normal;
+
+            color: $paletteGrey_2;
+        }
+    }
+
+    & .button {
+        @include shadow(#00000033);
+        place-self: end start;
+
+        width: 3rem;
+        height: 3rem;
+        margin: 0.5rem;
+
+        background: $paletteWhite;
+    }
+}

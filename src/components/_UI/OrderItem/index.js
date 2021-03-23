@@ -33,6 +33,7 @@ const OrderItemComponent = ({
     // location,
     supplier,
     orderDetails,
+    onClick,
 }) => {
     return (
         <Transition
@@ -56,6 +57,10 @@ const OrderItemComponent = ({
                     onClick={(e) => {
                         if (orderDetails) {
                             e.preventDefault();
+
+                            if (onClick) {
+                                onClick();
+                            }
                         }
                     }}
                 >
@@ -98,6 +103,7 @@ OrderItemComponent.propTypes = {
     sum: PropTypes.string,
     index: PropTypes.number,
     orderDetails: PropTypes.bool,
+    onClick: PropTypes.func,
 };
 
 export const OrderItem = connect(mapStateToProps, mapDispatchToProps)(OrderItemComponent);

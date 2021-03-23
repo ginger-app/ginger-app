@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -8,15 +8,16 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import { Navigation, OrderItem } from 'components';
-import { DateTime } from 'luxon';
+import { Button, Icon, Navigation, OrderItem } from 'components';
 import isEmpty from 'lodash/isEmpty';
 
 // Actions
 import { marketActions } from 'bus/market/actions';
+import { ClientLocationData } from 'domains/supplier/overlays';
 
 const mapStateToProps = (state) => ({
     orderData: state.market.get('orderData').toJS(),
+    role: state.profile.get('role'),
 });
 
 const mapDispatchToProps = {
@@ -24,16 +25,16 @@ const mapDispatchToProps = {
     clearOrderData: marketActions.clearOrderData,
 };
 
-const OrderComponent = ({ id, getOrderDataAsync, clearOrderData, orderData }) => {
+const OrderComponent = ({ id, getOrderDataAsync, clearOrderData, orderData, role }) => {
+    const [overlay, setOverlayState] = useState(false);
+
     useEffect(() => {
         getOrderDataAsync(id);
 
         return clearOrderData;
     }, [id, getOrderDataAsync, clearOrderData]);
 
-    const { items } = orderData;
-
-    console.log(items);
+    const { items, location } = orderData;
 
     return (
         <Transition
@@ -54,7 +55,18 @@ const OrderComponent = ({ id, getOrderDataAsync, clearOrderData, orderData }) =>
                     {/* Title */}
                     <p className={Styles.title}>Деталі замовлення</p>
 
-                    <OrderItem {...orderData} className={Styles.orderItem} orderDetails />
+                    <Button
+                        content={<Icon name='dispute' />}
+                        className={Styles.disputeButton}
+                        onClick={() => console.log('Opening dispute...')}
+                    />
+
+                    <OrderItem
+                        {...orderData}
+                        className={Styles.orderItem}
+                        onClick={() => setOverlayState(true)}
+                        orderDetails
+                    />
 
                     {/* Orders */}
                     <div className={Styles.productsHeader}>
@@ -81,6 +93,13 @@ const OrderComponent = ({ id, getOrderDataAsync, clearOrderData, orderData }) =>
                             onClick: () => null,
                             icon: 'export',
                         }}
+                    />
+
+                    {/* Modals */}
+                    <ClientLocationData
+                        inProp={overlay}
+                        onClick={() => setOverlayState(false)}
+                        {...location}
                     />
                 </section>
             )}
