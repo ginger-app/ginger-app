@@ -8,6 +8,7 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Instruments
+import { ClientProfile } from 'domains/client/pages';
 import { Button, Icon, Navigation } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core/routes';
@@ -55,6 +56,8 @@ const ProfileComponent = ({ profile, logoutAsync, getUserDataAsync }) => {
                 </section>
             )}
         </Transition>
+    ) : role === 'client' ? (
+        <ClientProfile />
     ) : (
         <Transition
             in

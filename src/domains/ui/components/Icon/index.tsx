@@ -1,15 +1,53 @@
 import React, { memo } from 'react';
 
-/**
- * Renders icon depending on given name
- * @param {string} name icon name
- * @param {string} color optional icon color
- * @param {number} size optional icon size
- * @param {number} width optional icon width
- * @param {number} height optional icon height
- * @returns {JSX.Element}
- */
-export function renderIcon({ name, color = '#000', size, width, height, onClick, className }) {
+export type IconNames =
+    | 'cart'
+    | 'check'
+    | 'close'
+    | 'currency'
+    | 'dispute'
+    | 'edit'
+    | 'export'
+    | 'filters'
+    | 'heart'
+    | 'heart-filled'
+    | 'home'
+    | 'leftArrow'
+    | 'link'
+    | 'list'
+    | 'lists'
+    | 'login'
+    | 'logout'
+    | 'minus'
+    | 'plus'
+    | 'profile'
+    | 'refresh'
+    | 'rightArrow'
+    | 'search'
+    | 'slideDownArrow'
+    | 'star'
+    | 'trash'
+    | 'upload';
+
+type IconProps = {
+    name: IconNames;
+    color?: string;
+    size?: number;
+    width?: number;
+    height?: number;
+    onClick?: () => void;
+    className?: string;
+};
+
+export function renderIcon({
+    name,
+    color = '#000',
+    size,
+    width,
+    height,
+    onClick,
+    className,
+}: IconProps) {
     switch (name) {
         case 'close':
             return (
@@ -321,6 +359,10 @@ export function renderIcon({ name, color = '#000', size, width, height, onClick,
                     viewBox={`0 0 ${width || size || 19} ${height || size || 19}`}
                     fill='none'
                     xmlns='http://www.w3.org/2000/svg'
+                    style={{
+                        position: 'relative',
+                        left: 2,
+                    }}
                 >
                     <path
                         d='M17.1797 3.51217L15.88 4.81184L13.1907 2.1225L14.4903 0.82283C14.5874 0.725723 14.7426 0.725723 14.8397 0.82283L17.1797 3.16283C17.2768 3.25994 17.2768 3.41506 17.1797 3.51217ZM3.43934 17.2525H0.75V14.5632L11.06 4.25316L13.7493 6.9425L3.43934 17.2525Z'
@@ -557,6 +599,10 @@ export function renderIcon({ name, color = '#000', size, width, height, onClick,
                     viewBox={`0 0 ${width || size || 23} ${height || size || 25}`}
                     fill='none'
                     xmlns='http://www.w3.org/2000/svg'
+                    style={{
+                        position: 'relative',
+                        left: -3,
+                    }}
                 >
                     <path
                         d='M5.29249 16L1.14258 12M1.14258 12L5.29249 8M1.14258 12H11.7676'
@@ -665,6 +711,6 @@ export function renderIcon({ name, color = '#000', size, width, height, onClick,
     }
 }
 
-export const Icon = memo(({ name, color, size, width, height, onClick, className }) => {
+export const Icon = memo(({ name, color, size, width, height, onClick, className }: IconProps) => {
     return renderIcon({ name, color, size, width, height, onClick, className });
 });

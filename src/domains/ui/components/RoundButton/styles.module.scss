@@ -1,0 +1,10 @@
+@import 'resources';
+
+.container {
+    @include shadow;
+    @include centerContent;
+
+    background: $paletteWhite;
+
+    border-radius: 100%;
+}

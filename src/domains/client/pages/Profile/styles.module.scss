@@ -1,0 +1,38 @@
+@import 'resources';
+
+.container {
+    @include fullHeight;
+
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    gap: 0.5rem;
+
+    & .links {
+        display: grid;
+        grid-auto-rows: 6rem;
+        place-items: start center;
+        gap: 1rem;
+
+        height: 100%;
+        width: 100%;
+        padding: 0.5rem 1rem;
+
+        overflow: scroll;
+
+        & .link {
+            @include shadow;
+            @include centerContent;
+            cursor: pointer;
+
+            height: 100%;
+            width: 100%;
+
+            background: $paletteWhite;
+
+            border-radius: 1rem;
+
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+    }
+}
