@@ -11,6 +11,7 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { PageHeader, RoundButton } from 'domains/ui/components';
 import { useClient } from 'domains/client/hooks';
 import avatarPlaceholder from 'theme/assets/images/png-placeholder.png';
+import { ClientApi } from 'domains/client/api';
 
 type EditProfileProps = {
     className?: string;
@@ -113,7 +114,14 @@ export const ClientEditProfile: FC<EditProfileProps> = ({ className }): ReactEle
                                 gradient
                                 icon='check'
                                 className={Styles.navButton}
-                                onClick={() => console.log('SAVING PROFILE')}
+                                onClick={() =>
+                                    ClientApi.updateClient({
+                                        name,
+                                        phoneNumber,
+                                        email,
+                                        companyName: company,
+                                    })
+                                }
                             />
                         }
                     />

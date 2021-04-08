@@ -1,15 +1,27 @@
-export type ClientState = {
-    _id: string;
+import { Order } from 'domains/orders/types';
+
+export interface ChosenSuppliers {
+    itemId: string;
+    data: {
+        ['string']: {
+            ['string']: string[];
+        };
+    };
+}
+
+export type ClientDto = {
     name: string;
     email: string;
     phoneNumber: string;
     companyName: string;
-    lastVisit: string;
+    locations: string[];
+    orders: string[];
+    unfinishedOrder: Order;
+    chosenSuppliers: ChosenSuppliers[];
+    paymentMethods: string[];
+    analyticsData: Array<any>;
     role: string;
-    userpic: null;
-    paymentMethods: unknown[];
-    locations: unknown[];
-    analyticsData: unknown[];
-    previewData: unknown[];
-    orders: unknown[];
+    lastVisit: Date;
+    registrationDate: Date;
+    userpic: string;
 };
