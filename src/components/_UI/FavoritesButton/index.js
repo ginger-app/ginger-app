@@ -10,10 +10,10 @@ import Styles from './styles.module.scss';
 import { Icon } from 'components';
 
 // Actions
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
-    favorites: state.profile.get('favorites'),
+    favorites: state.profile.favorites,
     isAuthenticated: state.auth.get('isAuthenticated'),
 });
 

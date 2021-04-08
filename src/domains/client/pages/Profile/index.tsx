@@ -61,7 +61,7 @@ export const ClientProfile: FC<ProfileProps> = ({ className }): ReactElement => 
 
                     <div className={Styles.links}>
                         {links.map(({ to, title }) => (
-                            <Link className={Styles.link} to={to}>
+                            <Link className={Styles.link} key={title} to={to}>
                                 {title}
                             </Link>
                         ))}
@@ -70,11 +70,13 @@ export const ClientProfile: FC<ProfileProps> = ({ className }): ReactElement => 
                     {/* Footer nav */}
                     <Navigation
                         centerButton={
-                            <RoundButton
-                                className={Styles.navButton}
-                                icon='edit'
-                                onClick={() => console.log('Open edit...')}
-                            />
+                            <Link to={book.clientEdit}>
+                                <RoundButton
+                                    className={Styles.navButton}
+                                    icon='edit'
+                                    onClick={() => null}
+                                />
+                            </Link>
                         }
                         rightButton={
                             <RoundButton

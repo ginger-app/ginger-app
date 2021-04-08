@@ -13,11 +13,11 @@ import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
     supplierUploadPreviewOverlay: state.ui.get('supplierUploadPreviewOverlay'),
-    previewData: state.profile.get('previewData'),
+    previewData: state.profile.previewData,
 });
 
 const mapDispatchToProps = {

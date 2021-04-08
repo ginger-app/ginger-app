@@ -10,7 +10,7 @@ import { getLocationsData } from '../../selectors';
 
 // Api
 import { Api } from 'api';
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 
 export function* addNewItemToLocationWorker({ payload }) {
     try {

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 // Actions
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 // import { authActions } from 'bus/auth/actions';
 import { PublicRoutes } from './routes';
 

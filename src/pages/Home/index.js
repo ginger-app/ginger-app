@@ -28,7 +28,7 @@ import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.get('isAuthenticated'),
-    orders: state.profile.get('orders'),
+    orders: state.profile.orders,
     logs: state.ui.get('logs'),
 });
 

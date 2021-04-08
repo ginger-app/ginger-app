@@ -13,10 +13,10 @@ import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
-    locations: state.profile.get('locations'),
+    locations: state.profile.locations,
 });
 
 const mapDispatchToProps = {

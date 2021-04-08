@@ -14,11 +14,11 @@ import { Icon, CartItem, MapModal, DeliveryTimeModal, OrderSuccessModal } from '
 // Actions
 import { uiActions } from 'bus/ui/actions';
 import { marketActions } from 'bus/market/actions';
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
     cartIsOpened: state.ui.get('cartIsOpened'),
-    // cart: state.profile.get('cart'),
+    // cart: state.profile.cart,
     isAuthenticated: state.auth.get('isAuthenticated'),
     orderPlacedSuccesfully: state.ui.get('orderPlacedSuccesfully'),
 });

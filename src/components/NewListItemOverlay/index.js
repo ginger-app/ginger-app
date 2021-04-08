@@ -14,7 +14,7 @@ import logo from 'theme/assets/images/apples-mock.png';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
     newListItemOverlay: state.ui.get('newListItemOverlay'),

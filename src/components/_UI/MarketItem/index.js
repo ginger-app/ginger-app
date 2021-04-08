@@ -12,12 +12,12 @@ import { Button, Icon, AddItemToLocation } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
-    favorites: state.profile.get('favorites'),
+    favorites: state.profile.favorites,
     isAuthenticated: state.auth.get('isAuthenticated'),
-    cart: state.profile.get('cart'),
+    cart: state.profile.cart,
 });
 
 const mapDispatchToProps = {

@@ -12,6 +12,7 @@ type RoundButtonProps = {
     size?: string;
     icon: IconNames;
     onClick: () => void;
+    gradient?: boolean;
 };
 
 export const RoundButton: FC<RoundButtonProps> = ({
@@ -19,17 +20,20 @@ export const RoundButton: FC<RoundButtonProps> = ({
     icon,
     size = '3rem',
     onClick,
+    gradient,
 }): ReactElement => {
     return (
         <div
-            className={[Styles.container, className].filter(Boolean).join(' ')}
+            className={[Styles.container, gradient && Styles.gradient, className]
+                .filter(Boolean)
+                .join(' ')}
             onClick={onClick}
             style={{
                 height: size,
                 width: size,
             }}
         >
-            <Icon name={icon} />
+            <Icon name={icon} color={gradient ? '#ffffff' : '#000000'} />
         </div>
     );
 };

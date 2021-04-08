@@ -12,7 +12,7 @@ import { Icon, RadioButton } from 'components';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    locations: state.profile.get('locations'),
+    locations: state.profile.locations,
     clientSelectedLocation: state.ui.get('clientListsSelectedLocation'),
 });
 

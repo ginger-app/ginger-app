@@ -17,7 +17,7 @@ import { ClientLocationData } from 'domains/supplier/overlays';
 
 const mapStateToProps = (state) => ({
     orderData: state.market.get('orderData').toJS(),
-    role: state.profile.get('role'),
+    role: state.profile.role,
 });
 
 const mapDispatchToProps = {

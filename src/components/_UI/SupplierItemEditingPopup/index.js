@@ -12,7 +12,7 @@ import { Button, Icon } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
     ...state,

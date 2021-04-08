@@ -23,6 +23,7 @@ import {
 
 // Instruments
 import { book } from 'core';
+import { ClientEditProfile } from 'domains/client/pages';
 
 export const PublicRoutes = () => (
     <Switch>
@@ -67,6 +68,7 @@ export const PublicRoutes = () => (
         <Route exact path={book.profile} component={ProfilePage} />
 
         {/* Customer specific */}
+        <Route exact path={book.clientEdit} component={ClientEditProfile} />
         <Route exact path={book.orders} component={OrdersPage} />
         <Route exact path={book.newOrder} component={NewOrderPage} />
         <Route exact path={book.lists} component={ListsPage} />

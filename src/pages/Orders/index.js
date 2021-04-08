@@ -12,10 +12,10 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
-    orders: state.profile.get('orders'),
+    orders: state.profile.orders,
     isAuthenticated: state.auth.get('isAuthenticated'),
 });
 

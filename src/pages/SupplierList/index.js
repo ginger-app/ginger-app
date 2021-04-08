@@ -17,7 +17,7 @@ import { uiActions } from 'bus/ui/actions';
 const filters = ['Всі', 'В наявності', 'Закінчується', 'Немає в наявності'];
 
 const mapStateToProps = (state) => ({
-    itemsList: state.profile.get('itemsList'),
+    itemsList: state.profile.itemsList,
 });
 
 const mapDispatchToProps = {

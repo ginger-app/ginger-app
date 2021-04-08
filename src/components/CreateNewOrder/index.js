@@ -18,8 +18,8 @@ import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.get('isAuthenticated'),
-    unfinishedOrder: state.profile.get('unfinishedOrder'),
-    role: state.profile.get('role'),
+    unfinishedOrder: state.profile.unfinishedOrder,
+    role: state.profile.role,
 });
 
 const mapDispatchToProps = {

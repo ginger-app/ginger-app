@@ -16,10 +16,10 @@ import logo from 'theme/assets/svg/logo.svg';
 
 // Actions
 import { authActions } from 'bus/auth/actions';
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
-    profile: state.profile.toJS(),
+    profile: state.profile,
 });
 
 const mapDispatchToProps = {

@@ -3,7 +3,7 @@ import { put } from 'redux-saga/effects';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 
 // export function* repeatLastOrderWorker({ payload: { userCart, address } }) {
 export function* repeatLastOrderWorker({ payload: { userCart } }) {

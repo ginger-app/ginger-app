@@ -12,10 +12,10 @@ import { Navigation, LocationCard, Button, Icon, Dummy } from 'components';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
-    locations: state.profile.get('locations'),
+    locations: state.profile.locations,
 });
 
 const mapDispatchToProps = {

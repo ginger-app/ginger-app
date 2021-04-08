@@ -14,7 +14,7 @@ import { history } from 'bus/init/middleware/core';
 import mock from 'theme/assets/images/apples-mock.png';
 
 // Actions
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({

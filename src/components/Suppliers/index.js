@@ -11,10 +11,10 @@ import { RadioButton } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
-    chosenSupplierData: state.profile.get('chosenSupplierData'),
+    chosenSupplierData: state.profile.chosenSupplierData,
 });
 
 const mapDispatchToProps = {

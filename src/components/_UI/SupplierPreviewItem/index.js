@@ -12,7 +12,7 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import mockApples from 'theme/assets/images/apples-mock.png';
 
 // Actions
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
     ...state,

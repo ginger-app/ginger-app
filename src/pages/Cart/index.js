@@ -19,11 +19,11 @@ import {
 } from 'components';
 
 // Actions
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    locations: state.profile.get('locations'),
+    locations: state.profile.locations,
     deliveryDate: state.ui.get('deliveryDate'),
 });
 

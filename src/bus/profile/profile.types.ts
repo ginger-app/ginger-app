@@ -1,7 +1,10 @@
+import { ProfileState } from './profile.reducer';
+
 export const profileTypes = {
     // Sync
     FILL_PROFILE: 'FILL_PROFILE',
     CLEAR_PROFILE: 'CLEAR_PROFILE',
+
     FILL_REFERRAL_DATA: 'FILL_REFERRAL_DATA',
     UPDATE_NICKNAME: 'UPDATE_NICKNAME',
     UPDATE_EMAIL: 'UPDATE_EMAIL',
@@ -42,3 +45,58 @@ export const profileTypes = {
     CREATE_NEW_ORDER_ASYNC: 'CREATE_NEW_ORDER_ASYNC',
     GET_ORDERS_COMBINATIONS_ASYNC: 'GET_ORDERS_COMBINATIONS_ASYNC',
 };
+
+type FillProfileAction = {
+    type: typeof profileTypes.FILL_PROFILE;
+    payload: Partial<ProfileState>;
+};
+
+type ClearProfileAction = {
+    type: typeof profileTypes.CLEAR_PROFILE;
+};
+
+type ClearSupplierPreviewAction = {
+    type: typeof profileTypes.FILL_SUPPLIER_PREVIEW;
+    payload: Record<string, any>;
+};
+
+type UpdatePreviewDataAction = {
+    type: typeof profileTypes.UPDATE_PREVIEW_DATA;
+    payload: Record<string, any>;
+};
+
+type FillClientLocationsAction = {
+    type: typeof profileTypes.FILL_CLIENT_LOCATIONS;
+    payload: Record<string, any>[];
+};
+
+type FillClientOrdersAction = {
+    type: typeof profileTypes.FILL_CLIENT_ORDERS;
+    payload: Record<string, any>[];
+};
+
+type FillSupplierOrdersAction = {
+    type: typeof profileTypes.FILL_SUPPLIER_ORDERS;
+    payload: Record<string, any>[];
+};
+
+type FillMarketItemChosenLocations = {
+    type: typeof profileTypes.FILL_MARKET_ITEM_CHOSEN_LOCATIONS;
+    payload: Record<string, any>[];
+};
+
+type FillOrdersCombinations = {
+    type: typeof profileTypes.FILL_ORDERS_COMBINATIONS;
+    payload: Record<string, any>[];
+};
+
+export type ProfileActions =
+    | FillProfileAction
+    | ClearProfileAction
+    | ClearSupplierPreviewAction
+    | UpdatePreviewDataAction
+    | FillClientLocationsAction
+    | FillClientOrdersAction
+    | FillSupplierOrdersAction
+    | FillMarketItemChosenLocations
+    | FillOrdersCombinations;

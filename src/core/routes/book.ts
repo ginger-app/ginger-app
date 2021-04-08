@@ -8,6 +8,7 @@ export const book = Object.freeze({
     profile: '/profile',
 
     // Customer specific routes
+    clientEdit: '/client/edit',
     orders: '/orders',
     lists: '/lists',
     locationsList: '/locations',

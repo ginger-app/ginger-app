@@ -1,1 +1,1 @@
-export const getFavorites = (state) => state.profile.get('favorites');
+export const getFavorites = (state) => state.profile.favorites;

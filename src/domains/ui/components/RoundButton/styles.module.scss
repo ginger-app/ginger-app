@@ -3,8 +3,13 @@
 .container {
     @include shadow;
     @include centerContent;
+    cursor: pointer;
 
     background: $paletteWhite;
 
     border-radius: 100%;
+
+    &.gradient {
+        background: $paletteDefaultGradient;
+    }
 }

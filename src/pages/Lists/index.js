@@ -13,11 +13,11 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core/routes';
 
 // Actions
-import { profileActions } from 'bus/profile/actions';
+import { profileActions } from 'bus/profile/profile.actions';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    locations: state.profile.get('locations'),
+    locations: state.profile.locations,
     clientSelectedLocation: state.ui.get('clientListsSelectedLocation'),
     isAuthenticated: state.auth.get('isAuthenticated'),
 });

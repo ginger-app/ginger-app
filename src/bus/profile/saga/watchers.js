@@ -2,7 +2,7 @@
 import { takeEvery, all, call } from 'redux-saga/effects';
 
 // Types
-import { profileTypes as types } from '../types';
+import { profileTypes as types } from '../profile.types';
 
 //* REMEMBER TO REEXPORT
 // Workers
