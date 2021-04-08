@@ -1,7 +1,6 @@
 // Core
-import React, { FC, ReactElement, useRef, useState } from 'react';
+import React, { FC, ReactElement, useEffect, useRef, useState } from 'react';
 import Transition, { TransitionStatus } from 'react-transition-group/Transition';
-import { useHistory } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -10,7 +9,8 @@ import Styles from './styles.module.scss';
 import { Navigation } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { PageHeader, RoundButton } from 'domains/ui/components';
-import placeholder from 'theme/assets/images/png-placeholder.png';
+import { useClient } from 'domains/client/hooks';
+import avatarPlaceholder from 'theme/assets/images/png-placeholder.png';
 
 type EditProfileProps = {
     className?: string;
@@ -18,28 +18,43 @@ type EditProfileProps = {
 
 export const ClientEditProfile: FC<EditProfileProps> = ({ className }): ReactElement => {
     const nodeRef = useRef(null);
-    const history = useHistory();
+    const client = useClient();
 
-    const [name, setName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [email, setEmail] = useState('');
-    const [company, setCompany] = useState('');
+    const [name, setName] = useState(client.name);
+    const [phoneNumber, setPhoneNumber] = useState(client.phoneNumber);
+    const [email, setEmail] = useState(client.email);
+    const [company, setCompany] = useState(client.companyName);
+    const [focused, setFocusedInput] = useState('');
+
+    useEffect(() => {
+        if (focused.length) {
+            document.getElementById(focused)?.focus();
+        }
+    }, [focused]);
 
     const fields = [
         {
+            id: 'name',
             value: name,
+            placeholder: "Ім'я",
             onChange: (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value),
         },
         {
+            id: 'phoneNumber',
             value: phoneNumber,
+            placeholder: 'Номер телефону',
             onChange: (e: React.ChangeEvent<HTMLInputElement>) => setPhoneNumber(e.target.value),
         },
         {
+            id: 'email',
             value: email,
+            placeholder: 'Електронна пошта',
             onChange: (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value),
         },
         {
+            id: 'company',
             value: company,
+            placeholder: 'Назва компанії',
             onChange: (e: React.ChangeEvent<HTMLInputElement>) => setCompany(e.target.value),
         },
     ];
@@ -63,7 +78,7 @@ export const ClientEditProfile: FC<EditProfileProps> = ({ className }): ReactEle
                 >
                     <PageHeader title='Редагування' />
 
-                    <img src={placeholder} alt='' className={Styles.userpic} />
+                    <img src={avatarPlaceholder} alt='' className={Styles.userpic} />
                     <RoundButton
                         icon='upload'
                         onClick={() => null}
@@ -71,10 +86,22 @@ export const ClientEditProfile: FC<EditProfileProps> = ({ className }): ReactEle
                     />
 
                     <div className={Styles.inputs}>
-                        {fields.map(({ value, onChange }, index) => (
+                        {fields.map(({ value, onChange, placeholder, id }, index) => (
                             <div className={Styles.inputContainer} key={index}>
-                                <input value={value} onChange={onChange} className={Styles.input} />
-                                <RoundButton icon='edit' onClick={() => null} />
+                                <input
+                                    id={id}
+                                    value={value}
+                                    placeholder={placeholder}
+                                    onChange={onChange}
+                                    className={Styles.input}
+                                    disabled={focused !== id}
+                                />
+                                <RoundButton
+                                    icon={focused === id ? 'check' : 'edit'}
+                                    onClick={() =>
+                                        focused === id ? setFocusedInput('') : setFocusedInput(id)
+                                    }
+                                />
                             </div>
                         ))}
                     </div>
@@ -86,7 +113,7 @@ export const ClientEditProfile: FC<EditProfileProps> = ({ className }): ReactEle
                                 gradient
                                 icon='check'
                                 className={Styles.navButton}
-                                onClick={history.goBack}
+                                onClick={() => console.log('SAVING PROFILE')}
                             />
                         }
                     />
