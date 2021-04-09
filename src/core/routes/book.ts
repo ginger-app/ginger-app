@@ -4,10 +4,8 @@ export const book = Object.freeze({
     market: '/market',
     categories: '/categories',
 
-    // private routes
-    profile: '/profile',
-
     // Customer specific routes
+    clientProfile: '/client',
     clientEdit: '/client/edit',
     orders: '/orders',
     lists: '/lists',
@@ -15,6 +13,8 @@ export const book = Object.freeze({
     newOrder: '/new-order',
 
     // Supplier specific routes
+    supplierProfile: '/supplier',
+    supplierEdit: '/supplier/edit',
     supplierLists: '/supplier-lists',
     deliveryConditions: '/delivery-conditions',
     supplierOrders: '/supplier-orders',

@@ -17,25 +17,25 @@ type ProfileProps = {
     className?: string;
 };
 
-export const ClientProfile: FC<ProfileProps> = ({ className }): ReactElement => {
+export const SupplierProfile: FC<ProfileProps> = ({ className }): ReactElement => {
     const nodeRef = useRef(null);
     const { logoutAsync } = useAuth();
 
     const links = [
         {
-            to: book.orders,
+            to: book.supplierOrders,
             title: 'Замовлення',
         },
         {
-            to: book.lists,
-            title: 'Товарний лист',
+            to: book.supplierLists,
+            title: 'Товарна база',
         },
         {
-            to: book.locationsList,
-            title: 'Локації',
+            to: book.deliveryConditions,
+            title: 'Умови доставки',
         },
         {
-            to: book.clientProfile,
+            to: book.supplierProfile,
             title: 'Умови користування',
         },
     ];
@@ -57,7 +57,7 @@ export const ClientProfile: FC<ProfileProps> = ({ className }): ReactElement => 
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <PageHeader title='Client profile' />
+                    <PageHeader title='Supplier profile' />
 
                     <div className={Styles.links}>
                         {links.map(({ to, title }) => (
@@ -70,7 +70,7 @@ export const ClientProfile: FC<ProfileProps> = ({ className }): ReactElement => 
                     {/* Footer nav */}
                     <Navigation
                         centerButton={
-                            <Link to={book.clientEdit}>
+                            <Link to={book.supplierEdit}>
                                 <RoundButton
                                     className={Styles.navButton}
                                     icon='edit'

@@ -17,6 +17,7 @@ import logo from 'theme/assets/svg/logo.svg';
 // Actions
 import { authActions } from 'bus/auth/actions';
 import { profileActions } from 'bus/profile/profile.actions';
+import { SupplierProfile } from 'domains/supplier/pages';
 
 const mapStateToProps = (state) => ({
     profile: state.profile,
@@ -59,66 +60,7 @@ const ProfileComponent = ({ profile, logoutAsync, getUserDataAsync }) => {
     ) : role === 'client' ? (
         <ClientProfile />
     ) : (
-        <Transition
-            in
-            appear
-            mountOnEnter
-            unmountOnExit
-            timeout={opacityTransitionConfig().timeout}
-        >
-            {(state) => (
-                <section
-                    className={Styles.container}
-                    style={{
-                        ...opacityTransitionConfig().defaultStyles,
-                        ...opacityTransitionConfig().transitionStyles[state],
-                    }}
-                >
-                    <img className={Styles.avatar} src={userpic || logo} alt='avatar' />
-                    <p className={Styles.name}>{name}</p>
-
-                    <NavLink
-                        className={Styles.link}
-                        to={isSupplier ? book.supplierLists : book.lists}
-                    >
-                        <span>{isSupplier ? 'Товарна база' : 'Списки'}</span>
-                    </NavLink>
-                    <NavLink
-                        className={Styles.link}
-                        to={isSupplier ? book.supplierOrders : book.orders}
-                    >
-                        <span>Замовлення</span>
-                    </NavLink>
-                    <NavLink
-                        className={[Styles.link, Styles.centered].join(' ')}
-                        to={isSupplier ? book.deliveryConditions : book.locationsList}
-                    >
-                        <span>{isSupplier ? 'Умови доставки' : 'Локації'}</span>
-                    </NavLink>
-
-                    <div className={Styles.termsAndConditionsButton}>Умови використання</div>
-
-                    {/* Footer nav */}
-                    <Navigation
-                        centerButton={
-                            <Button className={Styles.navButton} content={<Icon name='edit' />} />
-                        }
-                        rightButton={
-                            <Button
-                                className={Styles.navButton}
-                                content={
-                                    <Icon
-                                        name='logout'
-                                        onClick={logoutAsync}
-                                        className={Styles.logoutIcon}
-                                    />
-                                }
-                            />
-                        }
-                    />
-                </section>
-            )}
-        </Transition>
+        <SupplierProfile />
     );
 };
 

@@ -29,6 +29,7 @@ import { uiActions } from 'bus/ui/actions';
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.get('isAuthenticated'),
     orders: state.profile.orders,
+    role: state.profile.role,
     logs: state.ui.get('logs'),
 });
 
@@ -41,6 +42,7 @@ const HomeComponent = ({
     isAuthenticated,
     getMarketCategoriesAsync,
     showLoginOverlay,
+    role,
     // orders,
     // logs,
 }) => {
@@ -95,7 +97,14 @@ const HomeComponent = ({
                         className={Styles.header}
                         leftButton={
                             isAuthenticated ? (
-                                <NavLink className={Styles.profileButton} to={book.profile}>
+                                <NavLink
+                                    className={Styles.profileButton}
+                                    to={
+                                        role === 'client'
+                                            ? book.clientProfile
+                                            : book.supplierProfile
+                                    }
+                                >
                                     <Icon name='profile' color='black' />
                                 </NavLink>
                             ) : (

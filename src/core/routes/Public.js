@@ -24,6 +24,7 @@ import {
 // Instruments
 import { book } from 'core';
 import { ClientEditProfile } from 'domains/client/pages';
+import { SupplierEditProfile } from 'domains/supplier/pages';
 
 export const PublicRoutes = () => (
     <Switch>
@@ -64,10 +65,8 @@ export const PublicRoutes = () => (
             render={({ match }) => <ProductPage id={match.params.id} />}
         />
 
-        {/* Profile */}
-        <Route exact path={book.profile} component={ProfilePage} />
-
         {/* Customer specific */}
+        <Route exact path={book.clientProfile} component={ProfilePage} />
         <Route exact path={book.clientEdit} component={ClientEditProfile} />
         <Route exact path={book.orders} component={OrdersPage} />
         <Route exact path={book.newOrder} component={NewOrderPage} />
@@ -80,6 +79,8 @@ export const PublicRoutes = () => (
         />
 
         {/* Supplier specific */}
+        <Route exact path={book.supplierProfile} component={ProfilePage} />
+        <Route exact path={book.supplierEdit} component={SupplierEditProfile} />
         <Route exact path={book.deliveryConditions} component={SupplierConditions} />
         <Route exact path={book.supplierLists} component={SupplierListPage} />
         <Route exact path={book.supplierOrders} component={SupplierOrdersPage} />
