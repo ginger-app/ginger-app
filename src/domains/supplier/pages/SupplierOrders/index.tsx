@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -13,11 +13,8 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 // Actions
 import { uiActions } from 'bus/ui/actions';
 import { profileActions } from 'bus/profile/profile.actions';
-
-const mapStateToProps = (state) => ({
-    orders: state.profile.orders,
-    isAuthenticated: state.auth.get('isAuthenticated'),
-});
+import { useSupplier } from 'domains/supplier/hooks';
+import { useAuth } from 'domains/auth/hooks';
 
 const mapDispatchToProps = {
     showLoginOverlay: uiActions.showLoginOverlay,
@@ -25,13 +22,21 @@ const mapDispatchToProps = {
     getSupplierOrdersAsync: profileActions.getSupplierOrdersAsync,
 };
 
-const OrdersComponent = ({
-    orders,
-    isAuthenticated,
+type OrdersComponentProps = {
+    showLoginOverlay: (backButtonPath: string) => void;
+    showOrdersFiltersOverlay: () => void;
+    getSupplierOrdersAsync: () => void;
+};
+
+const OrdersComponent: FC<OrdersComponentProps> = ({
     showLoginOverlay,
     showOrdersFiltersOverlay,
     getSupplierOrdersAsync,
 }) => {
+    const [filterValue, setFilterValue] = useState('Всі');
+    const { orders } = useSupplier();
+    const { isAuthenticated } = useAuth();
+
     useEffect(() => {
         if (!isAuthenticated) {
             showLoginOverlay('/');
@@ -70,24 +75,27 @@ const OrdersComponent = ({
 
                     {/* Orders */}
                     <div className={Styles.ordersSection}>
-                        {orders.map(
-                            (item, index) =>
-                                /**
-                                 * On first load, all items are ObjectID strings and
-                                 * we don't want to display those untill they get populated
-                                 */
-                                typeof item !== 'string' && (
-                                    <SupplierOrderItem {...item} key={index} index={index} />
-                                ),
-                        )}
+                        {orders
+                            .filter((item) => filterValue === 'Всі' || item.status === filterValue)
+                            .map((item, index) => (
+                                // @ts-ignore
+                                <SupplierOrderItem {...item} key={index} index={index} />
+                            ))}
                     </div>
 
                     {/* Fast sorting options */}
+                    {/* @ts-ignore */}
                     <Carousel
                         className={Styles.tags}
                         carouselClassName={Styles.carousele}
-                        items={Object.keys(statusesImportance).map((item, index) => (
-                            <div className={Styles.tag} key={index}>
+                        items={['Всі', ...Object.keys(statusesImportance)].map((item, index) => (
+                            <div
+                                className={[Styles.tag, filterValue === item && Styles.chosen]
+                                    .filter(Boolean)
+                                    .join(' ')}
+                                key={index}
+                                onClick={() => setFilterValue(item)}
+                            >
                                 {item}
                             </div>
                         ))}
@@ -106,4 +114,4 @@ const OrdersComponent = ({
     );
 };
 
-export const SupplierOrdersPage = connect(mapStateToProps, mapDispatchToProps)(OrdersComponent);
+export const SupplierOrdersPage = connect(null, mapDispatchToProps)(OrdersComponent);

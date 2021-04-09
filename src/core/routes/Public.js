@@ -18,13 +18,12 @@ import {
     LocationsListPage,
     SupplierConditions,
     SupplierListPage,
-    SupplierOrdersPage,
 } from 'pages';
 
 // Instruments
 import { book } from 'core';
 import { ClientEditProfile } from 'domains/client/pages';
-import { SupplierEditProfile } from 'domains/supplier/pages';
+import { SupplierEditProfile, SupplierOrdersPage } from 'domains/supplier/pages';
 
 export const PublicRoutes = () => (
     <Switch>

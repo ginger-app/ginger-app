@@ -8,7 +8,7 @@ import Styles from './styles.module.scss';
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { Navigation } from 'components';
-import { useAuth } from 'domains/auth';
+import { useAuth } from 'domains/auth/hooks';
 import { PageHeader, RoundButton } from 'domains/ui/components';
 import { book } from 'core';
 import { Link } from 'react-router-dom';

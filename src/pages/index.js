@@ -1,5 +1,4 @@
 export * from './SupplierConditions';
-export * from './SupplierOrders';
 export * from './LocationsList';
 export * from './SupplierOrder';
 export * from './SupplierList';

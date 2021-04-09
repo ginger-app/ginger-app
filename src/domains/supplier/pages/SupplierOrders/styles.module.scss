@@ -49,6 +49,12 @@
 
             transition: 0.3s all;
 
+            &.chosen {
+                background: $paletteGrey_1;
+
+                color: $paletteWhite;
+            }
+
             &:hover {
                 background: $paletteGrey_1;
 

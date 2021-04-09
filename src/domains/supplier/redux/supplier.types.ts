@@ -1,4 +1,5 @@
 import { MarketItem } from 'domains/market/types';
+import { Order } from 'domains/orders/types';
 
 export type DeliveryCondition = {
     name: string;
@@ -19,7 +20,7 @@ export type SupplierDto = {
     companyName: string;
     address: string;
     city: string;
-    orders: string[];
+    orders: Order[];
     uploadPreview: MarketItem[];
     itemsList: SupplierItem[];
     discount: number;
