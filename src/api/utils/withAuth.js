@@ -12,7 +12,11 @@ export const withAuth = async (url, options = {}) => {
     const accessToken = store.getState().auth.get('accessToken');
     const tokenExpirationDate = store.getState().auth.get('expiresAt');
 
-    if (!accessToken || DateTime.local() > DateTime.fromISO(tokenExpirationDate)) {
+    if (
+        !accessToken ||
+        (DateTime.fromISO(tokenExpirationDate).diff(DateTime.local(), 'minute').toObject()
+            .minutes || 1) < 1
+    ) {
         const refreshResponse = await Api.auth.refreshToken();
         const tokens = await refreshResponse.json();
 

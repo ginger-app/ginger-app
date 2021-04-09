@@ -60,6 +60,12 @@ export const ClientEditProfile: FC<EditProfileProps> = ({ className }): ReactEle
         },
     ];
 
+    const unchanged =
+        name === client.name &&
+        phoneNumber === client.phoneNumber &&
+        email === client.email &&
+        company === client.companyName;
+
     return (
         <Transition
             in
@@ -114,14 +120,20 @@ export const ClientEditProfile: FC<EditProfileProps> = ({ className }): ReactEle
                                 gradient
                                 icon='check'
                                 className={Styles.navButton}
-                                onClick={() =>
-                                    ClientApi.updateClient({
-                                        name,
-                                        phoneNumber,
-                                        email,
-                                        companyName: company,
-                                    })
-                                }
+                                onClick={() => {
+                                    return (
+                                        !unchanged &&
+                                        // !TEMP
+                                        ClientApi.updateClient({
+                                            name: name.length ? name : undefined,
+                                            phoneNumber: phoneNumber.length
+                                                ? phoneNumber
+                                                : undefined,
+                                            email: email.length ? email : undefined,
+                                            companyName: company.length ? company : undefined,
+                                        })
+                                    );
+                                }}
                             />
                         }
                     />
