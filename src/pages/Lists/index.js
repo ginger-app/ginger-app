@@ -19,7 +19,7 @@ import { uiActions } from 'bus/ui/actions';
 const mapStateToProps = (state) => ({
     locations: state.profile.locations,
     clientSelectedLocation: state.ui.get('clientListsSelectedLocation'),
-    isAuthenticated: state.auth.get('isAuthenticated'),
+    isAuthenticated: state.auth.isAuthenticated,
 });
 
 const mapDispatchToProps = {

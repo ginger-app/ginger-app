@@ -19,7 +19,7 @@ import { profileActions } from 'bus/profile/profile.actions';
 const mapStateToProps = (state) => ({
     cartIsOpened: state.ui.get('cartIsOpened'),
     // cart: state.profile.cart,
-    isAuthenticated: state.auth.get('isAuthenticated'),
+    isAuthenticated: state.auth.isAuthenticated,
     orderPlacedSuccesfully: state.ui.get('orderPlacedSuccesfully'),
 });
 

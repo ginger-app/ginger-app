@@ -3,7 +3,7 @@ import { createStore, combineReducers } from 'redux';
 import { routerReducer as router } from 'react-router-redux';
 
 // Reducers
-import { authReducer as auth } from 'bus/auth/reducer';
+import { authReducer as auth } from 'bus/auth/auth.reducer';
 import { uiReducer as ui } from 'bus/ui/reducer';
 import { profileReducer as profile } from 'bus/profile/profile.reducer';
 import { marketReducer as market } from 'bus/market/reducer';

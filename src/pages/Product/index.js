@@ -17,7 +17,7 @@ import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
     productData: state.market.get('productData').toJS(),
-    isAuthenticated: state.auth.get('isAuthenticated'),
+    isAuthenticated: state.auth.isAuthenticated,
 });
 
 const mapDispatchToProps = {

@@ -16,7 +16,7 @@ import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
     favorites: state.profile.favorites,
-    isAuthenticated: state.auth.get('isAuthenticated'),
+    isAuthenticated: state.auth.isAuthenticated,
     cart: state.profile.cart,
 });
 

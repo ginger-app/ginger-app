@@ -16,7 +16,7 @@ import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
     orders: state.profile.orders,
-    isAuthenticated: state.auth.get('isAuthenticated'),
+    isAuthenticated: state.auth.isAuthenticated,
 });
 
 const mapDispatchToProps = {
