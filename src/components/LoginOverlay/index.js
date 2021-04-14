@@ -19,8 +19,8 @@ import { authActions } from 'bus/auth/actions';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    loginOverlay: state.ui.get('loginOverlay'),
-    backButtonPath: state.ui.get('backButtonPath'),
+    loginOverlay: state.ui.loginOverlay,
+    backButtonPath: state.ui.backButtonPath,
 });
 
 const mapDispatchToProps = {

@@ -14,8 +14,8 @@ import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    cartIconVisible: state.ui.get('cartIconVisible'),
-    cartIsOpened: state.ui.get('cartIsOpened'),
+    cartIconVisible: state.ui.cartIconVisible,
+    cartIsOpened: state.ui.cartIsOpened,
 });
 
 const mapDispatchToProps = {

@@ -30,7 +30,7 @@ const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,
     orders: state.profile.orders,
     role: state.profile.role,
-    logs: state.ui.get('logs'),
+    logs: state.ui.logs,
 });
 
 const mapDispatchToProps = {

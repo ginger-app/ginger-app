@@ -18,7 +18,7 @@ import { uiActions } from 'bus/ui/actions';
 import { marketActions } from 'bus/market/actions';
 
 const mapStateToProps = (state) => ({
-    searchOpened: state.ui.get('searchOpened'),
+    searchOpened: state.ui.searchOpened,
     searchResults: state.market.searchResults,
 });
 

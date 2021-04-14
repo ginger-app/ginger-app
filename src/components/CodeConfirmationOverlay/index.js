@@ -17,7 +17,7 @@ import { authActions } from 'bus/auth/actions';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    codeConfirmationOverlay: state.ui.get('codeConfirmationOverlay'),
+    codeConfirmationOverlay: state.ui.codeConfirmationOverlay,
     authData: state.auth.authData,
 });
 

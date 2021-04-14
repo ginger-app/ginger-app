@@ -17,7 +17,7 @@ import { uiActions } from 'bus/ui/actions';
 import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
-    newLocationOverlay: state.ui.get('newLocationOverlay'),
+    newLocationOverlay: state.ui.newLocationOverlay,
 });
 
 const mapDispatchToProps = {

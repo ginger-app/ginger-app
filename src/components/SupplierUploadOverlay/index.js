@@ -16,7 +16,7 @@ import { uiActions } from 'bus/ui/actions';
 import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
-    supplierUploadOverlay: state.ui.get('supplierUploadOverlay'),
+    supplierUploadOverlay: state.ui.supplierUploadOverlay,
 });
 
 const mapDispatchToProps = {

@@ -14,8 +14,8 @@ import { Icon } from 'components';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    searchOpened: state.ui.get('searchOpened'),
-    backButtonPath: state.ui.get('backButtonPath'),
+    searchOpened: state.ui.searchOpened,
+    backButtonPath: state.ui.backButtonPath,
 });
 
 const mapDispatchToProps = {

@@ -23,7 +23,7 @@ const suppliers = randomWords({
 }).map((item) => (item.trim().length === 0 ? 'Galychyna' : item));
 
 const mapStateToProps = (state) => ({
-    ordersFiltersOverlay: state.ui.get('ordersFiltersOverlay'),
+    ordersFiltersOverlay: state.ui.ordersFiltersOverlay,
 });
 
 const mapDispatchToProps = {

@@ -17,7 +17,7 @@ import { uiActions } from 'bus/ui/actions';
 import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
-    newListItemOverlay: state.ui.get('newListItemOverlay'),
+    newListItemOverlay: state.ui.newListItemOverlay,
 });
 
 const mapDispatchToProps = {

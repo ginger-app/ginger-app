@@ -17,10 +17,10 @@ import { marketActions } from 'bus/market/actions';
 import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
-    cartIsOpened: state.ui.get('cartIsOpened'),
+    cartIsOpened: state.ui.cartIsOpened,
     // cart: state.profile.cart,
     isAuthenticated: state.auth.isAuthenticated,
-    orderPlacedSuccesfully: state.ui.get('orderPlacedSuccesfully'),
+    orderPlacedSuccesfully: state.ui.orderPlacedSuccesfully,
 });
 
 const mapDispatchToProps = {

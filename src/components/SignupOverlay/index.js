@@ -22,7 +22,7 @@ import { authActions } from 'bus/auth/actions';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    signupOverlay: state.ui.get('signupOverlay'),
+    signupOverlay: state.ui.signupOverlay,
     preFilledPhoneNumber: state.auth.authData.phoneNumber,
 });
 
