@@ -19,7 +19,7 @@ import { marketActions } from 'bus/market/actions';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    categories: state.market.get('categories').toJS(),
+    categories: state.market.categories,
     isAuthenticated: state.auth.isAuthenticated,
 });
 

@@ -19,7 +19,7 @@ import { marketActions } from 'bus/market/actions';
 
 const mapStateToProps = (state) => ({
     searchOpened: state.ui.get('searchOpened'),
-    searchResults: state.market.get('searchResults').toJS(),
+    searchResults: state.market.searchResults,
 });
 
 const mapDispatchToProps = {

@@ -16,7 +16,7 @@ export const useMarket = () => {
     const dispatch = useDispatch();
 
     // @ts-ignore
-    const marketData: MarketState = useSelector((state) => state.market.toJS());
+    const marketData: MarketState = useSelector((state) => state.market);
 
     const setMarketSortingOption = (option: SortingOptions) =>
         dispatch(marketActions.setSortingOption(option));

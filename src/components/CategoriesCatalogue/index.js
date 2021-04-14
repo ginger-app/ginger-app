@@ -15,7 +15,7 @@ import { book } from 'core';
 //
 
 const mapStateToProps = (state) => ({
-    categories: state.market.get('categories').toJS(),
+    categories: state.market.categories,
 });
 
 const mapDispatchToProps = {};

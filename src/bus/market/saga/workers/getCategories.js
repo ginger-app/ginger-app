@@ -19,7 +19,6 @@ export function* getCategoriesWorker() {
         const { message, data } = yield apply(response, response.json);
 
         yield apply(Logger, Logger, ['log', 'Categories fetched', `Data length: ${data.length}`]);
-
         if (response.status >= 400) throw new Error(message);
 
         yield put(marketActions.fillMarketCategories(data));

@@ -19,8 +19,8 @@ import { marketActions } from 'bus/market/actions';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({
-    categoryData: state.market.get('categoryData').toJS(),
-    sortingOption: state.market.get('sortingOption'),
+    categoryData: state.market.categoryData,
+    sortingOption: state.market.sortingOption,
 });
 
 const mapDispatchToProps = {

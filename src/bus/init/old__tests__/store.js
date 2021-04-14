@@ -6,7 +6,7 @@ import { routerReducer as router } from 'react-router-redux';
 import { authReducer as auth } from 'bus/auth/auth.reducer';
 import { uiReducer as ui } from 'bus/ui/reducer';
 import { profileReducer as profile } from 'bus/profile/profile.reducer';
-import { marketReducer as market } from 'bus/market/reducer';
+import { marketReducer as market } from 'bus/market/market.reducer';
 import { newsReducer as news } from 'bus/app/news/reducer';
 import { historyReducer as history } from 'bus/app/history/reducer';
 import { bonusesReducer as bonuses } from 'bus/app/bonuses/reducer';
