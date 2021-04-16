@@ -145,9 +145,14 @@ type RemoveItemFromPreviewAsync = {
     payload: number;
 };
 
+export type ItemFromPreview = {
+    index: number;
+    data: Record<string, any>;
+};
+
 type UpdateItemFromPreviewAsync = {
     type: typeof profileTypes.UPDATE_ITEM_FROM_PREVIEW_ASYNC;
-    payload: Record<string, any>;
+    payload: ItemFromPreview;
 };
 
 type UpdateSupplierItemsAsync = {
@@ -181,24 +186,40 @@ type CreateNewLocationAsync = {
     payload: Record<string, any>;
 };
 
+export type Item = {
+    locationId: string;
+    itemId: string;
+};
+
 type AddNewItemToLocationAsync = {
     type: typeof profileTypes.ADD_NEW_ITEM_TO_LOCATION_ASYNC;
-    payload: Record<string, any>;
+    payload: Item;
 };
 
 type RemoveItemFromLocationAsync = {
     type: typeof profileTypes.REMOVE_ITEM_FROM_LOCATION_ASYNC;
-    payload: Record<string, any>;
+    payload: Item;
 };
 
+export type NewOrderType = {
+    items: MarketItem[];
+    sum: number;
+    location: string;
+};
 type CreateNewOrderAsync = {
     type: typeof profileTypes.CREATE_NEW_ORDER_ASYNC;
-    payload: Record<string, any>;
+    payload: NewOrderType;
+};
+
+export type OrdersCombinations = {
+    items: MarketItem[];
+    sum: number;
+    location: string;
 };
 
 type GetOrdersCombinationsAsync = {
     type: typeof profileTypes.GET_ORDERS_COMBINATIONS_ASYNC;
-    payload: Record<string, any>;
+    payload: OrdersCombinations;
 };
 
 export type ProfileActions =
