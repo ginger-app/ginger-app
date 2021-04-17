@@ -18,7 +18,7 @@ import person from 'theme/assets/svg/person.svg';
 import company from 'theme/assets/svg/company.svg';
 
 // Actions
-import { authActions } from 'bus/auth/actions';
+import { authActions } from 'bus/auth/auth.actions';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({

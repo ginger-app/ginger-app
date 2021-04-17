@@ -1,4 +1,4 @@
-import { authActions } from 'bus/auth/actions';
+import { authActions } from 'bus/auth/auth.actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 type AuthState = Record<'isAuthenticated', boolean>;

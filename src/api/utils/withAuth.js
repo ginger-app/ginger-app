@@ -3,7 +3,7 @@ import { Api } from 'api';
 
 // Redux
 import { store } from 'bus/init/store';
-import { authActions } from 'bus/auth/actions';
+import { authActions } from 'bus/auth/auth.actions';
 
 // Instruments
 import { DateTime } from 'luxon';

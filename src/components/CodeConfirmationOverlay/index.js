@@ -13,7 +13,7 @@ import { Icon, InputField } from 'components';
 import { leftToRightSlideConfig } from 'utils/transitionConfig';
 
 // Actions
-import { authActions } from 'bus/auth/actions';
+import { authActions } from 'bus/auth/auth.actions';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({

@@ -2,7 +2,7 @@
 import { AnyAction } from 'redux';
 
 // Types
-import { authTypes as types } from './types';
+import { authTypes as types } from './auth.types';
 
 const initialState = Object.freeze({
     isAuthenticated: false,

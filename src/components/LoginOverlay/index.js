@@ -15,7 +15,7 @@ import { leftToRightSlideConfig } from 'utils/transitionConfig';
 import { AsYouType } from 'libphonenumber-js';
 
 // Actions
-import { authActions } from 'bus/auth/actions';
+import { authActions } from 'bus/auth/auth.actions';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({

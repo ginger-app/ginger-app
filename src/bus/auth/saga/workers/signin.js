@@ -6,7 +6,7 @@ import { Api } from 'api';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
-import { authActions } from 'bus/auth/actions';
+import { authActions } from 'bus/auth/auth.actions';
 import { profileActions } from 'bus/profile/profile.actions';
 
 export function* signin({ payload: { phoneNumber, code } }) {

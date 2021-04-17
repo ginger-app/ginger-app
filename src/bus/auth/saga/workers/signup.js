@@ -7,7 +7,7 @@ import { Api } from 'api';
 // Actions
 import { uiActions } from 'bus/ui/actions';
 import { profileActions } from 'bus/profile/profile.actions';
-import { authActions } from 'bus/auth/actions';
+import { authActions } from 'bus/auth/auth.actions';
 
 export function* signupWorker({ payload: { phoneNumber, code, userData } }) {
     try {
