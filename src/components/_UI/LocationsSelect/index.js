@@ -13,7 +13,7 @@ import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
     locations: state.profile.locations,
-    clientSelectedLocation: state.ui.get('clientListsSelectedLocation'),
+    clientSelectedLocation: state.ui.clientListsSelectedLocation,
 });
 
 const mapDispatchToProps = {

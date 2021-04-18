@@ -24,7 +24,7 @@ import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
     locations: state.profile.locations,
-    deliveryDate: state.ui.get('deliveryDate'),
+    deliveryDate: state.ui.deliveryDate,
 });
 
 const mapDispatchToProps = {

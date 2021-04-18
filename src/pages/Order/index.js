@@ -16,7 +16,7 @@ import { marketActions } from 'bus/market/market.actions';
 import { ClientLocationData } from 'domains/supplier/overlays';
 
 const mapStateToProps = (state) => ({
-    orderData: state.market.get('orderData').toJS(),
+    orderData: state.market.orderData,
     role: state.profile.role,
 });
 

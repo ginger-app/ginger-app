@@ -18,7 +18,7 @@ import { profileActions } from 'bus/profile/profile.actions';
 import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
-    orderData: state.market.get('orderData').toJS(),
+    orderData: state.market.orderData,
     isAuthenticated: state.auth.isAuthenticated,
 });
 

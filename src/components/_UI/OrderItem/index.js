@@ -1,27 +1,18 @@
 // Core
 import React from 'react';
-import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 // Styles
 import Styles from './styles.module.scss';
 
 // Instruments
-import stylePropType from 'react-style-proptype';
 import { OrderStatusLabel } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { DateTime } from 'luxon';
 import arrow from 'theme/assets/svg/right-full-arrow.svg';
 
-const mapStateToProps = (state) => ({
-    ...state,
-});
-
-const mapDispatchToProps = {};
-
-const OrderItemComponent = ({
+export const OrderItem = ({
     className,
     style,
     status,
@@ -78,7 +69,7 @@ const OrderItemComponent = ({
                     {/* <p className={Styles.location}>{location.locationName}</p> */}
 
                     <p className={[Styles.supplier, Styles.alignRight].join(' ')}>
-                        {supplier.companyName}
+                        {supplier?.companyName || '...'}
                     </p>
 
                     {orderDetails ? (
@@ -95,15 +86,3 @@ const OrderItemComponent = ({
         </Transition>
     );
 };
-
-OrderItemComponent.propTypes = {
-    className: PropTypes.string,
-    style: stylePropType,
-    status: PropTypes.string,
-    sum: PropTypes.string,
-    index: PropTypes.number,
-    orderDetails: PropTypes.bool,
-    onClick: PropTypes.func,
-};
-
-export const OrderItem = connect(mapStateToProps, mapDispatchToProps)(OrderItemComponent);

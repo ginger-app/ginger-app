@@ -15,8 +15,8 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
-    orderCombinationsOverlay: state.ui.get('orderCombinationsOverlay'),
-    orderCombinations: state.ui.get('orderCombinations'),
+    orderCombinationsOverlay: state.ui.orderCombinationsOverlay,
+    orderCombinations: state.ui.orderCombinations,
 });
 
 const mapDispatchToProps = {
