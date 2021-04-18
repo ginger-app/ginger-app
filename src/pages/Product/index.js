@@ -12,12 +12,12 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import isEmpty from 'lodash/isEmpty';
 
 // Actions
-import { marketActions } from 'bus/market/actions';
-import { uiActions } from 'bus/ui/actions';
+import { marketActions } from 'bus/market/market.actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
-    productData: state.market.get('productData').toJS(),
-    isAuthenticated: state.auth.get('isAuthenticated'),
+    productData: state.market.productData,
+    isAuthenticated: state.auth.isAuthenticated,
 });
 
 const mapDispatchToProps = {

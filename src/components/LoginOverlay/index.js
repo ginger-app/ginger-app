@@ -15,12 +15,12 @@ import { leftToRightSlideConfig } from 'utils/transitionConfig';
 import { AsYouType } from 'libphonenumber-js';
 
 // Actions
-import { authActions } from 'bus/auth/actions';
-import { uiActions } from 'bus/ui/actions';
+import { authActions } from 'bus/auth/auth.actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
-    loginOverlay: state.ui.get('loginOverlay'),
-    backButtonPath: state.ui.get('backButtonPath'),
+    loginOverlay: state.ui.loginOverlay,
+    backButtonPath: state.ui.backButtonPath,
 });
 
 const mapDispatchToProps = {

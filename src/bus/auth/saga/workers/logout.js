@@ -2,9 +2,9 @@
 import { put, apply } from 'redux-saga/effects';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 import { profileActions } from 'bus/profile/profile.actions';
-import { authActions } from 'bus/auth/actions';
+import { authActions } from 'bus/auth/auth.actions';
 
 // Instruments
 import { ErrorHandler } from 'bus/utils';

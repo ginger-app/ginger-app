@@ -15,12 +15,12 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { isEmpty } from 'lodash';
 
 // Actions
-import { marketActions } from 'bus/market/actions';
-import { uiActions } from 'bus/ui/actions';
+import { marketActions } from 'bus/market/market.actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
-    categoryData: state.market.get('categoryData').toJS(),
-    sortingOption: state.market.get('sortingOption'),
+    categoryData: state.market.categoryData,
+    sortingOption: state.market.sortingOption,
 });
 
 const mapDispatchToProps = {

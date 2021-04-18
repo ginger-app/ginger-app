@@ -5,8 +5,8 @@ import { put, apply } from 'redux-saga/effects';
 import { Api } from 'api';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
-import { authActions } from 'bus/auth/actions';
+import { uiActions } from 'bus/ui/ui.actions';
+import { authActions } from 'bus/auth/auth.actions';
 import { profileActions } from 'bus/profile/profile.actions';
 
 export function* signin({ payload: { phoneNumber, code } }) {

@@ -14,12 +14,12 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { useDebounce } from 'utils/customHooks';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
-import { marketActions } from 'bus/market/actions';
+import { uiActions } from 'bus/ui/ui.actions';
+import { marketActions } from 'bus/market/market.actions';
 
 const mapStateToProps = (state) => ({
-    searchOpened: state.ui.get('searchOpened'),
-    searchResults: state.market.get('searchResults').toJS(),
+    searchOpened: state.ui.searchOpened,
+    searchResults: state.market.searchResults,
 });
 
 const mapDispatchToProps = {

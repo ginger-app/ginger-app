@@ -14,10 +14,10 @@ import isEmpty from 'lodash/isEmpty';
 import button from 'theme/assets/svg/plus-button.svg';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: state.auth.get('isAuthenticated'),
+    isAuthenticated: state.auth.isAuthenticated,
     unfinishedOrder: state.profile.unfinishedOrder,
     role: state.profile.role,
 });

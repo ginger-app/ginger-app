@@ -15,12 +15,12 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core/routes';
 
 // Actions
-import { marketActions } from 'bus/market/actions';
-import { uiActions } from 'bus/ui/actions';
+import { marketActions } from 'bus/market/market.actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
-    categories: state.market.get('categories').toJS(),
-    isAuthenticated: state.auth.get('isAuthenticated'),
+    categories: state.market.categories,
+    isAuthenticated: state.auth.isAuthenticated,
 });
 
 const mapDispatchToProps = {

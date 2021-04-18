@@ -3,10 +3,10 @@ import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 
 // Reducers
-import { uiReducer as ui } from 'bus/ui/reducer';
-import { authReducer as auth } from 'bus/auth/reducer';
+import { uiReducer as ui } from 'bus/ui/ui.reducer';
+import { authReducer as auth } from 'bus/auth/auth.reducer';
 import { profileReducer as profile } from 'bus/profile/profile.reducer';
-import { marketReducer as market } from 'bus/market/reducer';
+import { marketReducer as market } from 'bus/market/market.reducer';
 
 export const rootReducer = (history) =>
     combineReducers({

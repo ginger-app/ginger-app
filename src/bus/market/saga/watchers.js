@@ -2,7 +2,7 @@
 import { takeEvery, all, call } from 'redux-saga/effects';
 
 // Types
-import { marketTypes as types } from '../types';
+import { marketTypes as types } from '../market.types';
 
 // Workers
 import {

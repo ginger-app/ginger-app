@@ -9,7 +9,7 @@ import Styles from './styles.module.scss';
 // Instruments
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
     ...state,

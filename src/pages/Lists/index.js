@@ -14,12 +14,12 @@ import { book } from 'core/routes';
 
 // Actions
 import { profileActions } from 'bus/profile/profile.actions';
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
     locations: state.profile.locations,
     clientSelectedLocation: state.ui.get('clientListsSelectedLocation'),
-    isAuthenticated: state.auth.get('isAuthenticated'),
+    isAuthenticated: state.auth.isAuthenticated,
 });
 
 const mapDispatchToProps = {

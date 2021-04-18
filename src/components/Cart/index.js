@@ -12,15 +12,15 @@ import { cartTransitionConfig } from 'utils/transitionConfig';
 import { Icon, CartItem, MapModal, DeliveryTimeModal, OrderSuccessModal } from 'components';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
-import { marketActions } from 'bus/market/actions';
+import { uiActions } from 'bus/ui/ui.actions';
+import { marketActions } from 'bus/market/market.actions';
 import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
-    cartIsOpened: state.ui.get('cartIsOpened'),
+    cartIsOpened: state.ui.cartIsOpened,
     // cart: state.profile.cart,
-    isAuthenticated: state.auth.get('isAuthenticated'),
-    orderPlacedSuccesfully: state.ui.get('orderPlacedSuccesfully'),
+    isAuthenticated: state.auth.isAuthenticated,
+    orderPlacedSuccesfully: state.ui.orderPlacedSuccesfully,
 });
 
 const mapDispatchToProps = {

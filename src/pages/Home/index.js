@@ -23,14 +23,14 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core';
 
 // Actions
-import { marketActions } from 'bus/market/actions';
-import { uiActions } from 'bus/ui/actions';
+import { marketActions } from 'bus/market/market.actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: state.auth.get('isAuthenticated'),
+    isAuthenticated: state.auth.isAuthenticated,
     orders: state.profile.orders,
     role: state.profile.role,
-    logs: state.ui.get('logs'),
+    logs: state.ui.logs,
 });
 
 const mapDispatchToProps = {

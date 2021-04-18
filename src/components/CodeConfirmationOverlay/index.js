@@ -13,12 +13,12 @@ import { Icon, InputField } from 'components';
 import { leftToRightSlideConfig } from 'utils/transitionConfig';
 
 // Actions
-import { authActions } from 'bus/auth/actions';
-import { uiActions } from 'bus/ui/actions';
+import { authActions } from 'bus/auth/auth.actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
-    codeConfirmationOverlay: state.ui.get('codeConfirmationOverlay'),
-    authData: state.auth.get('authData'),
+    codeConfirmationOverlay: state.ui.codeConfirmationOverlay,
+    authData: state.auth.authData,
 });
 
 const mapDispatchToProps = {

@@ -18,12 +18,12 @@ import person from 'theme/assets/svg/person.svg';
 import company from 'theme/assets/svg/company.svg';
 
 // Actions
-import { authActions } from 'bus/auth/actions';
-import { uiActions } from 'bus/ui/actions';
+import { authActions } from 'bus/auth/auth.actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
-    signupOverlay: state.ui.get('signupOverlay'),
-    preFilledPhoneNumber: state.auth.get('authData').phoneNumber,
+    signupOverlay: state.ui.signupOverlay,
+    preFilledPhoneNumber: state.auth.authData.phoneNumber,
 });
 
 const mapDispatchToProps = {

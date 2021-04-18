@@ -2,7 +2,7 @@
 import { takeEvery, all, call } from 'redux-saga/effects';
 
 // Types
-import { authTypes as types } from '../types';
+import { authTypes as types } from '../auth.types';
 
 // Workers
 import { getSigninCodeWorker, signin, getSignupCode, signupWorker, logoutWorker } from './workers';

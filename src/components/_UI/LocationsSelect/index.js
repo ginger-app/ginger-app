@@ -9,7 +9,7 @@ import Styles from './styles.module.scss';
 import { Icon, RadioButton } from 'components';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
     locations: state.profile.locations,

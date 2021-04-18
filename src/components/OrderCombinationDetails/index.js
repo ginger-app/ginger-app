@@ -14,7 +14,7 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import arrow from 'theme/assets/svg/right-full-arrow.svg';
 
 // Actions
-import { marketActions } from 'bus/market/actions';
+import { marketActions } from 'bus/market/market.actions';
 
 const mapStateToProps = (state) => ({
     ...state,
