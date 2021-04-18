@@ -122,12 +122,12 @@ type RemoveItemFromCartAsync = {
 
 type AddItemToFavoritesAsync = {
     type: typeof profileTypes.ADD_ITEM_TO_FAVORITES_ASYNC;
-    payload: Record<string, any>;
+    payload: Record<'id', any>;
 };
 
 type RemoveItemFromFavoritesAsync = {
     type: typeof profileTypes.REMOVE_ITEM_FROM_FAVORITES_ASYNC;
-    payload: Record<string, any>;
+    payload: Record<'id', any>;
 };
 
 type GetUserDataAsync = {

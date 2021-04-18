@@ -12,7 +12,7 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import isEmpty from 'lodash/isEmpty';
 
 // Actions
-import { marketActions } from 'bus/market/actions';
+import { marketActions } from 'bus/market/market.actions';
 import { uiActions } from 'bus/ui/actions';
 
 const mapStateToProps = (state) => ({

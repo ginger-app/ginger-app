@@ -15,7 +15,7 @@ import { useDebounce } from 'utils/customHooks';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
-import { marketActions } from 'bus/market/actions';
+import { marketActions } from 'bus/market/market.actions';
 
 const mapStateToProps = (state) => ({
     searchOpened: state.ui.searchOpened,

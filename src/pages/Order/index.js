@@ -12,7 +12,7 @@ import { Button, Icon, Navigation, OrderItem } from 'components';
 import isEmpty from 'lodash/isEmpty';
 
 // Actions
-import { marketActions } from 'bus/market/actions';
+import { marketActions } from 'bus/market/market.actions';
 import { ClientLocationData } from 'domains/supplier/overlays';
 
 const mapStateToProps = (state) => ({

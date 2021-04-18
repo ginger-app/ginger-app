@@ -2,7 +2,7 @@
 import { put, apply } from 'redux-saga/effects';
 
 // Actions
-import { marketActions } from 'bus/market/actions';
+import { marketActions } from 'bus/market/market.actions';
 import { uiActions } from 'bus/ui/actions';
 
 // Api

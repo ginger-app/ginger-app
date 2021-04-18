@@ -3,7 +3,7 @@ import { put, apply } from 'redux-saga/effects';
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
-import { marketActions } from 'bus/market/actions';
+import { marketActions } from 'bus/market/market.actions';
 
 // Instruments
 import { ErrorHandler } from 'bus/utils';

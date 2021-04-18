@@ -2,7 +2,7 @@
 import { AnyAction } from 'redux';
 
 // Types
-import { marketTypes as types } from './types';
+import { marketTypes as types } from './market.types';
 
 const initialState = Object.freeze({
     categories: [] as any[],

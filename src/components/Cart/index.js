@@ -13,7 +13,7 @@ import { Icon, CartItem, MapModal, DeliveryTimeModal, OrderSuccessModal } from '
 
 // Actions
 import { uiActions } from 'bus/ui/actions';
-import { marketActions } from 'bus/market/actions';
+import { marketActions } from 'bus/market/market.actions';
 import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({
