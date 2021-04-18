@@ -1,0 +1,145 @@
+@import 'resources';
+
+.bg {
+    @include overlay;
+    @include centerContent;
+
+    display: grid;
+    grid-template-columns: 4rem 1fr 4rem;
+    grid-template-rows: 1fr 3rem;
+    place-items: center;
+    gap: 1rem;
+
+    padding: 0.5rem;
+
+    & .container {
+        @include shadow;
+        grid-column: 1 / 4;
+        grid-row: 1;
+        display: grid;
+        grid-template-rows: 60vw;
+        grid-auto-rows: 3rem;
+        place-items: center;
+        gap: 1.25rem;
+
+        height: 100%;
+        width: 95vw;
+        padding: 1rem;
+
+        background: $paletteWhite;
+
+        border-radius: 1rem;
+
+        overflow: scroll;
+
+        & .mock {
+            @include centerContent;
+            place-self: center;
+
+            height: 50vw;
+            width: 50vw;
+            padding: 0.5rem;
+
+            background: $paletteDefaultGradient;
+
+            border-radius: 100%;
+
+            & .img {
+                width: 100%;
+
+                filter: brightness(0) invert(1);
+            }
+        }
+
+        & .inputFieldBlock {
+            display: grid;
+            grid-template-columns: 1fr 3rem;
+            grid-template-rows: 1fr 2fr;
+            gap: 0.25rem 1rem;
+
+            width: 100%;
+
+            & .subtitle {
+                font-size: 0.8rem;
+
+                color: $paletteGrey_3;
+            }
+
+            & .value {
+                width: 100%;
+
+                background: none;
+
+                border: none;
+
+                font-size: 1.5rem;
+                text-align: left;
+
+                color: $paletteBlack;
+            }
+
+            & .button {
+                @include shadow;
+                cursor: pointer;
+                place-self: center;
+
+                grid-column: 2;
+                grid-row: 1 / 3;
+
+                height: 3rem;
+                width: 3rem;
+
+                background: $paletteWhite;
+            }
+        }
+    }
+
+    & .close {
+        @include shadow;
+        cursor: pointer;
+
+        grid-column: 1;
+        grid-row: 2;
+
+        height: 3rem;
+        width: 3rem;
+
+        background: $paletteWhite;
+    }
+
+    & .delete {
+        @include shadow;
+        cursor: pointer;
+
+        grid-column: 2;
+        grid-row: 2;
+
+        height: 3rem;
+        width: 3rem;
+
+        background: $paletteWhite;
+    }
+
+    & .deleteDialogText {
+        grid-column: 2;
+        grid-row: 2;
+
+        font-size: 1.2rem;
+        white-space: nowrap;
+    }
+
+    & .apply {
+        cursor: pointer;
+
+        grid-column: 3;
+        grid-row: 2;
+
+        height: 3rem;
+        width: 3rem;
+
+        & .icon {
+            position: relative;
+            left: -3px;
+        }
+    }
+}

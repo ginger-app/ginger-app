@@ -1,59 +1,43 @@
 // Core
-import React, { useState, useRef, useMemo, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { Transition } from 'react-transition-group';
+import React, { FC, ReactElement, useEffect, useMemo, useRef, useState } from 'react';
+import Transition from 'react-transition-group/Transition';
 import { useHistory } from 'react-router-dom';
 
 // Styles
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Button, Icon } from 'components';
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import logo from 'theme/assets/svg/logo.svg';
+import { Button, Icon } from 'components';
+import { Location, useClientLocations } from 'domains/client/hooks/useClientLocations';
 
-// Actions
-import { uiActions } from 'bus/ui/ui.actions';
-import { profileActions } from 'bus/profile/profile.actions';
+type UpdateLocationProps = {
+    className?: string;
+    inProp?: boolean;
+    hideOverlay: () => void;
+} & Location;
 
-const mapStateToProps = (state) => ({
-    newLocationOverlay: state.ui.newLocationOverlay,
-});
-
-const mapDispatchToProps = {
-    hideNewLocationOverlay: uiActions.hideNewLocationOverlay,
-    createNewLocationAsync: profileActions.createNewLocationAsync,
-};
-
-const NewLocationOverlayComponent = ({
-    newLocationOverlay,
-    hideNewLocationOverlay,
-    createNewLocationAsync,
-}) => {
+export const UpdateLocation: FC<UpdateLocationProps> = ({
+    inProp,
+    hideOverlay,
+    _id,
+    locationName,
+    address: oldAddress,
+    schedule: oldSchedule,
+    phoneNumber: oldPhoneNumber,
+}): ReactElement => {
     const history = useHistory();
-    const [historyListener, setRemoveListener] = useState();
+    const { removeClientLocationAsync, updateClientLocationAsync } = useClientLocations();
+    const [historyListener, setRemoveListener] = useState<EventListenerOrEventListenerObject>();
 
-    useEffect(() => {
-        if (newLocationOverlay) {
-            const handler = () => {
-                hideNewLocationOverlay();
-                history.go(1);
-            };
-
-            window.addEventListener('popstate', handler);
-
-            setRemoveListener(() => handler);
-        } else {
-            window.removeEventListener('popstate', historyListener);
-        }
-        // eslint-disable-next-line
-    }, [newLocationOverlay]);
+    const [deleteDialog, setDeleteDialogState] = useState(false);
 
     // Refs
-    const companyRef = useRef(null);
-    const addressRef = useRef(null);
-    const scheduleRef = useRef(null);
-    const phoneNumberRef = useRef(null);
+    const companyRef = useRef<HTMLInputElement>(null);
+    const addressRef = useRef<HTMLInputElement>(null);
+    const scheduleRef = useRef<HTMLInputElement>(null);
+    const phoneNumberRef = useRef<HTMLInputElement>(null);
 
     // Editing states
     const [companyEditing, setCompanyEditingState] = useState(false);
@@ -121,9 +105,30 @@ const NewLocationOverlayComponent = ({
         ],
     );
 
+    useEffect(() => {
+        if (inProp) {
+            const handler = () => {
+                hideOverlay();
+                history.go(1);
+            };
+
+            window.addEventListener('popstate', handler);
+
+            setRemoveListener(() => handler);
+
+            setCompanyValue(locationName);
+            setAddressValue(oldAddress);
+            // setScheduleValue(`${oldSchedule.start}-${oldSchedule.end}`);
+            setPhoneNumberValue(oldPhoneNumber);
+        } else if (historyListener) {
+            window.removeEventListener('popstate', historyListener);
+        }
+        // eslint-disable-next-line
+    }, [inProp]);
+
     return (
         <Transition
-            in={newLocationOverlay}
+            in={inProp}
             // in
             appear
             mountOnEnter
@@ -179,8 +184,12 @@ const NewLocationOverlayComponent = ({
                                             // and updates `disabled` attribute for input
                                             // before we actually `focus()` or `blur()`
                                             return editingState
-                                                ? setImmediate(() => ref.current.blur())
-                                                : setImmediate(() => ref.current.focus());
+                                                ? setImmediate(
+                                                      () => ref.current && ref.current.blur(),
+                                                  )
+                                                : setImmediate(
+                                                      () => ref.current && ref.current.focus(),
+                                                  );
                                         }}
                                     />
                                 </div>
@@ -191,23 +200,37 @@ const NewLocationOverlayComponent = ({
                     <Button
                         className={Styles.close}
                         content={<Icon name='close' />}
-                        onClick={hideNewLocationOverlay}
+                        onClick={() => (deleteDialog ? setDeleteDialogState(false) : hideOverlay())}
                     />
+                    {deleteDialog ? (
+                        <p className={Styles.deleteDialogText}>Видалити локацію?</p>
+                    ) : (
+                        <Button
+                            className={Styles.delete}
+                            content={<Icon name='trash' />}
+                            onClick={() => setDeleteDialogState(true)}
+                        />
+                    )}
                     <Button
                         className={Styles.apply}
                         content={<Icon name='check' color='white' className={Styles.icon} />}
-                        onClick={() =>
-                            createNewLocationAsync({
-                                locationName: company,
-                                address,
-                                schedule: {
-                                    start: schedule.split('-')[0] || 'Unknown',
-                                    end: schedule.split('-')[1] || 'Unknown',
-                                },
-                                managerName: '',
-                                phoneNumber,
-                            })
-                        }
+                        onClick={async () => {
+                            if (deleteDialog) {
+                                await removeClientLocationAsync(_id);
+                            } else {
+                                await updateClientLocationAsync(_id, {
+                                    locationName: company || locationName,
+                                    address: address || oldAddress,
+                                    schedule: {
+                                        start: schedule.split('-')[0] || oldSchedule.start,
+                                        end: schedule.split('-')[1] || oldSchedule.end,
+                                    },
+                                    managerName: '',
+                                    phoneNumber: phoneNumber || oldPhoneNumber,
+                                });
+                            }
+                            hideOverlay();
+                        }}
                         filled
                     />
                 </section>
@@ -215,8 +238,3 @@ const NewLocationOverlayComponent = ({
         </Transition>
     );
 };
-
-export const NewLocationOverlay = connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(NewLocationOverlayComponent);

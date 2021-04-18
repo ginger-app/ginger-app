@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -13,6 +13,7 @@ import { Navigation, LocationCard, Button, Icon, Dummy } from 'components';
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
 import { profileActions } from 'bus/profile/profile.actions';
+import { UpdateLocation } from 'domains/client/overlays';
 
 const mapStateToProps = (state) => ({
     locations: state.profile.locations,
@@ -29,6 +30,9 @@ const LocationsListComponent = ({
     getClientLocationsAsync,
     locations,
 }) => {
+    const [updateWindow, setUpdateWindowState] = useState(false);
+    const [updateWindowData, setUpdateWindowData] = useState({});
+
     useEffect(() => {
         getClientLocationsAsync();
     }, [getClientLocationsAsync]);
@@ -60,7 +64,10 @@ const LocationsListComponent = ({
                                     <LocationCard
                                         index={index}
                                         key={index}
-                                        onClick={showNewLocationOverlay}
+                                        onClick={() => {
+                                            setUpdateWindowData(item);
+                                            setUpdateWindowState(true);
+                                        }}
                                         {...item}
                                     />
                                 ),
@@ -80,6 +87,15 @@ const LocationsListComponent = ({
                                 filled
                             />
                         }
+                    />
+
+                    <UpdateLocation
+                        inProp={updateWindow}
+                        hideOverlay={() => {
+                            setUpdateWindowData({});
+                            setUpdateWindowState(false);
+                        }}
+                        {...updateWindowData}
                     />
                 </section>
             )}
