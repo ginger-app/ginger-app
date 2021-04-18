@@ -19,7 +19,7 @@ import company from 'theme/assets/svg/company.svg';
 
 // Actions
 import { authActions } from 'bus/auth/auth.actions';
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
     signupOverlay: state.ui.signupOverlay,

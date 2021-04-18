@@ -1,166 +1,166 @@
 // Types
-import { types } from './types';
+import { OrderCombinations, UiActionsType, types } from './ui.types';
 
 export const uiActions = {
     // Spinner actions
-    startFetching: () => ({
+    startFetching: (): UiActionsType => ({
         type: types.START_FETCHING,
     }),
 
-    stopFetching: () => ({
+    stopFetching: (): UiActionsType => ({
         type: types.STOP_FETCHING,
     }),
 
     // Market related actions
-    showCart: () => ({
+    showCart: (): UiActionsType => ({
         type: types.SHOW_CART,
     }),
 
-    showCartIcon: () => ({
+    showCartIcon: (): UiActionsType => ({
         type: types.SHOW_CART_ICON,
     }),
 
-    hideCart: () => ({
+    hideCart: (): UiActionsType => ({
         type: types.HIDE_CART,
     }),
 
-    hideCartIcon: () => ({
+    hideCartIcon: (): UiActionsType => ({
         type: types.HIDE_CART_ICON,
     }),
 
-    setOrderPlacedState: (state) => ({
+    setOrderPlacedState: (state: Record<string, any>) => ({
         type: types.SET_ORDER_PLACED_STATE,
         payload: { state },
     }),
 
-    setDeliveryDate: (date) => ({
+    setDeliveryDate: (date: Record<string, any>) => ({
         type: types.SET_DELIVERY_DATE,
         payload: { date },
     }),
 
     // Routing
-    setBackButtonPath: (path) => ({
+    setBackButtonPath: (path: Record<string, string | null>) => ({
         type: types.SET_BACK_BUTTON_PATH,
         payload: { path },
     }),
 
     // Showing overlays actions
-    showLoginOverlay: (backButtonPath) => ({
+    showLoginOverlay: (backButtonPath?: string | undefined) => ({
         type: types.SHOW_LOGIN_OVERLAY,
         payload: { backButtonPath },
     }),
 
-    showSignupOverlay: () => ({
+    showSignupOverlay: (): UiActionsType => ({
         type: types.SHOW_SIGNUP_OVERLAY,
     }),
 
-    showCodeConfirmationOverlay: () => ({
+    showCodeConfirmationOverlay: (): UiActionsType => ({
         type: types.SHOW_CODE_OVERLAY,
     }),
 
-    showSearchOverlay: () => ({
+    showSearchOverlay: (): UiActionsType => ({
         type: types.SHOW_SEARCH_OVERLAY,
     }),
 
-    showMarketFiltersOverlay: () => ({
+    showMarketFiltersOverlay: (): UiActionsType => ({
         type: types.SHOW_MARKET_FILTERS,
     }),
 
-    showOrdersFiltersOverlay: () => ({
+    showOrdersFiltersOverlay: (): UiActionsType => ({
         type: types.SHOW_ORDERS_FILTERS,
     }),
 
-    showNewLocationOverlay: () => ({
+    showNewLocationOverlay: (): UiActionsType => ({
         type: types.SHOW_NEW_LOCATION_OVERLAY,
     }),
 
-    showNewListItemOverlay: () => ({
+    showNewListItemOverlay: (): UiActionsType => ({
         type: types.SHOW_NEW_LIST_ITEM_OVERLAY,
     }),
 
-    showSupplierUploadOverlay: () => ({
+    showSupplierUploadOverlay: (): UiActionsType => ({
         type: types.SHOW_SUPPLIER_UPLOAD_OVERLAY,
     }),
 
-    showSupplierUploadPreviewOverlay: () => ({
+    showSupplierUploadPreviewOverlay: (): UiActionsType => ({
         type: types.SHOW_SUPPLIER_UPLOAD_PREVIEW_OVERLAY,
     }),
 
-    showOrderCombinationsOverlay: () => ({
+    showOrderCombinationsOverlay: (): UiActionsType => ({
         type: types.SHOW_ORDER_COMBINATIONS_OVERLAY,
     }),
 
     // Hiding overlays actions
-    hideLoginOverlay: () => ({
+    hideLoginOverlay: (): UiActionsType => ({
         type: types.HIDE_LOGIN_OVERLAY,
     }),
 
-    hideMarketFiltersOverlay: () => ({
+    hideMarketFiltersOverlay: (): UiActionsType => ({
         type: types.HIDE_MARKET_FILTERS,
     }),
 
-    hideOrdersFiltersOverlay: () => ({
+    hideOrdersFiltersOverlay: (): UiActionsType => ({
         type: types.HIDE_ORDERS_FILTERS,
     }),
 
-    hideSignupOverlay: () => ({
+    hideSignupOverlay: (): UiActionsType => ({
         type: types.HIDE_SIGNUP_OVERLAY,
     }),
 
-    hideCodeConfirmationOverlay: () => ({
+    hideCodeConfirmationOverlay: (): UiActionsType => ({
         type: types.HIDE_CODE_OVERLAY,
     }),
 
-    hideSearchOverlay: () => ({
+    hideSearchOverlay: (): UiActionsType => ({
         type: types.HIDE_SEARCH_OVERLAY,
     }),
 
-    hideAllOverlays: () => ({
+    hideAllOverlays: (): UiActionsType => ({
         type: types.HIDE_ALL_OVERLAYS,
     }),
 
-    hideNewLocationOverlay: () => ({
+    hideNewLocationOverlay: (): UiActionsType => ({
         type: types.HIDE_NEW_LOCATION_OVERLAY,
     }),
 
-    hideNewListItemOverlay: () => ({
+    hideNewListItemOverlay: (): UiActionsType => ({
         type: types.HIDE_NEW_LIST_ITEM_OVERLAY,
     }),
 
-    hideSupplierUploadOverlay: () => ({
+    hideSupplierUploadOverlay: (): UiActionsType => ({
         type: types.HIDE_SUPPLIER_UPLOAD_OVERLAY,
     }),
 
-    hideSupplierUploadPreviewOverlay: () => ({
+    hideSupplierUploadPreviewOverlay: (): UiActionsType => ({
         type: types.HIDE_SUPPLIER_UPLOAD_PREVIEW_OVERLAY,
     }),
 
-    hideOrderCombinationsOverlay: () => ({
+    hideOrderCombinationsOverlay: (): UiActionsType => ({
         type: types.HIDE_ORDER_COMBINATIONS_OVERLAY,
     }),
 
     // Data
-    setNewListItemOverlayData: (payload) => ({
+    setNewListItemOverlayData: (payload: Record<string, any>): UiActionsType => ({
         type: types.SET_NEW_LIST_ITEM_OVERLAY_DATA,
         payload,
     }),
 
-    clearNewListItemOverlayData: () => ({
+    clearNewListItemOverlayData: (): UiActionsType => ({
         type: types.CLEAR_NEW_LIST_ITEM_OVERLAY_DATA,
     }),
 
-    setClientListsSelectedLocation: (payload) => ({
+    setClientListsSelectedLocation: (payload: string): UiActionsType => ({
         type: types.SET_CLIENT_LISTS_SELECTED_LOCATION,
         payload,
     }),
 
-    setOrderCombinations: (payload) => ({
+    setOrderCombinations: (payload: OrderCombinations): UiActionsType => ({
         type: types.SET_ORDER_COMBINATIONS,
         payload,
     }),
 
     // Error
-    emitError: (error, meta = null) => ({
+    emitError: (error: string, meta = null as any): UiActionsType => ({
         type: types.EMIT_ERROR,
         payload: error,
         error: true,
@@ -168,7 +168,7 @@ export const uiActions = {
     }),
 
     // TEMP
-    writeLog: (string) => ({
+    writeLog: (string: string) => ({
         type: types.WRITE_LOG,
         payload: { string },
     }),

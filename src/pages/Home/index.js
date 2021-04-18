@@ -24,7 +24,7 @@ import { book } from 'core';
 
 // Actions
 import { marketActions } from 'bus/market/market.actions';
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.auth.isAuthenticated,

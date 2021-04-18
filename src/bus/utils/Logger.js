@@ -2,7 +2,7 @@
 import { put } from 'redux-saga/effects';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 export function* Logger(type, ...data) {
     const concatenated = data.join(' -> ');

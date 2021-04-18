@@ -15,7 +15,7 @@ import mock from 'theme/assets/images/apples-mock.png';
 
 // Actions
 import { profileActions } from 'bus/profile/profile.actions';
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
     orderData: state.market.get('orderData').toJS(),

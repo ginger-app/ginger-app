@@ -13,7 +13,7 @@ import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import logo from 'theme/assets/svg/logo.svg';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({

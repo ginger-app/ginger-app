@@ -11,7 +11,7 @@ import { leftToRightSlideConfig } from 'utils/transitionConfig';
 import mockImage from 'theme/assets/images/apples-mock.png';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 import Styles from './styles.module.scss';
 
 const mapStateToProps = (state) => ({

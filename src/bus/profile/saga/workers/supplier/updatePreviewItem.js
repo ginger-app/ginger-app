@@ -2,7 +2,7 @@
 import { put, select } from 'redux-saga/effects';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 import { profileActions } from 'bus/profile/profile.actions';
 
 // Instruments

@@ -12,7 +12,7 @@ import { Button, Icon, SupplierUploadPreviewOverlay } from 'components';
 import { topToBottomSlideConfig } from 'utils/transitionConfig';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 import { profileActions } from 'bus/profile/profile.actions';
 
 const mapStateToProps = (state) => ({

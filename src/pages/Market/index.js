@@ -16,7 +16,7 @@ import { book } from 'core/routes';
 
 // Actions
 import { marketActions } from 'bus/market/market.actions';
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
     categories: state.market.categories,

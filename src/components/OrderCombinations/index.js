@@ -12,7 +12,7 @@ import { Navigation, OrderCombination } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
     orderCombinationsOverlay: state.ui.get('orderCombinationsOverlay'),

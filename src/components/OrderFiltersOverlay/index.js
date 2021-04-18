@@ -12,7 +12,7 @@ import { topToBottomSlideConfig } from 'utils/transitionConfig';
 import randomWords from 'random-words';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 import { Dummy } from 'components/_UI';
 
 // Mocks

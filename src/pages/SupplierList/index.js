@@ -12,7 +12,7 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { DateTime } from 'luxon';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const filters = ['Всі', 'В наявності', 'Закінчується', 'Немає в наявності'];
 

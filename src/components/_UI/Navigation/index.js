@@ -11,7 +11,7 @@ import Styles from './styles.module.scss';
 import { Icon } from 'components';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
     searchOpened: state.ui.searchOpened,

@@ -7,8 +7,8 @@ import { authTypes as types } from './auth.types';
 const initialState = Object.freeze({
     isAuthenticated: false,
     codeConfirmation: false,
-    accessToken: null,
-    expiresAt: null,
+    accessToken: null as null | string,
+    expiresAt: null as null | string,
     authData: {} as Record<string, any>,
 });
 

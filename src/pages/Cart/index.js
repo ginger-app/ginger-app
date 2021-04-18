@@ -20,7 +20,7 @@ import {
 
 // Actions
 import { profileActions } from 'bus/profile/profile.actions';
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
     locations: state.profile.locations,

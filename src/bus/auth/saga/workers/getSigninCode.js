@@ -5,7 +5,7 @@ import { put, apply } from 'redux-saga/effects';
 import { Api } from 'api';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 export function* getSigninCodeWorker({ payload: phoneNumber }) {
     try {

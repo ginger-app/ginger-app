@@ -5,7 +5,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { store } from 'bus/init/store';
 import { authActions } from 'bus/auth/auth.actions';
 import { history } from 'bus/init/middleware/core';
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 // Instruments
 import { DateTime } from 'luxon';

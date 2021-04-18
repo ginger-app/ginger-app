@@ -12,7 +12,7 @@ import { cartTransitionConfig } from 'utils/transitionConfig';
 import { Icon, CartItem, MapModal, DeliveryTimeModal, OrderSuccessModal } from 'components';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 import { marketActions } from 'bus/market/market.actions';
 import { profileActions } from 'bus/profile/profile.actions';
 

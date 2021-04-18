@@ -1,7 +1,7 @@
 // Core
 import { AnyAction } from 'redux';
 // Types
-import { types } from './types';
+import { types } from './ui.types';
 
 const initialState = Object.freeze({
     // Overlays

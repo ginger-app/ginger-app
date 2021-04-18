@@ -14,7 +14,7 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { useDebounce } from 'utils/customHooks';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 import { marketActions } from 'bus/market/market.actions';
 
 const mapStateToProps = (state) => ({

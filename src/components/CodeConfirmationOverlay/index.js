@@ -14,7 +14,7 @@ import { leftToRightSlideConfig } from 'utils/transitionConfig';
 
 // Actions
 import { authActions } from 'bus/auth/auth.actions';
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 
 const mapStateToProps = (state) => ({
     codeConfirmationOverlay: state.ui.codeConfirmationOverlay,

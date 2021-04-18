@@ -11,7 +11,7 @@ import { Navigation, SupplierOrderItem, Carousel } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
-import { uiActions } from 'bus/ui/actions';
+import { uiActions } from 'bus/ui/ui.actions';
 import { profileActions } from 'bus/profile/profile.actions';
 import { useSupplier } from 'domains/supplier/hooks';
 import { useAuth } from 'domains/auth/hooks';
