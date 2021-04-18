@@ -31,10 +31,10 @@ const initialState = Object.freeze({
         price: '',
         amount: '',
         img: '',
-        id: null,
+        id: null as null | string,
     }),
     orderCombinations: [] as any[],
-    clientListsSelectedLocation: null,
+    clientListsSelectedLocation: null as string | null,
     deliveryDate: {} as Record<string, any>,
     logs: '',
 });

@@ -26,10 +26,10 @@ type Logout = { type: typeof authTypes.LOG_OUT };
 export type AuthData =
     | {
           phoneNumber: number;
-          name?: string;
-          companyName?: string;
-          email?: string;
-          signup?: boolean;
+          name: string;
+          companyName: string;
+          email: string;
+          signup: boolean;
       }
     | Record<'phoneNumber', number>;
 

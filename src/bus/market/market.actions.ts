@@ -95,12 +95,12 @@ export const marketActions = {
         payload: { id },
     }),
 
-    searchItemsByNameAsync: (itemName: string) => ({
+    searchItemsByNameAsync: (itemName: string): MarketActionsType => ({
         type: types.SEARCH_ITEMS_BY_NAME_ASYNC,
         payload: { itemName },
     }),
 
-    sendOrdersAsync: (orders: unknown[]) => ({
+    sendOrdersAsync: (orders: unknown[]): MarketActionsType => ({
         type: types.SEND_ORDERS_ASYNC,
         payload: { orders },
     }),
