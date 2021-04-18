@@ -132,7 +132,6 @@ type RemoveItemFromFavoritesAsync = {
 
 type GetUserDataAsync = {
     type: typeof profileTypes.GET_USER_DATA_ASYNC;
-    payload: Record<string, any>;
 };
 
 type UploadSupplierExcelTableAsync = {

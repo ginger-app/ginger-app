@@ -9,8 +9,8 @@ import { authActions } from 'bus/auth/auth.actions';
 import { DateTime } from 'luxon';
 
 export const withAuth = async (url, options = {}) => {
-    const accessToken = store.getState().auth.get('accessToken');
-    const tokenExpirationDate = store.getState().auth.get('expiresAt');
+    const { accessToken } = store.getState().auth;
+    const tokenExpirationDate = store.getState().auth.expiresAt;
 
     if (
         !accessToken ||
@@ -22,7 +22,12 @@ export const withAuth = async (url, options = {}) => {
 
         if (refreshResponse.status >= 400) throw new Error();
 
-        store.dispatch(authActions.setAccessToken(tokens));
+        store.dispatch(
+            authActions.setAccessToken({
+                ...tokens,
+                accessToken: tokens.token,
+            }),
+        );
 
         return withAuth(url, options);
     }

@@ -14,7 +14,7 @@ export type ClientDto = {
     email: string;
     phoneNumber: string;
     companyName: string;
-    locations: string[];
+    locations: Record<string, any>[];
     orders: Order[];
     unfinishedOrder: Order;
     chosenSuppliers: ChosenSuppliers[];

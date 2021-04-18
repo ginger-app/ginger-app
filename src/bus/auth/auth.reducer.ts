@@ -43,7 +43,7 @@ export const authReducer = (state = initialState, action: AnyAction): AuthState 
             return Object.freeze({ ...state, authData: action.payload });
 
         case types.SET_ACCESS_TOKEN:
-            return Object.freeze({ ...state, accessToken: action.payload });
+            return Object.freeze({ ...state, ...action.payload });
 
         case types.CLEAR_ACCESS_TOKEN:
             return Object.freeze({ ...state, accessToken: null });

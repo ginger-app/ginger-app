@@ -17,7 +17,7 @@ import Styles from './styles.module.scss';
 import { centerCoords, libraries, options, paths } from './config';
 
 const mapStateToProps = (state) => ({
-    gmapsKey: state.auth.get('gmapsKey'),
+    gmapsKey: state.auth.gmapsKey,
 });
 
 const mapDispatchToProps = {};

@@ -21,8 +21,8 @@ export const api = axios.create({
 });
 
 const reqHandler = async (config: AxiosRequestConfig) => {
-    const accessToken = store.getState().auth.get('accessToken');
-    const tokenExpirationDate = store.getState().auth.get('expiresAt');
+    const { accessToken } = store.getState().auth;
+    const tokenExpirationDate = store.getState().auth.expiresAt;
 
     if (
         config.url !== '/auth/refresh' &&
@@ -32,14 +32,19 @@ const reqHandler = async (config: AxiosRequestConfig) => {
     ) {
         const { data } = await api.get('/auth/refresh');
 
-        store.dispatch(authActions.setAccessToken(data));
+        store.dispatch(
+            authActions.setAccessToken({
+                ...data,
+                accessToken: data.token,
+            }),
+        );
     }
 
     return {
         ...config,
         headers: {
             ...config.headers,
-            Authorization: `Bearer ${store.getState().auth.get('accessToken')}`,
+            Authorization: `Bearer ${store.getState().auth.accessToken}`,
         },
     };
 };
@@ -56,7 +61,13 @@ const errHandler = async (err: any) => {
 
     if (err.response.status === 401) {
         const { data } = await api.get('/auth/refresh');
-        store.dispatch(authActions.setAccessToken(data));
+
+        store.dispatch(
+            authActions.setAccessToken({
+                ...data,
+                accessToken: data.token,
+            }),
+        );
 
         return api(originalReq);
     }

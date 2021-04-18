@@ -95,9 +95,8 @@ export const profileActions = {
         payload: { id },
     }),
 
-    getUserDataAsync: (tokens: Record<string, any>): ProfileActions => ({
+    getUserDataAsync: (): ProfileActions => ({
         type: types.GET_USER_DATA_ASYNC,
-        payload: tokens,
     }),
 
     uploadSupplierExcelTableAsync: (file: File): ProfileActions => ({
