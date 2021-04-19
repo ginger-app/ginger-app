@@ -1,12 +1,6 @@
 // Types
-import {
-    SignupData,
-    AccessToken,
-    AuthData,
-    AuthActionsType,
-    authTypes as types,
-    Signin,
-} from './auth.types';
+import { AccessToken, AuthData, SigninData, SignupData } from 'domains/auth/types';
+import { AuthActionsType, authTypes as types } from './auth.types';
 
 export const authActions = {
     // Sync
@@ -23,9 +17,9 @@ export const authActions = {
         payload: data,
     }),
 
-    setAccessToken: ({ accessToken, expiresAt }: AccessToken): AuthActionsType => ({
+    setAccessToken: (tokenData: AccessToken): AuthActionsType => ({
         type: types.SET_ACCESS_TOKEN,
-        payload: { accessToken, expiresAt },
+        payload: tokenData,
     }),
 
     clearAccessToken: (): AuthActionsType => ({
@@ -42,7 +36,7 @@ export const authActions = {
         payload: phoneNumber,
     }),
 
-    signinAsync: ({ phoneNumber, code }: Signin): AuthActionsType => ({
+    signinAsync: ({ phoneNumber, code }: SigninData): AuthActionsType => ({
         type: types.SIGNIN_ASYNC,
         payload: { phoneNumber, code },
     }),

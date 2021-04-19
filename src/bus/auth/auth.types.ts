@@ -1,3 +1,5 @@
+import { AccessToken, AuthData, SigninData, SignupData } from 'domains/auth/types';
+
 export const authTypes = {
     AUTHENTICATE_USER: 'AUTHENTICATE_USER',
     OPEN_CODE_CONFIRMATION: 'OPEN_CODE_CONFIRMATION',
@@ -23,24 +25,9 @@ type CloseCodeConfirmation = { type: typeof authTypes.CLOSE_CODE_CONFIRMATION };
 
 type Logout = { type: typeof authTypes.LOG_OUT };
 
-export type AuthData =
-    | {
-          phoneNumber: number;
-          name: string;
-          companyName: string;
-          email: string;
-          signup: boolean;
-      }
-    | Record<'phoneNumber', number>;
-
 type SetAuthData = {
     type: typeof authTypes.SET_AUTH_DATA;
     payload: AuthData;
-};
-
-export type AccessToken = {
-    accessToken: string;
-    expiresAt: string;
 };
 
 type SetAccessToken = {
@@ -61,29 +48,15 @@ type GetSigninConfirmationCodeAsync = {
     payload: number;
 };
 
-export type Signin = {
-    phoneNumber: number;
-    code: string;
-};
-
 type SigninAsync = {
     type: typeof authTypes.SIGNIN_ASYNC;
-    payload: Signin;
+    payload: SigninData;
 };
 
 type GetSignupConfirmationCodeAsync = {
     type: typeof authTypes.GET_SIGNUP_CONFIRMATION_CODE_ASYNC;
     payload: number;
 };
-
-export type SignupUserData = {
-    phoneNumber: number;
-    companyName: string;
-    email: string;
-    name: string;
-};
-
-export type SignupData = { phoneNumber: number; code: string; userData: SignupUserData };
 
 type SendSignupDataAsync = {
     type: typeof authTypes.SEND_SIGNUP_DATA_ASYNC;

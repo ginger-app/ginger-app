@@ -1,4 +1,5 @@
 // Core
+import { AuthData } from 'domains/auth/types';
 import { AnyAction } from 'redux';
 
 // Types
@@ -9,7 +10,7 @@ const initialState = Object.freeze({
     codeConfirmation: false,
     accessToken: null as null | string,
     expiresAt: null as null | string,
-    authData: {} as Record<string, any>,
+    authData: {} as AuthData,
 });
 
 export type AuthState = typeof initialState;
