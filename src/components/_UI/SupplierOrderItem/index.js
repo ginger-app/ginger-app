@@ -66,7 +66,7 @@ const SupplierOrderItemComponent = ({
 
                     {/* <p className={Styles.location}>{location.locationName}</p> */}
 
-                    <p className={Styles.supplier}>{client.name}</p>
+                    <p className={Styles.supplier}>{client?.name || '...'}</p>
 
                     <div className={Styles.cart}>
                         <span>Товарів:</span>
