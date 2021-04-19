@@ -22,7 +22,7 @@ export const Toaster = ({
     const { timeout, defaultStyles, transitionStyles } = bottomToTopSlideConfig(500);
 
     return (
-        <Transition in={inProp} appear mountOnEnter unmountOnExit timeout={timeout}>
+        <Transition in={inProp} appear mountOnEnter timeout={timeout}>
             {(state) => (
                 <section
                     className={`${Styles.toasterContainer} ${containerClassName}`}

@@ -153,7 +153,10 @@ const HomeComponent = ({
                         <Toaster
                             inProp={showToaster}
                             message={toasterMessage}
-                            closeToaster={() => setToasterVisibility(false)}
+                            closeToaster={() => {
+                                setToasterVisibility(false);
+                                window.history.replaceState({}, document.title);
+                            }}
                         />
                     </Portal>
                 </section>
