@@ -1,7 +1,7 @@
 // Types
 import { MarketItem } from 'domains/market/types';
 import { ProfileState } from './profile.reducer';
-import { ProfileActions, profileTypes as types } from './profile.types';
+import { ProfileActions, profileTypes as types, OrdersCombinationsRequest } from './profile.types';
 
 export const profileActions = {
     // Sync
@@ -173,27 +173,8 @@ export const profileActions = {
         payload: { locationId, itemId },
     }),
 
-    createNewOrderAsync: ({
-        items,
-        sum,
-        location,
-    }: {
-        items: MarketItem[];
-        sum: number;
-        location: string;
-    }): ProfileActions => ({
-        type: types.CREATE_NEW_ORDER_ASYNC,
-        payload: { items, sum, location },
-    }),
-
-    getOrdersCombinationsAsync: ({
-        items,
-        location,
-    }: {
-        items: MarketItem[];
-        location: string;
-    }): ProfileActions => ({
+    getOrdersCombinationsAsync: (data: OrdersCombinationsRequest): ProfileActions => ({
         type: types.GET_ORDERS_COMBINATIONS_ASYNC,
-        payload: { items, location },
+        payload: data,
     }),
 };

@@ -1,7 +1,7 @@
 // Core
 import { AnyAction } from 'redux';
 import { SortingOptions } from 'domains/market/hooks/useMarket';
-import { MarketItem } from 'domains/market/types';
+import { MarketItem, Order } from 'domains/market/types';
 
 // Types
 import { marketTypes as types } from './market.types';
@@ -11,7 +11,7 @@ const initialState = Object.freeze({
     categoryData: {} as Record<string, any>,
     subcategoryData: {} as Record<string, any>,
     productData: {} as Record<string, any>,
-    orderData: {} as Record<string, any>,
+    orderData: {} as Order,
     searchResults: [] as MarketItem[],
     sortingOption: null as SortingOptions | null,
 });
@@ -45,12 +45,6 @@ export const marketReducer = (state = initialState, action: AnyAction) => {
                 categoryData: action.payload.data,
             });
 
-        case types.FILL_MARKET_SUBCATEGORY_DATA:
-            return Object.freeze({
-                ...state,
-                subcategoryData: action.payload.data,
-            });
-
         case types.FILL_PRODUCT_DATA:
             return Object.freeze({
                 ...state,
@@ -74,12 +68,6 @@ export const marketReducer = (state = initialState, action: AnyAction) => {
             return Object.freeze({
                 ...state,
                 categoryData: {},
-            });
-
-        case types.CLEAR_MARKET_SUBCATEGORY_DATA:
-            return Object.freeze({
-                ...state,
-                subcategoryData: {},
             });
 
         case types.CLEAR_PRODUCT_DATA:

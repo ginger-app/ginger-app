@@ -27,4 +27,3 @@ export * from './NewsBlock';
 export * from './Preloader';
 export * from './Suppliers';
 export * from './MapModal';
-export * from './Cart';

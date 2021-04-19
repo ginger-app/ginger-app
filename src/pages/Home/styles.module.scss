@@ -38,6 +38,28 @@
         padding-right: 2px;
     }
 
+    & .checkOrders {
+        @include deafultGradientButton;
+        @include centerContent;
+        cursor: pointer;
+        place-self: center;
+
+        position: relative;
+
+        grid-column: 1 / 3;
+
+        height: 6.5rem;
+        width: 80%;
+        padding: 1rem;
+
+        border-radius: 1rem;
+
+        font-size: 1.25rem;
+        font-weight: bold;
+
+        color: $paletteWhite;
+    }
+
     & .cartButton {
         @include centerContent;
         cursor: pointer;

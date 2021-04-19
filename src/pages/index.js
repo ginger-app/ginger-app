@@ -2,7 +2,6 @@ export * from './SupplierConditions';
 export * from './LocationsList';
 export * from './SupplierOrder';
 export * from './SupplierList';
-export * from './Subcategory';
 export * from './Category';
 export * from './NewOrder';
 export * from './Profile';

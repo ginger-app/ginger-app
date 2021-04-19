@@ -1,11 +1,7 @@
 // Types
-import {
-    MarketCategoryData,
-    MarketCategories,
-    MarketActionsType,
-    marketTypes as types,
-} from './market.types';
+import { MarketActionsType, marketTypes as types } from './market.types';
 import { SortingOptions } from 'domains/market/hooks/useMarket';
+import { MarketCategory, MarketItem, NewOrder, Order } from 'domains/market/types';
 
 export const marketActions = {
     // Sync
@@ -19,32 +15,27 @@ export const marketActions = {
     }),
 
     // Filling
-    fillMarketCategories: (categories: MarketCategories): MarketActionsType => ({
+    fillMarketCategories: (categories: MarketCategory[]): MarketActionsType => ({
         type: types.FILL_MARKET_CATEGORIES,
         payload: { categories },
     }),
 
-    fillMarketCategoryData: (data: MarketCategoryData): MarketActionsType => ({
+    fillMarketCategoryData: (data: MarketCategory): MarketActionsType => ({
         type: types.FILL_MARKET_CATEGORY_DATA,
         payload: { data },
     }),
 
-    fillMarketSubcategoryData: (data: Record<string, any>): MarketActionsType => ({
-        type: types.FILL_MARKET_SUBCATEGORY_DATA,
-        payload: { data },
-    }),
-
-    fillProductData: (data: Record<string, any>): MarketActionsType => ({
+    fillProductData: (data: MarketItem): MarketActionsType => ({
         type: types.FILL_PRODUCT_DATA,
         payload: { data },
     }),
 
-    fillOrderData: (data: Record<string, any>): MarketActionsType => ({
+    fillOrderData: (data: Order): MarketActionsType => ({
         type: types.FILL_ORDER_DATA,
         payload: { data },
     }),
 
-    fillSearchResults: (items: Record<string, any>): MarketActionsType => ({
+    fillSearchResults: (items: MarketItem[]): MarketActionsType => ({
         type: types.FILL_SEARCH_RESULTS,
         payload: { items },
     }),
@@ -52,10 +43,6 @@ export const marketActions = {
     // Clearing
     clearMarketCategoryData: (): MarketActionsType => ({
         type: types.CLEAR_MARKET_CATEGORY_DATA,
-    }),
-
-    clearMarketSubcategoryData: (): MarketActionsType => ({
-        type: types.CLEAR_MARKET_SUBCATEGORY_DATA,
     }),
 
     clearProductData: (): MarketActionsType => ({
@@ -80,11 +67,6 @@ export const marketActions = {
         payload: { id },
     }),
 
-    getMarketSubcategoryDataAsync: (id: string): MarketActionsType => ({
-        type: types.GET_MARKET_SUBCATEGORY_DATA_ASYNC,
-        payload: { id },
-    }),
-
     getProductDataAsync: (id: string): MarketActionsType => ({
         type: types.GET_PRODUCT_DATA_ASYNC,
         payload: { id },
@@ -100,7 +82,7 @@ export const marketActions = {
         payload: { itemName },
     }),
 
-    sendOrdersAsync: (orders: unknown[]): MarketActionsType => ({
+    sendOrdersAsync: (orders: NewOrder[]): MarketActionsType => ({
         type: types.SEND_ORDERS_ASYNC,
         payload: { orders },
     }),

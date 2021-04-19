@@ -28,7 +28,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    createNewOrderAsync: profileActions.createNewOrderAsync,
     getOrdersCombinationsAsync: profileActions.getOrdersCombinationsAsync,
     setDeliveryDate: uiActions.setDeliveryDate,
 };
@@ -40,7 +39,6 @@ const CartComponent = ({
     getOrdersCombinationsAsync,
     setDeliveryDate,
     deliveryDate,
-    // createNewOrderAsync
 }) => {
     const [showDateOverlay, setDateOverlayState] = useState(false);
 

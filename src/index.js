@@ -13,7 +13,6 @@ import { App } from './core';
 // Instruments
 import {
     CartToaster,
-    Cart,
     SignupOverlay,
     LoginOverlay,
     CodeConfirmationOverlay,
@@ -46,7 +45,6 @@ render(
             <NewLocationOverlay />
             <NewListItemOverlay />
             <SupplierUploadOverlay />
-            <Cart />
         </Router>
     </Provider>,
     document.getElementById('app'),

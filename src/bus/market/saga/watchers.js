@@ -8,7 +8,6 @@ import { marketTypes as types } from '../market.types';
 import {
     getCategoriesWorker,
     getCategoryDataWorker,
-    getSubcategoryDataWorker,
     getProductDataWorker,
     getOrderDataWorker,
     searchItemsByNameWorker,
@@ -20,9 +19,6 @@ function* watchGetCategories() {
 }
 function* watchGetCategoryData() {
     yield takeEvery(types.GET_MARKET_CATEGORY_DATA_ASYNC, getCategoryDataWorker);
-}
-function* watchGetSubcategoryData() {
-    yield takeEvery(types.GET_MARKET_SUBCATEGORY_DATA_ASYNC, getSubcategoryDataWorker);
 }
 function* watchGetProductData() {
     yield takeEvery(types.GET_PRODUCT_DATA_ASYNC, getProductDataWorker);
@@ -42,7 +38,6 @@ export function* watchMarket() {
         call(watchGetCategories),
         call(watchGetProductData),
         call(watchGetCategoryData),
-        call(watchGetSubcategoryData),
         call(watchGetOrderData),
         call(watchSearchItemsByName),
         call(watchSendOrders),

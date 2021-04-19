@@ -1,7 +1,7 @@
 // Core
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { Portal } from 'react-portal';
 import { Transition } from 'react-transition-group';
 
@@ -83,7 +83,13 @@ const HomeComponent = ({
                     }}
                 >
                     <NewsBlock className={Styles.lastOrder} />
-                    <CreateNewOrder className={Styles.dailyBonus} unfinishedOrder />
+                    {role === 'client' || !isAuthenticated ? (
+                        <CreateNewOrder className={Styles.dailyBonus} unfinishedOrder />
+                    ) : (
+                        <Link to={book.supplierOrders} className={Styles.checkOrders}>
+                            Нових замовлень: 0
+                        </Link>
+                    )}
                     <CategoriesCatalogue
                         className={Styles.catalogue}
                         buttonStyle={{ width: '90%' }}

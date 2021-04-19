@@ -1,5 +1,5 @@
 import { MarketItem } from 'domains/market/types';
-import { Order } from 'domains/orders/types';
+import { Order } from 'domains/market/types';
 
 export type DeliveryCondition = {
     name: string;

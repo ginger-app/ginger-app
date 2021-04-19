@@ -1,7 +1,6 @@
 import { profileActions } from 'bus/profile/profile.actions';
 import { ProfileState } from 'bus/profile/profile.reducer';
-import { MarketItem } from 'domains/market/types';
-import { Order } from 'domains/orders/types';
+import { MarketItem, Order } from 'domains/market/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { ClientApi } from '../api';
 

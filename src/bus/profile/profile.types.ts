@@ -36,9 +36,8 @@ export const profileTypes = {
     CREATE_NEW_LOCATION_ASYNC: 'CREATE_NEW_LOCATION_ASYNC',
     ADD_NEW_ITEM_TO_LOCATION_ASYNC: 'ADD_NEW_ITEM_TO_LOCATION_ASYNC',
     REMOVE_ITEM_FROM_LOCATION_ASYNC: 'REMOVE_ITEM_FROM_LOCATION_ASYNC',
-    CREATE_NEW_ORDER_ASYNC: 'CREATE_NEW_ORDER_ASYNC',
     GET_ORDERS_COMBINATIONS_ASYNC: 'GET_ORDERS_COMBINATIONS_ASYNC',
-};
+} as const;
 
 type FillProfileAction = {
     // Sync
@@ -200,17 +199,7 @@ type RemoveItemFromLocationAsync = {
     payload: Item;
 };
 
-export type NewOrderType = {
-    items: MarketItem[];
-    sum: number;
-    location: string;
-};
-type CreateNewOrderAsync = {
-    type: typeof profileTypes.CREATE_NEW_ORDER_ASYNC;
-    payload: NewOrderType;
-};
-
-export type OrdersCombinations = {
+export type OrdersCombinationsRequest = {
     items: MarketItem[];
     sum: number;
     location: string;
@@ -218,7 +207,7 @@ export type OrdersCombinations = {
 
 type GetOrdersCombinationsAsync = {
     type: typeof profileTypes.GET_ORDERS_COMBINATIONS_ASYNC;
-    payload: OrdersCombinations;
+    payload: OrdersCombinationsRequest;
 };
 
 export type ProfileActions =
@@ -253,5 +242,4 @@ export type ProfileActions =
     | CreateNewLocationAsync
     | AddNewItemToLocationAsync
     | RemoveItemFromLocationAsync
-    | CreateNewOrderAsync
     | GetOrdersCombinationsAsync;

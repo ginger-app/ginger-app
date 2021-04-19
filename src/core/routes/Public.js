@@ -7,7 +7,6 @@ import {
     ProfilePage,
     HomePage,
     CategoryPage,
-    SubcategoryPage,
     MarketPage,
     ProductPage,
     OrdersPage,
@@ -42,16 +41,6 @@ export const PublicRoutes = () => (
             exact
             path={`${book.categories}/:id`}
             render={({ match }) => <CategoryPage id={match.params.id} />}
-        />
-        <Route
-            exact
-            path={`${book.categories}/:categorySku/:id`}
-            render={({ match }) => <SubcategoryPage id={match.params.id} />}
-        />
-        <Route
-            exact
-            path={`${book.categories}/:categorySku/:id`}
-            render={({ match }) => <SubcategoryPage id={match.params.id} />}
         />
         <Route
             exact
