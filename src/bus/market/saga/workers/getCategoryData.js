@@ -9,7 +9,6 @@ import { uiActions } from 'bus/ui/ui.actions';
 import { Api } from 'api';
 
 // Instruments
-import { Logger } from 'bus/utils';
 
 export function* getCategoryDataWorker({ payload: { id } }) {
     try {
@@ -25,7 +24,6 @@ export function* getCategoryDataWorker({ payload: { id } }) {
             marketActions.fillMarketCategoryData({ items, filteringOptions, image, _id, name }),
         );
     } catch (err) {
-        yield apply(Logger, Logger, ['err', 'Fetching category data err', id, err]);
         yield put(uiActions.emitError(err, '-> getCategoryDataWorker'));
     }
 }

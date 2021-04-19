@@ -12,3 +12,5 @@ export const store = createStore(rootReducer(history), enhancedStore);
 
 // * Викликати ініціалізацію редакс саги потрібно тільки ПІСЛЯ створення стора
 sagaMiddleware.run(rootSaga);
+
+export type AppDispatch = typeof store.dispatch;

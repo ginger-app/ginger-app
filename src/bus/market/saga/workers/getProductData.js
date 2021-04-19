@@ -9,7 +9,6 @@ import { marketActions } from 'bus/market/market.actions';
 import { Api } from 'api';
 
 // Instruments
-import { Logger } from 'bus/utils';
 
 export function* getProductDataWorker({ payload: { id } }) {
     try {
@@ -20,8 +19,6 @@ export function* getProductDataWorker({ payload: { id } }) {
 
         yield put(marketActions.fillProductData(data));
     } catch (err) {
-        yield apply(Logger, Logger, ['err', 'Fetching product data err', id, err]);
-
         yield put(uiActions.emitError(err, '-> getProductDataWorker'));
     }
 }

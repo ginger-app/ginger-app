@@ -22,7 +22,7 @@ export const api = axios.create({
 
 const reqHandler = async (config: AxiosRequestConfig) => {
     const { accessToken } = store.getState().auth;
-    const tokenExpirationDate = store.getState().auth.expiresAt;
+    const tokenExpirationDate = store.getState().auth.expiresAt || new Date().toISOString();
 
     if (
         config.url !== '/auth/refresh' &&

@@ -5,7 +5,7 @@ import { put, apply, select } from 'redux-saga/effects';
 import { uiActions } from 'bus/ui/ui.actions';
 
 // Instruments
-import { ErrorHandler } from 'bus/utils';
+
 import { getDeliveryDate } from 'bus/profile/saga/selectors';
 
 // Api
@@ -21,7 +21,6 @@ export function* createNewOrderWorker({ payload: { items, location, sum } }) {
         const { message } = yield apply(response, response.json);
 
         if (response.status >= 400) {
-            yield apply(ErrorHandler, ErrorHandler, [response]);
             throw new Error(message);
         }
     } catch (err) {

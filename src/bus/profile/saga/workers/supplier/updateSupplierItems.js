@@ -6,7 +6,6 @@ import { uiActions } from 'bus/ui/ui.actions';
 import { profileActions } from 'bus/profile/profile.actions';
 
 // Instruments
-import { ErrorHandler } from 'bus/utils';
 
 // Api
 import { Api } from 'api';
@@ -17,7 +16,6 @@ export function* updateSupplierItemsWorker({ payload }) {
         const { data, message } = yield apply(response, response.json);
 
         if (response.status >= 400) {
-            yield apply(ErrorHandler, ErrorHandler, [response]);
             throw new Error(message);
         }
 
