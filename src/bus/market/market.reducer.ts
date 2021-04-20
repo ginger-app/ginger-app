@@ -1,16 +1,15 @@
 // Core
 import { AnyAction } from 'redux';
 import { SortingOptions } from 'domains/market/hooks/useMarket';
-import { MarketItem, Order } from 'domains/market/types';
+import { MarketCategory, MarketItem, Order } from 'domains/market/types';
 
 // Types
 import { marketTypes as types } from './market.types';
 
 const initialState = Object.freeze({
-    categories: [] as any[],
-    categoryData: {} as Record<string, any>,
-    subcategoryData: {} as Record<string, any>,
-    productData: {} as Record<string, any>,
+    categories: [] as MarketCategory[],
+    categoryData: {} as MarketCategory,
+    productData: {} as MarketItem,
     orderData: {} as Order,
     searchResults: [] as MarketItem[],
     sortingOption: null as SortingOptions | null,
