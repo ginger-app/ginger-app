@@ -1,5 +1,8 @@
 import { ProfileState } from './profile.reducer';
-import { MarketItem } from 'domains/market/types';
+import { MarketItem, Order } from 'domains/market/types';
+import { SupplierPreviewItem } from 'domains/supplier/types';
+import { Location } from 'domains/client/hooks/useClientLocations';
+import { OrderCombinations } from 'bus/ui/ui.types';
 
 export const profileTypes = {
     // Sync
@@ -15,7 +18,6 @@ export const profileTypes = {
     FILL_CLIENT_LISTS: 'FILL_CLIENT_LISTS',
     FILL_CLIENT_LOCATIONS: 'FILL_CLIENT_LOCATIONS',
     FILL_CLIENT_ORDERS: 'FILL_CLIENT_ORDERS',
-    FILL_MARKET_ITEM_CHOSEN_LOCATIONS: 'FILL_MARKET_ITEM_CHOSEN_LOCATIONS',
     FILL_ORDERS_COMBINATIONS: 'FILL_ORDERS_COMBINATIONS',
 
     // Async
@@ -51,42 +53,37 @@ type ClearProfileAction = {
 
 type ClearSupplierPreviewAction = {
     type: typeof profileTypes.FILL_SUPPLIER_PREVIEW;
-    payload: Record<string, any>;
+    payload: SupplierPreviewItem[];
 };
 
 type UpdatePreviewDataAction = {
     type: typeof profileTypes.UPDATE_PREVIEW_DATA;
-    payload: Record<string, any>;
+    payload: SupplierPreviewItem[];
 };
 
 type FillClientLocationsAction = {
     type: typeof profileTypes.FILL_CLIENT_LOCATIONS;
-    payload: Record<string, any>[];
+    payload: Location[];
 };
 
 type FillClientOrdersAction = {
     type: typeof profileTypes.FILL_CLIENT_ORDERS;
-    payload: Record<string, any>[];
+    payload: Order[];
 };
 
 type FillSupplierOrdersAction = {
     type: typeof profileTypes.FILL_SUPPLIER_ORDERS;
-    payload: Record<string, any>[];
-};
-
-type FillMarketItemChosenLocations = {
-    type: typeof profileTypes.FILL_MARKET_ITEM_CHOSEN_LOCATIONS;
-    payload: Record<string, any>[];
+    payload: Order[];
 };
 
 type FillOrdersCombinations = {
     type: typeof profileTypes.FILL_ORDERS_COMBINATIONS;
-    payload: Record<string, any>[];
+    payload: OrderCombinations;
 };
 
 type UpdateCart = {
     type: typeof profileTypes.UPDATE_CART;
-    payload: Record<string, any>[];
+    payload: MarketItem[];
 };
 
 type AddItemToFavorites = {
@@ -218,7 +215,6 @@ export type ProfileActions =
     | FillClientLocationsAction
     | FillClientOrdersAction
     | FillSupplierOrdersAction
-    | FillMarketItemChosenLocations
     | UpdateCart
     | AddItemToFavorites
     | RemoveItemFromFavorites

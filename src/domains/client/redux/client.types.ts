@@ -1,4 +1,5 @@
 import { Order } from 'domains/market/types';
+import { Location } from '../hooks/useClientLocations';
 
 export interface ChosenSuppliers {
     itemId: string;
@@ -14,7 +15,7 @@ export type ClientDto = {
     email: string;
     phoneNumber: string;
     companyName: string;
-    locations: Record<string, any>[];
+    locations: Location[];
     orders: Order[];
     unfinishedOrder: Order;
     chosenSuppliers: ChosenSuppliers[];

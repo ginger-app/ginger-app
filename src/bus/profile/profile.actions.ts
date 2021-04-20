@@ -1,5 +1,8 @@
 // Types
-import { MarketItem } from 'domains/market/types';
+import { OrderCombinations } from 'bus/ui/ui.types';
+import { Location } from 'domains/client/hooks/useClientLocations';
+import { MarketItem, Order } from 'domains/market/types';
+import { SupplierPreviewItem } from 'domains/supplier/types';
 import { ProfileState } from './profile.reducer';
 import { ProfileActions, profileTypes as types, OrdersCombinationsRequest } from './profile.types';
 
@@ -14,7 +17,7 @@ export const profileActions = {
         type: types.CLEAR_PROFILE,
     }),
 
-    updateCart: (cart: Record<string, any>[]): ProfileActions => ({
+    updateCart: (cart: MarketItem[]): ProfileActions => ({
         type: types.UPDATE_CART,
         payload: cart,
     }),
@@ -29,47 +32,42 @@ export const profileActions = {
         payload: item,
     }),
 
-    repeatLastOrder: (orderData: Record<string, any>): ProfileActions => ({
+    repeatLastOrder: (orderData: Order[]): ProfileActions => ({
         type: types.REPEAT_LAST_ORDER,
         payload: orderData,
     }),
 
-    fillSupplierPreview: (previewData: Record<string, any>): ProfileActions => ({
+    fillSupplierPreview: (previewData: SupplierPreviewItem[]): ProfileActions => ({
         type: types.FILL_SUPPLIER_PREVIEW,
         payload: previewData,
     }),
 
-    updatePreviewData: (newPreviewData: Record<string, any>): ProfileActions => ({
+    updatePreviewData: (newPreviewData: SupplierPreviewItem[]): ProfileActions => ({
         type: types.UPDATE_PREVIEW_DATA,
         payload: newPreviewData,
     }),
 
-    fillClientLists: (data: Record<string, any>[]): ProfileActions => ({
+    fillClientLists: (data: MarketItem[]): ProfileActions => ({
         type: types.FILL_CLIENT_LISTS,
         payload: data,
     }),
 
-    fillClientLocations: (data: Record<string, any>[]): ProfileActions => ({
+    fillClientLocations: (data: Location[]): ProfileActions => ({
         type: types.FILL_CLIENT_LOCATIONS,
         payload: data,
     }),
 
-    fillClientOrders: (data: Record<string, any>[]): ProfileActions => ({
+    fillClientOrders: (data: Order[]): ProfileActions => ({
         type: types.FILL_CLIENT_ORDERS,
         payload: data,
     }),
 
-    fillSupplierOrders: (data: Record<string, any>[]): ProfileActions => ({
+    fillSupplierOrders: (data: Order[]): ProfileActions => ({
         type: types.FILL_SUPPLIER_ORDERS,
         payload: data,
     }),
 
-    fillMarketItemChosenLocations: (data: Record<string, any>[]): ProfileActions => ({
-        type: types.FILL_MARKET_ITEM_CHOSEN_LOCATIONS,
-        payload: data,
-    }),
-
-    fillOrdersCombinations: (data: Record<string, any>[]): ProfileActions => ({
+    fillOrdersCombinations: (data: OrderCombinations): ProfileActions => ({
         type: types.FILL_ORDERS_COMBINATIONS,
         payload: data,
     }),

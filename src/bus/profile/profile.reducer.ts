@@ -1,8 +1,11 @@
 // Core
-import { AnyAction } from 'redux';
+import { OrderCombinations } from 'bus/ui/ui.types';
+import { Location } from 'domains/client/hooks/useClientLocations';
+import { Order } from 'domains/market/types';
+import { SupplierPreviewItem } from 'domains/supplier/types';
 
 // Types
-import { profileTypes as types } from './profile.types';
+import { ProfileActions, profileTypes as types } from './profile.types';
 
 const initialState = Object.freeze({
     _id: '',
@@ -12,21 +15,20 @@ const initialState = Object.freeze({
     companyName: '',
     lastVisit: '',
     role: '',
-    userpic: null,
+    userpic: '',
     paymentMethods: [] as Record<string, any>[],
-    locations: [] as Record<string, any>[],
+    locations: [] as Location[],
     analyticsData: [] as Record<string, any>[],
-    previewData: [] as Record<string, any>[],
-    orders: [] as Record<string, any>[],
+    previewData: [] as SupplierPreviewItem[],
+    orders: [] as Order[],
 
     // displaying stuff
-    marketItemChosenLocations: [] as Record<string, any>[],
-    ordersCombinations: [] as Record<string, any>[],
+    ordersCombinations: {} as OrderCombinations,
 });
 
 export type ProfileState = typeof initialState;
 
-export const profileReducer = (state = initialState, action: AnyAction): ProfileState => {
+export const profileReducer = (state = initialState, action: ProfileActions): ProfileState => {
     switch (action.type) {
         case types.FILL_PROFILE:
             return Object.freeze({
@@ -65,12 +67,6 @@ export const profileReducer = (state = initialState, action: AnyAction): Profile
             return Object.freeze({
                 ...state,
                 orders: action.payload,
-            });
-
-        case types.FILL_MARKET_ITEM_CHOSEN_LOCATIONS:
-            return Object.freeze({
-                ...state,
-                marketItemChosenLocations: action.payload,
             });
 
         case types.FILL_ORDERS_COMBINATIONS:
