@@ -2,7 +2,7 @@ import { ProfileState } from './profile.reducer';
 import { MarketItem, Order } from 'domains/market/types';
 import { SupplierPreviewItem } from 'domains/supplier/types';
 import { Location } from 'domains/client/hooks/useClientLocations';
-import { OrderCombinations } from 'bus/ui/ui.types';
+import { OrderCombination } from 'bus/ui/ui.types';
 
 export const profileTypes = {
     // Sync
@@ -78,7 +78,7 @@ type FillSupplierOrdersAction = {
 
 type FillOrdersCombinations = {
     type: typeof profileTypes.FILL_ORDERS_COMBINATIONS;
-    payload: OrderCombinations;
+    payload: OrderCombination[];
 };
 
 type UpdateCart = {

@@ -1,5 +1,5 @@
 // Types
-import { OrderCombinations, UiActionsType, types } from './ui.types';
+import { UiActionsType, types, NewListItemOverlayData, OrderCombination } from './ui.types';
 
 export const uiActions = {
     // Spinner actions
@@ -33,7 +33,7 @@ export const uiActions = {
         payload: { state },
     }),
 
-    setDeliveryDate: (date: Record<string, any>) => ({
+    setDeliveryDate: (date: { string: string; utc: string }) => ({
         type: types.SET_DELIVERY_DATE,
         payload: { date },
     }),
@@ -140,7 +140,7 @@ export const uiActions = {
     }),
 
     // Data
-    setNewListItemOverlayData: (payload: Record<string, any>): UiActionsType => ({
+    setNewListItemOverlayData: (payload: NewListItemOverlayData): UiActionsType => ({
         type: types.SET_NEW_LIST_ITEM_OVERLAY_DATA,
         payload,
     }),
@@ -154,7 +154,7 @@ export const uiActions = {
         payload,
     }),
 
-    setOrderCombinations: (payload: OrderCombinations): UiActionsType => ({
+    setOrderCombinations: (payload: OrderCombination[]): UiActionsType => ({
         type: types.SET_ORDER_COMBINATIONS,
         payload,
     }),

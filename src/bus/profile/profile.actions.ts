@@ -1,5 +1,5 @@
 // Types
-import { OrderCombinations } from 'bus/ui/ui.types';
+import { OrderCombination } from 'bus/ui/ui.types';
 import { Location } from 'domains/client/hooks/useClientLocations';
 import { MarketItem, Order } from 'domains/market/types';
 import { SupplierPreviewItem } from 'domains/supplier/types';
@@ -67,7 +67,7 @@ export const profileActions = {
         payload: data,
     }),
 
-    fillOrdersCombinations: (data: OrderCombinations): ProfileActions => ({
+    fillOrdersCombinations: (data: OrderCombination[]): ProfileActions => ({
         type: types.FILL_ORDERS_COMBINATIONS,
         payload: data,
     }),

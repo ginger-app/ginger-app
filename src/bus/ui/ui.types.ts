@@ -1,4 +1,5 @@
 import { MarketItem } from 'domains/market/types';
+import { SupplierDto } from 'domains/supplier/redux/supplier.types';
 
 export const types = {
     // Spinner
@@ -56,7 +57,7 @@ export const types = {
 
     // TEMP
     WRITE_LOG: 'WRITE_LOG',
-};
+} as const;
 
 type StartFetching = {
     type: typeof types.START_FETCHING;
@@ -96,7 +97,7 @@ type SetDeliveryDate = {
 // Routing
 type SetBackButtonPath = {
     type: typeof types.SET_BACK_BUTTON_PATH;
-    payload: Record<'path', string | null>;
+    payload: Record<'path', string | undefined>;
 };
 
 // Showing overlays actions
@@ -200,7 +201,7 @@ export type NewListItemOverlayData = {
     unit: string;
     price: Record<string, number>;
     stock: Record<string, number>;
-    id: string;
+    id: string | null;
     name: string;
     img: string;
 };
@@ -220,12 +221,12 @@ type SetClientListsSelectedLocation = {
 };
 
 export type Orders = {
-    supplier: Record<string, any>;
+    supplier: SupplierDto;
     sum: number;
     items: MarketItem[];
 };
 
-export type OrderCombinations = {
+export type OrderCombination = {
     name: string;
     sum: number;
     orders: Record<string, Orders>[];
@@ -233,7 +234,7 @@ export type OrderCombinations = {
 
 type SetOrderCombinations = {
     type: typeof types.SET_ORDER_COMBINATIONS;
-    payload: OrderCombinations;
+    payload: OrderCombination[];
 };
 
 // Error

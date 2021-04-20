@@ -1,7 +1,7 @@
 // Core
-import { AnyAction } from 'redux';
+
 // Types
-import { types } from './ui.types';
+import { NewListItemOverlayData, OrderCombination, types, UiActionsType } from './ui.types';
 
 const initialState = Object.freeze({
     // Overlays
@@ -23,25 +23,26 @@ const initialState = Object.freeze({
     orderCombinationsOverlay: false,
 
     // Data
-    backButtonPath: null,
-    newListItemOverlayData: Object.freeze({
-        name: '',
+    backButtonPath: undefined as string | undefined,
+    newListItemOverlayData: {
         category: '',
         unit: '',
-        price: '',
+        price: {},
+        name: '',
         amount: '',
         img: '',
-        id: null as null | string,
-    }),
-    orderCombinations: [] as any[],
+        id: null,
+        stock: {},
+    } as NewListItemOverlayData,
+    orderCombinations: [] as OrderCombination[],
     clientListsSelectedLocation: null as string | null,
-    deliveryDate: {} as Record<string, any>,
+    deliveryDate: {} as { string: string; utc: string },
     logs: '',
 });
 
 export type UiState = typeof initialState;
 
-export const uiReducer = (state = initialState, action: AnyAction): UiState => {
+export const uiReducer = (state = initialState, action: UiActionsType): UiState => {
     switch (action.type) {
         // Spinner
         case types.START_FETCHING:
@@ -136,7 +137,7 @@ export const uiReducer = (state = initialState, action: AnyAction): UiState => {
             return Object.freeze({
                 ...state,
                 loginOverlay: false,
-                backButtonPath: null,
+                backButtonPath: undefined,
             });
 
         case types.SHOW_SIGNUP_OVERLAY:
@@ -249,7 +250,7 @@ export const uiReducer = (state = initialState, action: AnyAction): UiState => {
                 newLocationOverlay: false,
                 newListItemOverlay: false,
                 supplierUploadOverlay: false,
-                backButtonPath: null,
+                backButtonPath: undefined,
             });
 
         // Data
@@ -281,7 +282,7 @@ export const uiReducer = (state = initialState, action: AnyAction): UiState => {
         case types.EMIT_ERROR:
             return Object.freeze({
                 ...state,
-                errorMessage: action.payload.message,
+                errorMessage: action.payload,
             });
 
         // TEMP
