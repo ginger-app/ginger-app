@@ -9,7 +9,7 @@
     left: 0;
 
     display: grid;
-    grid-template-rows: 4rem 1fr calc(50% + 5rem);
+    grid-template-rows: 4rem 1fr calc(60% + 5rem);
     place-items: center start;
     gap: 2rem;
 
@@ -18,7 +18,11 @@
 
     z-index: 1001;
 
-    & .backButton {
+    @media only screen and (min-width: 700px) {
+        grid-template-rows: 4rem 1fr 1fr 30%;
+    }
+
+    & .backButtonMobile {
         @include lightButton;
         @include centerContent;
         place-self: center end;
@@ -30,6 +34,27 @@
         background: $paletteWhite;
 
         border-radius: 100%;
+
+        @media only screen and (min-width: 700px) {
+            visibility: hidden;
+        }
+    }
+
+    & .backButtonTablet {
+        display: none;
+
+        @media only screen and (min-width: 700px) {
+            @include lightButton;
+            @include centerContent;
+            place-self: center;
+
+            height: 5rem;
+            width: 5rem;
+
+            background: $paletteWhite;
+
+            border-radius: 100%;
+        }
     }
 
     & .title {
@@ -37,6 +62,14 @@
         place-self: end start;
 
         margin-left: 2rem;
+
+        font-size: 30px;
+
+        @media only screen and (min-width: 700px) {
+            margin-bottom: 2rem;
+
+            font-size: 50px;
+        }
     }
 
     & .fieldsContainer {
@@ -58,23 +91,51 @@
 
         border-radius: 0 25rem 25rem 0;
 
+        @media only screen and (min-width: 700px) {
+            max-width: 32rem;
+
+            border-radius: 15 15% 15% 15;
+        }
+
+        & .icon {
+            height: 1rem;
+            width: 1rem;
+
+            @media only screen and (min-width: 700px) {
+                height: 2rem;
+                width: 2rem;
+            }
+        }
+
         & .input {
             grid-column: 2;
             display: grid;
             place-items: center start;
 
-            height: 3.25rem;
+            height: 3rem;
             width: 80%;
-            padding-right: 1rem;
+            padding-left: 2 rem;
 
             border-top: 1px solid $paletteGrey_4;
+
+            @media only screen and (min-width: 700px) {
+                height: 6rem;
+
+                font-size: 2rem;
+            }
 
             & input {
                 line-height: 100%;
                 font-size: 0.95rem;
+                @media only screen and (min-width: 700px) {
+                    font-size: 1.3rem;
+                }
 
                 &::placeholder {
                     font-size: 0.9rem;
+                    @media only screen and (min-width: 700px) {
+                        font-size: 1.5rem;
+                    }
                 }
             }
 
@@ -96,6 +157,13 @@
             border-radius: 100%;
 
             transform: translateY(-50%);
+
+            @media only screen and (min-width: 700px) {
+                right: -3rem;
+
+                height: 7rem !important;
+                width: 7rem !important;
+            }
         }
     }
 }

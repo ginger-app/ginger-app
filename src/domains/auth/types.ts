@@ -1,12 +1,10 @@
-export type AuthData =
-    | {
-          phoneNumber: number;
-          name: string;
-          companyName: string;
-          email: string;
-          signup: boolean;
-      }
-    | Record<'phoneNumber', number>;
+export type AuthData = {
+    phoneNumber: string;
+    name: string;
+    companyName: string;
+    email: string;
+    signup: boolean;
+};
 
 export type AccessToken = {
     accessToken: string;
@@ -14,15 +12,15 @@ export type AccessToken = {
 };
 
 export type SigninData = {
-    phoneNumber: number;
+    phoneNumber: string;
     code: string;
 };
 
 export type SignupUserData = {
-    phoneNumber: number;
+    phoneNumber: string;
     companyName: string;
     email: string;
     name: string;
 };
 
-export type SignupData = { phoneNumber: number; code: string; userData: SignupUserData };
+export type SignupData = { phoneNumber: string; code: string; userData: SignupUserData };

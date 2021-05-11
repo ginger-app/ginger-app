@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect, useState } from 'react';
+import React, { FC, KeyboardEventHandler, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
@@ -11,12 +11,14 @@ import Styles from './styles.module.scss';
 // Instruments
 import { Icon, InputField } from 'components';
 import { leftToRightSlideConfig } from 'utils/transitionConfig';
+import { RoundButton } from 'domains/ui/components';
 
 // Actions
 import { authActions } from 'bus/auth/auth.actions';
 import { uiActions } from 'bus/ui/ui.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     codeConfirmationOverlay: state.ui.codeConfirmationOverlay,
     authData: state.auth.authData,
 });
@@ -27,7 +29,11 @@ const mapDispatchToProps = {
     hideCodeConfirmationOverlay: uiActions.hideCodeConfirmationOverlay,
 };
 
-const CodeConfirmationOverlayComponent = ({
+type CodeConfirmationOverlayTypes = typeof mapDispatchToProps &
+    ReturnType<typeof mapStateToProps> &
+    Record<'className', string>;
+
+const CodeConfirmationOverlayComponent: FC<CodeConfirmationOverlayTypes> = ({
     className,
     sendLoginDataAsync,
     sendSignupDataAsync,
@@ -38,7 +44,7 @@ const CodeConfirmationOverlayComponent = ({
     const [code, setCodeValue] = useState('');
 
     const history = useHistory();
-    const [historyListener, setRemoveListener] = useState();
+    const [historyListener, setRemoveListener] = useState<() => () => void>();
 
     useEffect(() => {
         if (codeConfirmationOverlay) {
@@ -51,12 +57,13 @@ const CodeConfirmationOverlayComponent = ({
 
             setRemoveListener(() => handler);
         } else {
+            // @ts-ignore
             window.removeEventListener('popstate', historyListener);
         }
         // eslint-disable-next-line
     }, [codeConfirmationOverlay]);
 
-    const _handleKeyPress = (e) => {
+    const _handleKeyPress: KeyboardEventHandler<HTMLDivElement> = (e) => {
         if (e.key === 'Enter') {
             return signup
                 ? sendSignupDataAsync({
@@ -89,14 +96,17 @@ const CodeConfirmationOverlayComponent = ({
                             ...leftToRightSlideConfig().transitionStyles[state],
                         }}
                     >
-                        <div className={Styles.backButton} onClick={hideCodeConfirmationOverlay}>
+                        <div
+                            className={Styles.backButtonMobile}
+                            onClick={hideCodeConfirmationOverlay}
+                        >
                             <Icon name='leftArrow' color='black' />
                         </div>
-                        <p className={Styles.title}>CodeConfirmation page title!</p>
+                        <p className={Styles.title}>На тиждень!</p>
                         <div className={Styles.fieldsContainer} onKeyPress={_handleKeyPress}>
                             <InputField
                                 className={Styles.input}
-                                title='Number'
+                                title='Код з СМС'
                                 value={code}
                                 onChange={setCodeValue}
                                 buttonAction={
@@ -117,7 +127,13 @@ const CodeConfirmationOverlayComponent = ({
                                 autoFocus
                             />
                         </div>
-                        <div className={Styles.resendCode}>Resend code</div>
+                        <div className={Styles.resendCode}>Відправити ще раз</div>
+                        <RoundButton
+                            className={Styles.backButtonTablet}
+                            icon='close'
+                            size='5rem'
+                            onClick={hideCodeConfirmationOverlay}
+                        />
                     </section>
                 )}
             </Transition>

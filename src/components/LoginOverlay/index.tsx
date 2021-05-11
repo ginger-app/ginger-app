@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect, useState } from 'react';
+import React, { FC, KeyboardEventHandler, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
@@ -17,8 +17,10 @@ import { AsYouType } from 'libphonenumber-js';
 // Actions
 import { authActions } from 'bus/auth/auth.actions';
 import { uiActions } from 'bus/ui/ui.actions';
+import { RoundButton } from 'domains/ui/components';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     loginOverlay: state.ui.loginOverlay,
     backButtonPath: state.ui.backButtonPath,
 });
@@ -30,7 +32,11 @@ const mapDispatchToProps = {
     showSignupOverlay: uiActions.showSignupOverlay,
 };
 
-const LoginOverlayComponent = ({
+// typeof mapDispatchToProps === сигнатура об'єкта mapDispatchToProps
+// ReturnType<typeof mapStateToProps> === сигнатура того, що повертається із функції mapStateToProps
+type LoginOverlayTypes = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps>;
+
+const LoginOverlayComponent: FC<LoginOverlayTypes> = ({
     getSigninConfirmationCodeAsync,
     loginOverlay,
     hideLoginOverlay,
@@ -40,7 +46,7 @@ const LoginOverlayComponent = ({
     const [phoneNumber, setPhoneNumber] = useState('+380639999999');
 
     const history = useHistory();
-    const [historyListener, setRemoveListener] = useState();
+    const [historyListener, setRemoveListener] = useState<() => () => void>();
 
     useEffect(() => {
         if (loginOverlay) {
@@ -53,19 +59,20 @@ const LoginOverlayComponent = ({
 
             setRemoveListener(() => handler);
         } else {
+            // @ts-ignore
             window.removeEventListener('popstate', historyListener);
         }
         // eslint-disable-next-line
     }, [loginOverlay]);
 
-    const _handlePhoneNumberChange = (value) => {
+    const _handlePhoneNumberChange = (value: string) => {
         if (!/^[0-9+ ]*$/.test(value)) return null;
         if (value.length < 4 || value.length > 18) return null;
 
         return setPhoneNumber(new AsYouType('UA').input(value));
     };
 
-    const _handleKeyPress = (e) => {
+    const _handleKeyPress: KeyboardEventHandler<HTMLDivElement> = (e) => {
         if (e.key === 'Enter') {
             setAuthData({ phoneNumber });
             getSigninConfirmationCodeAsync(phoneNumber);
@@ -84,7 +91,7 @@ const LoginOverlayComponent = ({
                         }}
                     >
                         <div
-                            className={Styles.backButton}
+                            className={Styles.backButtonMobile}
                             onClick={
                                 backButtonPath
                                     ? () => {
@@ -96,7 +103,7 @@ const LoginOverlayComponent = ({
                         >
                             <Icon name='leftArrow' color='black' />
                         </div>
-                        <p className={Styles.title}>Login page title!</p>
+                        <p className={Styles.title}>Давай закупимось!</p>
                         <div className={Styles.fieldsContainer} onKeyPress={_handleKeyPress}>
                             <InputField
                                 className={Styles.input}
@@ -107,9 +114,24 @@ const LoginOverlayComponent = ({
                                     setAuthData({ phoneNumber });
                                     getSigninConfirmationCodeAsync(phoneNumber);
                                 }}
+                                icon='phone'
                                 autoFocus
                             />
                         </div>
+
+                        <RoundButton
+                            className={Styles.backButtonTablet}
+                            icon='close'
+                            size='5rem'
+                            onClick={
+                                backButtonPath
+                                    ? () => {
+                                          history.push(backButtonPath);
+                                          hideLoginOverlay();
+                                      }
+                                    : hideLoginOverlay
+                            }
+                        />
                     </section>
                 )}
             </Transition>

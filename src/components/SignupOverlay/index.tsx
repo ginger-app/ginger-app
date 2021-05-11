@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 import { useHistory } from 'react-router-dom';
@@ -10,18 +10,16 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { Icon, InputField } from 'components';
+import { RoundButton } from 'domains/ui/components';
 import { leftToRightSlideConfig } from 'utils/transitionConfig';
 import { AsYouType } from 'libphonenumber-js';
-import phone from 'theme/assets/svg/phone.svg';
-import atSign from 'theme/assets/svg/at-sign.svg';
-import person from 'theme/assets/svg/person.svg';
-import company from 'theme/assets/svg/company.svg';
 
 // Actions
 import { authActions } from 'bus/auth/auth.actions';
 import { uiActions } from 'bus/ui/ui.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     signupOverlay: state.ui.signupOverlay,
     preFilledPhoneNumber: state.auth.authData.phoneNumber,
 });
@@ -34,7 +32,9 @@ const mapDispatchToProps = {
     hideSignupOverlay: uiActions.hideSignupOverlay,
 };
 
-const SignupOverlayComponent = ({
+type SignupOverlayTypes = typeof mapDispatchToProps & ReturnType<typeof mapStateToProps>;
+
+const SignupOverlayComponent: FC<SignupOverlayTypes> = ({
     getSignupConfirmationCodeAsync,
     signupOverlay,
     hideSignupOverlay,
@@ -47,7 +47,7 @@ const SignupOverlayComponent = ({
     const [email, setEmail] = useState('');
 
     const history = useHistory();
-    const [historyListener, setRemoveListener] = useState();
+    const [historyListener, setRemoveListener] = useState<() => () => void>();
 
     useEffect(() => {
         if (signupOverlay) {
@@ -60,12 +60,13 @@ const SignupOverlayComponent = ({
 
             setRemoveListener(() => handler);
         } else {
+            // @ts-ignore
             window.removeEventListener('popstate', historyListener);
         }
         // eslint-disable-next-line
     }, [signupOverlay]);
 
-    const handlePhoneNumberChange = (value) => {
+    const handlePhoneNumberChange = (value: string) => {
         if (!/^[0-9+ ]*$/.test(value)) return null;
         if (value.length < 4 || value.length > 17) return null;
 
@@ -89,7 +90,7 @@ const SignupOverlayComponent = ({
                         }}
                     >
                         <div
-                            className={Styles.backButton}
+                            className={Styles.backButtonMobile}
                             onClick={() => {
                                 // showLoginOverlay();
                                 hideSignupOverlay();
@@ -97,40 +98,39 @@ const SignupOverlayComponent = ({
                         >
                             <Icon name='leftArrow' color='black' />
                         </div>
-                        <p className={Styles.title}>Signup page title!</p>
+                        <p className={Styles.title}>Давай закупимось!</p>
                         <div className={Styles.fieldsContainer}>
-                            <img className={Styles.icon} src={person} alt='' />
                             <InputField
                                 className={Styles.input}
                                 title={"Ім'я"}
                                 value={name}
                                 onChange={setName}
+                                icon='person'
                             />
 
-                            <img className={Styles.icon} src={company} alt='' />
-                            <InputField
-                                className={Styles.input}
-                                title='Назва компанії'
-                                value={companyName}
-                                onChange={setCompanyName}
-                            />
-
-                            <img className={Styles.icon} src={phone} alt='' />
-                            <InputField
-                                className={Styles.input}
-                                title='Номер телефону'
-                                value={phoneNumber}
-                                onChange={handlePhoneNumberChange}
-                            />
-
-                            <img className={Styles.icon} src={atSign} alt='' />
                             <InputField
                                 className={Styles.input}
                                 title='Електронна пошта'
                                 value={email}
                                 onChange={setEmail}
+                                icon='atSign'
                             />
-                            <div
+                            <InputField
+                                className={Styles.input}
+                                title='Номер телефону'
+                                value={phoneNumber}
+                                onChange={handlePhoneNumberChange}
+                                icon='phone'
+                            />
+                            <InputField
+                                className={Styles.input}
+                                title='Назва компанії'
+                                value={companyName}
+                                onChange={setCompanyName}
+                                icon='company'
+                            />
+
+                            <RoundButton
                                 className={Styles.button}
                                 onClick={() => {
                                     setAuthData({
@@ -142,10 +142,16 @@ const SignupOverlayComponent = ({
                                     });
                                     getSignupConfirmationCodeAsync(phoneNumber);
                                 }}
-                            >
-                                <Icon name='rightArrow' color='white' />
-                            </div>
+                                icon='rightArrow'
+                                gradient
+                            />
                         </div>
+                        <RoundButton
+                            className={Styles.backButtonTablet}
+                            icon='close'
+                            size='5rem'
+                            onClick={() => hideSignupOverlay()}
+                        />
                     </section>
                 )}
             </Transition>

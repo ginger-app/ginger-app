@@ -12,7 +12,7 @@ export const authActions = {
 
     logout: (): AuthActionsType => ({ type: types.LOG_OUT }),
 
-    setAuthData: (data: AuthData): AuthActionsType => ({
+    setAuthData: (data: AuthData | Record<'phoneNumber', string>): AuthActionsType => ({
         type: types.SET_AUTH_DATA,
         payload: data,
     }),
@@ -31,7 +31,7 @@ export const authActions = {
         type: types.LOG_OUT_ASYNC,
     }),
 
-    getSigninConfirmationCodeAsync: (phoneNumber: number): AuthActionsType => ({
+    getSigninConfirmationCodeAsync: (phoneNumber: string): AuthActionsType => ({
         type: types.GET_SIGNIN_CONFIRMATION_CODE_ASYNC,
         payload: phoneNumber,
     }),
@@ -41,7 +41,7 @@ export const authActions = {
         payload: { phoneNumber, code },
     }),
 
-    getSignupConfirmationCodeAsync: (phoneNumber: number): AuthActionsType => ({
+    getSignupConfirmationCodeAsync: (phoneNumber: string): AuthActionsType => ({
         type: types.GET_SIGNUP_CONFIRMATION_CODE_ASYNC,
         payload: phoneNumber,
     }),

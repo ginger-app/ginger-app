@@ -12,4 +12,13 @@
     &.gradient {
         background: $paletteDefaultGradient;
     }
+
+    & .icon {
+        min-width: 1rem;
+        min-height: 1rem;
+        max-width: 2.5rem;
+        max-height: 2.5rem;
+        width: 50%;
+        height: 50%;
+    }
 }

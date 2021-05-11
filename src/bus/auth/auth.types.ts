@@ -27,7 +27,7 @@ type Logout = { type: typeof authTypes.LOG_OUT };
 
 type SetAuthData = {
     type: typeof authTypes.SET_AUTH_DATA;
-    payload: AuthData;
+    payload: AuthData | Record<'phoneNumber', string>;
 };
 
 type SetAccessToken = {
@@ -45,7 +45,7 @@ type LogoutAsync = {
 
 type GetSigninConfirmationCodeAsync = {
     type: typeof authTypes.GET_SIGNIN_CONFIRMATION_CODE_ASYNC;
-    payload: number;
+    payload: string;
 };
 
 type SigninAsync = {

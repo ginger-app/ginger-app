@@ -18,7 +18,11 @@
 
     z-index: 1002; // overlay
 
-    & .backButton {
+    @media only screen and (min-width: 700px) {
+        grid-template-rows: 4rem 1fr 1fr 20%;
+    }
+
+    & .backButtonMobile {
         @include lightButton;
         @include centerContent;
         place-self: center end;
@@ -30,6 +34,28 @@
         background: $paletteWhite;
 
         border-radius: 100%;
+
+        @media only screen and (min-width: 700px) {
+            visibility: hidden;
+        }
+    }
+
+    & .backButtonTablet {
+        display: none;
+
+        @media only screen and (min-width: 700px) {
+            @include lightButton;
+            @include centerContent;
+            place-self: center;
+
+            margin-bottom: 3rem;
+            height: 5rem;
+            width: 5rem;
+
+            background: $paletteWhite;
+
+            border-radius: 100%;
+        }
     }
 
     & .title {
@@ -37,6 +63,12 @@
         place-self: end start;
 
         margin-left: 2rem;
+
+        @media only screen and (min-width: 700px) {
+            margin-bottom: 7rem;
+
+            font-size: 50px;
+        }
     }
 
     & .fieldsContainer {
@@ -55,6 +87,13 @@
         background: $paletteWhite;
 
         border-radius: 0 15% 15% 0;
+
+        @media only screen and (min-width: 700px) {
+            height: 6.8rem;
+            max-width: 33rem;
+
+            border-radius: 0 16% 16% 0;
+        }
 
         & .input {
             display: grid;
@@ -92,9 +131,18 @@
     & .resendCode {
         @include centerContent;
         @include lightButton;
+        @include gradientText;
         place-self: center;
 
-        max-width: 10rem;
+        max-width: 12rem;
         margin-bottom: 5rem;
+
+        @media only screen and (min-width: 700px) {
+            place-self: center;
+
+            max-width: 18rem;
+
+            font-size: 1.4rem;
+        }
     }
 }

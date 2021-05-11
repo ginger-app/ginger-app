@@ -33,7 +33,7 @@ export const RoundButton: FC<RoundButtonProps> = ({
                 width: size,
             }}
         >
-            <Icon name={icon} color={gradient ? '#ffffff' : '#000000'} />
+            <Icon className={Styles.icon} name={icon} color={gradient ? '#ffffff' : '#000000'} />
         </div>
     );
 };
