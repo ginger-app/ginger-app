@@ -1,6 +1,5 @@
 // Core
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC, ReactNode } from 'react';
 import { Transition } from 'react-transition-group';
 
 // Styles
@@ -10,7 +9,17 @@ import { Icon } from 'components';
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import Styles from './styles.module.scss';
 
-export const Toaster = ({
+type ToasterPropsType = {
+    className?: string;
+    containerClassName?: string;
+    inProp: boolean;
+    closeToaster?: () => void;
+    message?: string;
+    children?: ReactNode;
+    containerStyles?: Record<string, any>;
+};
+
+export const Toaster: FC<ToasterPropsType> = ({
     className,
     containerClassName,
     containerStyles,
@@ -49,13 +58,4 @@ export const Toaster = ({
             )}
         </Transition>
     );
-};
-
-Toaster.propTypes = {
-    className: PropTypes.string,
-    containerClassName: PropTypes.string,
-    inProp: PropTypes.bool.isRequired,
-    closeToaster: PropTypes.func,
-    message: PropTypes.string,
-    children: PropTypes.node,
 };

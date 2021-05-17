@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 // import PropTypes from 'prop-types';
@@ -11,12 +11,14 @@ import Styles from './styles.module.scss';
 import { GradientBorder } from 'components';
 import { book } from 'core/routes';
 import isEmpty from 'lodash/isEmpty';
+import { RoundButton } from 'domains/ui/components';
 import button from 'theme/assets/svg/plus-button.svg';
 
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     isAuthenticated: state.auth.isAuthenticated,
     unfinishedOrder: state.profile.unfinishedOrder,
     role: state.profile.role,
@@ -26,7 +28,10 @@ const mapDispatchToProps = {
     showLoginOverlay: uiActions.showLoginOverlay,
 };
 
-const CreateNewOrderComponent = ({
+type CreateNewOrderPropsType = ReturnType<typeof mapStateToProps> &
+    typeof mapDispatchToProps & { className: string };
+
+const CreateNewOrderComponent: FC<CreateNewOrderPropsType> = ({
     className,
     unfinishedOrder,
     isAuthenticated,
@@ -54,8 +59,18 @@ const CreateNewOrderComponent = ({
                     }
                 }}
             >
-                <p className={Styles.newOrderText}>Create new order</p>
-                <img src={button} alt='' />
+                <p className={Styles.newOrderText}>Створити нове замовлення</p>
+                <RoundButton
+                    className={Styles.plusButton}
+                    icon='plus'
+                    size={window.innerWidth > 700 ? '5rem' : '3rem'}
+                    onClick={(e) => {
+                        if (!isAuthenticated) {
+                            e.preventDefault();
+                            showLoginOverlay();
+                        }
+                    }}
+                />
             </NavLink>
             {showUnfinishedOrderButton && (
                 <GradientBorder>
@@ -70,10 +85,6 @@ const CreateNewOrderComponent = ({
             )}
         </section>
     );
-};
-
-CreateNewOrderComponent.propTypes = {
-    // unfinishedOrder: PropTypes.bool.isRequired,
 };
 
 export const CreateNewOrder = connect(mapStateToProps, mapDispatchToProps)(CreateNewOrderComponent);

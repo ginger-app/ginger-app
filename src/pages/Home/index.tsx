@@ -1,5 +1,5 @@
 // Core
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import { connect } from 'react-redux';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { Portal } from 'react-portal';
@@ -25,10 +25,12 @@ import { book } from 'core';
 // Actions
 import { marketActions } from 'bus/market/market.actions';
 import { uiActions } from 'bus/ui/ui.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     isAuthenticated: state.auth.isAuthenticated,
     orders: state.profile.orders,
+    unfinishedOrder: state.profile.unfinishedOrder,
     role: state.profile.role,
     logs: state.ui.logs,
 });
@@ -38,11 +40,14 @@ const mapDispatchToProps = {
     showLoginOverlay: uiActions.showLoginOverlay,
 };
 
-const HomeComponent = ({
+type HomePropsTypes = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+
+const HomeComponent: FC<HomePropsTypes> = ({
     isAuthenticated,
     getMarketCategoriesAsync,
     showLoginOverlay,
     role,
+
     // orders,
     // logs,
 }) => {
@@ -57,6 +62,7 @@ const HomeComponent = ({
 
     // showing toaster message (currently only for 404)
     useEffect(() => {
+        // @ts-ignore
         if (history.location.state?.is404) {
             setToasterMessage('Page not found');
             setToasterVisibility(true);
@@ -84,7 +90,7 @@ const HomeComponent = ({
                 >
                     <NewsBlock className={Styles.lastOrder} />
                     {role === 'client' || !isAuthenticated ? (
-                        <CreateNewOrder className={Styles.dailyBonus} unfinishedOrder />
+                        <CreateNewOrder className={Styles.dailyBonus} />
                     ) : (
                         <Link to={book.supplierOrders} className={Styles.checkOrders}>
                             Нових замовлень: 0

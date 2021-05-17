@@ -11,7 +11,8 @@ type RoundButtonProps = {
     className?: string;
     size?: string;
     icon: IconNames;
-    onClick: () => void;
+    onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+
     gradient?: boolean;
 };
 

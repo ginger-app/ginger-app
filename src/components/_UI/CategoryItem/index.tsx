@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
@@ -12,14 +12,22 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 // Mock
 import tomato from 'theme/assets/images/tomato-mock.png';
 import Styles from './styles.module.scss';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     ...state,
 });
 
 const mapDispatchToProps = {};
 
-const CategoryItemComponent = (props) => {
+type CategoryItemProps = {
+    className?: string;
+    _id: string;
+    name: string;
+    index: number;
+} & ReturnType<typeof mapStateToProps>;
+
+const CategoryItemComponent: FC<CategoryItemProps> = (props) => {
     const { className, _id, name, index } = props;
 
     return (

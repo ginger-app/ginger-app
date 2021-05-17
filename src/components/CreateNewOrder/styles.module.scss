@@ -59,6 +59,7 @@
         position: relative;
 
         display: grid;
+        grid-auto-flow: column;
         grid-column: 1;
         grid-template-columns: 1fr;
         place-items: center;
@@ -95,6 +96,35 @@
 
         &.minified {
             width: 100%;
+        }
+    }
+
+    & .plusButton {
+        place-self: center end;
+
+        position: relative;
+        right: -2.5rem;
+
+        grid-column: 1;
+        grid-row: 1;
+
+        @media only screen and (min-width: 700px) {
+            position: relative;
+            right: -3.5rem;
+        }
+    }
+
+    & .newOrderText {
+        grid-column: 1;
+        grid-row: 1;
+
+        font-size: 1rem;
+
+        @media only screen and (min-width: 700px) {
+            position: relative;
+            right: 1rem;
+
+            font-size: 2rem;
         }
     }
 }

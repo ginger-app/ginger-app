@@ -1,7 +1,7 @@
 // Core
 import { OrderCombination } from 'bus/ui/ui.types';
 import { Location } from 'domains/client/hooks/useClientLocations';
-import { Order } from 'domains/market/types';
+import { Order, OrderItem } from 'domains/market/types';
 import { SupplierPreviewItem } from 'domains/supplier/types';
 
 // Types
@@ -24,7 +24,14 @@ const initialState = Object.freeze({
 
     // displaying stuff
     ordersCombinations: [] as OrderCombination[],
+
+    unfinishedOrder: {} as UnfinishedOrder,
 });
+
+export type UnfinishedOrder = {
+    location: string;
+    items: OrderItem[] | null;
+};
 
 export type ProfileState = typeof initialState;
 
