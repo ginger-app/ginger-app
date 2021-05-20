@@ -1,6 +1,5 @@
 // Core
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, FC, CSSProperties } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 
@@ -11,23 +10,29 @@ import Styles from './styles.module.scss';
 import { Button, Icon, AddItemToLocation } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
-// Actions
-import { profileActions } from 'bus/profile/profile.actions';
-
-const mapStateToProps = (state) => ({
-    favorites: state.profile.favorites,
-    isAuthenticated: state.auth.isAuthenticated,
-    cart: state.profile.cart,
-});
-
-const mapDispatchToProps = {
-    addItemToFavoritesAsync: profileActions.addItemToFavoritesAsync,
-    addItemToFavorites: profileActions.addItemToFavorites,
-    removeItemFromFavorites: profileActions.removeItemFromFavorites,
-    removeItemFromFavoritesAsync: profileActions.removeItemFromFavoritesAsync,
+type MarketItemPropTypes = {
+    className?: string;
+    itemIndex?: number;
+    style?: React.HTMLAttributes<CSSProperties>;
+    to: string; // !TEMP
+    name: string;
+    price: number;
+    image: string;
+    unit: string;
+    id: string;
 };
 
-const MarketItemComponent = ({ className, itemIndex, style, to, name, price, image, unit, id }) => {
+export const MarketItem: FC<MarketItemPropTypes> = ({
+    className,
+    itemIndex = 0,
+    style,
+    to,
+    name,
+    price,
+    image,
+    unit,
+    id,
+}) => {
     const [locationsPopup, setLocationsPopupState] = useState(false);
 
     return (
@@ -50,7 +55,9 @@ const MarketItemComponent = ({ className, itemIndex, style, to, name, price, ima
                     }}
                 >
                     <img src={image} alt='' className={Styles.itemImage} />
-                    <p className={Styles.itemName}>{name}</p>
+                    <p className={Styles.itemName} style={{}}>
+                        {name}
+                    </p>
 
                     {/* PRICE BLOCK */}
                     {/* Default price (no discount) */}
@@ -73,7 +80,7 @@ const MarketItemComponent = ({ className, itemIndex, style, to, name, price, ima
                     <AddItemToLocation
                         productId={id}
                         inProp={locationsPopup}
-                        hidePopup={(e) => {
+                        hidePopup={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
                             e.preventDefault();
                             setLocationsPopupState(false);
                         }}
@@ -83,5 +90,3 @@ const MarketItemComponent = ({ className, itemIndex, style, to, name, price, ima
         </Transition>
     );
 };
-
-export const MarketItem = connect(mapStateToProps, mapDispatchToProps)(MarketItemComponent);

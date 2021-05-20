@@ -20,7 +20,7 @@
         min-height: 16rem;
 
         @media only screen and (min-width: 700px) {
-            min-height: 22rem;
+            min-height: 20rem;
         }
 
         & .item {
@@ -48,6 +48,8 @@
 
             height: 4rem;
             width: 60%;
+
+            font-size: 1.8rem;
         }
     }
 }

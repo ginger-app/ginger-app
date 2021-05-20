@@ -9,6 +9,7 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { Icon } from 'components';
+import { RoundButton } from 'domains/ui/components';
 
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
@@ -62,12 +63,17 @@ const NavigationComponent = ({
                   )}
 
             {search && (
-                <div
-                    className={`${Styles.searchButton} ${searchOpened && Styles.active}`}
-                    onClick={showSearchOverlay}
-                >
-                    <Icon name='search' color={searchOpened ? 'white' : 'black'} />
-                </div>
+                // <div
+                //     className={`${Styles.searchButton} ${searchOpened && Styles.active}`}
+                //     onClick={showSearchOverlay}
+                // >
+                //     <Icon name='search' color={searchOpened ? 'white' : 'black'} />
+                // </div>
+                <RoundButton
+                    onClick={() => {}}
+                    size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                    icon='search'
+                />
             )}
 
             {centerButton || (!search && !searchOpened && <p className={Styles.title}>{title}</p>)}

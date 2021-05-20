@@ -1,22 +1,28 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 
 // Styles
 import Styles from './styles.module.scss';
 
 // Components
 import { MarketItem, Carousel, Link } from 'components';
+import { MarketItem as MarketItemT } from 'domains/market/types';
 
-export const ItemsCatalogue = ({
+type ItemsPropTypes = {
+    className: string;
+    categoryName: string;
+    categorySku: string;
+    extended?: boolean;
+    items: MarketItemT[];
+};
+
+export const ItemsCatalogue: FC<ItemsPropTypes> = ({
     className,
     categoryName,
     categorySku,
     extended,
-    children,
     items,
 }) => {
-    const itemsToShow = items || children;
-
     return (
         <section className={`${Styles.container} ${className}`}>
             {extended && <p className={Styles.title}>{categoryName}</p>}
@@ -29,7 +35,7 @@ export const ItemsCatalogue = ({
             )}
 
             <Carousel className={Styles.carousele}>
-                {itemsToShow.map(({ name, _id, minPrice, unit, image }, index) => (
+                {items.map(({ name, _id, minPrice, unit, image }, index) => (
                     <MarketItem
                         className={Styles.item}
                         itemIndex={index}

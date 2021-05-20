@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect } from 'react';
+import React, { useEffect, FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
@@ -8,7 +8,8 @@ import { Transition } from 'react-transition-group';
 import Styles from './styles.module.scss';
 
 // Components
-import { Icon, CategoriesCatalogue, ItemsCatalogue, Navigation, Dummy, Button } from 'components';
+import { CategoriesCatalogue, ItemsCatalogue, Navigation, Dummy } from 'components';
+import { RoundButton } from 'domains/ui/components';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
@@ -17,8 +18,9 @@ import { book } from 'core/routes';
 // Actions
 import { marketActions } from 'bus/market/market.actions';
 import { uiActions } from 'bus/ui/ui.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     categories: state.market.categories,
     isAuthenticated: state.auth.isAuthenticated,
 });
@@ -28,7 +30,11 @@ const mapDispatchToProps = {
     showLoginOverlay: uiActions.showLoginOverlay,
 };
 
-const MarketComponent = ({
+type MarketPropTypes = ReturnType<typeof mapStateToProps> &
+    typeof mapDispatchToProps &
+    Record<'className', string>;
+
+const MarketComponent: FC<MarketPropTypes> = ({
     className,
     getMarketCategoriesAsync,
     categories,
@@ -69,7 +75,7 @@ const MarketComponent = ({
                                 categoryName={name}
                                 categorySku={_id}
                                 items={items}
-                                index={index}
+                                // index={index}
                                 extended
                             />
                         ))}
@@ -77,30 +83,28 @@ const MarketComponent = ({
 
                     <Navigation
                         leftButton={
-                            <NavLink className={Styles.homeButton} to={book.home}>
-                                <Icon name='home' />
+                            <NavLink to={book.home}>
+                                <RoundButton
+                                    onClick={() => {}}
+                                    size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                                    icon='home'
+                                    // className={Styles.cartButton}
+                                />
                             </NavLink>
                         }
                         rightButton={
-                            <NavLink
-                                to={book.newOrder}
-                                onClick={(e) => {
-                                    if (!isAuthenticated) {
-                                        e.preventDefault();
-                                        showLoginOverlay();
-                                    }
-                                }}
-                            >
-                                <Button
-                                    filled
-                                    className={Styles.cartButton}
-                                    content={
-                                        <Icon
-                                            className={Styles.cartIcon}
-                                            name='cart'
-                                            color='white'
-                                        />
-                                    }
+                            <NavLink to={book.newOrder}>
+                                <RoundButton
+                                    onClick={(e) => {
+                                        if (!isAuthenticated) {
+                                            e.preventDefault();
+                                            showLoginOverlay();
+                                        }
+                                    }}
+                                    size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                                    icon='lists'
+                                    gradient
+                                    // className={Styles.cartButton}
                                 />
                             </NavLink>
                         }
