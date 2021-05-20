@@ -21,6 +21,7 @@ import {
 } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core';
+import { RoundButton } from 'domains/ui/components';
 
 // Actions
 import { marketActions } from 'bus/market/market.actions';
@@ -120,12 +121,11 @@ const HomeComponent: FC<HomePropsTypes> = ({
                                     <Icon name='profile' color='black' />
                                 </NavLink>
                             ) : (
-                                <div
-                                    className={Styles.loginButton}
+                                <RoundButton
                                     onClick={() => showLoginOverlay()}
-                                >
-                                    <Icon name='login' color='black' />
-                                </div>
+                                    size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                                    icon='login'
+                                />
                             )
                         }
                         rightButton={
@@ -138,16 +138,11 @@ const HomeComponent: FC<HomePropsTypes> = ({
                                     }
                                 }}
                             >
-                                <Button
-                                    filled
-                                    className={Styles.cartButton}
-                                    content={
-                                        <Icon
-                                            className={Styles.cartIcon}
-                                            name='cart'
-                                            color='white'
-                                        />
-                                    }
+                                <RoundButton
+                                    onClick={() => {}}
+                                    size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                                    icon='cart'
+                                    gradient
                                 />
                             </NavLink>
                         }

@@ -60,7 +60,7 @@ const CreateNewOrderComponent: FC<CreateNewOrderPropsType> = ({
                 }}
             >
                 <p className={Styles.newOrderText}>Створити нове замовлення</p>
-                <RoundButton
+                {/* <RoundButton
                     className={Styles.plusButton}
                     icon='plus'
                     size={window.innerWidth > 700 ? '5rem' : '3rem'}
@@ -70,7 +70,7 @@ const CreateNewOrderComponent: FC<CreateNewOrderPropsType> = ({
                             showLoginOverlay();
                         }
                     }}
-                />
+                /> */}
             </NavLink>
             {showUnfinishedOrderButton && (
                 <GradientBorder>
