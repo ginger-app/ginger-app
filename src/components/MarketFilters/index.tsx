@@ -9,6 +9,7 @@ import Styles from './styles.module.scss';
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import { Button, Icon } from 'components/_UI';
 import { useMarket } from 'domains/market/hooks';
+import { RoundButton } from 'domains/ui/components';
 
 type MarketFiltersProps = {
     className?: string;
@@ -107,12 +108,17 @@ export const MarketFilters: FC<MarketFiltersProps> = ({ className }): ReactEleme
                     </section>
                 )}
             </Transition>
-            <Button
+            {/* <Button
                 // @ts-ignore
                 content={<Icon name='filters' />}
                 className={Styles.button}
                 onClick={() => setOpenedState(true)}
                 filled
+            /> */}
+            <RoundButton
+                onClick={() => setOpenedState(true)}
+                size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                icon='filters'
             />
         </>
     );

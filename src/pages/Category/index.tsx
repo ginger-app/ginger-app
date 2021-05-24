@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect } from 'react';
+import React, { useEffect, FC } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
@@ -17,8 +17,9 @@ import { isEmpty } from 'lodash';
 // Actions
 import { marketActions } from 'bus/market/market.actions';
 import { uiActions } from 'bus/ui/ui.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     categoryData: state.market.categoryData,
     sortingOption: state.market.sortingOption,
 });
@@ -29,7 +30,11 @@ const mapDispatchToProps = {
     showMarketFiltersOverlay: uiActions.showMarketFiltersOverlay,
 };
 
-const CategoryComponent = ({
+type CategoryPropTypes = ReturnType<typeof mapStateToProps> &
+    typeof mapDispatchToProps &
+    Record<'id', string>;
+
+const CategoryComponent: FC<CategoryPropTypes> = ({
     id,
     getMarketCategoryDataAsync,
     clearMarketCategoryData,
@@ -39,7 +44,9 @@ const CategoryComponent = ({
     useEffect(() => {
         getMarketCategoryDataAsync(id);
 
-        return clearMarketCategoryData;
+        return () => {
+            clearMarketCategoryData();
+        };
     }, [id, getMarketCategoryDataAsync, clearMarketCategoryData]);
 
     const { name, filteringOptions, items = [] } = categoryData;
@@ -91,7 +98,7 @@ const CategoryComponent = ({
                     <p className={Styles.title}>{name}</p>
 
                     {/* Content + filters */}
-                    <MarketShowcase className={Styles.showcase} items={sortedItems} marketType />
+                    <MarketShowcase className={Styles.showcase} items={sortedItems} />
 
                     {/* Footer navigation */}
                     <Carousel

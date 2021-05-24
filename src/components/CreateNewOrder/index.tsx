@@ -11,7 +11,6 @@ import Styles from './styles.module.scss';
 import { GradientBorder } from 'components';
 import { book } from 'core/routes';
 import isEmpty from 'lodash/isEmpty';
-import { RoundButton } from 'domains/ui/components';
 import button from 'theme/assets/svg/plus-button.svg';
 
 // Actions
@@ -60,17 +59,6 @@ const CreateNewOrderComponent: FC<CreateNewOrderPropsType> = ({
                 }}
             >
                 <p className={Styles.newOrderText}>Створити нове замовлення</p>
-                {/* <RoundButton
-                    className={Styles.plusButton}
-                    icon='plus'
-                    size={window.innerWidth > 700 ? '5rem' : '3rem'}
-                    onClick={(e) => {
-                        if (!isAuthenticated) {
-                            e.preventDefault();
-                            showLoginOverlay();
-                        }
-                    }}
-                /> */}
             </NavLink>
             {showUnfinishedOrderButton && (
                 <GradientBorder>

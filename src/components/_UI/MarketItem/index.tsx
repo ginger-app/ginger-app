@@ -13,7 +13,7 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 type MarketItemPropTypes = {
     className?: string;
     itemIndex?: number;
-    style?: React.HTMLAttributes<CSSProperties>;
+    style?: CSSProperties;
     to: string; // !TEMP
     name: string;
     price: number;
@@ -48,6 +48,8 @@ export const MarketItem: FC<MarketItemPropTypes> = ({
                 <NavLink
                     className={`${Styles.container} ${className}`}
                     to={to}
+                    // !TEMP
+                    // @ts-ignore
                     style={{
                         ...style,
                         ...opacityTransitionConfig().defaultStyles,

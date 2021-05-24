@@ -21,7 +21,6 @@ export const OrderItem = ({
     sum,
     items,
     index,
-    // location,
     supplier,
     orderDetails,
     onClick,
@@ -65,8 +64,6 @@ export const OrderItem = ({
                         })}
                     </p>
                     <p className={Styles.price}>{sum} грн.</p>
-
-                    {/* <p className={Styles.location}>{location.locationName}</p> */}
 
                     <p className={[Styles.supplier, Styles.alignRight].join(' ')}>
                         {supplier?.companyName || '...'}

@@ -9,6 +9,7 @@ type CarouselTypes = {
     carouselClassName?: string;
     items?: ReactChild[];
     style?: CSSProperties;
+    itemsToShow?: number;
 };
 
 export const Carousel: FC<CarouselTypes> = ({

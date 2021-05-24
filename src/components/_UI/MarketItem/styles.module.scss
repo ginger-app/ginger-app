@@ -23,9 +23,11 @@
     border-radius: 1rem;
 
     @media only screen and (min-width: 700px) {
-        grid-template-columns: 1fr;
+        // grid-template-columns: 1fr;
         grid-template-rows: 1fr 2rem 3rem 2rem 2rem;
 
+        min-height: 19rem;
+        max-height: 19rem;
         padding: 0px 0px 0px 0px;
     }
 

@@ -37,6 +37,7 @@ export type OrderItem = {
 };
 
 export type Order = {
+    _id: string;
     supplier: string;
     client: string;
     deliveryDate: Date;

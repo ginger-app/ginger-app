@@ -15,9 +15,7 @@ import {
     Toaster,
     NewsBlock,
     Navigation,
-    Icon,
     Dummy,
-    Button,
 } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core';
@@ -111,14 +109,17 @@ const HomeComponent: FC<HomePropsTypes> = ({
                         leftButton={
                             isAuthenticated ? (
                                 <NavLink
-                                    className={Styles.profileButton}
                                     to={
                                         role === 'client'
                                             ? book.clientProfile
                                             : book.supplierProfile
                                     }
                                 >
-                                    <Icon name='profile' color='black' />
+                                    <RoundButton
+                                        onClick={() => {}}
+                                        size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                                        icon='profile'
+                                    />
                                 </NavLink>
                             ) : (
                                 <RoundButton

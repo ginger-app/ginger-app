@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Icon } from 'components';
+// import { Icon } from 'components';
 import { RoundButton } from 'domains/ui/components';
 
 // Actions
@@ -54,12 +54,17 @@ const NavigationComponent = ({
             {leftButton
                 ? !searchOpened && leftButton
                 : !searchOpened && (
-                      <div
-                          className={Styles.backButton}
+                      //   <div
+                      //       className={Styles.backButton}
+                      //       onClick={backButtonAction || history.goBack}
+                      //   >
+                      //       <Icon name='leftArrow' />
+                      //   </div>
+                      <RoundButton
                           onClick={backButtonAction || history.goBack}
-                      >
-                          <Icon name='leftArrow' />
-                      </div>
+                          size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                          icon='leftArrow'
+                      />
                   )}
 
             {search && (
@@ -81,23 +86,33 @@ const NavigationComponent = ({
             {!searchOpened && rightButton !== 'search' && rightButton}
 
             {rightButton === 'search' && (
-                <div
-                    className={`${Styles.searchButton} ${Styles.rightButton} ${
-                        searchOpened && Styles.active
-                    }`}
+                // <div
+                //     className={`${Styles.searchButton} ${Styles.rightButton} ${
+                //         searchOpened && Styles.active
+                //     }`}
+                //     onClick={showSearchOverlay}
+                // >
+                //     <Icon name='search' color={searchOpened ? 'white' : 'black'} />
+                // </div>
+                <RoundButton
                     onClick={showSearchOverlay}
-                >
-                    <Icon name='search' color={searchOpened ? 'white' : 'black'} />
-                </div>
+                    size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                    icon='search'
+                />
             )}
 
             {rightButtonData && (
-                <div
-                    className={`${Styles.searchButton} ${Styles.rightButton}`}
+                // <div
+                //     className={`${Styles.searchButton} ${Styles.rightButton}`}
+                //     onClick={rightButtonData.onClick}
+                // >
+                //     <Icon name={rightButtonData.icon} color='black' />
+                // </div>
+                <RoundButton
                     onClick={rightButtonData.onClick}
-                >
-                    <Icon name={rightButtonData.icon} color='black' />
-                </div>
+                    size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                    icon={rightButtonData.icon}
+                />
             )}
         </section>
     );
