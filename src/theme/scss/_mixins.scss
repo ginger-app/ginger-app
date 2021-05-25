@@ -133,15 +133,17 @@
 }
 
 @mixin blur($blurStrength: 15px) {
-    @supports (
-        (-webkit-backdrop-filter: blur($blurStrength)) or (backdrop-filter: blur($blurStrength))
-    ) {
-        background: rgba(255, 255, 255, 0.01);
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.8));
 
-        backdrop-filter: blur($blurStrength);
-    }
+    // @supports (
+    //     (-webkit-backdrop-filter: blur($blurStrength)) or (backdrop-filter: blur($blurStrength))
+    // ) {
+    //     background: rgba(255, 255, 255, 0.01);
 
-    background: rgba(246, 246, 246, 0.85);
+    //     backdrop-filter: blur($blurStrength);
+    // }
+
+    // background: rgba(246, 246, 246, 0.85);
 }
 
 @mixin shadow($shadowColor: #0000001f) {
