@@ -13,6 +13,8 @@ import { Navigation, MarketShowcase, Carousel, MarketFilters } from 'components'
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { isEmpty } from 'lodash';
+import { book } from 'core';
+import { RoundButton } from 'domains/ui/components';
 
 // Actions
 import { marketActions } from 'bus/market/market.actions';
@@ -96,6 +98,9 @@ const CategoryComponent: FC<CategoryPropTypes> = ({
                 >
                     {/* Title */}
                     <p className={Styles.title}>{name}</p>
+                    <NavLink to={book.clientProfile} className={Styles.buttonProfile}>
+                        <RoundButton onClick={() => {}} size='4rem' icon='profile' />
+                    </NavLink>
 
                     {/* Content + filters */}
                     <MarketShowcase className={Styles.showcase} items={sortedItems} />

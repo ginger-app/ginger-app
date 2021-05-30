@@ -16,40 +16,41 @@
     }
 
     & .carousele {
+        @include media(md) {
+            min-height: 20rem;
+        }
         padding: 0 0.5rem;
         min-height: 16rem;
 
-        @media only screen and (min-width: 700px) {
-            min-height: 20rem;
-        }
-
         & .item {
+            @include media(md) {
+                height: 9.4rem;
+                width: 7.8rem;
+                margin: 0.5rem;
+
+                font-size: 1rem;
+                font-weight: 600;
+            }
             height: 7.5rem;
             width: 5.5rem; // forcing rewriting of flex-box default widths
             margin: 0.5rem;
-
-            @media only screen and (min-width: 700px) {
-                height: 10rem;
-                width: 8rem;
-                margin: 0.5rem;
-            }
         }
     }
 
     & .actionButtonContainer {
         @include boldTitle;
 
-        height: 3rem;
-        width: 90%;
-        margin: 0 1rem;
-
-        @media only screen and (min-width: 700px) {
+        @include media(md) {
             place-self: center;
 
             height: 4rem;
-            width: 60%;
+            width: 49%;
 
             font-size: 1.8rem;
         }
+
+        height: 3rem;
+        width: 90%;
+        margin: 0 1rem;
     }
 }

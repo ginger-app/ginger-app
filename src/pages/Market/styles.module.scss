@@ -14,14 +14,10 @@
 
     & .title {
         @include boldTitle;
-        position: relative;
-        top: 1rem;
 
-        padding-left: 1rem;
+        @include media(md) {
+            place-self: start;
 
-        text-align: left;
-
-        @media only screen and (min-width: 700px) {
             grid-auto-rows: auto;
             grid-template-rows: 1fr 2fr 1fr;
 
@@ -29,6 +25,12 @@
 
             font-size: 2.5rem;
         }
+        position: relative;
+        top: 1rem;
+
+        padding-left: 1rem;
+
+        text-align: left;
     }
 
     & .homeButton {
@@ -73,6 +75,7 @@
 
         height: 100%;
         width: 100%;
+        margin-bottom: 2rem;
     }
 
     & .categoryItemsCarousel {

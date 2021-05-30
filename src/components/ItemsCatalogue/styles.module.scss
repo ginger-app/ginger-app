@@ -8,18 +8,24 @@
 
     & .title {
         @include boldTitle;
+
+        @include media(md) {
+            font-size: 1.88rem;
+        }
         place-self: center start;
 
         grid-column: 1;
 
         margin-left: 1.5rem;
-
-        @media only screen and (min-width: 700px) {
-            font-size: 2rem;
-        }
     }
 
     & .showMore {
+        @include media(md) {
+            height: 2.5rem;
+            width: 10rem;
+
+            font-size: 1.1rem;
+        }
         place-self: center end;
 
         grid-column: 2;
@@ -30,13 +36,6 @@
         padding: 1px;
 
         font-size: 0.8rem;
-
-        @media only screen and (min-width: 700px) {
-            height: 3rem;
-            width: 50%;
-
-            font-size: 1.5rem;
-        }
     }
 
     & .carousele {
@@ -45,16 +44,15 @@
         padding: 0 0.5rem;
 
         & .item {
+            @include media(md) {
+                min-height: 22rem;
+                min-width: 13rem !important; // forcing rewriting of flex-box default widths
+                max-width: 13rem !important; // forcing rewriting of flex-box default widths
+            }
             min-height: 17rem;
             min-width: 10rem !important; // forcing rewriting of flex-box default widths
             max-width: 10rem !important; // forcing rewriting of flex-box default widths
             margin: 0.5rem;
-
-            @media only screen and (min-width: 700px) {
-                min-height: 22rem;
-                min-width: 14rem !important; // forcing rewriting of flex-box default widths
-                max-width: 14rem !important; // forcing rewriting of flex-box default widths
-            }
         }
     }
 }

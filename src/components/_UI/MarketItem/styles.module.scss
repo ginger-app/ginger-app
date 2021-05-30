@@ -4,6 +4,15 @@
     @include shadow;
     @include centerContent;
 
+    @include media(md) {
+        // grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2rem 3rem 2rem 2rem;
+
+        min-height: 22rem;
+        max-height: 22rem;
+        padding: 0px 0px 0px 0px;
+    }
+
     position: relative;
 
     display: grid;
@@ -22,16 +31,10 @@
 
     border-radius: 1rem;
 
-    @media only screen and (min-width: 700px) {
-        // grid-template-columns: 1fr;
-        grid-template-rows: 1fr 2rem 3rem 2rem 2rem;
-
-        min-height: 19rem;
-        max-height: 19rem;
-        padding: 0px 0px 0px 0px;
-    }
-
     & .itemImage {
+        @include media(md) {
+            max-height: 9rem;
+        }
         place-self: center;
 
         grid-column: 1 / 3;
@@ -39,13 +42,12 @@
         height: 100%;
         max-height: 7rem;
         width: 100%;
-
-        @media only screen and (min-width: 700px) {
-            max-height: 9rem;
-        }
     }
 
     & .itemName {
+        @include media(md) {
+            font-size: 1rem;
+        }
         place-self: end start;
 
         display: -webkit-box;
@@ -62,13 +64,14 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
-
-        @media only screen and (min-width: 700px) {
-            font-size: 1.2rem;
-        }
     }
 
     & .unit {
+        @include media(md) {
+            place-self: center left;
+
+            padding: 0 0 0 0.5rem;
+        }
         grid-column: 1;
 
         max-height: 1rem;
@@ -77,39 +80,39 @@
         text-align: left;
 
         color: $paletteGrey_3;
-
-        @media only screen and (min-width: 700px) {
-            place-self: center left;
-
-            padding: 0 0 0 0.5rem;
-        }
     }
 
     & .price {
+        @include media(md) {
+            padding: 0 0 0 0.5rem;
+
+            font-size: 1.2rem;
+        }
         grid-column: 1;
         display: grid;
 
         font-size: 0.9rem;
 
-        @media only screen and (min-width: 700px) {
-            padding: 0 0 0 0.5rem;
-
-            font-size: 1.2rem;
-        }
-
         & span {
-            font-size: 1.15rem;
-
-            @media only screen and (min-width: 700px) {
+            @include media(md) {
                 // padding: 0 0 0 0.5rem;
                 font-size: 1.6rem;
                 font-weight: bold;
             }
+            font-size: 1.15rem;
         }
     }
 
     & .button {
         @include centerContent;
+
+        @include media(md) {
+            grid-row: 5;
+
+            height: 3.5rem;
+            width: 3.5rem;
+            margin: 0.5rem;
+        }
         cursor: pointer;
         place-self: end;
 
@@ -119,13 +122,5 @@
         height: 2.5rem;
         width: 2.5rem;
         padding: 0;
-
-        @media only screen and (min-width: 700px) {
-            grid-row: 5;
-
-            height: 3.5rem;
-            width: 3.5rem;
-            margin: 0.5rem;
-        }
     }
 }

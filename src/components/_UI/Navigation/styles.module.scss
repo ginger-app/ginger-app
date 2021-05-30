@@ -3,13 +3,19 @@
 .container {
     @include blur;
 
+    @include media(md) {
+        grid-template-columns: 6rem 1fr 6rem;
+
+        height: 6rem;
+    }
+
     position: fixed;
     bottom: 0;
     left: 0;
 
     display: grid;
     grid-template-columns: 3rem 1fr 3rem;
-    place-items: start center;
+    place-items: center;
     gap: 1rem;
 
     width: 100%;
@@ -21,12 +27,6 @@
     transition: all 0.25s;
 
     overflow-y: visible;
-
-    @media only screen and (min-width: 700px) {
-        grid-template-columns: 6rem 1fr 6rem;
-
-        height: 6rem;
-    }
 
     &.transparent {
         background: transparent;

@@ -133,7 +133,7 @@
 }
 
 @mixin blur($blurStrength: 15px) {
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.8));
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.85));
 
     // @supports (
     //     (-webkit-backdrop-filter: blur($blurStrength)) or (backdrop-filter: blur($blurStrength))

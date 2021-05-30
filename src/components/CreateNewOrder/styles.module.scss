@@ -1,6 +1,9 @@
 @import 'src/theme/scss/index.scss';
 
 .container {
+    @include media(md) {
+        height: max-content;
+    }
     display: grid;
 
     width: 95%;
@@ -53,6 +56,12 @@
 
     & .newOrderButton {
         @include deafultGradientButton;
+
+        @include media(md) {
+            height: 10.3rem;
+            width: 27.7rem;
+            margin: 1rem 0 0.5rem;
+        }
         cursor: pointer;
         place-self: center;
 
@@ -100,6 +109,10 @@
     }
 
     & .plusButton {
+        @include media(md) {
+            position: relative;
+            right: -3.5rem;
+        }
         place-self: center end;
 
         position: relative;
@@ -107,24 +120,18 @@
 
         grid-column: 1;
         grid-row: 1;
-
-        @media only screen and (min-width: 700px) {
-            position: relative;
-            right: -3.5rem;
-        }
     }
 
     & .newOrderText {
+        @include media(md) {
+            position: relative;
+
+            font-size: 2rem;
+            font-weight: 600;
+        }
         grid-column: 1;
         grid-row: 1;
 
         font-size: 1rem;
-
-        @media only screen and (min-width: 700px) {
-            position: relative;
-            right: 1rem;
-
-            font-size: 2rem;
-        }
     }
 }

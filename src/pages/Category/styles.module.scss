@@ -3,6 +3,10 @@
 .container {
     @include fullHeight;
 
+    @include media(md) {
+        grid-template-rows: 7rem 1fr min-content;
+    }
+
     display: grid;
     grid-template-rows: 3rem 1fr min-content;
 
@@ -11,12 +15,32 @@
 
     & .title {
         @include boldTitle;
+
+        @include media(md) {
+            grid-column: 1;
+            grid-row: 1;
+
+            font-size: 2.5rem;
+        }
         position: relative;
         top: 1rem;
 
         padding-left: 1rem;
 
         text-align: left;
+    }
+
+    .buttonProfile {
+        @include media(md) {
+            place-self: start end;
+
+            display: grid;
+            grid-column: 1;
+            grid-row: 1;
+
+            margin: 0.5rem 1rem;
+        }
+        display: none;
     }
 
     & .carousele {

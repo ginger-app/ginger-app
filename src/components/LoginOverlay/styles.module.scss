@@ -4,6 +4,10 @@
     @include fullHeight;
     @include blur;
 
+    @include media(md) {
+        grid-template-rows: 4rem 1fr 1fr 30%;
+    }
+
     position: fixed;
     top: 0;
     left: 0;
@@ -18,13 +22,13 @@
 
     z-index: 1000; // always on top
 
-    @media only screen and (min-width: 700px) {
-        grid-template-rows: 4rem 1fr 1fr 30%;
-    }
-
     & .backButtonMobile {
         @include lightButton;
         @include centerContent;
+
+        @include media(md) {
+            visibility: hidden;
+        }
         place-self: center end;
 
         height: 3rem;
@@ -34,16 +38,10 @@
         background: $paletteWhite;
 
         border-radius: 100%;
-
-        @media only screen and (min-width: 700px) {
-            visibility: hidden;
-        }
     }
 
     & .backButtonTablet {
-        display: none;
-
-        @media only screen and (min-width: 700px) {
+        @include media(md) {
             @include lightButton;
             @include centerContent;
             place-self: start center;
@@ -55,25 +53,33 @@
 
             border-radius: 100%;
         }
+        display: none;
     }
 
     & .title {
         @include boldTitle;
+
+        @include media(md) {
+            margin-bottom: 7rem;
+
+            font-size: 50px;
+        }
         place-self: end start;
 
         margin-left: 2rem;
 
         font-size: 30px;
-
-        @media only screen and (min-width: 700px) {
-            margin-bottom: 7rem;
-
-            font-size: 50px;
-        }
     }
 
     & .fieldsContainer {
         @include shadow;
+
+        @include media(md) {
+            height: 7rem;
+            max-width: 33rem;
+
+            border-radius: 0 15% 15% 0;
+        }
         place-self: start;
 
         position: relative;
@@ -89,13 +95,6 @@
         background: $paletteWhite;
 
         border-radius: 0 15% 15% 0;
-
-        @media only screen and (min-width: 700px) {
-            height: 7rem;
-            max-width: 33rem;
-
-            border-radius: 0 15% 15% 0;
-        }
 
         & .input {
             display: grid;
