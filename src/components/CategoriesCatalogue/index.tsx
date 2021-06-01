@@ -27,14 +27,29 @@ type CatalogueTypes = ReturnType<typeof mapStateToProps> & {
 };
 
 const CatalogueComponent: FC<CatalogueTypes> = ({ className, categories, extended }) => {
+    const testCats = categories
+        .concat(categories)
+        .concat(categories)
+        .concat(categories)
+        .concat(categories)
+        .concat(categories)
+        .concat(categories)
+        .concat(categories)
+        .concat(categories)
+        .concat(categories)
+        .concat(categories)
+        .concat(categories)
+        .concat(categories)
+        .concat(categories);
+
     /**
      * We want to render columns of 2 categories. For that we have to devide
      * categories array into array of arrays that consist of 2 items.
      */
-    const formattedCategories = categories
+    const formattedCategories = testCats
         .map((item, index) => {
             if (index % 2 === 0) {
-                return [item, categories[index + 1]];
+                return [item, testCats[index + 1]];
             }
 
             return null;

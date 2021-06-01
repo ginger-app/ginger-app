@@ -87,9 +87,9 @@ const HomeComponent: FC<HomePropsTypes> = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                 >
-                    <NewsBlock className={Styles.lastOrder} />
+                    <NewsBlock className={Styles.news} />
                     {role === 'client' || !isAuthenticated ? (
-                        <CreateNewOrder className={Styles.dailyBonus} />
+                        <CreateNewOrder className={Styles.newOrder} />
                     ) : (
                         <Link to={book.supplierOrders} className={Styles.checkOrders}>
                             Нових замовлень: 0

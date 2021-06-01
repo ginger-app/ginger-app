@@ -58,8 +58,7 @@
         @include deafultGradientButton;
 
         @include media(md) {
-            height: 10.3rem;
-            width: 27.7rem;
+            height: 10.5rem;
             margin: 1rem 0 0.5rem;
         }
         cursor: pointer;
@@ -74,12 +73,12 @@
         place-items: center;
 
         height: 90%;
-        width: 75%;
+        width: 85%;
+        max-width: 30rem;
         padding: 1rem;
 
         border-radius: 1rem;
 
-        font-size: 1.25rem;
         font-weight: bold;
 
         color: $paletteWhite;
@@ -132,6 +131,6 @@
         grid-column: 1;
         grid-row: 1;
 
-        font-size: 1rem;
+        font-size: 1.25rem;
     }
 }

@@ -82,26 +82,27 @@
         place-self: center end;
     }
 
-    & .lastOrder {
+    & .news {
         @include media(md) {
-            height: 15.2rem;
-            width: 44.4rem;
-            margin-top: 1.8rem;
+            height: 15.25rem;
+            width: 44.5rem;
+            margin-top: 2rem;
         }
         grid-column: 1 / 3;
 
         height: 100%;
-        width: 90%;
+        width: 95%;
     }
 
-    & .dailyBonus,
-    .catalogue {
-        @include media(md) {
-            // height: 12rem;
-            width: 100%;
-        }
+    & .newOrder {
         grid-column: 1 / 3;
 
         width: 90%;
+    }
+
+    & .catalogue {
+        grid-column: 1 / 3;
+
+        width: 100%;
     }
 }

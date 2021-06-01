@@ -70,7 +70,7 @@ export const MarketItem: FC<MarketItemPropTypes> = ({
 
                     <Button
                         className={Styles.button}
-                        content={<Icon name='plus' color='white' />}
+                        content={<Icon name='plus' color='white' className={Styles.content} />}
                         onClick={(e) => {
                             e.preventDefault();
                             setLocationsPopupState(true);
