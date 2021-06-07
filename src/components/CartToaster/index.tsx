@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -12,8 +12,9 @@ import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     cartIconVisible: state.ui.cartIconVisible,
     cartIsOpened: state.ui.cartIsOpened,
 });
@@ -23,7 +24,10 @@ const mapDispatchToProps = {
     hideCartIcon: uiActions.hideCartIcon,
 };
 
-const CartToasterComponent = ({
+type CartToasterPropsTypes = ReturnType<typeof mapStateToProps> &
+    typeof mapDispatchToProps & { cart: Record<string, any> };
+
+const CartToasterComponent: FC<CartToasterPropsTypes> = ({
     cart = {},
     showCart,
     cartIconVisible,
@@ -42,8 +46,8 @@ const CartToasterComponent = ({
                 <div
                     className={Styles.container}
                     style={{
-                        ...bottomToTopSlideConfig(300, '6rem').defaultStyles,
-                        ...bottomToTopSlideConfig(300, '6rem').transitionStyles[state],
+                        ...bottomToTopSlideConfig(300).defaultStyles,
+                        ...bottomToTopSlideConfig(300).transitionStyles[state],
                     }}
                     onClick={showCart}
                     onContextMenu={(e) => {

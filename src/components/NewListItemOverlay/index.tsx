@@ -1,5 +1,5 @@
 // Core
-import React, { useState, useRef, useMemo, useEffect } from 'react';
+import React, { useState, useRef, useMemo, useEffect, FC } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 import { useHistory } from 'react-router-dom';
@@ -15,8 +15,9 @@ import logo from 'theme/assets/images/apples-mock.png';
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
 import { profileActions } from 'bus/profile/profile.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     newListItemOverlay: state.ui.newListItemOverlay,
 });
 
@@ -25,13 +26,15 @@ const mapDispatchToProps = {
     addNewSupplierListItemAsync: profileActions.addNewSupplierItemAsync,
 };
 
-const NewListItemOverlayComponent = ({
+type NewListItemOverlayPropsTypes = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+
+const NewListItemOverlayComponent: FC<NewListItemOverlayPropsTypes> = ({
     newListItemOverlay,
     hideNewListItemOverlay,
     addNewSupplierListItemAsync,
 }) => {
     const history = useHistory();
-    const [historyListener, setRemoveListener] = useState();
+    const [historyListener, setRemoveListener] = useState<() => void>();
 
     useEffect(() => {
         if (newListItemOverlay) {
@@ -43,18 +46,18 @@ const NewListItemOverlayComponent = ({
             window.addEventListener('popstate', handler);
 
             setRemoveListener(() => handler);
-        } else {
+        } else if (historyListener) {
             window.removeEventListener('popstate', historyListener);
         }
         // eslint-disable-next-line
     }, [newListItemOverlay]);
 
     // Refs
-    const nameRef = useRef(null);
-    const categoryRef = useRef(null);
-    const unitRef = useRef(null);
-    const priceRef = useRef(null);
-    const stockRef = useRef(null);
+    const nameRef = useRef<HTMLInputElement>(null);
+    const categoryRef = useRef<HTMLInputElement>(null);
+    const unitRef = useRef<HTMLInputElement>(null);
+    const priceRef = useRef<HTMLInputElement>(null);
+    const stockRef = useRef<HTMLInputElement>(null);
 
     // Editing states
     const [nameEditing, setNameEditingState] = useState(false);
@@ -172,9 +175,12 @@ const NewListItemOverlayComponent = ({
                                         content={<Icon name={editingState ? 'check' : 'edit'} />}
                                         onClick={() => {
                                             setEditingState(!editingState);
-                                            return editingState
-                                                ? setImmediate(() => ref.current.blur())
-                                                : setImmediate(() => ref.current.focus());
+                                            const { current } = ref;
+                                            if (current) {
+                                                return editingState
+                                                    ? setImmediate(() => current.blur())
+                                                    : setImmediate(() => current.focus());
+                                            }
                                         }}
                                     />
                                 </div>

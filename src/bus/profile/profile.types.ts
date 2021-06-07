@@ -155,9 +155,17 @@ type UpdateSupplierItemsAsync = {
     payload: Record<string, any>[];
 };
 
+export type NewSupplierItem = {
+    name: string;
+    category: string;
+    unit: string;
+    price: string;
+    stock: string;
+};
+
 type AddNewSupplierItemAsync = {
     type: typeof profileTypes.ADD_NEW_SUPPLIER_ITEM_ASYNC;
-    payload: string;
+    payload: NewSupplierItem;
 };
 
 type GetAllClientListsAsync = {

@@ -4,7 +4,12 @@ import { Location } from 'domains/client/hooks/useClientLocations';
 import { MarketItem, Order } from 'domains/market/types';
 import { SupplierPreviewItem } from 'domains/supplier/types';
 import { ProfileState } from './profile.reducer';
-import { ProfileActions, profileTypes as types, OrdersCombinationsRequest } from './profile.types';
+import {
+    ProfileActions,
+    profileTypes as types,
+    NewSupplierItem,
+    OrdersCombinationsRequest,
+} from './profile.types';
 
 export const profileActions = {
     // Sync
@@ -123,7 +128,7 @@ export const profileActions = {
         payload: items,
     }),
 
-    addNewSupplierItemAsync: (item: string): ProfileActions => ({
+    addNewSupplierItemAsync: (item: NewSupplierItem): ProfileActions => ({
         type: types.ADD_NEW_SUPPLIER_ITEM_ASYNC,
         payload: item,
     }),

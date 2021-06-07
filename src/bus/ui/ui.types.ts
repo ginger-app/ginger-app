@@ -220,10 +220,14 @@ type SetClientListsSelectedLocation = {
     payload: string;
 };
 
+type TempOrderItem = MarketItem & {
+    requestedAmount: number;
+};
+
 export type Orders = {
     supplier: SupplierDto;
     sum: number;
-    items: MarketItem[];
+    items: TempOrderItem[];
 };
 
 export type OrderCombination = {

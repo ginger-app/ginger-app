@@ -1,5 +1,5 @@
 // Core
-import React, { useState, useRef, useMemo, useEffect } from 'react';
+import React, { useState, useRef, useMemo, useEffect, FC } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 import { useHistory } from 'react-router-dom';
@@ -15,8 +15,9 @@ import logo from 'theme/assets/svg/logo.svg';
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
 import { profileActions } from 'bus/profile/profile.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     newLocationOverlay: state.ui.newLocationOverlay,
 });
 
@@ -25,13 +26,15 @@ const mapDispatchToProps = {
     createNewLocationAsync: profileActions.createNewLocationAsync,
 };
 
-const NewLocationOverlayComponent = ({
+type NewLocationOverlayPropsTypes = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+
+const NewLocationOverlayComponent: FC<NewLocationOverlayPropsTypes> = ({
     newLocationOverlay,
     hideNewLocationOverlay,
     createNewLocationAsync,
 }) => {
     const history = useHistory();
-    const [historyListener, setRemoveListener] = useState();
+    const [historyListener, setRemoveListener] = useState<() => void>();
 
     useEffect(() => {
         if (newLocationOverlay) {
@@ -43,17 +46,17 @@ const NewLocationOverlayComponent = ({
             window.addEventListener('popstate', handler);
 
             setRemoveListener(() => handler);
-        } else {
+        } else if (historyListener) {
             window.removeEventListener('popstate', historyListener);
         }
         // eslint-disable-next-line
     }, [newLocationOverlay]);
 
     // Refs
-    const companyRef = useRef(null);
-    const addressRef = useRef(null);
-    const scheduleRef = useRef(null);
-    const phoneNumberRef = useRef(null);
+    const companyRef = useRef<HTMLInputElement>(null);
+    const addressRef = useRef<HTMLInputElement>(null);
+    const scheduleRef = useRef<HTMLInputElement>(null);
+    const phoneNumberRef = useRef<HTMLInputElement>(null);
 
     // Editing states
     const [companyEditing, setCompanyEditingState] = useState(false);
@@ -174,13 +177,17 @@ const NewLocationOverlayComponent = ({
                                         onClick={() => {
                                             setEditingState(!editingState);
 
+                                            const { current } = ref;
+
                                             // Setting state is asynchronous operation,
                                             // therefore we want to wait untill state changes
                                             // and updates `disabled` attribute for input
                                             // before we actually `focus()` or `blur()`
-                                            return editingState
-                                                ? setImmediate(() => ref.current.blur())
-                                                : setImmediate(() => ref.current.focus());
+                                            if (current) {
+                                                return editingState
+                                                    ? setImmediate(() => current.blur())
+                                                    : setImmediate(() => current.focus());
+                                            }
                                         }}
                                     />
                                 </div>

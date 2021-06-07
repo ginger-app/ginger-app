@@ -1,5 +1,5 @@
 // Core
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { Transition } from 'react-transition-group';
 
 // Styles
@@ -11,7 +11,16 @@ import { Map, RequestNewAddress } from 'components';
 // Instruments
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 
-export const MapModal = ({
+type MapPropsTypes = {
+    address: string;
+    setAddress: string;
+    addressDetails: string;
+    setAddressDetails: (value: string) => void;
+    closeMap: () => void;
+    inProp: boolean;
+};
+
+export const MapModal: FC<MapPropsTypes> = ({
     address,
     setAddress,
     addressDetails,

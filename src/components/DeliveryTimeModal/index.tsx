@@ -1,22 +1,32 @@
 // Core
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
 // Styles
 
 // Instruments
-import moment from 'moment';
+import moment, { MomentInput } from 'moment';
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import Styles from './styles.module.scss';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     ...state,
 });
 
 const mapDispatchToProps = {};
 
-const DeliveryTimeModalComponent = ({
+type DeliveryTimeModalPropsTypes = {
+    className?: string;
+    inProp: boolean;
+    closeModal: () => void;
+    deliveryTime: string;
+    setDeliveryTime: (el: string) => void;
+    setDisplayDeliveryTime: (el: string) => void;
+};
+
+const DeliveryTimeModalComponent: FC<DeliveryTimeModalPropsTypes> = ({
     className,
     inProp,
     closeModal,
@@ -33,7 +43,7 @@ const DeliveryTimeModalComponent = ({
         Array [9, 10, 11, 12, 15, 16, 19, 20] represents times
         that have to be included into the array.
     */
-    const createTimeslotsArray = (day) =>
+    const createTimeslotsArray = (day: MomentInput) =>
         [9, 10, 11, 12, 15, 16, 19, 20].map((item) => {
             const dayToCalculate = moment(day);
             return dayToCalculate.add(item, 'hours').toISOString();
@@ -56,8 +66,8 @@ const DeliveryTimeModalComponent = ({
         As soon as we want to show the user an output of e.g. "09:00 - 11:00",
         we're formatting UTC date to the specified format
     */
-    const formatHours = (startHour) =>
-        `${moment(startHour).local().toDate().getHours().toString().padStart(2, 0)}:00 - ${moment(
+    const formatHours = (startHour: MomentInput) =>
+        `${moment(startHour).local().toDate().getHours().toString().padStart(2, '0')}:00 - ${moment(
             startHour,
         )
             .local()
@@ -65,13 +75,14 @@ const DeliveryTimeModalComponent = ({
             .toDate()
             .getHours()
             .toString()
-            .padStart(2, 0)}:00`;
+            .padStart(2, '0')}:00`;
 
     /*
         Checking if targetHour is still selectable for today.
         (used only for today - we do not have any restriction for tomorrow or other days)
     */
-    const checkAvailablity = (targetHour) => moment().add(1, 'hour').isBefore(targetHour);
+    const checkAvailablity = (targetHour: MomentInput) =>
+        moment().add(1, 'hour').isBefore(targetHour);
 
     const getClosestHourTime = () => {
         const closestDeliveryTime = moment().startOf('hour').add(2, 'hours').format();
@@ -110,7 +121,7 @@ const DeliveryTimeModalComponent = ({
                                 ? Styles.activeExpressDelivery
                                 : new Date().getHours() > 19 && Styles.disabled
                         }`}
-                        onClick={new Date().getHours() <= 19 ? getClosestHourTime : null}
+                        onClick={new Date().getHours() <= 19 ? getClosestHourTime : undefined}
                     >
                         За годину
                     </div>
@@ -146,7 +157,7 @@ const DeliveryTimeModalComponent = ({
                                                       )}`,
                                                   );
                                               }
-                                            : null
+                                            : undefined
                                     }
                                 >
                                     {formatHours(timeslot)}

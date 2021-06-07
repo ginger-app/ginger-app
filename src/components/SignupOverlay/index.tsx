@@ -47,7 +47,7 @@ const SignupOverlayComponent: FC<SignupOverlayTypes> = ({
     const [email, setEmail] = useState('');
 
     const history = useHistory();
-    const [historyListener, setRemoveListener] = useState<() => () => void>();
+    const [historyListener, setRemoveListener] = useState<() => void>();
 
     useEffect(() => {
         if (signupOverlay) {
@@ -58,13 +58,11 @@ const SignupOverlayComponent: FC<SignupOverlayTypes> = ({
 
             window.addEventListener('popstate', handler);
 
-            setRemoveListener(() => handler);
-        } else {
-            // @ts-ignore
+            setRemoveListener(handler);
+        } else if (historyListener) {
             window.removeEventListener('popstate', historyListener);
         }
-        // eslint-disable-next-line
-    }, [signupOverlay]);
+    }, [signupOverlay, hideSignupOverlay, history, historyListener]);
 
     const handlePhoneNumberChange = (value: string) => {
         if (!/^[0-9+ ]*$/.test(value)) return null;

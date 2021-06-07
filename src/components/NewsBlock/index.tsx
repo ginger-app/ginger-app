@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -9,14 +9,18 @@ import Styles from './styles.module.scss';
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import logo from 'theme/assets/images/logo.png';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     ...state,
 });
 
 const mapDispatchToProps = {};
 
-const NewsBlockComponent = ({ className }) => {
+type NewsBlockPropsTypes = ReturnType<typeof mapStateToProps> &
+    typeof mapDispatchToProps & { className?: string };
+
+const NewsBlockComponent: FC<NewsBlockPropsTypes> = ({ className }) => {
     return (
         <Transition
             in

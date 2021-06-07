@@ -1,9 +1,10 @@
 // Core
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
+import { Orders } from 'bus/ui/ui.types';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -15,8 +16,9 @@ import arrow from 'theme/assets/svg/right-full-arrow.svg';
 
 // Actions
 import { marketActions } from 'bus/market/market.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     ...state,
 });
 
@@ -24,7 +26,15 @@ const mapDispatchToProps = {
     sendOrdersAsync: marketActions.sendOrdersAsync,
 };
 
-const OrderCombinationDetailsComponent = ({
+type OrderCombinationDetailsPropsTypes = {
+    inProp: boolean;
+    sum: number;
+    orders: Orders[];
+    image: string;
+    close: () => void;
+} & typeof mapDispatchToProps;
+
+const OrderCombinationDetailsComponent: FC<OrderCombinationDetailsPropsTypes> = ({
     inProp,
     sum,
     orders,
@@ -34,7 +44,7 @@ const OrderCombinationDetailsComponent = ({
 }) => {
     const [supplierDetails, setSupplierDetailsState] = useState(false);
 
-    const { locationId } = useParams();
+    const { locationId } = useParams<{ locationId: string }>();
 
     return (
         <Transition
@@ -88,7 +98,9 @@ const OrderCombinationDetailsComponent = ({
                                         {/* Overlays */}
                                         <OrderCombinationSupplierDetails
                                             inProp={supplierDetails}
-                                            close={(e) => {
+                                            close={(
+                                                e: React.MouseEvent<HTMLElement, MouseEvent>,
+                                            ) => {
                                                 e.stopPropagation();
                                                 setSupplierDetailsState(false);
                                             }}

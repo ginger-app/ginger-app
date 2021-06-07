@@ -1,7 +1,6 @@
 // Core
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { Transition } from 'react-transition-group';
-import PropTypes from 'prop-types';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -11,7 +10,19 @@ import { topToBottomSlideConfig } from 'utils/transitionConfig';
 import { Icon } from 'components';
 import { DateTime } from 'luxon';
 
-export const ChooseDateOverlay = ({ className, setDate, inProp, close }) => {
+type ChooseDatePropsTypes = {
+    className?: string;
+    setDate: (date: { string: string; utc: string }) => string;
+    inProp: boolean;
+    close: () => void;
+};
+
+export const ChooseDateOverlay: FC<ChooseDatePropsTypes> = ({
+    className,
+    setDate,
+    inProp,
+    close,
+}) => {
     const [date, setLocalDate] = useState(
         DateTime.local().hour < 12
             ? DateTime.local().toObject()
@@ -86,11 +97,4 @@ export const ChooseDateOverlay = ({ className, setDate, inProp, close }) => {
             )}
         </Transition>
     );
-};
-
-ChooseDateOverlay.propTypes = {
-    className: PropTypes.string,
-    setDate: PropTypes.func.isRequired,
-    inProp: PropTypes.bool.isRequired,
-    close: PropTypes.func.isRequired,
 };
