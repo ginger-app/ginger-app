@@ -220,7 +220,7 @@ type SetClientListsSelectedLocation = {
     payload: string;
 };
 
-type TempOrderItem = MarketItem & {
+export type TempOrderItem = MarketItem & {
     requestedAmount: number;
 };
 

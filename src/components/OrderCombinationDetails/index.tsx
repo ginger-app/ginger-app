@@ -31,7 +31,7 @@ type OrderCombinationDetailsPropsTypes = {
     sum: number;
     orders: Orders[];
     image: string;
-    close: () => void;
+    close: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 } & typeof mapDispatchToProps;
 
 const OrderCombinationDetailsComponent: FC<OrderCombinationDetailsPropsTypes> = ({

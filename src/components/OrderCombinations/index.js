@@ -13,6 +13,7 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
+// import { AppState } from 'bus/init/rootReducer';
 
 const mapStateToProps = (state) => ({
     orderCombinationsOverlay: state.ui.orderCombinationsOverlay,
@@ -22,6 +23,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     hideOrderCombinationsOverlay: uiActions.hideOrderCombinationsOverlay,
 };
+
+// type OrderCombinationsPropsTypes = ReturnType<typeof mapStateToProps> &
+//     typeof mapDispatchToProps & { className: string };
 
 const OrderCombinationsComponent = ({
     className,

@@ -1,6 +1,7 @@
 // Core
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { Transition } from 'react-transition-group';
+import { Orders } from 'bus/ui/ui.types';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -15,7 +16,15 @@ const images = {
     'Least suppliers': logo,
 };
 
-export const OrderCombination = ({ className, index, name, orders, sum }) => {
+type OrderPropsTypes = {
+    className?: string;
+    index: number;
+    name: string;
+    orders: Orders[];
+    sum: number;
+};
+
+export const OrderCombination: FC<OrderPropsTypes> = ({ className, index, name, orders, sum }) => {
     const [combinationDetails, setCombinationDetailsState] = useState(false);
 
     return (
@@ -36,7 +45,12 @@ export const OrderCombination = ({ className, index, name, orders, sum }) => {
                         transition: 'all 0.2s',
                     }}
                 >
-                    <img className={Styles.image} src={images[name]} alt='' />
+                    <img
+                        className={Styles.image}
+                        // @ts-ignore
+                        src={images[name]}
+                        alt=''
+                    />
 
                     <div className={Styles.devider} />
 
@@ -52,6 +66,7 @@ export const OrderCombination = ({ className, index, name, orders, sum }) => {
                         close={() => setCombinationDetailsState(false)}
                         sum={sum}
                         orders={orders}
+                        // @ts-ignore
                         image={images[name]}
                     />
                 </section>

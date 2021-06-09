@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
 
@@ -9,8 +9,24 @@ import Styles from './styles.module.scss';
 // Instruments
 import { Navigation } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
+import { TempOrderItem } from 'bus/ui/ui.types';
+import { SupplierDto } from 'domains/supplier/redux/supplier.types';
 
-export const OrderCombinationSupplierDetails = ({ inProp, sum, items, supplier, close }) => {
+type OrderCombinationSupplierPropsTypes = {
+    inProp: boolean;
+    sum: number;
+    items: TempOrderItem[];
+    supplier: SupplierDto;
+    close: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+};
+
+export const OrderCombinationSupplierDetails: FC<OrderCombinationSupplierPropsTypes> = ({
+    inProp,
+    sum,
+    items,
+    supplier,
+    close,
+}) => {
     const { userpic, companyName } = supplier;
 
     return (
