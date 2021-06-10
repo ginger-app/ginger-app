@@ -1,5 +1,5 @@
 // Core
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 import { NavLink, useHistory } from 'react-router-dom';
@@ -16,8 +16,9 @@ import { useDebounce } from 'utils/customHooks';
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
 import { marketActions } from 'bus/market/market.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     searchOpened: state.ui.searchOpened,
     searchResults: state.market.searchResults,
 });
@@ -28,7 +29,10 @@ const mapDispatchToProps = {
     clearSearchResults: marketActions.clearSearchResults,
 };
 
-const SearchOverlayComponent = ({
+type SearchOverlayPropsTypes = ReturnType<typeof mapStateToProps> &
+    typeof mapDispatchToProps & { className?: string };
+
+const SearchOverlayComponent: FC<SearchOverlayPropsTypes> = ({
     className,
     searchOpened,
     hideSearchOverlay,
@@ -37,12 +41,11 @@ const SearchOverlayComponent = ({
     clearSearchResults,
 }) => {
     const [inputValue, setInputValue] = useState('');
-    const [showItems, setShowItems] = useState(true);
     const [displayCategory, setDisplayCategory] = useState('');
     const debouncedValue = useDebounce(inputValue, 500);
 
     const history = useHistory();
-    const [historyListener, setRemoveListener] = useState();
+    const [historyListener, setRemoveListener] = useState<() => void>();
 
     useEffect(() => {
         if (searchOpened) {
@@ -54,7 +57,7 @@ const SearchOverlayComponent = ({
             window.addEventListener('popstate', handler);
 
             setRemoveListener(() => handler);
-        } else {
+        } else if (historyListener) {
             window.removeEventListener('popstate', historyListener);
         }
         // eslint-disable-next-line
@@ -63,16 +66,11 @@ const SearchOverlayComponent = ({
     useEffect(() => {
         // only search if there's a value for it
         if (debouncedValue) {
-            setShowItems(false);
-
             // timeout are needed in order to play animations
             setTimeout(() => {
                 searchItemsByNameAsync(debouncedValue);
-                setShowItems(true);
             }, 500);
         } else {
-            setShowItems(false);
-
             // timeout are needed in order to play animations
             setTimeout(() => {
                 clearSearchResults();
@@ -81,14 +79,14 @@ const SearchOverlayComponent = ({
     }, [debouncedValue, clearSearchResults, searchItemsByNameAsync]);
 
     useEffect(() => {
-        const occurencies = {};
+        const occurrences: Record<string, any> = {};
 
         if (searchResults.length > 0) {
             searchResults.forEach((item) => {
-                occurencies[item.category] = occurencies[item.category] + 1 || 1;
+                occurrences[item.category] = occurrences[item.category] + 1 || 1;
             });
 
-            const mostRepetitive = Object.keys(occurencies).sort((key) => occurencies[key])[0];
+            const mostRepetitive = Object.keys(occurrences).sort((key) => occurrences[key])[0];
             setDisplayCategory(mostRepetitive);
         }
     }, [searchResults]);
@@ -121,7 +119,6 @@ const SearchOverlayComponent = ({
                                 value={inputValue}
                                 onChange={({ target: { value } }) => {
                                     setInputValue(value);
-                                    setShowItems(false);
                                 }}
                                 autoFocus
                             />
@@ -134,7 +131,6 @@ const SearchOverlayComponent = ({
                         <MarketShowcase
                             className={Styles.searchResults}
                             items={searchResults}
-                            inProp={showItems && searchResults.length > 0}
                             infoBlock={
                                 displayCategory && (
                                     <NavLink
@@ -145,7 +141,6 @@ const SearchOverlayComponent = ({
                                     </NavLink>
                                 )
                             }
-                            marketType
                         />
                     </section>
                 )}

@@ -1,5 +1,5 @@
 // Core
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useRef, useMemo, FC } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
@@ -13,8 +13,9 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
 import { profileActions } from 'bus/profile/profile.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     ...state,
 });
 
@@ -22,7 +23,20 @@ const mapDispatchToProps = {
     updateItemFromPreviewAsync: profileActions.updateItemFromPreviewAsync,
 };
 
-const SupplierItemEditingPopupComponent = ({
+type SupplierItemEditingPopupPropsTypes = typeof mapDispatchToProps & {
+    defaultName: string;
+    defaultUnit: string;
+    defaultPrice: string;
+    defaultStock: string;
+    defaultCategory: string;
+    defaultImage: string;
+    inProp: boolean;
+    closePopup: () => void;
+
+    itemIndex: number;
+};
+
+const SupplierItemEditingPopupComponent: FC<SupplierItemEditingPopupPropsTypes> = ({
     defaultName,
     defaultUnit,
     defaultPrice,
@@ -35,11 +49,11 @@ const SupplierItemEditingPopupComponent = ({
     itemIndex,
 }) => {
     // Refs
-    const nameRef = useRef(null);
-    const categoryRef = useRef(null);
-    const unitRef = useRef(null);
-    const priceRef = useRef(null);
-    const stockRef = useRef(null);
+    const nameRef = useRef<HTMLInputElement>(null);
+    const categoryRef = useRef<HTMLInputElement>(null);
+    const unitRef = useRef<HTMLInputElement>(null);
+    const priceRef = useRef<HTMLInputElement>(null);
+    const stockRef = useRef<HTMLInputElement>(null);
 
     // Editing states
     const [nameEditing, setNameEditingState] = useState(false);
@@ -165,9 +179,11 @@ const SupplierItemEditingPopupComponent = ({
                                             }
                                             onClick={() => {
                                                 setEditingState(!editingState);
-                                                return editingState
-                                                    ? ref.current.blur()
-                                                    : ref.current.focus();
+                                                if (ref.current) {
+                                                    return editingState
+                                                        ? ref.current.blur()
+                                                        : ref.current.focus();
+                                                }
                                             }}
                                         />
                                     </div>

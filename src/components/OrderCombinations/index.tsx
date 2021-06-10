@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
@@ -13,9 +13,9 @@ import { opacityTransitionConfig } from 'utils/transitionConfig';
 
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
-// import { AppState } from 'bus/init/rootReducer';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     orderCombinationsOverlay: state.ui.orderCombinationsOverlay,
     orderCombinations: state.ui.orderCombinations,
 });
@@ -24,10 +24,10 @@ const mapDispatchToProps = {
     hideOrderCombinationsOverlay: uiActions.hideOrderCombinationsOverlay,
 };
 
-// type OrderCombinationsPropsTypes = ReturnType<typeof mapStateToProps> &
-//     typeof mapDispatchToProps & { className: string };
+type OrderCombinationsPropsTypes = ReturnType<typeof mapStateToProps> &
+    typeof mapDispatchToProps & { className: string };
 
-const OrderCombinationsComponent = ({
+const OrderCombinationsComponent: FC<OrderCombinationsPropsTypes> = ({
     className,
     orderCombinationsOverlay,
     orderCombinations,

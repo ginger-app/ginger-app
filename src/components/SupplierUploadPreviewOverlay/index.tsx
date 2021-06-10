@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 import { Portal } from 'react-portal';
@@ -14,8 +14,9 @@ import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
 import { profileActions } from 'bus/profile/profile.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     supplierUploadPreviewOverlay: state.ui.supplierUploadPreviewOverlay,
     previewData: state.profile.previewData,
 });
@@ -25,7 +26,10 @@ const mapDispatchToProps = {
     updateSupplierItemsAsync: profileActions.updateSupplierItemsAsync,
 };
 
-const SupplierUploadPreviewOverlayComponent = ({
+type SupplierUploadPreviewOverlayPropsTypes = ReturnType<typeof mapStateToProps> &
+    typeof mapDispatchToProps;
+
+const SupplierUploadPreviewOverlayComponent: FC<SupplierUploadPreviewOverlayPropsTypes> = ({
     supplierUploadPreviewOverlay,
     hideSupplierUploadPreviewOverlay,
     updateSupplierItemsAsync,

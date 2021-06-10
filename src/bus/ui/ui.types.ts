@@ -233,7 +233,7 @@ export type Orders = {
 export type OrderCombination = {
     name: string;
     sum: number;
-    orders: Record<string, Orders>[];
+    orders: Orders[];
 };
 
 type SetOrderCombinations = {

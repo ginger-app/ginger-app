@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -14,15 +14,16 @@ import randomWords from 'random-words';
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
 import { Dummy } from 'components/_UI';
+import { AppState } from 'bus/init/rootReducer';
 
 // Mocks
 const suppliers = randomWords({
     exactly: 15,
     wordsPerString: 3,
-    formatter: (word) => (Math.random() > 0.5 ? word : ''),
-}).map((item) => (item.trim().length === 0 ? 'Galychyna' : item));
+    formatter: (word: string) => (Math.random() > 0.5 ? word : ''),
+}).map((item: string) => (item.trim().length === 0 ? 'Galychyna' : item));
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     ordersFiltersOverlay: state.ui.ordersFiltersOverlay,
 });
 
@@ -30,7 +31,10 @@ const mapDispatchToProps = {
     hideOrdersFiltersOverlay: uiActions.hideOrdersFiltersOverlay,
 };
 
-const OrderFiltersOverlayComponent = ({
+type OrderFiltersOverlayPropsTypes = ReturnType<typeof mapStateToProps> &
+    typeof mapDispatchToProps & { className: string };
+
+const OrderFiltersOverlayComponent: FC<OrderFiltersOverlayPropsTypes> = ({
     className,
     ordersFiltersOverlay,
     hideOrdersFiltersOverlay,

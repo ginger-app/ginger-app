@@ -28,7 +28,7 @@ const mapDispatchToProps = {
 };
 
 type CreateNewOrderPropsType = ReturnType<typeof mapStateToProps> &
-    typeof mapDispatchToProps & { className: string };
+    typeof mapDispatchToProps & { className?: string };
 
 const CreateNewOrderComponent: FC<CreateNewOrderPropsType> = ({
     className,

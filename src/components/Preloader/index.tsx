@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -9,14 +9,17 @@ import { Transition } from 'react-transition-group';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import logo from 'theme/assets/svg/logo.svg';
 import Styles from './styles.module.scss';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     ...state,
 });
 
 const mapDispatchToProps = {};
 
-const PreloaderComponent = ({ inProp }) => {
+type PreloaderPropsTypes = typeof mapDispatchToProps & { inProp: boolean };
+
+const PreloaderComponent: FC<PreloaderPropsTypes> = ({ inProp }) => {
     return (
         <Transition
             in={inProp}

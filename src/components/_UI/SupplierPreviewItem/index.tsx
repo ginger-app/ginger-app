@@ -1,5 +1,5 @@
 // Core
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 
@@ -13,8 +13,9 @@ import mockApples from 'theme/assets/images/apples-mock.png';
 
 // Actions
 import { profileActions } from 'bus/profile/profile.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     ...state,
 });
 
@@ -22,7 +23,18 @@ const mapDispatchToProps = {
     removeItemFromPreviewAsync: profileActions.removeItemFromPreviewAsync,
 };
 
-const SupplierPreviewItemComponent = ({
+type SupplierPreviewItemPropsTypes = typeof mapDispatchToProps & {
+    className?: string;
+    name: string;
+    price: string;
+    image?: string;
+    stock: string;
+    unit: string;
+    categoryName: string;
+    index: number;
+};
+
+const SupplierPreviewItemComponent: FC<SupplierPreviewItemPropsTypes> = ({
     className,
     name,
     price,

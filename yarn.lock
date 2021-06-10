@@ -1870,6 +1870,11 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.4.tgz#15925414e0ad2cd765bfef58842f7e26a7accb24"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
+"@types/random-words@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@types/random-words/-/random-words-1.1.1.tgz#9be0b32d3e8ef73de491fc5e04dbb6e9c0588180"
+  integrity sha512-nZ7WyAbYNjLnWWR19kkqvhRKwevGr2FGzOQbn4Wad534Kt0thZVi1glq+UpvBo3OVNWtF15HD+4da8PteJEWRA==
+
 "@types/react-dom@^17.0.0":
   version "17.0.5"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-17.0.5.tgz#df44eed5b8d9e0b13bb0cd38e0ea6572a1231227"

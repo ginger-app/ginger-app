@@ -1,7 +1,7 @@
 export type SupplierPreviewItem = {
     name: string;
     unit: string;
-    price: number;
-    stock: number;
+    price: string;
+    stock: string;
     categoryName: string;
 };

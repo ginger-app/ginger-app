@@ -1,5 +1,5 @@
 // Core
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, FC } from 'react';
 import { connect } from 'react-redux';
 import { Transition } from 'react-transition-group';
 import { useHistory } from 'react-router-dom';
@@ -14,8 +14,9 @@ import { topToBottomSlideConfig } from 'utils/transitionConfig';
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
 import { profileActions } from 'bus/profile/profile.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     supplierUploadOverlay: state.ui.supplierUploadOverlay,
 });
 
@@ -24,7 +25,10 @@ const mapDispatchToProps = {
     uploadSupplierExcelTableAsync: profileActions.uploadSupplierExcelTableAsync,
 };
 
-const SupplierUploadOverlayComponent = ({
+type SupplierUploadOverlayPropsTypes = ReturnType<typeof mapStateToProps> &
+    typeof mapDispatchToProps & { className?: string };
+
+const SupplierUploadOverlayComponent: FC<SupplierUploadOverlayPropsTypes> = ({
     className,
     supplierUploadOverlay,
     hideSupplierUploadOverlay,
@@ -35,7 +39,7 @@ const SupplierUploadOverlayComponent = ({
     const [sheetsUrl, setSheetsUrl] = useState('');
 
     const history = useHistory();
-    const [historyListener, setRemoveListener] = useState();
+    const [historyListener, setRemoveListener] = useState<() => void>();
 
     useEffect(() => {
         if (supplierUploadOverlay) {
@@ -47,14 +51,14 @@ const SupplierUploadOverlayComponent = ({
             window.addEventListener('popstate', handler);
 
             setRemoveListener(() => handler);
-        } else {
+        } else if (historyListener) {
             window.removeEventListener('popstate', historyListener);
         }
         // eslint-disable-next-line
     }, [supplierUploadOverlay]);
 
-    const handlefileUpload = async ({ target }) => {
-        if (target.files.length) {
+    const handlefileUpload = async ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+        if (target.files && target.files.length) {
             return uploadSupplierExcelTableAsync(target.files[0]);
         }
     };
@@ -116,7 +120,7 @@ const SupplierUploadOverlayComponent = ({
                     <div className={Styles.googleSheetsInput}>
                         <input
                             placeholder='Input Google Sheets URL'
-                            onChange={setSheetsUrl}
+                            onChange={(e) => setSheetsUrl(e.target.value)}
                             value={sheetsUrl}
                         />
                         <Button
