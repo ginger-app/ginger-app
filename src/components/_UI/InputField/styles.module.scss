@@ -41,13 +41,17 @@
 
     & .button {
         @include media(md) {
+            place-self: center end;
+
+            right: -2rem;
+
             height: 7rem !important;
             width: 7rem !important;
 
             border-radius: 100%;
         }
         position: absolute;
-        right: -1.2rem;
+        right: 1.2rem;
 
         height: 4rem;
         width: 4rem;

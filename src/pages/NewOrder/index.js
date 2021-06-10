@@ -76,7 +76,9 @@ const NewOrderComponent = ({
                         rightButton={
                             <Button
                                 className={Styles.newLocationButton}
-                                content={<Icon name='plus' color='white' />}
+                                content={
+                                    <Icon name='plus' color='white' className={Styles.plusIcon} />
+                                }
                                 onClick={showNewLocationOverlay}
                                 filled
                             />

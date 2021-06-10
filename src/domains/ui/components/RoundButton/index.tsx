@@ -19,7 +19,7 @@ type RoundButtonProps = {
 export const RoundButton: FC<RoundButtonProps> = ({
     className,
     icon,
-    size = '3rem',
+    size = '4rem',
     onClick,
     gradient,
 }): ReactElement => {

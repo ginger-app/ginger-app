@@ -476,9 +476,9 @@ export function renderIcon({
                 <svg
                     className={className}
                     onClick={onClick}
-                    width={width || size || 29}
-                    height={height || size || 28}
-                    viewBox={`0 0 ${width || size || 29} ${height || size || 28}`}
+                    // width={17 || size || 30}
+                    // height={17 || size || 26}
+                    viewBox='0 0 30 26'
                     fill='none'
                     xmlns='http://www.w3.org/2000/svg'
                 >

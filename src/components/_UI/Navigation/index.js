@@ -75,7 +75,7 @@ const NavigationComponent = ({
                 //     <Icon name='search' color={searchOpened ? 'white' : 'black'} />
                 // </div>
                 <RoundButton
-                    onClick={() => {}}
+                    onClick={showSearchOverlay}
                     size={window.innerWidth > 700 ? '4rem' : '3rem'}
                     icon='search'
                 />

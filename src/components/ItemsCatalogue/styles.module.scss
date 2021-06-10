@@ -45,11 +45,12 @@
 
         & .item {
             @include media(md) {
-                min-height: 22rem;
+                min-height: 18rem;
                 min-width: 13rem !important; // forcing rewriting of flex-box default widths
                 max-width: 13rem !important; // forcing rewriting of flex-box default widths
+                margin: 0.8rem;
             }
-            min-height: 17rem;
+            min-height: 13rem;
             min-width: 10rem !important; // forcing rewriting of flex-box default widths
             max-width: 10rem !important; // forcing rewriting of flex-box default widths
             margin: 0.5rem;

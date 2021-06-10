@@ -32,7 +32,7 @@ export const CartItem = ({
                 </div>
                 <p className={Styles.amount}>{quantity}</p>
                 <div className={Styles.amountButton} onClick={incrementQty}>
-                    <Icon name='plus' />
+                    <Icon name='plus' className={Styles.plusIcon} />
                 </div>
             </div>
         </section>

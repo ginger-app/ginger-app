@@ -109,6 +109,11 @@
             height: 2rem;
             width: 2rem;
             padding: 0;
+
+            & .plusIcon {
+                height: 50%;
+                width: 50%;
+            }
         }
     }
 }
