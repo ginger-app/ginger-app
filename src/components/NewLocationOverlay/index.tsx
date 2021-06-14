@@ -11,6 +11,7 @@ import Styles from './styles.module.scss';
 import { Button, Icon } from 'components';
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import logo from 'theme/assets/svg/logo.svg';
+import { RoundButton } from 'domains/ui/components';
 
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
@@ -195,14 +196,15 @@ const NewLocationOverlayComponent: FC<NewLocationOverlayPropsTypes> = ({
                         )}
                     </div>
 
-                    <Button
+                    <RoundButton
                         className={Styles.close}
-                        content={<Icon name='close' />}
                         onClick={hideNewLocationOverlay}
+                        size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                        icon='close'
                     />
-                    <Button
+
+                    <RoundButton
                         className={Styles.apply}
-                        content={<Icon name='check' color='white' className={Styles.icon} />}
                         onClick={() =>
                             createNewLocationAsync({
                                 locationName: company,
@@ -215,7 +217,9 @@ const NewLocationOverlayComponent: FC<NewLocationOverlayPropsTypes> = ({
                                 phoneNumber,
                             })
                         }
-                        filled
+                        size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                        icon='check'
+                        gradient
                     />
                 </section>
             )}

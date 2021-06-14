@@ -4,6 +4,12 @@
     @include overlay;
     @include centerContent;
 
+    @include media(md) {
+        grid-template-rows: 1fr 4rem;
+
+        padding-bottom: 1rem;
+    }
+
     display: grid;
     grid-template-columns: 4rem 1fr 4rem;
     grid-template-rows: 1fr 3rem;

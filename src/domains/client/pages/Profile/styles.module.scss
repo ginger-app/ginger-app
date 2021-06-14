@@ -7,6 +7,19 @@
     grid-template-rows: max-content 1fr;
     gap: 0.5rem;
 
+    & .navButton {
+        @include lightButton;
+        @include centerContent;
+
+        width: 3rem;
+        padding: 0;
+
+        & .logoutIcon {
+            position: relative;
+            left: -2px;
+        }
+    }
+
     & .links {
         display: grid;
         grid-auto-rows: 6rem;

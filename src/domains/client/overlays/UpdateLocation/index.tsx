@@ -11,6 +11,7 @@ import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import logo from 'theme/assets/svg/logo.svg';
 import { Button, Icon } from 'components';
 import { Location, useClientLocations } from 'domains/client/hooks/useClientLocations';
+import { RoundButton } from 'domains/ui/components';
 
 type UpdateLocationProps = {
     className?: string;
@@ -197,23 +198,25 @@ export const UpdateLocation: FC<UpdateLocationProps> = ({
                         )}
                     </div>
 
-                    <Button
+                    <RoundButton
                         className={Styles.close}
-                        content={<Icon name='close' />}
                         onClick={() => (deleteDialog ? setDeleteDialogState(false) : hideOverlay())}
+                        size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                        icon='close'
                     />
                     {deleteDialog ? (
                         <p className={Styles.deleteDialogText}>Видалити локацію?</p>
                     ) : (
-                        <Button
+                        <RoundButton
                             className={Styles.delete}
-                            content={<Icon name='trash' />}
                             onClick={() => setDeleteDialogState(true)}
+                            size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                            icon='trash'
                         />
                     )}
-                    <Button
+
+                    <RoundButton
                         className={Styles.apply}
-                        content={<Icon name='check' color='white' className={Styles.icon} />}
                         onClick={async () => {
                             if (deleteDialog) {
                                 await removeClientLocationAsync(_id);
@@ -231,7 +234,9 @@ export const UpdateLocation: FC<UpdateLocationProps> = ({
                             }
                             hideOverlay();
                         }}
-                        filled
+                        size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                        icon='check'
+                        gradient
                     />
                 </section>
             )}

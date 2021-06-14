@@ -61,6 +61,7 @@ export const InputField: FC<InputFieldProps> = ({
                 <RoundButton
                     className={Styles.button}
                     onClick={buttonAction}
+                    size={window.innerWidth > 700 ? '4rem' : '3rem'}
                     icon='rightArrow'
                     gradient
                 />

@@ -8,8 +8,9 @@ import { Portal } from 'react-portal';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Button, Icon, RadioButton } from 'components';
+import { RadioButton } from 'components';
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
+import { RoundButton } from 'domains/ui/components';
 
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
@@ -92,10 +93,16 @@ const AddItemToLocationComponent: FC<AddItemToLocationPropTypes> = ({
                                 </Fragment>
                             ))}
 
-                        <Button
+                        {/* <Button
                             content={<Icon name='leftArrow' />}
                             className={Styles.backButton}
                             onClick={hidePopup}
+                        /> */}
+                        <RoundButton
+                            className={Styles.backButton}
+                            onClick={hidePopup}
+                            size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                            icon='leftArrow'
                         />
                     </section>
                 )}

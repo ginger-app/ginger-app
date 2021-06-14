@@ -89,6 +89,7 @@ export const ClientEditProfile: FC<EditProfileProps> = ({ className }): ReactEle
                     <RoundButton
                         icon='upload'
                         onClick={() => null}
+                        size={window.innerWidth > 700 ? '4rem' : '3rem'}
                         className={Styles.uploadImage}
                     />
 
@@ -108,6 +109,7 @@ export const ClientEditProfile: FC<EditProfileProps> = ({ className }): ReactEle
                                     onClick={() =>
                                         focused === id ? setFocusedInput('') : setFocusedInput(id)
                                     }
+                                    size={window.innerWidth > 700 ? '4rem' : '3rem'}
                                 />
                             </div>
                         ))}
@@ -120,6 +122,7 @@ export const ClientEditProfile: FC<EditProfileProps> = ({ className }): ReactEle
                                 gradient
                                 icon='check'
                                 className={Styles.navButton}
+                                size={window.innerWidth > 700 ? '4rem' : '3rem'}
                                 onClick={() => {
                                     return (
                                         !unchanged &&

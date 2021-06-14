@@ -3,6 +3,10 @@
 .container {
     @include blur;
 
+    @include media(md) {
+        padding-bottom: 6rem;
+    }
+
     position: fixed;
     bottom: 0;
 

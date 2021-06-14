@@ -75,6 +75,7 @@ export const ClientProfile: FC<ProfileProps> = ({ className }): ReactElement => 
                                     className={Styles.navButton}
                                     icon='edit'
                                     onClick={() => null}
+                                    size={window.innerWidth > 700 ? '4rem' : '3rem'}
                                 />
                             </Link>
                         }
@@ -83,6 +84,7 @@ export const ClientProfile: FC<ProfileProps> = ({ className }): ReactElement => 
                                 icon='logout'
                                 className={Styles.navButton}
                                 onClick={logoutAsync}
+                                size={window.innerWidth > 700 ? '4rem' : '3rem'}
                             />
                         }
                     />

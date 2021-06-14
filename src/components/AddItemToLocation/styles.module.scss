@@ -66,13 +66,15 @@
         @include shadow;
         @include lightButton;
         @include centerContent;
+
+        @include media(md) {
+            margin-right: -1rem;
+        }
         cursor: pointer;
         place-self: end;
 
         grid-column: 1;
 
-        height: 3rem;
-        width: 3rem;
         margin-top: 1rem;
         padding: 0;
 

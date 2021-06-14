@@ -8,9 +8,10 @@ import { NavLink } from 'react-router-dom';
 import Styles from './styles.module.scss';
 
 // Instruments
-import { Navigation, LocationsSelect, ListItem, Dummy, Button, Icon } from 'components';
+import { Navigation, LocationsSelect, ListItem, Dummy } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core/routes';
+import { RoundButton } from 'domains/ui/components';
 
 // Actions
 import { profileActions } from 'bus/profile/profile.actions';
@@ -96,7 +97,7 @@ const ListsComponent = ({
                                     }
                                 }}
                             >
-                                <Button
+                                {/* <Button
                                     filled
                                     className={Styles.cartButton}
                                     content={
@@ -106,6 +107,13 @@ const ListsComponent = ({
                                             color='white'
                                         />
                                     }
+                                /> */}
+                                <RoundButton
+                                    className={Styles.cartButton}
+                                    onClick={() => {}}
+                                    size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                                    icon='cart'
+                                    gradient
                                 />
                             </NavLink>
                         }

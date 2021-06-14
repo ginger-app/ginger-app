@@ -89,6 +89,7 @@ export const SupplierEditProfile: FC<EditProfileProps> = ({ className }): ReactE
                     <RoundButton
                         icon='upload'
                         onClick={() => null}
+                        size={window.innerWidth > 700 ? '4rem' : '3rem'}
                         className={Styles.uploadImage}
                     />
 
@@ -105,6 +106,7 @@ export const SupplierEditProfile: FC<EditProfileProps> = ({ className }): ReactE
                                 />
                                 <RoundButton
                                     icon={focused === id ? 'check' : 'edit'}
+                                    size={window.innerWidth > 700 ? '4rem' : '3rem'}
                                     onClick={() =>
                                         focused === id ? setFocusedInput('') : setFocusedInput(id)
                                     }
@@ -120,6 +122,7 @@ export const SupplierEditProfile: FC<EditProfileProps> = ({ className }): ReactE
                                 gradient
                                 icon='check'
                                 className={Styles.navButton}
+                                size={window.innerWidth > 700 ? '4rem' : '3rem'}
                                 onClick={() => {
                                     return (
                                         !unchanged &&

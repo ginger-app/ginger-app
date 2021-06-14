@@ -8,7 +8,8 @@ import Styles from './styles.module.scss';
 
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
-import { Navigation, LocationCard, Button, Icon, Dummy } from 'components';
+import { Navigation, LocationCard, Dummy } from 'components';
+import { RoundButton } from 'domains/ui/components';
 
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
@@ -80,11 +81,12 @@ const LocationsListComponent = ({
                     {/* Navigation footer */}
                     <Navigation
                         rightButton={
-                            <Button
+                            <RoundButton
                                 className={Styles.newLocationButton}
-                                content={<Icon name='plus' color='white' />}
                                 onClick={showNewLocationOverlay}
-                                filled
+                                size={window.innerWidth > 700 ? '4rem' : '3rem'}
+                                icon='plus'
+                                gradient
                             />
                         }
                     />
