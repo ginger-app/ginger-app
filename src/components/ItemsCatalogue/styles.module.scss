@@ -45,14 +45,14 @@
 
         & .item {
             @include media(md) {
-                min-height: 18rem;
-                min-width: 13rem !important; // forcing rewriting of flex-box default widths
-                max-width: 13rem !important; // forcing rewriting of flex-box default widths
+                min-height: 16rem;
+                min-width: 12.5rem !important; // forcing rewriting of flex-box default widths
+                max-width: 12.5rem !important; // forcing rewriting of flex-box default widths
                 margin: 0.8rem;
             }
-            min-height: 13rem;
-            min-width: 10rem !important; // forcing rewriting of flex-box default widths
-            max-width: 10rem !important; // forcing rewriting of flex-box default widths
+            min-height: 15rem;
+            min-width: 9.5rem !important; // forcing rewriting of flex-box default widths
+            max-width: 9.5rem !important; // forcing rewriting of flex-box default widths
             margin: 0.5rem;
         }
     }
