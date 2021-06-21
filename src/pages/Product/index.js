@@ -88,7 +88,7 @@ const ProductComponent = ({
             <Navigation
                 centerButton={
                     <Button
-                        text='Додати до локації'
+                        content='Додати до локації'
                         className={Styles.addToLocationButton}
                         onClick={() =>
                             isAuthenticated ? setLocationsPopupState(true) : showLoginOverlay()

@@ -4,8 +4,8 @@ import React from 'react';
 // Styles
 import Styles from './styles.module.scss';
 
-export const OrderStatusLabel = ({ className, status }) => {
-    const classNames = {
+export const OrderStatusLabel = ({ className, status }: { className?: string; status: string }) => {
+    const classNames: Record<string, React.CSSProperties> = {
         Pending: Styles.pendingStatus,
         'Awaiting collection': Styles.preparingStatus,
         'Awaiting shipment': Styles.preparingStatus,

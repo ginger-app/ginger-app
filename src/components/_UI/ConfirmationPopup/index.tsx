@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { Transition } from 'react-transition-group';
 
 // Styles
@@ -8,7 +8,7 @@ import Styles from './styles.module.scss';
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
-export const ConfirmationPopup = ({ className }) => {
+export const ConfirmationPopup: FC<{ className: string }> = ({ className }) => {
     return (
         <Transition
             in

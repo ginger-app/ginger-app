@@ -8,7 +8,7 @@ type GradientBorderPropsType = {
     className?: string;
     style?: React.CSSProperties;
     children?: React.ReactNode;
-    onClick?: () => void;
+    onClick?: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 };
 
 export const GradientBorder: FC<GradientBorderPropsType> = ({

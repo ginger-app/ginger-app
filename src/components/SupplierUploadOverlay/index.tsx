@@ -85,6 +85,7 @@ const SupplierUploadOverlayComponent: FC<SupplierUploadOverlayPropsTypes> = ({
                         <Button
                             className={Styles.newItemButton}
                             content={<Icon name='plus' color='white' />}
+                            onClick={() => null}
                         />
                     </div>
 
@@ -97,11 +98,16 @@ const SupplierUploadOverlayComponent: FC<SupplierUploadOverlayPropsTypes> = ({
                         <Button
                             className={Styles.importTableButton}
                             content={<Icon name='export' />}
+                            onClick={() => null}
                         />
                     </label>
                     <div className={Styles.example}>
                         Приклад таблиці можна подивитися
-                        <Button content='тут' className={Styles.exampleButton} />
+                        <Button
+                            content='тут'
+                            className={Styles.exampleButton}
+                            onClick={() => null}
+                        />
                     </div>
 
                     {/* hidden input overlapping the button */}
@@ -131,7 +137,11 @@ const SupplierUploadOverlayComponent: FC<SupplierUploadOverlayPropsTypes> = ({
                     </div>
                     <div className={Styles.example}>
                         Приклад таблиці можна подивитися
-                        <Button content='тут' className={Styles.exampleButton} />
+                        <Button
+                            content='тут'
+                            className={Styles.exampleButton}
+                            onClick={() => null}
+                        />
                     </div>
 
                     {/* Close button */}

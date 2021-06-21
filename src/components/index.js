@@ -23,4 +23,3 @@ export * from './LoginOverlay';
 export * from './CartToaster';
 export * from './NewsBlock';
 export * from './Preloader';
-export * from './MapModal';

@@ -1,8 +1,7 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { Transition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -13,7 +12,18 @@ import { book } from 'core/routes';
 import logo from 'theme/assets/svg/logo.svg';
 import arrow from 'theme/assets/svg/right-full-arrow.svg';
 
-export const LocationCard = ({
+type LocationCardPropsTypes = {
+    className?: string;
+    index: number;
+    newOrder: boolean;
+    onClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+    image: string;
+    locationName: string;
+    address: string;
+    _id: string;
+};
+
+export const LocationCard: FC<LocationCardPropsTypes> = ({
     className,
     index,
     newOrder,
@@ -70,11 +80,4 @@ export const LocationCard = ({
             }
         </Transition>
     );
-};
-
-LocationCard.propTypes = {
-    className: PropTypes.string,
-    index: PropTypes.number,
-    newOrder: PropTypes.bool,
-    onClick: PropTypes.func,
 };

@@ -1,27 +1,35 @@
 // Core
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { FC } from 'react';
 import { Transition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 // Styles
 import Styles from './styles.module.scss';
 
 // Instruments
-import stylePropType from 'react-style-proptype';
 import { OrderStatusLabel } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { DateTime } from 'luxon';
 import arrow from 'theme/assets/svg/right-full-arrow.svg';
+import { SupplierDto } from 'domains/supplier/redux/supplier.types';
+import { OrderItem as OrderItemT } from 'domains/market/types';
 
-const mapStateToProps = (state) => ({
-    ...state,
-});
+type OrderItemPropsTypes = {
+    className?: string;
+    style: React.CSSProperties;
+    status: string;
+    _id: string;
+    deliveryDate: string;
+    sum: number;
+    items: OrderItemT[];
+    index: number;
+    // !TEMP
+    supplier: string | SupplierDto;
+    orderDetails: boolean;
+    onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void;
+};
 
-const mapDispatchToProps = {};
-
-const SupplierOrderItemComponent = ({
+export const OrderItem: FC<OrderItemPropsTypes> = ({
     className,
     style,
     status,
@@ -30,8 +38,9 @@ const SupplierOrderItemComponent = ({
     sum,
     items,
     index,
-    location,
-    client,
+    supplier,
+    orderDetails,
+    onClick,
 }) => {
     return (
         <Transition
@@ -52,6 +61,15 @@ const SupplierOrderItemComponent = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                     to={`/orders/${_id}`}
+                    onClick={(e) => {
+                        if (orderDetails) {
+                            e.preventDefault();
+
+                            if (onClick) {
+                                onClick(e);
+                            }
+                        }
+                    }}
                 >
                     <OrderStatusLabel status={status} className={Styles.orderStatusLabel} />
 
@@ -64,30 +82,21 @@ const SupplierOrderItemComponent = ({
                     </p>
                     <p className={Styles.price}>{sum} грн.</p>
 
-                    {/* <p className={Styles.location}>{location.locationName}</p> */}
+                    <p className={[Styles.supplier, Styles.alignRight].join(' ')}>
+                        {typeof supplier === 'string' ? supplier : supplier?.companyName || '...'}
+                    </p>
 
-                    <p className={Styles.supplier}>{client?.name || '...'}</p>
-
-                    <div className={Styles.cart}>
-                        <span>Товарів:</span>
-                        <span>{items.length}</span>
-                        <img src={arrow} alt='' />
-                    </div>
+                    {orderDetails ? (
+                        <p className={Styles.showUserInfo}>• • •</p>
+                    ) : (
+                        <div className={Styles.cart}>
+                            <span>Товарів:</span>
+                            <span>{items.length}</span>
+                            <img src={arrow} alt='' />
+                        </div>
+                    )}
                 </NavLink>
             )}
         </Transition>
     );
 };
-
-SupplierOrderItemComponent.propTypes = {
-    className: PropTypes.string,
-    style: stylePropType,
-    status: PropTypes.string,
-    sum: PropTypes.string,
-    index: PropTypes.number,
-};
-
-export const SupplierOrderItem = connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(SupplierOrderItemComponent);

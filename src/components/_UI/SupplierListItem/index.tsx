@@ -1,7 +1,6 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -10,8 +9,9 @@ import Styles from './styles.module.scss';
 
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     ...state,
 });
 
@@ -20,7 +20,19 @@ const mapDispatchToProps = {
     setNewListItemOverlayData: uiActions.setNewListItemOverlayData,
 };
 
-const SupplierListItemComponent = ({
+type SupplierListItemPropsTypes = typeof mapDispatchToProps & {
+    className: string;
+
+    category: string;
+    unit: string;
+    price: number;
+    stock: number;
+    id: string;
+    name: string;
+    image: string;
+};
+
+const SupplierListItemComponent: FC<SupplierListItemPropsTypes> = ({
     className,
     showNewListItemOverlay,
     setNewListItemOverlayData,
@@ -48,10 +60,6 @@ const SupplierListItemComponent = ({
             <p className={Styles.infoValue}>{price.toFixed(2)}</p>
         </section>
     );
-};
-
-SupplierListItemComponent.propTypes = {
-    className: PropTypes.string,
 };
 
 export const SupplierListItem = connect(

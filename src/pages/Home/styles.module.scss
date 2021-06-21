@@ -18,8 +18,7 @@
     }
 
     & .profileButton,
-    .loginButton,
-    .favoritesButton {
+    .loginButton {
         @include lightButton;
         @include centerContent;
         place-self: center start;
@@ -76,10 +75,6 @@
 
             transform: scale(0.9);
         }
-    }
-
-    & .favoritesButton {
-        place-self: center end;
     }
 
     & .news {

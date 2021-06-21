@@ -199,8 +199,10 @@ type HideOrderCombinationsOverlay = {
 export type NewListItemOverlayData = {
     category: string;
     unit: string;
-    price: Record<string, number>;
-    stock: Record<string, number>;
+    // price: Record<string, number>;
+    // stock: Record<string, number>;
+    price: number;
+    stock: number;
     id: string | null;
     name: string;
     img: string;

@@ -31,6 +31,7 @@ export const ItemsCatalogue: FC<ItemsPropTypes> = ({
                     className={Styles.showMore}
                     to={`/categories/${categorySku}`}
                     text='Дивитись всі'
+                    onClick={() => null}
                 />
             )}
 

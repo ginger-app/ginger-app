@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { Transition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
 
@@ -11,8 +11,23 @@ import { OrderStatusLabel } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { DateTime } from 'luxon';
 import arrow from 'theme/assets/svg/right-full-arrow.svg';
+import { OrderItem } from 'domains/market/types';
 
-export const OrderItem = ({
+type SupplierOrderItemPropsTypes = {
+    className?: string;
+    style: React.CSSProperties;
+    status: string;
+    _id: string;
+    deliveryDate: string;
+    sum: string;
+    items: OrderItem[];
+    index: number;
+    location: string;
+    // TEMP!
+    client: string | Record<string, any>;
+};
+
+export const SupplierOrderItem: FC<SupplierOrderItemPropsTypes> = ({
     className,
     style,
     status,
@@ -21,9 +36,8 @@ export const OrderItem = ({
     sum,
     items,
     index,
-    supplier,
-    orderDetails,
-    onClick,
+    // location,
+    client,
 }) => {
     return (
         <Transition
@@ -44,15 +58,6 @@ export const OrderItem = ({
                         ...opacityTransitionConfig().transitionStyles[state],
                     }}
                     to={`/orders/${_id}`}
-                    onClick={(e) => {
-                        if (orderDetails) {
-                            e.preventDefault();
-
-                            if (onClick) {
-                                onClick();
-                            }
-                        }
-                    }}
                 >
                     <OrderStatusLabel status={status} className={Styles.orderStatusLabel} />
 
@@ -65,19 +70,17 @@ export const OrderItem = ({
                     </p>
                     <p className={Styles.price}>{sum} грн.</p>
 
-                    <p className={[Styles.supplier, Styles.alignRight].join(' ')}>
-                        {supplier?.companyName || '...'}
+                    {/* <p className={Styles.location}>{location.locationName}</p> */}
+
+                    <p className={Styles.supplier}>
+                        {typeof client === 'string' ? client : client?.name || '...'}
                     </p>
 
-                    {orderDetails ? (
-                        <p className={Styles.showUserInfo}>• • •</p>
-                    ) : (
-                        <div className={Styles.cart}>
-                            <span>Товарів:</span>
-                            <span>{items.length}</span>
-                            <img src={arrow} alt='' />
-                        </div>
-                    )}
+                    <div className={Styles.cart}>
+                        <span>Товарів:</span>
+                        <span>{items.length}</span>
+                        <img src={arrow} alt='' />
+                    </div>
                 </NavLink>
             )}
         </Transition>

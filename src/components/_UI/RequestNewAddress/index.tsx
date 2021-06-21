@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { Transition } from 'react-transition-group';
 
 // Styles
@@ -9,7 +9,14 @@ import { Icon } from 'components';
 import { bottomToTopSlideConfig } from 'utils/transitionConfig';
 import Styles from './styles.module.scss';
 
-export const RequestNewAddress = ({
+type RequestNewAddressPropsTypes = {
+    inProp: boolean;
+    requestedAddress: string;
+    setRequestedAddress: (e: string) => void;
+    closeModal: () => void;
+};
+
+export const RequestNewAddress: FC<RequestNewAddressPropsTypes> = ({
     inProp,
     requestedAddress,
     setRequestedAddress,
@@ -42,7 +49,7 @@ export const RequestNewAddress = ({
                         autoFocus
                         value={requestedAddress}
                         className={Styles.addressInput}
-                        placesholder='Type in your address'
+                        placeholder='Type in your address'
                         onChange={({ target: { value } }) => setRequestedAddress(value)}
                     />
                     <div className={Styles.requestButton} onClick={() => requestedAddress}>

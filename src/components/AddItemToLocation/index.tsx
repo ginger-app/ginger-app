@@ -93,11 +93,6 @@ const AddItemToLocationComponent: FC<AddItemToLocationPropTypes> = ({
                                 </Fragment>
                             ))}
 
-                        {/* <Button
-                            content={<Icon name='leftArrow' />}
-                            className={Styles.backButton}
-                            onClick={hidePopup}
-                        /> */}
                         <RoundButton
                             className={Styles.backButton}
                             onClick={hidePopup}

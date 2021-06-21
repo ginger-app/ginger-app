@@ -1,5 +1,5 @@
 // Core
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import { connect } from 'react-redux';
 
 // Styles
@@ -10,8 +10,9 @@ import { Icon, RadioButton } from 'components';
 
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     locations: state.profile.locations,
     clientSelectedLocation: state.ui.clientListsSelectedLocation,
 });
@@ -20,7 +21,10 @@ const mapDispatchToProps = {
     setClientSelectedLocation: uiActions.setClientListsSelectedLocation,
 };
 
-const LocationsSelectComponent = ({
+type LocationsSelectPropsTypes = ReturnType<typeof mapStateToProps> &
+    typeof mapDispatchToProps & { className?: string };
+
+const LocationsSelectComponent: FC<LocationsSelectPropsTypes> = ({
     className,
     locations,
     setClientSelectedLocation,

@@ -1,5 +1,5 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -7,7 +7,20 @@ import Styles from './styles.module.scss';
 // Instruments
 import { Icon } from 'components';
 
-export const CartItem = ({
+type CartItemPropsTypes = {
+    className?: string;
+    name: string;
+    image: string;
+    minPrice: number;
+    quantity: number;
+    unit: string;
+    removeItem?: () => void;
+    orderDetails: boolean;
+    incrementQty: () => void;
+    decrementQty: () => void;
+};
+
+export const CartItem: FC<CartItemPropsTypes> = ({
     className,
     name,
     image,

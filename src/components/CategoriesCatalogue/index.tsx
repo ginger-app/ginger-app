@@ -88,6 +88,7 @@ const CatalogueComponent: FC<CatalogueTypes> = ({ className, categories, extende
                     to={book.market}
                     text='В маркет'
                     fontWeight='bold'
+                    onClick={() => null}
                 />
             )}
         </section>

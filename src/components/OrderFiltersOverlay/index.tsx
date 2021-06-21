@@ -32,7 +32,7 @@ const mapDispatchToProps = {
 };
 
 type OrderFiltersOverlayPropsTypes = ReturnType<typeof mapStateToProps> &
-    typeof mapDispatchToProps & { className: string };
+    typeof mapDispatchToProps & { className?: string };
 
 const OrderFiltersOverlayComponent: FC<OrderFiltersOverlayPropsTypes> = ({
     className,

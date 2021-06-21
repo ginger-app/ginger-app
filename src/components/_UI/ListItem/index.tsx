@@ -1,8 +1,7 @@
 // Core
-import React from 'react';
+import React, { FC } from 'react';
 import { Transition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -10,7 +9,25 @@ import Styles from './styles.module.scss';
 // Instruments
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 
-export const ListItem = ({ className, index = 0, image, name, unit, minPrice, _id }) => {
+type ListItemPropsTypes = {
+    className?: string;
+    index: number;
+    image: string;
+    name: string;
+    unit: string;
+    minPrice: number;
+    _id: string;
+};
+
+export const ListItem: FC<ListItemPropsTypes> = ({
+    className,
+    index = 0,
+    image,
+    name,
+    unit,
+    minPrice,
+    _id,
+}) => {
     return (
         <Transition
             in
@@ -37,12 +54,4 @@ export const ListItem = ({ className, index = 0, image, name, unit, minPrice, _i
             )}
         </Transition>
     );
-};
-
-ListItem.propTypes = {
-    className: PropTypes.string,
-    index: PropTypes.number,
-    _id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    unit: PropTypes.string.isRequired,
 };

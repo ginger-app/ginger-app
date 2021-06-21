@@ -1,5 +1,5 @@
 // Core
-import React, { useState, useEffect, useRef, FC, ReactChild, CSSProperties } from 'react';
+import React, { useState, useEffect, useRef, FC, CSSProperties, ReactElement } from 'react';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -7,7 +7,7 @@ import Styles from './styles.module.scss';
 type CarouselTypes = {
     className?: string;
     carouselClassName?: string;
-    items?: ReactChild[];
+    items?: ReactElement[] | ReactElement;
     style?: CSSProperties;
     itemsToShow?: number;
 };

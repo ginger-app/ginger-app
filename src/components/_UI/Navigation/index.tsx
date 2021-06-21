@@ -1,7 +1,6 @@
 // Core
-import React, { useEffect } from 'react';
+import React, { useEffect, FC } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
 // Styles
@@ -9,12 +8,13 @@ import Styles from './styles.module.scss';
 
 // Instruments
 // import { Icon } from 'components';
-import { RoundButton } from 'domains/ui/components';
+import { RoundButton, IconNames } from 'domains/ui/components';
 
 // Actions
 import { uiActions } from 'bus/ui/ui.actions';
+import { AppState } from 'bus/init/rootReducer';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppState) => ({
     searchOpened: state.ui.searchOpened,
     backButtonPath: state.ui.backButtonPath,
 });
@@ -24,7 +24,22 @@ const mapDispatchToProps = {
     setBackButtonPath: uiActions.setBackButtonPath,
 };
 
-const NavigationComponent = ({
+type NavigationPropsTypes = ReturnType<typeof mapStateToProps> &
+    typeof mapDispatchToProps & {
+        className?: string;
+        rightButtonData?: {
+            icon: IconNames;
+            onClick: () => void;
+        };
+        backButtonAction?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+        title?: string;
+        leftButton?: React.ReactElement | string;
+        rightButton?: React.ReactElement | string;
+        centerButton?: React.ReactElement | string;
+        search?: boolean;
+    };
+
+const NavigationComponent: FC<NavigationPropsTypes> = ({
     className,
     searchOpened,
     backButtonPath,
@@ -54,12 +69,6 @@ const NavigationComponent = ({
             {leftButton
                 ? !searchOpened && leftButton
                 : !searchOpened && (
-                      //   <div
-                      //       className={Styles.backButton}
-                      //       onClick={backButtonAction || history.goBack}
-                      //   >
-                      //       <Icon name='leftArrow' />
-                      //   </div>
                       <RoundButton
                           onClick={backButtonAction || history.goBack}
                           size={window.innerWidth > 700 ? '4rem' : '3rem'}
@@ -68,12 +77,6 @@ const NavigationComponent = ({
                   )}
 
             {search && (
-                // <div
-                //     className={`${Styles.searchButton} ${searchOpened && Styles.active}`}
-                //     onClick={showSearchOverlay}
-                // >
-                //     <Icon name='search' color={searchOpened ? 'white' : 'black'} />
-                // </div>
                 <RoundButton
                     onClick={showSearchOverlay}
                     size={window.innerWidth > 700 ? '4rem' : '3rem'}
@@ -86,14 +89,6 @@ const NavigationComponent = ({
             {!searchOpened && rightButton !== 'search' && rightButton}
 
             {rightButton === 'search' && (
-                // <div
-                //     className={`${Styles.searchButton} ${Styles.rightButton} ${
-                //         searchOpened && Styles.active
-                //     }`}
-                //     onClick={showSearchOverlay}
-                // >
-                //     <Icon name='search' color={searchOpened ? 'white' : 'black'} />
-                // </div>
                 <RoundButton
                     onClick={showSearchOverlay}
                     size={window.innerWidth > 700 ? '4rem' : '3rem'}
@@ -102,12 +97,6 @@ const NavigationComponent = ({
             )}
 
             {rightButtonData && (
-                // <div
-                //     className={`${Styles.searchButton} ${Styles.rightButton}`}
-                //     onClick={rightButtonData.onClick}
-                // >
-                //     <Icon name={rightButtonData.icon} color='black' />
-                // </div>
                 <RoundButton
                     onClick={rightButtonData.onClick}
                     size={window.innerWidth > 700 ? '4rem' : '3rem'}
@@ -116,20 +105,6 @@ const NavigationComponent = ({
             )}
         </section>
     );
-};
-
-NavigationComponent.propTypes = {
-    className: PropTypes.string,
-    title: PropTypes.string,
-    backButtonAction: PropTypes.func,
-    leftButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-    rightButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-    centerButton: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-    rightButtonData: PropTypes.shape({
-        icon: PropTypes.string.isRequired,
-        onClick: PropTypes.func.isRequired,
-    }),
-    search: PropTypes.bool,
 };
 
 export const Navigation = connect(mapStateToProps, mapDispatchToProps)(NavigationComponent);

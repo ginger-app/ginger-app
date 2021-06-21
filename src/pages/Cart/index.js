@@ -154,7 +154,7 @@ const CartComponent = ({
                     <Navigation
                         centerButton={
                             <Button
-                                text={
+                                content={
                                     deliveryDate.string && !cartIsEmpty
                                         ? 'Показати варіанти'
                                         : cartIsEmpty

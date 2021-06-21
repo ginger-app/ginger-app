@@ -39,7 +39,7 @@ export const uiActions = {
     }),
 
     // Routing
-    setBackButtonPath: (path: Record<string, string | null>) => ({
+    setBackButtonPath: (path: Record<string, string> | null) => ({
         type: types.SET_BACK_BUTTON_PATH,
         payload: { path },
     }),

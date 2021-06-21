@@ -1,7 +1,6 @@
 // Core
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, FC } from 'react';
 import { Transition } from 'react-transition-group';
-import PropTypes from 'prop-types';
 
 // Styles
 import Styles from './styles.module.scss';
@@ -11,9 +10,14 @@ import { Carousel } from 'components';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { combineIntoEvenArrays } from 'utils/combineIntoEvenArrays';
 
-export const DoubleRowCarousel = ({ className, items }) => {
-    const [topLine, setTopLine] = useState([]);
-    const [bottomLine, setBottomLine] = useState([]);
+type DoubleRowCarouselPropsTypes = {
+    className?: string;
+    items: React.ReactElement[] | string[];
+};
+
+export const DoubleRowCarousel: FC<DoubleRowCarouselPropsTypes> = ({ className, items }) => {
+    const [topLine, setTopLine] = useState<any[]>([]);
+    const [bottomLine, setBottomLine] = useState<any[]>([]);
 
     useEffect(() => {
         const [topLineArray, bottomLineArray] = combineIntoEvenArrays(items);
@@ -61,7 +65,7 @@ export const DoubleRowCarousel = ({ className, items }) => {
     );
 };
 
-DoubleRowCarousel.propTypes = {
-    className: PropTypes.string,
-    items: PropTypes.arrayOf(PropTypes.string),
-};
+// DoubleRowCarousel.propTypes = {
+//     className: PropTypes.string,
+//     items: PropTypes.arrayOf(PropTypes.string),
+// };
