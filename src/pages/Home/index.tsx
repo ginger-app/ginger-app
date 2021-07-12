@@ -1,7 +1,7 @@
 // Core
 import React, { useState, useEffect, FC } from 'react';
 import { connect } from 'react-redux';
-import { Link, NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { Portal } from 'react-portal';
 import { Transition } from 'react-transition-group';
 
@@ -17,6 +17,7 @@ import {
     Navigation,
     Dummy,
 } from 'components';
+import { SupplierLeftoversButton, SupplierOrdersButton } from 'domains/home';
 import { opacityTransitionConfig } from 'utils/transitionConfig';
 import { book } from 'core';
 import { RoundButton } from 'domains/ui/components';
@@ -32,6 +33,7 @@ const mapStateToProps = (state: AppState) => ({
     unfinishedOrder: state.profile.unfinishedOrder,
     role: state.profile.role,
     logs: state.ui.logs,
+    itemsList: state.profile.itemsList,
 });
 
 const mapDispatchToProps = {
@@ -46,13 +48,14 @@ const HomeComponent: FC<HomePropsTypes> = ({
     getMarketCategoriesAsync,
     showLoginOverlay,
     role,
-
-    // orders,
+    orders,
+    itemsList,
     // logs,
 }) => {
     const history = useHistory();
     const [showToaster, setToasterVisibility] = useState(false);
     const [toasterMessage, setToasterMessage] = useState('');
+    const [qtyStatus, setQtyStatus] = useState<'green' | 'red' | 'yellow'>('green');
 
     // fetching categories
     useEffect(() => {
@@ -67,6 +70,13 @@ const HomeComponent: FC<HomePropsTypes> = ({
             setToasterVisibility(true);
         }
     }, [history.location.state]);
+
+    useEffect(() => {
+        const restQty = itemsList.filter((item) => item.stock <= 1);
+        const status =
+            restQty.length === 0 ? 'green' : restQty.find((el) => el.stock < 1) ? 'red' : 'yellow';
+        setQtyStatus(status);
+    }, [itemsList]);
 
     return (
         <Transition
@@ -91,9 +101,21 @@ const HomeComponent: FC<HomePropsTypes> = ({
                     {role === 'client' || !isAuthenticated ? (
                         <CreateNewOrder className={Styles.newOrder} />
                     ) : (
-                        <Link to={book.supplierOrders} className={Styles.checkOrders}>
-                            Нових замовлень: 0
-                        </Link>
+                        <>
+                            <SupplierOrdersButton
+                                className={Styles.SuppliersOrderButton}
+                                onClick={() => null}
+                                content='Замовлення'
+                                ordersQty={orders.length}
+                                hidden={orders.length === 0}
+                            />
+                            <SupplierLeftoversButton
+                                className={Styles.SuppliersGoodsButton}
+                                onClick={() => null}
+                                content='Товари'
+                                qtyStatus={qtyStatus}
+                            />
+                        </>
                     )}
                     <CategoriesCatalogue
                         className={Styles.catalogue}

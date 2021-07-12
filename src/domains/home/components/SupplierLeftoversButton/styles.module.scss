@@ -1,0 +1,19 @@
+@import 'resources';
+
+.goodsButtonImg {
+    @include media(md) {
+        top: -1.9rem;
+        right: -1.9rem;
+
+        height: 4rem;
+        width: 4rem;
+    }
+    place-self: start end;
+
+    position: absolute;
+    top: -1.4rem;
+    right: -1.4rem;
+
+    height: 3.3rem;
+    width: 3.3rem;
+}

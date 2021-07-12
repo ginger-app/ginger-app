@@ -2,7 +2,7 @@
 import { OrderCombination } from 'bus/ui/ui.types';
 import { Location } from 'domains/client/hooks/useClientLocations';
 import { Order, OrderItem } from 'domains/market/types';
-import { SupplierPreviewItem } from 'domains/supplier/types';
+import { SupplierPreviewItem, SuplierItem } from 'domains/supplier/types';
 
 // Types
 import { ProfileActions, profileTypes as types } from './profile.types';
@@ -21,6 +21,7 @@ const initialState = Object.freeze({
     analyticsData: [] as Record<string, any>[],
     previewData: [] as SupplierPreviewItem[],
     orders: [] as Order[],
+    itemsList: [] as SuplierItem[],
 
     // displaying stuff
     ordersCombinations: [] as OrderCombination[],

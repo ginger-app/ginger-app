@@ -1,0 +1,33 @@
+@import 'resources';
+
+.hiddenOrderQtyButton {
+    display: none;
+}
+
+.orderQtyButton {
+    @include centerContent;
+
+    @include media(md) {
+        top: -1.2rem;
+        right: -1.2rem;
+
+        height: 2.5rem;
+        width: 2.5rem;
+    }
+    place-self: start end;
+
+    position: absolute;
+    top: -0.9rem;
+    right: -0.9rem;
+
+    height: 2.1rem;
+    width: 2.1rem;
+
+    background-color: white;
+
+    border-radius: 100%;
+
+    box-shadow: 0px 0px 15px #0000001a;
+
+    color: black;
+}

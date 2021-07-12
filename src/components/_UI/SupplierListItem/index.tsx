@@ -20,17 +20,17 @@ const mapDispatchToProps = {
     setNewListItemOverlayData: uiActions.setNewListItemOverlayData,
 };
 
-type SupplierListItemPropsTypes = typeof mapDispatchToProps & {
-    className: string;
-
-    category: string;
-    unit: string;
-    price: number;
-    stock: number;
-    id: string;
-    name: string;
-    image: string;
-};
+type SupplierListItemPropsTypes = typeof mapDispatchToProps &
+    ReturnType<typeof mapStateToProps> & {
+        className?: string;
+        category: string;
+        unit: string;
+        price: number;
+        stock: number;
+        id: string;
+        name: string;
+        image: string;
+    };
 
 const SupplierListItemComponent: FC<SupplierListItemPropsTypes> = ({
     className,
